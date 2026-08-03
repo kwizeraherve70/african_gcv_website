@@ -1,0 +1,5 @@
+/* Inter — primary UI/body font (loaded via preconnect in index.html for performance) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..900;1,14..32,300..900&display=swap');
+
+/* Poppins — heading font (Pi Global GCV Alliance brand typography) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&display=swap');
