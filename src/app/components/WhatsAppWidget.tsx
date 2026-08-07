@@ -1,4 +1,4 @@
-const WHATSAPP_NUMBER = '250700000000'; // Replace with real WhatsApp Business number
+const WHATSAPP_NUMBER = '250738013858';
 const WHATSAPP_MESSAGE = 'Hello! I have a question about Pi Global GCV Alliance.';
 
 export function WhatsAppWidget() {

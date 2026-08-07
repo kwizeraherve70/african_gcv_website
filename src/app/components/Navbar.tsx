@@ -1,7 +1,31 @@
 import { Link, useLocation } from 'react-router';
-import { ShoppingCart, Menu, X, ChevronDown, Search, User } from 'lucide-react';
+import { ShoppingCart, Menu, X, ChevronDown, Search, User, Sun, Moon } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
+import { useTheme } from 'next-themes';
 import { useCart } from '../context/CartContext';
+
+function ThemeToggle() {
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) {
+    return <div className="p-2.5 w-[42px] h-[42px]" aria-hidden="true" />;
+  }
+
+  const isDark = resolvedTheme === 'dark';
+
+  return (
+    <button
+      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      className="p-2.5 hover:bg-accent rounded-xl transition-colors duration-150"
+      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+    >
+      {isDark ? <Sun className="w-[18px] h-[18px]" /> : <Moon className="w-[18px] h-[18px]" />}
+    </button>
+  );
+}
 
 interface NavGroup {
   label: string;
@@ -15,20 +39,11 @@ const NAV_GROUPS: NavGroup[] = [
     label: 'About Us',
     children: [
       { to: '/about', label: 'Our Story', description: 'Mission, values & leadership' },
-      { to: '/team', label: 'Core Team', description: 'Global leadership & departments' },
-      { to: '/founders', label: 'Founders', description: 'The visionaries behind the Alliance' },
+      { to: '/team', label: 'Core Team', description: 'Global leadership, founders & departments' },
     ],
   },
   { label: 'GCV Market', to: '/shop' },
   { label: 'News & Media', to: '/news' },
-  {
-    label: 'Alliance',
-    children: [
-      { to: '/ambassadors', label: 'Ambassadors', description: 'Regional GCV representatives' },
-      { to: '/industry-alliance', label: 'Industry Alliance', description: 'Partner companies & institutions' },
-      { to: '/merchants', label: 'Merchant Directory', description: 'Businesses accepting Pi at GCV' },
-    ],
-  },
   { label: 'Contact Us', to: '/contact' },
 ];
 
@@ -204,6 +219,8 @@ export function Navbar() {
             </button>
 
             <LanguageSelector />
+
+            <ThemeToggle />
 
             <Link
               to="/cart"

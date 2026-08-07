@@ -140,27 +140,36 @@ export function About() {
             <h2 className="text-3xl font-heading font-bold mb-2 tracking-tight">
               What is Global Consensus Value?
             </h2>
-            <p className="text-3xl font-bold text-brand-purple mb-8">
-              1 USD = {GCV_USD.toLocaleString('en-US')} π
+            <p className="text-3xl font-bold text-brand-purple mb-4">
+              1 π ≈ ${GCV_USD.toLocaleString('en-US')}
             </p>
+            <div className="bg-brand-purple/5 border border-brand-purple/20 rounded-xl p-4 mb-6">
+              <p className="text-sm text-foreground/80 leading-relaxed">
+                <strong className="text-foreground">GCV is a community-proposed price target, not an official
+                Pi Network rate.</strong> It is not endorsed by the Pi Core Team or verified on any exchange.
+                Pi's actual open-market trading price is far lower — a matter of cents per coin, not
+                hundreds of thousands of dollars.
+              </p>
+            </div>
             <div className="space-y-4 text-muted-foreground">
               <p className="leading-relaxed">
-                Global Consensus Value (GCV) is the Alliance's fixed conversion standard,
-                setting the exchange rate at{' '}
-                <strong className="text-foreground">1 USD = {GCV_USD.toLocaleString('en-US')} π</strong>{' '}
+                Global Consensus Value (GCV) is the Alliance's community-agreed target rate,
+                proposing{' '}
+                <strong className="text-foreground">1 π ≈ ${GCV_USD.toLocaleString('en-US')}</strong>{' '}
                 — a figure derived from the mathematical constant π (3.14159) with the decimal
-                point moved four places to the right. Every product and service in the GCV
-                Market is priced in USD and payable in Pi at this rate.
+                point moved four places to the right. Products and services in the GCV Market
+                are priced in USD and shown converted to Pi at this community target.
               </p>
               <p className="leading-relaxed">
-                Unlike volatile exchange-traded pricing, GCV establishes a stable reference rate
-                through Alliance-wide agreement — creating a predictable, fair trading
-                environment that protects both merchants and buyers.
+                Unlike exchange-traded pricing, GCV is a symbolic, aspirational reference rate
+                set by Alliance-wide agreement among pioneers — not a market valuation. It
+                reflects what participating merchants and members have agreed to honour among
+                themselves, not what Pi trades for on any exchange.
               </p>
               <p className="font-medium text-foreground">Key principles of GCV include:</p>
               <ul className="space-y-2 ml-4">
                 {[
-                  'A single, fixed conversion rate applied consistently across the Market',
+                  'A single, community-agreed target applied consistently across the Market',
                   'Transparency in pricing and transaction processes',
                   'Protection against market manipulation and unofficial trading',
                   'Merchant adoption as proof of real-world utility',
@@ -173,8 +182,8 @@ export function About() {
                 ))}
               </ul>
               <p className="leading-relaxed">
-                For members across Africa, Europe, Asia, and the USA, GCV represents an
-                opportunity to trade on fair, predictable terms — with one rate, applied
+                For members across Africa, Europe, Asia, and the USA, GCV represents a shared
+                aspiration to trade on fair, predictable terms — with one target rate, applied
                 consistently, everywhere in the Alliance.
               </p>
             </div>

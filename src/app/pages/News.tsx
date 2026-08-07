@@ -1,74 +1,118 @@
-import { Link } from 'react-router';
+import { Link, useParams } from 'react-router';
 import { useState } from 'react';
-import { Clock, Eye, Search, Megaphone, Newspaper, BookOpen } from 'lucide-react';
-import { newsArticles, announcements, pressReleases } from '../data/mockData';
+import { ArrowLeft, Clock, Eye, Search, Megaphone, Newspaper, BookOpen } from 'lucide-react';
+import { newsArticles, announcements, pressReleases, GCV_AFRICA_COUNTRIES } from '../data/mockData';
 import { SEO } from '../components/SEO';
 
 type MainTab = 'articles' | 'announcements' | 'press-releases';
 const NEWS_CATEGORIES = ['All', 'Pi Network', 'GCV Movement', 'Events', 'Community'];
 
 export function News() {
+  const { country: countrySlug } = useParams();
+  const activeCountry = countrySlug ? GCV_AFRICA_COUNTRIES.find(c => c.slug === countrySlug) : undefined;
+
   const [activeTab, setActiveTab] = useState<MainTab>('articles');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredArticles = newsArticles.filter(article => {
+    const matchesCountry = !activeCountry || article.country === activeCountry.name;
     const matchesCategory = selectedCategory === 'All' || article.category === selectedCategory;
     const matchesSearch =
       article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       article.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+    return matchesCountry && matchesCategory && matchesSearch;
   });
+
+  if (countrySlug && !activeCountry) {
+    return (
+      <div className="py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-3xl font-bold mb-4 tracking-tight">Country Not Found</h1>
+          <p className="text-muted-foreground mb-8">
+            GCV Africa doesn't have a news hub for that country yet.
+          </p>
+          <Link to="/news" className="inline-flex items-center gap-2 text-brand-purple font-medium hover:gap-3 transition-all">
+            <ArrowLeft className="w-4 h-4" />
+            Back to Countries
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="py-12">
       <SEO
-        title="News & Media"
-        description="Stay informed with the latest Pi Network news, GCV movement updates, official announcements, press releases, and community stories from across Africa."
-        url="/news"
+        title={activeCountry ? `${activeCountry.name} News` : 'All News & Media'}
+        description={
+          activeCountry
+            ? `GCV news, ambassador activity, and merchant adoption stories from ${activeCountry.name}.`
+            : 'Stay informed with the latest Pi Network news, GCV movement updates, official announcements, press releases, and community stories from across Africa.'
+        }
+        url={activeCountry ? `/news/country/${activeCountry.slug}` : '/news/all'}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
+        {/* Back to countries */}
+        <Link
+          to="/news"
+          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-brand-purple mb-6 transition-colors group"
+        >
+          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
+          {activeCountry ? 'All Countries' : 'News & Media Home'}
+        </Link>
+
         {/* Header */}
         <div className="mb-10">
-          <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest mb-2">
-            Pi Global GCV Alliance
+          <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest mb-2 flex items-center gap-2">
+            {activeCountry ? (
+              <>GCV Africa — {activeCountry.flag} {activeCountry.name}</>
+            ) : (
+              'Pi Global GCV Alliance'
+            )}
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold mb-3 tracking-tight">News & Media</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-3 tracking-tight">
+            {activeCountry ? `${activeCountry.name} News` : 'All News & Media'}
+          </h1>
           <p className="text-muted-foreground text-lg">
-            Latest updates, announcements, and press releases from the GCV movement
+            {activeCountry
+              ? `Everything happening with the GCV movement in ${activeCountry.name}.`
+              : 'Latest updates, announcements, and press releases from the GCV movement'}
           </p>
         </div>
 
-        {/* Main tabs */}
-        <div className="flex flex-wrap gap-1 mb-8 bg-accent/60 rounded-2xl p-1.5">
-          {[
-            { id: 'articles' as MainTab, label: 'Articles', Icon: Newspaper, count: newsArticles.length },
-            { id: 'announcements' as MainTab, label: 'Announcements', Icon: Megaphone, count: announcements.length },
-            { id: 'press-releases' as MainTab, label: 'Press Releases', Icon: BookOpen, count: pressReleases.length },
-          ].map(({ id, label, Icon, count }) => (
-            <button
-              key={id}
-              onClick={() => setActiveTab(id)}
-              className={`flex-1 min-w-fit flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 whitespace-nowrap ${
-                activeTab === id
-                  ? 'bg-card text-foreground shadow-sm'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              <Icon className="w-4 h-4" />
-              {label}
-              <span className={`text-xs px-1.5 py-0.5 rounded-full ${
-                activeTab === id ? 'bg-brand-purple/10 text-brand-purple' : 'bg-muted text-muted-foreground'
-              }`}>
-                {count}
-              </span>
-            </button>
-          ))}
-        </div>
+        {/* Main tabs (global view only) */}
+        {!activeCountry && (
+          <div className="flex flex-wrap gap-1 mb-8 bg-accent/60 rounded-2xl p-1.5">
+            {[
+              { id: 'articles' as MainTab, label: 'Articles', Icon: Newspaper, count: newsArticles.length },
+              { id: 'announcements' as MainTab, label: 'Announcements', Icon: Megaphone, count: announcements.length },
+              { id: 'press-releases' as MainTab, label: 'Press Releases', Icon: BookOpen, count: pressReleases.length },
+            ].map(({ id, label, Icon, count }) => (
+              <button
+                key={id}
+                onClick={() => setActiveTab(id)}
+                className={`flex-1 min-w-fit flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                  activeTab === id
+                    ? 'bg-card text-foreground shadow-sm'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                <Icon className="w-4 h-4" />
+                {label}
+                <span className={`text-xs px-1.5 py-0.5 rounded-full ${
+                  activeTab === id ? 'bg-brand-purple/10 text-brand-purple' : 'bg-muted text-muted-foreground'
+                }`}>
+                  {count}
+                </span>
+              </button>
+            ))}
+          </div>
+        )}
 
         {/* ARTICLES TAB */}
-        {activeTab === 'articles' && (
+        {(activeCountry || activeTab === 'articles') && (
           <>
             {/* Search */}
             <div className="mb-6">
@@ -107,8 +151,17 @@ export function News() {
 
             {filteredArticles.length === 0 ? (
               <div className="text-center py-20 bg-accent/40 rounded-2xl">
-                <p className="text-muted-foreground font-medium mb-1">No articles found</p>
-                <p className="text-sm text-muted-foreground">Try a different search term or category</p>
+                <p className="text-muted-foreground font-medium mb-1">
+                  {activeCountry ? `No stories from ${activeCountry.name} yet` : 'No articles found'}
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  {activeCountry ? 'Check back soon, or browse all GCV news instead.' : 'Try a different search term or category'}
+                </p>
+                {activeCountry && (
+                  <Link to="/news/all" className="inline-block mt-4 text-sm font-semibold text-brand-purple hover:underline">
+                    View All News →
+                  </Link>
+                )}
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

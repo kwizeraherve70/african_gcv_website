@@ -164,7 +164,7 @@ export function Cart() {
               </div>
 
               <p className="text-[11px] text-muted-foreground text-center mb-4">
-                1 USD = 314159 π (Fixed Rate)
+                GCV target: 1 π ≈ $314,159 (community-proposed, not an official rate)
               </p>
 
               <Link

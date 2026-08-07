@@ -15,7 +15,7 @@ export function Layout() {
         <div className="relative bg-gradient-to-r from-brand-purple via-brand-purple-light to-brand-purple text-white py-2.5 px-4 text-center">
           <div className="flex items-center justify-center gap-2 text-sm">
             <Zap className="w-3.5 h-3.5 text-brand-gold flex-shrink-0" />
-            <span className="font-medium">Fixed Conversion Rate: 1 USD = 314159 π</span>
+            <span className="font-medium">GCV Target: 1 π ≈ $314,159 (community-proposed)</span>
             <span className="hidden sm:inline text-white/70">
               {' '}Pay in Pi. Grow together.
             </span>

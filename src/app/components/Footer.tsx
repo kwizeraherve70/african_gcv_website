@@ -74,7 +74,7 @@ export function Footer() {
               {[
                 { to: '/merchants', label: 'Merchant Directory' },
                 { to: '/industry-alliance', label: 'Industry Alliance' },
-                { to: '/founders', label: 'Founders' },
+                { to: '/team', label: 'Founders' },
               ].map(({ to, label }) => (
                 <Link
                   key={to}
@@ -116,14 +116,14 @@ export function Footer() {
                 info@gcvalliance.org
               </a>
               <a
-                href="tel:+250788123456"
+                href="tel:+250788547719"
                 className="flex items-center gap-2.5 text-gray-400 hover:text-brand-gold text-sm transition-colors duration-150"
               >
                 <Phone className="w-4 h-4 flex-shrink-0" />
-                +250 788 123 456
+                +250 788 547 719
               </a>
               <a
-                href="https://wa.me/250788123456"
+                href="https://wa.me/250738013858"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 mt-1 px-3.5 py-2 bg-brand-green/15 text-brand-green rounded-lg text-sm font-medium hover:bg-brand-green/25 transition-colors duration-150 w-fit"

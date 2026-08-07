@@ -4,7 +4,7 @@ const SITE_NAME = 'Pi Global GCV Alliance';
 const BASE_URL = 'https://www.piglobalgcvalliance.com';
 const DEFAULT_IMAGE = `${BASE_URL}/og-image.png`;
 const DEFAULT_DESCRIPTION =
-  'A global trade alliance connecting Africa, Europe, Asia, and the USA. Browse the GCV Market and pay in Pi at the fixed 1 USD = 314159 π rate.';
+  'A global trade alliance connecting Africa, Europe, Asia, and the USA. Browse the GCV Market and pay in Pi at the community-proposed GCV target of 1 π ≈ $314,159.';
 
 interface SEOProps {
   title?: string;

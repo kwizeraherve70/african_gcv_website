@@ -148,7 +148,7 @@ export function ProductDetail() {
               </div>
               <p className="text-sm text-brand-purple/80 font-medium mt-1.5 flex items-center gap-1">
                 <span className="text-lg leading-none">π</span>
-                {toPi(product.price)} π at the fixed GCV rate
+                {toPi(product.price)} π at the community GCV target
               </p>
             </div>
 
@@ -271,19 +271,19 @@ export function ProductDetail() {
 
           {activeTab === 'shipping' && (
             <div className="prose max-w-none">
-              <h3>Shipping Information</h3>
-              <p>We offer worldwide shipping on all products. Delivery times vary by location:</p>
+              <h3>Delivery Information</h3>
+              <p>Every vehicle is inspected and prepared by a certified GCV Merchant dealership before delivery. Delivery times vary by location:</p>
               <ul>
                 <li>Africa: 5–10 business days</li>
-                <li>Europe: 7–14 business days</li>
-                <li>North America: 10–15 business days</li>
-                <li>Other regions: 15–20 business days</li>
+                <li>Europe: 10–20 business days</li>
+                <li>North America: 15–25 business days</li>
+                <li>Other regions: 20–30 business days</li>
               </ul>
-              <p>Digital products are delivered instantly via email after purchase.</p>
-              <h3>Returns & Refunds</h3>
+              <p>Vehicle registration and import documentation support is included. Test drives can be arranged before purchase at select dealership locations.</p>
+              <h3>Returns & Warranty</h3>
               <p>
-                We accept returns within 30 days of purchase for physical products.
-                Digital products are non-refundable once accessed.
+                All vehicles include a 90-day dealer warranty from date of delivery.
+                Return requests must be made within 7 days of delivery, subject to inspection.
               </p>
             </div>
           )}

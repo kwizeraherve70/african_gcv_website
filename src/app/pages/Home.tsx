@@ -23,7 +23,7 @@ const FEATURES = [
   {
     icon: <Coins className="w-6 h-6" />,
     title: 'Pay in Pi',
-    desc: 'Easy payments with fixed GCV rate',
+    desc: 'Easy payments at the community GCV target',
   },
   {
     icon: <Building2 className="w-6 h-6" />,
@@ -91,7 +91,7 @@ export function Home() {
     <div>
       <SEO
         title="Home"
-        description="Pi Global GCV Alliance — a global trade alliance connecting Africa, Europe, Asia, and the USA through commerce, innovation, and shared prosperity. Pay in Pi at the fixed GCV rate."
+        description="Pi Global GCV Alliance — a global trade alliance connecting Africa, Europe, Asia, and the USA through commerce, innovation, and shared prosperity. Pay in Pi at the community-proposed GCV target."
         url="/"
       />
 
@@ -137,9 +137,9 @@ export function Home() {
 
               <div className="inline-flex items-center gap-4 rounded-2xl bg-white/10 border border-white/15 px-3.5 py-2.5 backdrop-blur-sm">
                 <div>
-                  <p className="text-xs text-white/60 font-medium uppercase tracking-wide mb-0.5">Fixed Conversion Rate</p>
-                  <p className="text-base font-bold">1 USD = {GCV_USD.toLocaleString('en-US')} π</p>
-                  <p className="text-xs text-white/50 mt-0.5">Pay in Pi. Grow Together.</p>
+                  <p className="text-xs text-white/60 font-medium uppercase tracking-wide mb-0.5">GCV Community Target</p>
+                  <p className="text-base font-bold">1 π ≈ ${GCV_USD.toLocaleString('en-US')}</p>
+                  <p className="text-xs text-white/50 mt-0.5">Not an official Pi Network or exchange rate.</p>
                 </div>
               </div>
             </div>
@@ -268,7 +268,7 @@ export function Home() {
               <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight">Latest News</h2>
             </div>
             <Link
-              to="/news"
+              to="/news/all"
               className="hidden md:inline-flex items-center gap-1.5 text-sm font-semibold text-brand-purple group"
             >
               View all news
@@ -315,7 +315,7 @@ export function Home() {
 
           <div className="mt-8">
             <Link
-              to="/news"
+              to="/news/all"
               className="md:hidden inline-flex items-center gap-1.5 text-sm font-semibold text-brand-purple"
             >
               View all news
@@ -349,7 +349,7 @@ export function Home() {
                 access to a growing global trade network.
               </p>
               <Link
-                to="/founders"
+                to="/team"
                 className="inline-flex items-center gap-2 px-6 py-3.5 bg-brand-purple text-white rounded-xl hover:bg-brand-purple-light transition-all duration-200 font-semibold shadow-lg hover:-translate-y-0.5"
               >
                 Meet the Founders
@@ -384,7 +384,7 @@ export function Home() {
               <p className="text-muted-foreground leading-relaxed">
                 To unite merchants, service providers, and institutions across Africa, Europe,
                 Asia, and the USA under a single trade alliance — empowering every member with
-                fair market access, priced fairly and payable in Pi at the fixed GCV rate.
+                fair market access, priced fairly and payable in Pi at the community GCV target.
               </p>
             </div>
             <div className="bg-card rounded-2xl border border-border p-8 hover:shadow-lg transition-shadow duration-200">
@@ -395,7 +395,7 @@ export function Home() {
               <p className="text-muted-foreground leading-relaxed">
                 A global marketplace where trade flows freely across continents — powering
                 agriculture, manufacturing, professional services, and commerce for every
-                alliance member, priced consistently at 1 USD = {GCV_USD.toLocaleString('en-US')} π.
+                alliance member, priced consistently at the community GCV target of 1 π ≈ ${GCV_USD.toLocaleString('en-US')}.
               </p>
             </div>
           </div>
@@ -417,7 +417,7 @@ export function Home() {
               <div className="space-y-3 mb-8">
                 {[
                   { title: 'GCV Member', desc: 'Join the community and start browsing the GCV Market.' },
-                  { title: 'GCV Merchant', desc: 'Register your business to accept Pi at the fixed GCV rate.' },
+                  { title: 'GCV Merchant', desc: 'Register your business to accept Pi at the community GCV target.' },
                   { title: 'GCV Ambassador', desc: 'Lead the movement in your country or region.' },
                 ].map(({ title, desc }) => (
                   <div key={title} className="flex items-start gap-3">
@@ -451,7 +451,7 @@ export function Home() {
                 { value: '4', label: 'Continents', color: 'text-brand-purple' },
                 { value: `${merchants.length}+`, label: 'GCV Merchants', color: 'text-brand-green' },
                 { value: `${products.length}+`, label: 'Products Listed', color: 'text-brand-purple-light' },
-                { value: '314,159', label: 'π per USD (GCV)', color: 'text-brand-gold' },
+                { value: '$314,159', label: 'per π (GCV target)', color: 'text-brand-gold' },
               ].map(({ value, label, color }) => (
                 <div
                   key={label}
@@ -483,7 +483,7 @@ export function Home() {
               </div>
             </a>
             <a
-              href="tel:+250788123456"
+              href="tel:+250788547719"
               className="flex items-center gap-4 group hover:text-brand-green transition-colors"
             >
               <div className="w-10 h-10 bg-brand-green/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-brand-green/20 transition-colors">
@@ -491,11 +491,11 @@ export function Home() {
               </div>
               <div>
                 <p className="text-xs text-muted-foreground font-medium">Call Us</p>
-                <p className="font-semibold text-sm">+250 788 123 456</p>
+                <p className="font-semibold text-sm">+250 788 547 719</p>
               </div>
             </a>
             <a
-              href="https://wa.me/250788123456"
+              href="https://wa.me/250738013858"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-4 group hover:text-[#25D366] transition-colors"

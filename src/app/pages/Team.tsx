@@ -1,8 +1,15 @@
-import { teamMembers } from '../data/mockData';
+import { teamMembers, founders } from '../data/mockData';
 import { SEO } from '../components/SEO';
-import { Users, Globe } from 'lucide-react';
+import { Users, Globe, Star } from 'lucide-react';
 
 const DEPARTMENTS = ['All', 'Leadership', 'Ambassadors', 'Education', 'Ecosystem', 'Finance', 'Communications', 'Events'];
+
+const REGION_COLORS: Record<string, string> = {
+  Africa: 'from-brand-purple to-brand-purple-light',
+  Europe: 'from-brand-purple-light to-purple-400',
+  Asia: 'from-brand-gold to-yellow-300',
+  USA: 'from-brand-green to-emerald-400',
+};
 
 export function Team() {
   return (
@@ -26,7 +33,7 @@ export function Team() {
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">GCV Core Team</h1>
           <p className="text-white/80 text-lg max-w-2xl mx-auto leading-relaxed">
-            The dedicated leaders, ambassadors, and specialists building the GCV movement across Africa and the world.
+            The founders, leaders, ambassadors, and specialists building the GCV movement across Africa and the world.
           </p>
         </div>
       </section>
@@ -65,6 +72,50 @@ export function Team() {
                   </div>
                   <p className="text-sm text-brand-purple font-medium mb-3">{member.title}</p>
                   <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">{member.bio}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Founders */}
+        <div className="mb-16">
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-10 h-10 bg-gradient-to-br from-brand-purple to-brand-purple-light rounded-xl flex items-center justify-center">
+              <Star className="w-5 h-5 text-white" />
+            </div>
+            <div>
+              <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest">The Visionaries</p>
+              <h2 className="text-2xl font-bold tracking-tight">Founders</h2>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {founders.map(founder => (
+              <div
+                key={founder.id}
+                className="bg-card rounded-2xl border border-border overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
+              >
+                <div className={`h-20 bg-gradient-to-br ${REGION_COLORS[founder.region] || 'from-brand-purple to-brand-purple-light'} relative`}>
+                  <div className="absolute -bottom-8 left-5">
+                    <img
+                      src={founder.photo}
+                      alt={founder.name}
+                      className="w-16 h-16 rounded-2xl object-cover border-2 border-card shadow-lg"
+                    />
+                  </div>
+                  <div className="absolute top-3 right-4">
+                    <span className="text-xs bg-white/20 text-white px-2 py-0.5 rounded-full font-medium">
+                      {founder.region}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="pt-10 p-5">
+                  <h3 className="font-bold text-base mb-0.5">{founder.name}</h3>
+                  <p className="text-xs text-brand-purple font-semibold mb-1">{founder.role}</p>
+                  <p className="text-xs text-muted-foreground mb-3">{founder.country}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed line-clamp-4">{founder.bio}</p>
                 </div>
               </div>
             ))}

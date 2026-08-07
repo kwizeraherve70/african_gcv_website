@@ -8,7 +8,7 @@ const inputClass =
 const FAQ_ITEMS = [
   {
     q: 'What is GCV?',
-    a: 'Global Consensus Value is the Alliance\'s fixed conversion standard — 1 USD = 314159 π — applied consistently across the GCV Market.',
+    a: 'Global Consensus Value is a community-proposed price target — 1 π ≈ $314,159 — used consistently across the GCV Market. It is not an official Pi Network rate and is not endorsed by the Pi Core Team or verified on any exchange; Pi\'s actual open-market price is far lower.',
   },
   {
     q: 'How do I join the Alliance?',
@@ -83,7 +83,7 @@ export function Contact() {
                 Icon: Phone,
                 gradient: 'from-brand-gold to-yellow-300',
                 title: 'Phone',
-                value: '+250 788 123 456',
+                value: '+250 788 547 719',
               },
               {
                 Icon: MapPin,

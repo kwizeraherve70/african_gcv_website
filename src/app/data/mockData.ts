@@ -10,7 +10,31 @@ export interface NewsArticle {
   publishedAt: string;
   readTime: string;
   viewCount: number;
+  /** Country this story is about, for the News & Media country hub. Omitted for pan-African/global stories. */
+  country?: string;
 }
+
+export interface GCVCountry {
+  name: string;
+  slug: string;
+  flag: string;
+}
+
+/** Countries with an active GCV Africa ambassador, merchant, or alliance presence — the News & Media country hub. */
+export const GCV_AFRICA_COUNTRIES: GCVCountry[] = [
+  { name: 'Nigeria', slug: 'nigeria', flag: '🇳🇬' },
+  { name: 'Kenya', slug: 'kenya', flag: '🇰🇪' },
+  { name: 'South Africa', slug: 'south-africa', flag: '🇿🇦' },
+  { name: 'Rwanda', slug: 'rwanda', flag: '🇷🇼' },
+  { name: 'Ghana', slug: 'ghana', flag: '🇬🇭' },
+  { name: 'Egypt', slug: 'egypt', flag: '🇪🇬' },
+  { name: 'Botswana', slug: 'botswana', flag: '🇧🇼' },
+  { name: 'Senegal', slug: 'senegal', flag: '🇸🇳' },
+  { name: 'Cameroon', slug: 'cameroon', flag: '🇨🇲' },
+  { name: 'Morocco', slug: 'morocco', flag: '🇲🇦' },
+  { name: 'Uganda', slug: 'uganda', flag: '🇺🇬' },
+  { name: "Côte d'Ivoire", slug: 'cote-divoire', flag: '🇨🇮' },
+];
 
 export interface Product {
   id: string;
@@ -20,7 +44,7 @@ export interface Product {
   shortDescription: string;
   price: number;
   compareAtPrice?: number;
-  category: 'Books' | 'Digital Resources' | 'Merchandise' | 'Courses';
+  category: 'Sedans' | 'SUVs' | 'Sports Cars' | 'Luxury';
   images: string[];
   inventory: number;
   featured: boolean;
@@ -60,7 +84,8 @@ export const newsArticles: NewsArticle[] = [
     author: 'Olivier Ndatimana',
     publishedAt: '2025-01-12',
     readTime: '5 min',
-    viewCount: 3200
+    viewCount: 3200,
+    country: 'Rwanda'
   },
   {
     id: '2',
@@ -150,7 +175,8 @@ export const newsArticles: NewsArticle[] = [
     author: 'Olivier Ndatimana',
     publishedAt: '2025-11-10',
     readTime: '5 min',
-    viewCount: 1580
+    viewCount: 1580,
+    country: 'Botswana'
   },
   {
     id: '5',
@@ -180,7 +206,8 @@ export const newsArticles: NewsArticle[] = [
     author: 'Olivier Ndatimana',
     publishedAt: '2026-02-14',
     readTime: '6 min',
-    viewCount: 2340
+    viewCount: 2340,
+    country: 'Nigeria'
   },
   {
     id: '7',
@@ -785,177 +812,351 @@ export const pressReleases: PressRelease[] = [
 export const products: Product[] = [
   {
     id: '1',
-    name: 'The GCV Revolution: A Complete Guide',
-    slug: 'gcv-revolution-complete-guide',
-    description: `<p>Comprehensive guide to understanding and implementing Global Consensus Value principles in your Pi Network journey.</p>
+    name: 'Tesla Model S',
+    slug: 'tesla-model-s',
+    description: `<p>The Tesla Model S delivers exhilarating all-electric performance, industry-leading range, and cutting-edge autopilot technology in a premium sedan body.</p>
 
-<p>This book covers everything from basic GCV concepts to advanced implementation strategies, with specific focus on African market contexts.</p>
-
-<h3>What You'll Learn</h3>
+<h3>Key Specifications</h3>
 <ul>
-<li>Fundamentals of Global Consensus Value</li>
-<li>Pi Network ecosystem overview</li>
-<li>GCV implementation strategies</li>
-<li>African market opportunities</li>
-<li>Building sustainable crypto economies</li>
+<li>0–100 km/h in 3.1 seconds</li>
+<li>Up to 650 km range on a single charge</li>
+<li>Full self-driving capability (hardware included)</li>
+<li>17-inch cinematic center touchscreen</li>
+<li>Premium interior with heated and ventilated seats</li>
 </ul>
 
-<p>Written by Olivier Ndatimana, Africa GCV Ambassador, this book distills years of experience in the Pi Network community into actionable insights.</p>`,
-    shortDescription: 'Comprehensive guide to GCV principles and implementation in the Pi Network ecosystem.',
-    price: 24.99,
-    compareAtPrice: 34.99,
-    category: 'Books',
+<p>Sold and delivered by a certified GCV Merchant dealership. Priced in Pi at the community GCV target.</p>`,
+    shortDescription: 'All-electric luxury sedan with industry-leading range and autopilot.',
+    price: 89999,
+    compareAtPrice: 94999,
+    category: 'Sedans',
     images: [
-      'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=800&q=80',
-      'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800&q=80'
+      'https://images.unsplash.com/photo-1676856577533-1e8099932f7b?w=800&q=80',
+      'https://images.unsplash.com/photo-1536700503339-1e4b06520771?w=800&q=80'
     ],
-    inventory: 50,
+    inventory: 3,
     featured: true,
-    rating: 4.8,
-    reviewCount: 127,
-    merchantName: 'GCV Press'
+    rating: 4.9,
+    reviewCount: 58,
+    merchantName: 'Kigali Motors'
   },
   {
     id: '2',
-    name: 'Pi Network Starter Course',
-    slug: 'pi-network-starter-course',
-    description: `<p>Complete video course for beginners looking to understand and maximize their Pi Network experience.</p>
+    name: 'Porsche 911',
+    slug: 'porsche-911',
+    description: `<p>The Porsche 911 is the definitive sports car — a perfect blend of everyday usability and track-ready performance, refined over six decades.</p>
 
-<h3>Course Modules</h3>
-<ol>
-<li>Introduction to Pi Network (30 mins)</li>
-<li>Setting Up Your Account (45 mins)</li>
-<li>Understanding Mining and Security Circles (1 hour)</li>
-<li>KYC Process Explained (30 mins)</li>
-<li>Mainnet Migration Guide (45 mins)</li>
-<li>GCV Fundamentals (1 hour)</li>
-<li>Building Your Pi Ecosystem (1 hour)</li>
-</ol>
+<h3>Key Specifications</h3>
+<ul>
+<li>3.0L twin-turbo flat-six engine</li>
+<li>0–100 km/h in 3.5 seconds</li>
+<li>8-speed PDK dual-clutch transmission</li>
+<li>Rear-wheel or all-wheel drive available</li>
+<li>Iconic silhouette, timeless design</li>
+</ul>
 
-<p>Includes lifetime access, downloadable resources, and community support.</p>`,
-    shortDescription: 'Complete video course covering everything you need to know about Pi Network.',
-    price: 49.99,
-    category: 'Courses',
+<p>Available through our certified GCV Merchant network. Financing and Pi payment plans available.</p>`,
+    shortDescription: 'Iconic rear-engine sports car with track-ready performance.',
+    price: 121999,
+    category: 'Sports Cars',
     images: [
-      'https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&q=80',
-      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80'
+      'https://images.unsplash.com/photo-1620891549027-942fdc95d3f5?w=800&q=80',
+      'https://images.unsplash.com/photo-1621285853634-713b8dd6b5fd?w=800&q=80'
     ],
-    inventory: 999,
+    inventory: 2,
     featured: true,
     rating: 4.9,
-    reviewCount: 234,
-    merchantName: 'GCV Academy'
+    reviewCount: 41,
+    merchantName: 'Prestige Auto Africa'
   },
   {
     id: '3',
-    name: 'Africa GCV T-Shirt',
-    slug: 'africa-gcv-tshirt',
-    description: `<p>High-quality cotton t-shirt featuring the Africa GCV logo and "Building Consensus Value" motto.</p>
+    name: 'Range Rover Sport',
+    slug: 'range-rover-sport',
+    description: `<p>The Range Rover Sport combines commanding presence with dynamic performance, built for both city driving and serious off-road capability.</p>
 
-<h3>Product Details</h3>
+<h3>Key Specifications</h3>
 <ul>
-<li>100% premium cotton</li>
-<li>Unisex fit</li>
-<li>Available in sizes: S, M, L, XL, XXL</li>
-<li>Colors: Black, Navy Blue, Forest Green</li>
-<li>Screen-printed design for durability</li>
+<li>Terrain Response 2 all-terrain system</li>
+<li>Air suspension with adjustable ride height</li>
+<li>Luxurious leather interior with panoramic sunroof</li>
+<li>Advanced driver assistance suite</li>
+<li>Towing capacity up to 3,500 kg</li>
 </ul>
 
-<p>Show your support for the GCV movement with this comfortable and stylish tee.</p>`,
-    shortDescription: 'Premium cotton t-shirt with Africa GCV branding.',
-    price: 19.99,
-    category: 'Merchandise',
+<p>Sold by a certified GCV Merchant dealership. Priced in Pi at the community GCV target.</p>`,
+    shortDescription: 'Commanding luxury SUV with serious off-road capability.',
+    price: 84999,
+    category: 'SUVs',
     images: [
-      'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80',
-      'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=800&q=80'
+      'https://images.unsplash.com/photo-1602013871952-8379f19a15f1?w=800&q=80',
+      'https://images.unsplash.com/photo-1638686302275-0e87df720aca?w=800&q=80'
     ],
-    inventory: 100,
-    featured: false,
-    rating: 4.6,
-    reviewCount: 45,
-    merchantName: 'Alliance Apparel'
+    inventory: 4,
+    featured: true,
+    rating: 4.7,
+    reviewCount: 63,
+    merchantName: 'Kigali Motors'
   },
   {
     id: '4',
-    name: 'GCV Implementation Toolkit',
-    slug: 'gcv-implementation-toolkit',
-    description: `<p>Digital resource package with templates, calculators, and guides for implementing GCV principles in your business or community.</p>
+    name: 'Ford Mustang GT',
+    slug: 'ford-mustang-gt',
+    description: `<p>The Ford Mustang GT is a true American muscle car — a 5.0L V8 roar, aggressive styling, and thrilling performance at an accessible price.</p>
 
-<h3>Included Resources</h3>
+<h3>Key Specifications</h3>
 <ul>
-<li>GCV Calculator Spreadsheet</li>
-<li>Business Implementation Templates</li>
-<li>Community Agreement Templates</li>
-<li>Value Assessment Worksheets</li>
-<li>Case Study Collection (PDF)</li>
-<li>Quick Reference Guides</li>
+<li>5.0L Coyote V8 engine, 480 hp</li>
+<li>0–100 km/h in 4.3 seconds</li>
+<li>6-speed manual or 10-speed automatic</li>
+<li>Selectable drive modes including Track</li>
+<li>Available as coupe or convertible</li>
 </ul>
 
-<p>Instant download. Compatible with Excel, Google Sheets, and other common formats.</p>`,
-    shortDescription: 'Comprehensive digital toolkit for GCV implementation.',
-    price: 14.99,
-    category: 'Digital Resources',
+<p>Available through our certified GCV Merchant network. Pi payment plans available.</p>`,
+    shortDescription: 'American muscle car with a thunderous 5.0L V8.',
+    price: 54999,
+    compareAtPrice: 59999,
+    category: 'Sports Cars',
     images: [
-      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80'
+      'https://images.unsplash.com/photo-1547744152-14d985cb937f?w=800&q=80',
+      'https://images.unsplash.com/photo-1567818735868-e71b99932e29?w=800&q=80'
     ],
-    inventory: 999,
-    featured: true,
-    rating: 4.7,
-    reviewCount: 89,
-    merchantName: 'GCV Academy'
+    inventory: 5,
+    featured: false,
+    rating: 4.6,
+    reviewCount: 37,
+    merchantName: 'Alliance Auto Dealers'
   },
   {
     id: '5',
-    name: 'Pi Network Coffee Mug',
-    slug: 'pi-network-coffee-mug',
-    description: `<p>Start your day with a reminder of the Pi Network revolution. Ceramic mug with Pi and GCV branding.</p>
+    name: 'Mercedes-Benz G-Wagon',
+    slug: 'mercedes-benz-g-wagon',
+    description: `<p>The Mercedes-Benz G-Wagon is a legendary luxury off-roader, combining boxy iconic design with a plush, tech-forward cabin and serious 4x4 credentials.</p>
 
-<h3>Features</h3>
+<h3>Key Specifications</h3>
 <ul>
-<li>11 oz ceramic mug</li>
-<li>Dishwasher and microwave safe</li>
-<li>Vibrant, fade-resistant print</li>
-<li>Comfortable C-handle</li>
-</ul>`,
-    shortDescription: 'Ceramic coffee mug with Pi Network and GCV branding.',
-    price: 12.99,
-    category: 'Merchandise',
+<li>AMG-tuned V8 biturbo engine</li>
+<li>Three locking differentials for extreme off-road capability</li>
+<li>MBUX infotainment with dual widescreen displays</li>
+<li>Nappa leather interior with ambient lighting</li>
+<li>Iconic boxy silhouette, unchanged since 1979</li>
+</ul>
+
+<p>Sold by a certified GCV Merchant dealership. Priced in Pi at the community GCV target.</p>`,
+    shortDescription: 'Legendary luxury off-roader with unmistakable presence.',
+    price: 179999,
+    category: 'Luxury',
     images: [
-      'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=800&q=80'
+      'https://images.unsplash.com/photo-1648413653877-ade5eefd2f1b?w=800&q=80',
+      'https://images.unsplash.com/photo-1634636208509-63bcd2a1b13f?w=800&q=80'
     ],
-    inventory: 75,
-    featured: false,
-    rating: 4.5,
-    reviewCount: 23,
-    merchantName: 'Alliance Apparel'
+    inventory: 2,
+    featured: true,
+    rating: 5.0,
+    reviewCount: 29,
+    merchantName: 'Prestige Auto Africa'
   },
   {
     id: '6',
-    name: 'Advanced GCV Strategies',
-    slug: 'advanced-gcv-strategies',
-    description: `<p>In-depth exploration of advanced GCV concepts for experienced pioneers and community leaders.</p>
+    name: 'BMW X5',
+    slug: 'bmw-x5',
+    description: `<p>The BMW X5 delivers the perfect balance of sporty driving dynamics and everyday practicality in a mid-size luxury SUV.</p>
 
-<h3>Topics Covered</h3>
+<h3>Key Specifications</h3>
 <ul>
-<li>Multi-party GCV negotiations</li>
-<li>Regional value frameworks</li>
-<li>Dispute resolution mechanisms</li>
-<li>Integration with traditional economies</li>
-<li>Policy development for GCV communities</li>
+<li>3.0L inline-6 turbocharged engine</li>
+<li>xDrive all-wheel drive</li>
+<li>Adaptive M suspension</li>
+<li>Panoramic sky lounge roof</li>
+<li>Seating for up to seven</li>
 </ul>
 
-<p>Includes access to exclusive webinars and community forum.</p>`,
-    shortDescription: 'Advanced course on GCV implementation for experienced pioneers.',
-    price: 79.99,
-    category: 'Courses',
+<p>Available through our certified GCV Merchant network. Financing and Pi payment plans available.</p>`,
+    shortDescription: 'Sporty mid-size luxury SUV with xDrive all-wheel drive.',
+    price: 68999,
+    category: 'SUVs',
     images: [
-      'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80'
+      'https://images.unsplash.com/photo-1696294586764-6baffd088b71?w=800&q=80',
+      'https://images.unsplash.com/photo-1674996047492-6b5cdc2dcf0a?w=800&q=80'
     ],
-    inventory: 999,
+    inventory: 4,
+    featured: false,
+    rating: 4.7,
+    reviewCount: 44,
+    merchantName: 'Alliance Auto Dealers'
+  },
+  {
+    id: '7',
+    name: 'Toyota Land Cruiser',
+    slug: 'toyota-land-cruiser',
+    description: `<p>The Toyota Land Cruiser is the gold standard of rugged reliability across Africa — built to handle any terrain while carrying the whole family in comfort.</p>
+
+<h3>Key Specifications</h3>
+<ul>
+<li>Full-time four-wheel drive with locking center differential</li>
+<li>Renowned reliability and low maintenance costs</li>
+<li>Spacious 7–8 seat configuration</li>
+<li>High ground clearance for rough terrain</li>
+<li>Trusted by GCV merchants and NGOs across the continent</li>
+</ul>
+
+<p>Sold by a certified GCV Merchant dealership. Priced in Pi at the community GCV target.</p>`,
+    shortDescription: "Africa's most trusted rugged 4x4, built for any terrain.",
+    price: 74999,
+    category: 'SUVs',
+    images: [
+      'https://images.unsplash.com/photo-1554841649-de947c4b954a?w=800&q=80',
+      'https://images.unsplash.com/photo-1650530579355-7ad9d4766043?w=800&q=80'
+    ],
+    inventory: 6,
     featured: false,
     rating: 4.9,
-    reviewCount: 67,
-    merchantName: 'GCV Academy'
+    reviewCount: 91,
+    merchantName: 'Kigali Motors'
+  },
+  {
+    id: '8',
+    name: 'Jeep Wrangler',
+    slug: 'jeep-wrangler',
+    description: `<p>The Jeep Wrangler is the ultimate off-road icon — removable doors and roof, solid axles, and unstoppable trail capability wrapped in unmistakable style.</p>
+
+<h3>Key Specifications</h3>
+<ul>
+<li>Solid front and rear axles for maximum articulation</li>
+<li>Removable doors, roof, and fold-down windshield</li>
+<li>Available 4xe plug-in hybrid powertrain</li>
+<li>Rock-Trac 4WD system with locking differentials</li>
+<li>Legendary trail-rated capability</li>
+</ul>
+
+<p>Available through our certified GCV Merchant network. Pi payment plans available.</p>`,
+    shortDescription: 'Legendary trail-rated 4x4 with removable doors and roof.',
+    price: 42999,
+    category: 'SUVs',
+    images: [
+      'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?w=800&q=80',
+      'https://images.unsplash.com/photo-1595392004747-3d9b64a4b013?w=800&q=80'
+    ],
+    inventory: 5,
+    featured: false,
+    rating: 4.6,
+    reviewCount: 38,
+    merchantName: 'Alliance Auto Dealers'
+  },
+  {
+    id: '9',
+    name: 'Lamborghini Aventador',
+    slug: 'lamborghini-aventador',
+    description: `<p>The Lamborghini Aventador is a naturally-aspirated V12 supercar — a scissor-door masterpiece that delivers pure, uncompromising Italian performance.</p>
+
+<h3>Key Specifications</h3>
+<ul>
+<li>6.5L naturally-aspirated V12, 730 hp</li>
+<li>0–100 km/h in 2.9 seconds</li>
+<li>Top speed of 350 km/h</li>
+<li>Signature scissor doors</li>
+<li>Carbon-fiber monocoque chassis</li>
+</ul>
+
+<p>Sold by a certified GCV Merchant dealership. Priced in Pi at the community GCV target.</p>`,
+    shortDescription: 'Naturally-aspirated V12 supercar with scissor doors.',
+    price: 398999,
+    category: 'Sports Cars',
+    images: [
+      'https://images.unsplash.com/photo-1612825173281-9a193378527e?w=800&q=80',
+      'https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=800&q=80'
+    ],
+    inventory: 1,
+    featured: false,
+    rating: 5.0,
+    reviewCount: 12,
+    merchantName: 'Prestige Auto Africa'
+  },
+  {
+    id: '10',
+    name: 'Rolls-Royce Phantom',
+    slug: 'rolls-royce-phantom',
+    description: `<p>The Rolls-Royce Phantom is the pinnacle of automotive luxury — handcrafted, whisper-quiet, and engineered to the highest standard on earth.</p>
+
+<h3>Key Specifications</h3>
+<ul>
+<li>6.75L twin-turbo V12 engine</li>
+<li>Handcrafted starlight headliner</li>
+<li>Bespoke coach-built interior options</li>
+<li>Self-leveling air suspension for a "magic carpet ride"</li>
+<li>Iconic Spirit of Ecstasy hood ornament</li>
+</ul>
+
+<p>Available through our certified GCV Merchant network. Reserved for select GCV pioneers.</p>`,
+    shortDescription: 'The pinnacle of handcrafted automotive luxury.',
+    price: 460999,
+    category: 'Luxury',
+    images: [
+      'https://images.unsplash.com/photo-1696233016084-30c8345d85ff?w=800&q=80',
+      'https://images.unsplash.com/photo-1740098160485-d098fbf42814?w=800&q=80'
+    ],
+    inventory: 1,
+    featured: true,
+    rating: 5.0,
+    reviewCount: 9,
+    merchantName: 'Prestige Auto Africa'
+  },
+  {
+    id: '11',
+    name: 'Audi Q7',
+    slug: 'audi-q7',
+    description: `<p>The Audi Q7 is a refined three-row luxury SUV, offering quattro all-wheel drive, a serene cabin, and cutting-edge Audi virtual cockpit technology.</p>
+
+<h3>Key Specifications</h3>
+<ul>
+<li>quattro permanent all-wheel drive</li>
+<li>Three-row seating for up to seven</li>
+<li>Audi virtual cockpit digital instrument display</li>
+<li>Adaptive air suspension</li>
+<li>Premium Bang & Olufsen sound system available</li>
+</ul>
+
+<p>Sold by a certified GCV Merchant dealership. Priced in Pi at the community GCV target.</p>`,
+    shortDescription: 'Refined three-row luxury SUV with quattro all-wheel drive.',
+    price: 63999,
+    category: 'SUVs',
+    images: [
+      'https://images.unsplash.com/photo-1532974143451-8162d38a1257?w=800&q=80'
+    ],
+    inventory: 3,
+    featured: false,
+    rating: 4.5,
+    reviewCount: 26,
+    merchantName: 'Kigali Motors'
+  },
+  {
+    id: '12',
+    name: 'Chevrolet Camaro',
+    slug: 'chevrolet-camaro',
+    description: `<p>The Chevrolet Camaro delivers bold muscle-car styling with sharp handling, offering serious performance at a more attainable price point.</p>
+
+<h3>Key Specifications</h3>
+<ul>
+<li>V6 or V8 engine options</li>
+<li>Available 10-speed automatic or 6-speed manual</li>
+<li>Magnetic Ride Control suspension (SS trim)</li>
+<li>Aggressive, low-slung muscle-car styling</li>
+<li>Coupe and convertible body styles</li>
+</ul>
+
+<p>Available through our certified GCV Merchant network. Pi payment plans available.</p>`,
+    shortDescription: 'Bold muscle car styling with sharp, attainable performance.',
+    price: 45999,
+    category: 'Sports Cars',
+    images: [
+      'https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&q=80',
+      'https://images.unsplash.com/photo-1562911791-c7a97b729ec5?w=800&q=80'
+    ],
+    inventory: 4,
+    featured: false,
+    rating: 4.5,
+    reviewCount: 33,
+    merchantName: 'Alliance Auto Dealers'
   }
 ];

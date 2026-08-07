@@ -3,6 +3,15 @@ import { useNavigate } from 'react-router';
 import { Check, CreditCard, Smartphone } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { SEO } from '../components/SEO';
+import { toPi } from '../lib/pi';
+
+function PiIcon({ className }: { className?: string }) {
+  return (
+    <span className={`${className} inline-flex items-center justify-center font-bold leading-none`}>
+      π
+    </span>
+  );
+}
 
 type Step = 'shipping' | 'payment' | 'review';
 
@@ -222,6 +231,12 @@ export function Checkout() {
                     title: 'Mobile Money',
                     desc: 'M-Pesa, MTN Mobile Money, Orange Money',
                   },
+                  {
+                    value: 'pi',
+                    Icon: PiIcon,
+                    title: 'Pay with Pi',
+                    desc: `Pay directly from your Pi Wallet — ${toPi(total)} π at the community GCV target`,
+                  },
                 ].map(({ value, Icon, title, desc }) => (
                   <label
                     key={value}
@@ -252,8 +267,9 @@ export function Checkout() {
 
               <div className="mt-5 p-4 bg-accent/60 rounded-xl">
                 <p className="text-sm text-muted-foreground">
-                  Your payment information is encrypted and secure. We never store your
-                  card details.
+                  {formData.paymentMethod === 'pi'
+                    ? `You'll confirm this payment in your Pi Wallet app. GCV is a community-proposed target, not an official Pi Network rate.`
+                    : 'Your payment information is encrypted and secure. We never store your card details.'}
                 </p>
               </div>
             </div>
@@ -286,8 +302,15 @@ export function Checkout() {
                   <p className="text-sm font-medium">
                     {formData.paymentMethod === 'card'
                       ? 'Credit / Debit Card'
+                      : formData.paymentMethod === 'pi'
+                      ? 'Pay with Pi'
                       : 'Mobile Money'}
                   </p>
+                  {formData.paymentMethod === 'pi' && (
+                    <p className="text-xs text-brand-purple font-medium mt-1">
+                      {toPi(total)} π (GCV target)
+                    </p>
+                  )}
                 </div>
               </div>
 
@@ -321,6 +344,11 @@ export function Checkout() {
                     <span>Total</span>
                     <span>${total.toFixed(2)}</span>
                   </div>
+                  {formData.paymentMethod === 'pi' && (
+                    <p className="text-xs text-brand-purple font-medium text-right">
+                      {toPi(total)} π (GCV target)
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
