@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useLocation } from 'react-router';
 import { teamMembers, founders } from '../data/mockData';
 import { SEO } from '../components/SEO';
 import { Users, Globe, Star } from 'lucide-react';
@@ -12,6 +14,14 @@ const REGION_COLORS: Record<string, string> = {
 };
 
 export function Team() {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (!hash) return;
+    const el = document.getElementById(hash.slice(1));
+    el?.scrollIntoView({ behavior: 'smooth' });
+  }, [hash]);
+
   return (
     <div>
       <SEO
@@ -79,7 +89,7 @@ export function Team() {
         </div>
 
         {/* Founders */}
-        <div className="mb-16">
+        <div id="founders" className="mb-16 scroll-mt-24">
           <div className="flex items-center gap-3 mb-8">
             <div className="w-10 h-10 bg-gradient-to-br from-brand-purple to-brand-purple-light rounded-xl flex items-center justify-center">
               <Star className="w-5 h-5 text-white" />
