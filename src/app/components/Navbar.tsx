@@ -35,14 +35,9 @@ interface NavGroup {
 
 const NAV_GROUPS: NavGroup[] = [
   { label: 'Home', to: '/' },
-  {
-    label: 'About Us',
-    children: [
-      { to: '/about', label: 'Our Story', description: 'Mission, values & leadership' },
-      { to: '/team', label: 'Core Team', description: 'Global leadership, founders & departments' },
-      { to: '/team#founders', label: 'Founders', description: 'The visionaries behind the movement' },
-    ],
-  },
+  { label: 'About Us', to: '/about' },
+  { label: 'Core Team', to: '/team' },
+  { label: 'Founders', to: '/team#founders' },
   { label: 'GCV Alliance', to: '/industry-alliance' },
   { label: 'GCV Market', to: '/shop' },
   { label: 'News & Media', to: '/news' },
