@@ -37,42 +37,66 @@ building an unrelated feature.
 
 | Layer             | Technology                     | Role                                                        |
 | ------------------ | ------------------------------- | ------------------------------------------------------------ |
-| Backend API        | **[DECISION NEEDED]**           | See "Backend Decision" below — not yet chosen                |
-| Database           | **[DECISION NEEDED]**           | Products, users, orders, merchants, content                  |
-| Auth               | **[DECISION NEEDED]**           | Member/merchant/admin roles                                  |
+| Backend API        | Express.js (Node.js)            | REST API layer, decoupled from the Vite frontend              |
+| Database           | PostgreSQL + Prisma ORM         | Products, users, orders, merchants, content                  |
+| Static assets      | Cloudinary                      | Product/merchant images and other uploaded media              |
+| Auth               | better-auth (Prisma adapter)    | Member/merchant/admin roles, cookie-based sessions            |
 | Payment / Pi logic | **[DECISION NEEDED — depends on open product questions in project-overview.md]** | USD-to-Pi conversion and checkout |
 | Hosting            | **[DECISION NEEDED]**           | Frontend + backend deployment target                         |
 
-### Backend Decision — open, not yet made
+### Backend Decision — resolved 2026-08-15
 
 The frontend stack (React + Vite + React Router) is fixed and given.
-The backend is **not** specified anywhere in the source material for
-this project and must not be invented and treated as settled. Do not
-let an agent silently pick a backend stack (e.g. defaulting to a
-Node/Express/Postgres setup) and start building against it as if it
-were decided — log the decision as needed in `progress-tracker.md`
-under Open Questions, get it confirmed, then update this file with the
-real answer before backend implementation begins.
+The backend stack is now decided:
 
-Reasonable candidates to evaluate (not a decision):
-- A lightweight Node/Express or Fastify API + PostgreSQL, deployed
-  alongside the Vite frontend.
-- A managed BaaS (e.g. Supabase) to minimize backend build time given
-  the short timeline — trades some control for speed.
+- **API layer:** Express.js (Node.js), deployed separately from the
+  Vite frontend build. Frontend calls it over HTTP via
+  `src/app/api/` client functions once that layer is built.
+- **Database:** PostgreSQL, accessed through Prisma as the ORM/schema
+  layer (Prisma schema is the source of truth for the relational
+  model — products, users, orders, merchants, content).
+- **Static assets:** Cloudinary for images (product photos, merchant
+  uploads, etc.) rather than storing binaries in Postgres or bundling
+  them in the frontend repo.
 
-Whichever is chosen, it must integrate cleanly with the existing
-React Router v7 frontend without requiring a framework migration
-(i.e., do not migrate to Next.js to get server features — this
-project's frontend framework is fixed).
+This must integrate cleanly with the existing React Router v7
+frontend without requiring a framework migration (i.e., do not
+migrate to Next.js to get server features — this project's frontend
+framework is fixed).
+
+### Auth Decision — resolved 2026-08-16
+
+**better-auth**, self-hosted alongside the Express API, using its
+official Prisma adapter against the same PostgreSQL database — not a
+third-party BaaS auth provider, consistent with the self-hosted
+Express/Postgres/Prisma backend decision above.
+
+- Cookie-based sessions (not JWT-in-localStorage), stored via the
+  Prisma adapter in Postgres — avoids XSS-exposed token storage in
+  the SPA.
+- A single `User` model with a `role` enum (`MEMBER`, `MERCHANT`,
+  `ADMIN`; unauthenticated requests are the implicit `visitor` role)
+  rather than separate tables per role — matches the "Admin Portal,
+  secure login, separate from public auth if warranted" note in
+  `project-overview.md` by gating on role, not on a physically
+  separate auth system.
+- Password hashing and session handling are library-managed, not
+  hand-rolled.
+- **Fallback if better-auth proves too immature/limiting during
+  implementation:** Passport.js (local strategy) + `express-session`
+  with a Postgres-backed session store. More boilerplate, but more
+  battle-tested. Switch by updating this section, not silently.
+
+Hosting target remains open — see row above.
 
 ## System Boundaries (target)
 
 - `src/app/data/` — **current**: static mock data. **target**: this
   directory is replaced by real API calls; do not add new mock data
   for features intended to be backend-driven going forward.
-- `src/app/api/` or equivalent — **not yet created**. Once the backend
-  decision is made, this is where frontend API client functions live
-  (fetch wrappers, typed request/response contracts).
+- `src/app/api/` or equivalent — **not yet created**. This is where
+  frontend API client functions will live (fetch wrappers, typed
+  request/response contracts) calling the Express API.
 - `src/app/context/CartContext.tsx` — remains the client-side cart
   state; on checkout it hands off to a real order-creation API call
   once the backend exists, rather than resolving purely client-side.
@@ -82,35 +106,62 @@ project's frontend framework is fixed).
 
 ## Storage Model (target)
 
-- Product, user, order, merchant, and content records belong in the
-  chosen relational database once selected.
-- Static assets (images) — decide storage approach (bundled vs. CDN/
-  object storage) when merchant-uploaded product images become a
-  requirement; not needed while content is admin-seeded.
+- Product, user, order, merchant, and content records belong in
+  PostgreSQL, modeled via Prisma schema (`schema.prisma` is the
+  source of truth for the relational model).
+- `Order.userId` must be **nullable** — guest checkout (see "Auth and
+  Role Model") means an order can exist with no associated `User`
+  row. Guest orders capture contact/shipping details directly on the
+  order record instead of via a user relation.
+- Static assets (images — product photos, merchant uploads, etc.) are
+  stored in Cloudinary, not bundled in the frontend repo and not
+  stored as binaries in Postgres. The database stores Cloudinary
+  URLs/public IDs, not the asset bytes.
 - Do not store large binary content (images, PDFs) directly in the
-  database once one exists.
+  database.
 
 ## Auth and Role Model (target)
 
-- Roles: visitor (unauthenticated), member, merchant, admin.
-- Only authenticated members can check out.
+- Implementation: better-auth + Prisma adapter — see "Auth Decision"
+  above for detail and the Passport.js/express-session fallback.
+- Roles: visitor/guest, member, merchant, admin — stored as a `role`
+  enum on a single `User` model, not separate tables. Guests don't
+  have a `User` row at all.
+- **Checkout does not require authentication (confirmed 2026-08-16,
+  `project-overview.md` Goal 2)** — any visitor can complete a
+  purchase as a guest. Registering as a member is optional and adds
+  persistent order history / saved details / perks, but is never a
+  purchase gate. Order-creation API must accept guest checkout
+  (no session) as a first-class path, not just an authenticated one.
 - Only merchants can manage their own product listings — not other
   merchants' listings.
-- Only admins can access the Admin Portal routes.
+- Only admins can access the Admin Portal routes, including inventory
+  control (product upload/delete) and news posting.
 - Route protection must be enforced both client-side (route guards)
   and server-side (API authorization checks) once a backend exists —
   client-side checks alone are not sufficient for anything that
-  mutates data.
+  mutates data. This applies to merchant/admin mutation routes; guest
+  checkout is intentionally an unauthenticated mutation path and
+  should instead be protected by other means (e.g. rate limiting,
+  validation) rather than an auth check.
 
 ## Currency / Pi Conversion Model (target — pending open questions)
 
-- **GCV fixed rate direction — resolved 2026-08-02**: **1 USD = 314159 π**
-  (Pi is the small-denomination unit). Confirmed from the approved
-  design mockup, whose displayed conversions match this direction
-  exactly (e.g. $150.00 × 314159 = 47,123,850 π). `src/app/lib/pi.ts`
-  implements `toPi(usd) = usd * GCV_USD`. The earlier implementation
-  had this inverted (modeled a since-abandoned "1 Pi ≈ $314,159"
-  narrative) — that direction is no longer used anywhere in the app.
+- **GCV fixed rate direction — unresolved, has flipped twice.** Current
+  code (`src/app/lib/pi.ts`, as of the 2026-08-07 "full demo" commit):
+  `toPi(usd) = usd / GCV_USD`, i.e. **1 π ≈ $314,159 USD** (Pi is the
+  large-denomination unit — a $89,999 product converts to ≈0.29 π).
+  This is the *opposite* of the direction this file previously
+  documented as "resolved 2026-08-02" (`usd * GCV_USD`, Pi as the
+  small unit), which itself reversed an even earlier direction. Do not
+  treat the current code as a deliberate, confirmed decision — it has
+  now changed twice without an explicit recorded product decision.
+  `pi.ts` also carries a `GCV_DISCLAIMER` constant ("GCV is a
+  community-proposed target, not an official Pi Network rate or an
+  exchange-verified price") not previously documented here. Get an
+  explicit direction decision from the product owner before building
+  anything (checkout totals, admin pricing tools) that assumes one
+  direction is final — see `progress-tracker.md` Open Questions.
 - Conversion must be computed from a single shared constant/config
   value, not hardcoded in multiple components.
 - Product prices are authored in USD; Pi price is always derived, not
@@ -123,7 +174,10 @@ project's frontend framework is fixed).
 ## Invariants
 
 1. No feature is built against an assumed backend stack before that
-   stack is confirmed and recorded in this file.
+   stack is confirmed and recorded in this file. (Backend API,
+   database, static-asset storage, and auth are now confirmed —
+   Express.js, PostgreSQL + Prisma, Cloudinary, better-auth. Hosting
+   remains open.)
 2. `mockData.ts` is not extended with new fields for features that are
    intended to become backend-driven — extending it deepens the
    eventual migration cost.
@@ -135,3 +189,9 @@ project's frontend framework is fixed).
    project-specific styling goes in app-level components.
 6. This file is updated whenever a "[DECISION NEEDED]" item above is
    resolved — do not leave it stale once a real choice is made.
+7. All relational schema changes go through Prisma migrations, not
+   hand-written SQL or manual DB edits — `schema.prisma` must stay the
+   single source of truth for the data model.
+8. Uploaded/static assets (images) are stored in Cloudinary and
+   referenced by URL/public ID from Postgres — never stored as binary
+   data in the database or committed into the frontend repo.

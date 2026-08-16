@@ -19,38 +19,56 @@ Nothing below describes what exists today — see `progress-tracker.md`
 for the actual current state. This document, and `architecture-context.md`,
 describe the **target product** this prototype is being built toward.
 
+**Note on the current demo catalog:** as of the 2026-08-07 "full demo"
+commit, the mock `GCV Market` product catalog is a car dealership
+(`Sedans`/`SUVs`/`Sports Cars`/`Luxury` — Tesla, Porsche, Range Rover,
+etc.), not the generic multi-category "products and services"
+marketplace this document describes. Whether that's the intended
+long-term catalog direction or a one-off demo swap is an open decision
+— see `progress-tracker.md` Open Questions. Don't treat the current
+catalog content as confirmation of scope described here.
+
 ## Goals
 
-1. Let visitors browse a public marketplace of products and services
-   without requiring an account.
-2. Let registered members purchase products, priced in USD and payable
-   in Pi at the fixed GCV conversion rate.
+1. Let visitors browse a public marketplace of products and services,
+   and news/media content, without requiring an account.
+2. Let any visitor purchase products at checkout — priced in USD,
+   payable in Pi at the fixed GCV conversion rate — **without
+   requiring registration or login.** Registering as a member is
+   optional, not a purchase gate (see "Membership & Auth" below for
+   what it's for).
 3. Let merchants list and manage their own products.
 4. Give the alliance a content platform for news, events, and
    organizational information (founders, ambassadors, core team,
    industry alliance members) segmented by region.
-5. Give administrators a portal to manage users, content, market
-   listings, and events.
+5. Give administrators a portal to manage inventory (product
+   upload/delete, listings) and to post news content, alongside users,
+   market listings, and events.
 6. Present a consistent, credible institutional identity alongside the
    commercial marketplace.
 
 ## Core User Flow
 
-### Visitor
+### Visitor (buyer — no account required)
 1. Lands on the home page (mission, latest news, upcoming events,
    featured market items).
 2. Browses About Us, Core Team, Founders, Ambassadors, Industry
-   Alliance sections.
+   Alliance sections, and News & Media.
 3. Browses the GCV Market (products, services, companies, merchants).
-4. Optionally registers to become a member.
-
-### Member (buyer)
-1. Registers / logs in.
-2. Browses and searches products in the GCV Market.
-3. Adds products to cart (cart total shown in both USD and Pi, using
+4. Adds products to cart (cart total shown in both USD and Pi, using
    the fixed GCV rate).
-4. Checks out, paying in Pi.
-5. Views order history.
+5. **Checks out and buys as a guest — no registration or login
+   required.**
+6. Optionally registers to become a member (see below) for order
+   history and other member-only perks; this is never required to
+   complete a purchase.
+
+### Member (registered, optional)
+1. Registers / logs in.
+2. Gets everything a guest gets, plus: persistent order history,
+   saved checkout details, and any alliance-member-only perks/content
+   defined later.
+3. Registration is a value-add, not a purchase gate — see Goal 2.
 
 ### Merchant
 1. Logs in to a merchant view.
@@ -84,16 +102,23 @@ describe the **target product** this prototype is being built toward.
 - Category browsing and search.
 - Product detail pages.
 - Cart with USD/Pi dual display at the fixed GCV rate.
-- Checkout and order placement.
-- Order history for members.
+- **Guest checkout — any visitor can complete a purchase without
+  registering or logging in.**
+- Order history for registered members (not available to guests,
+  since there's no account to attach history to).
 
 ### Membership & Auth
-- Registration and login for members and merchants.
-- Role-based access: visitor, member, merchant, admin.
+- Registration and login for members and merchants — **optional for
+  members** (buying never requires an account); required for
+  merchants and admins.
+- Role-based access: visitor/guest buyer, member, merchant, admin.
 
 ### Admin Portal
 - Secure login, separate from public auth if warranted.
 - Dashboard overview.
+- Inventory control: upload and delete products directly from the
+  dashboard.
+- Post news content (GCV Africa news and other regional news).
 - Content management (news, events, downloads).
 - User management.
 - Market management (products, categories, merchants).
@@ -114,9 +139,11 @@ describe the **target product** this prototype is being built toward.
 - Public content pages (About, Team, Founders, Ambassadors, Industry
   Alliance, Events, News, Downloads, Contact).
 - Marketplace with real product data, search, and categories.
-- Member registration/login and order placement.
+- Guest checkout — order placement without registration or login.
+- Optional member registration/login for order history and perks.
 - Merchant product management.
-- Admin portal for content and market management.
+- Admin portal for content/inventory management (upload/delete
+  products, post news) and market management.
 - USD-to-Pi conversion at the fixed GCV rate, applied consistently
   across product display, cart, and checkout.
 - Multi-language support for at least the four listed languages.
@@ -153,12 +180,16 @@ payment flow until these are resolved — track resolution in
 ## Success Criteria
 
 1. A visitor can browse all public content sections without an account.
-2. A member can register, log in, browse the market, and complete a
-   checkout flow with USD/Pi pricing displayed correctly.
-3. A merchant can create and manage their own product listings.
-4. An admin can manage users, market listings, news, and events from
-   the admin portal.
-5. All public-facing content is available in the four supported
+2. A visitor can browse the market and complete a checkout flow with
+   USD/Pi pricing displayed correctly — **without registering or
+   logging in.**
+3. A visitor can optionally register as a member to get order history
+   and other member perks.
+4. A merchant can create and manage their own product listings.
+5. An admin can manage inventory (upload/delete products), post news,
+   and manage users, market listings, and events from the admin
+   portal.
+6. All public-facing content is available in the four supported
    languages.
-6. The site is responsive and passes basic SEO checks (meta tags,
+7. The site is responsive and passes basic SEO checks (meta tags,
    semantic structure).

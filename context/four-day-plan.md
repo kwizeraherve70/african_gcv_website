@@ -1,5 +1,24 @@
 # 4-Day Plan — Full Frontend Build
 
+**Status (2026-08-15): not executed.** This plan was confirmed
+2026-07-31, before the 2026-08-02 rebrand. Checked against the current
+repo: none of Day 1–4 shipped — no `AuthContext`/`Login.tsx`/
+`Register.tsx`/`ProtectedRoute`, no `localStorage` usage anywhere in
+`src/app/`, no `react-i18next` in `package.json`, no `DOMPurify`
+sanitization on `dangerouslySetInnerHTML` (still present unsanitized
+in `ProductDetail.tsx` and `NewsDetail.tsx`), and Day 1's specific hex
+palette (`#0066FF` / `#6B46C1` / `#38A169` / etc.) was never applied —
+the repo instead adopted a different purple/gold token set via the
+2026-08-02 rebrand (see `ui-context.md`), and some raw hex values
+still remain in `Home.tsx` (SVG gradient stops, WhatsApp green)
+alongside it. Actual work since 2026-07-31 diverged onto the rebrand
+and the 2026-08-07 car-catalog pivot instead — see
+`progress-tracker.md` for what actually happened. Treat everything
+below as an unexecuted historical plan, not a description of current
+or upcoming work, unless/until someone explicitly picks it back up.
+
+---
+
 Scope: complete the frontend-only build per `project-overview.md`'s
 "In Scope" list, within 4 days. No backend exists and none is being
 invented here — the `architecture-context.md` "Backend Decision"
