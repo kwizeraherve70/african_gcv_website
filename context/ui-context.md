@@ -10,7 +10,7 @@ blue/navy identity previously implemented in this repo.
 
 Tailwind v4, using the `@tailwindcss/vite` plugin — there is no
 `tailwind.config.js`. Theme tokens are defined as CSS custom
-properties in `src/styles/theme.css` and exposed to Tailwind via v4's
+properties in `front-end/src/styles/theme.css` and exposed to Tailwind via v4's
 `@theme` directive. Components must reference these tokens through
 their Tailwind utility names — no raw hex values, no default Tailwind
 palette classes (e.g. no `zinc-*`, `slate-*`) unless a token doesn't
@@ -54,11 +54,11 @@ those two).
 
 ## Typography
 
-- **Inter** — body/UI font, loaded via `@import` in `src/styles/fonts.css`
+- **Inter** — body/UI font, loaded via `@import` in `front-end/src/styles/fonts.css`
   (Google Fonts). Exposed as the default `font-sans` (unchanged from
   before).
 - **Poppins** (weights 500/600/700/800) — heading font, added in
-  `src/styles/fonts.css`, exposed as `--font-heading` in `theme.css`
+  `front-end/src/styles/fonts.css`, exposed as `--font-heading` in `theme.css`
   and applied to `h1`–`h4` via `@layer base`. Use the `font-heading`
   Tailwind utility for any other element that should read as a
   heading (e.g. a `<div>` styled as a section title).
@@ -84,7 +84,7 @@ enough to the mockup's ~12–16px card radius — no new scale introduced.
 
 ## Component Library
 
-- shadcn-style Radix wrappers live in `src/app/components/ui/` and are
+- shadcn-style Radix wrappers live in `front-end/src/app/components/ui/` and are
   available but **not currently used** by page-level code — pages are
   built with plain HTML + Tailwind classes today.
 - Do not modify files in `components/ui/` directly (see

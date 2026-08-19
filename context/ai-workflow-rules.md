@@ -49,6 +49,30 @@ broad — split it.
   `progress-tracker.md` before continuing, rather than guessing and
   moving on.
 
+## Integrating Pre-Existing External Code
+
+This applies when bringing in a codebase authored outside this
+project (e.g. an existing backend from another project) rather than
+building a subsystem from scratch — see `architecture-context.md`
+"Backend Integration Plan" for the current live case.
+
+- Audit stack compatibility against what's already decided in
+  `architecture-context.md` before adapting or wiring up a single
+  file. Do not assume the external code matches this project's stack
+  (Express/PostgreSQL/Prisma/better-auth/Cloudinary) — verify it.
+- If the external code conflicts with an already-recorded decision
+  (different ORM, different auth library, different asset storage),
+  that's a fork requiring an explicit choice — migrate the external
+  code to match, or record the decision as reopened. Do not let two
+  competing implementations of the same concern (e.g. two auth
+  systems, two ORMs) coexist silently.
+- Bring it in and verify incrementally, one subsystem at a time (per
+  "Scoping Rules" above), not as a single large merge of the whole
+  external codebase.
+- Update `architecture-context.md` and `progress-tracker.md` as each
+  subsystem's compatibility is actually assessed — do not leave the
+  plan section stale once real audit work happens.
+
 ## Handling the Mock-Data-to-Backend Transition
 
 - Do not extend `mockData.ts` with new fields for features that are
@@ -71,7 +95,7 @@ explicitly instructed.
 
 This includes:
 
-- `src/app/components/ui/*` (shadcn-style Radix wrappers)
+- `front-end/src/app/components/ui/*` (shadcn-style Radix wrappers)
 - third-party library internals
 
 These should remain default and reusable. Project-specific styling,

@@ -1,10 +1,17 @@
-# 4-Day Plan — Full Frontend Build
+# 4-Day Plan — Full Frontend Build (superseded)
+
+**Status (2026-08-16): superseded by a different 4-day plan.** There
+is now a second, unrelated "4-day plan" — the backend integration plan
+in `progress-tracker.md` "In Progress" (adapting the real backend now
+in `backend/`), confirmed 2026-08-16. That one is current; this one
+(localStorage-simulated auth, no real backend) is not. Do not confuse
+the two when reading history.
 
 **Status (2026-08-15): not executed.** This plan was confirmed
 2026-07-31, before the 2026-08-02 rebrand. Checked against the current
 repo: none of Day 1–4 shipped — no `AuthContext`/`Login.tsx`/
 `Register.tsx`/`ProtectedRoute`, no `localStorage` usage anywhere in
-`src/app/`, no `react-i18next` in `package.json`, no `DOMPurify`
+`front-end/src/app/`, no `react-i18next` in `package.json`, no `DOMPurify`
 sanitization on `dangerouslySetInnerHTML` (still present unsanitized
 in `ProductDetail.tsx` and `NewsDetail.tsx`), and Day 1's specific hex
 palette (`#0066FF` / `#6B46C1` / `#38A169` / etc.) was never applied —
@@ -65,7 +72,7 @@ From the `/review` pass done before this plan was written:
 
 ## Day 1 — Design-system fixes + Auth foundation
 
-- Add real brand tokens to `src/styles/theme.css`:
+- Add real brand tokens to `front-end/src/styles/theme.css`:
   `--color-accent-blue #0066FF`, `-purple #6B46C1`, `-green #38A169`,
   `-orange #FFA500`, `-gold #f4af47`, `-magenta #8a348e`,
   `-red #E53E3E`.

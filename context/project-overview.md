@@ -14,19 +14,21 @@ alliance members.
 
 **As of this writing, this is a frontend-only prototype.** There is no
 backend, no API layer, and no database. All product, news, team, and
-event data lives as static mock objects in `src/app/data/mockData.ts`.
+event data lives as static mock objects in `front-end/src/app/data/mockData.ts`.
 Nothing below describes what exists today — see `progress-tracker.md`
 for the actual current state. This document, and `architecture-context.md`,
 describe the **target product** this prototype is being built toward.
 
-**Note on the current demo catalog:** as of the 2026-08-07 "full demo"
-commit, the mock `GCV Market` product catalog is a car dealership
-(`Sedans`/`SUVs`/`Sports Cars`/`Luxury` — Tesla, Porsche, Range Rover,
-etc.), not the generic multi-category "products and services"
-marketplace this document describes. Whether that's the intended
-long-term catalog direction or a one-off demo swap is an open decision
-— see `progress-tracker.md` Open Questions. Don't treat the current
-catalog content as confirmation of scope described here.
+**Note on the catalog direction (resolved 2026-08-16):** as of the
+2026-08-07 "full demo" commit, the `GCV Market` product catalog is a
+car dealership (`Sedans`/`SUVs`/`Sports Cars`/`Luxury` — Tesla,
+Porsche, Range Rover, etc.), not the generic multi-category "products
+and services" marketplace this document otherwise describes. This is
+now confirmed as the **permanent** product direction, not a one-off
+demo swap — the backend's `ProductCategory` enum was built against it
+during the backend-integration Day 2 pass (see `progress-tracker.md`).
+Read "products and services" below as the car-dealership catalog
+specifically, not a generic placeholder.
 
 ## Goals
 

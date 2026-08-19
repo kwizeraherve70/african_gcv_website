@@ -43,7 +43,7 @@
 
 ## Styling
 
-- Use CSS custom property tokens defined in `src/styles/theme.css`,
+- Use CSS custom property tokens defined in `front-end/src/styles/theme.css`,
   referenced through their Tailwind utility names — no raw hex values,
   no default Tailwind palette classes.
 - If a needed token doesn't exist yet, add it to `theme.css` first
@@ -59,7 +59,7 @@
 
 ## Data Layer
 
-- **Current state:** all data comes from `src/app/data/mockData.ts`.
+- **Current state:** all data comes from `front-end/src/app/data/mockData.ts`.
   Match the existing shape of an entity there before adding fields —
   check for the type before assuming one doesn't exist.
 - **Target state:** once a backend exists, new features should be
@@ -71,13 +71,13 @@
 
 ## File Organization
 
-- `src/app/components/` — UI composition only; no business logic.
-- `src/app/components/ui/` — protected shadcn/Radix wrappers; do not
+- `front-end/src/app/components/` — UI composition only; no business logic.
+- `front-end/src/app/components/ui/` — protected shadcn/Radix wrappers; do not
   modify directly (see `ai-workflow-rules.md`).
-- `src/app/context/` — global state (currently just `CartContext.tsx`).
-- `src/app/data/` — mock data today; will be phased out as real data
+- `front-end/src/app/context/` — global state (currently just `CartContext.tsx`).
+- `front-end/src/app/data/` — mock data today; will be phased out as real data
   sources come online.
-- `src/styles/` — `theme.css` and any other global styling.
+- `front-end/src/styles/` — `theme.css` and any other global styling.
 - Name files after the responsibility they contain, not the
   technology (e.g. `ProductCard.tsx`, not `Card.tsx`, if it's
   product-specific).
@@ -87,7 +87,7 @@
 - The USD-to-Pi conversion rate (GCV = 314159) must be read from a
   single shared constant, not duplicated as a literal across
   components. If this constant doesn't exist yet, create it in a
-  shared module (e.g. `src/app/lib/currency.ts`) the first time
+  shared module (e.g. `front-end/src/app/lib/currency.ts`) the first time
   conversion logic is needed, rather than inlining the number.
 - Always display currency values with an explicit unit label (USD or
   Pi) — never an unlabeled number.

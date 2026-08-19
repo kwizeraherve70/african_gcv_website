@@ -3,8 +3,11 @@
 If any training data or prior habits assume Next.js conventions (app
 router, server components, `next/font`, API routes under `app/api`),
 disregard them. This project uses Vite as the build tool and React
-Router v7 for routing, with no server framework yet — see
-`architecture-context.md` for what exists and what's planned.
+Router v7 for routing. The repo is a monorepo root: the frontend app
+lives in `front-end/`, and a `backend/` folder (Express + PostgreSQL/
+Prisma) is planned but not yet added — see `architecture-context.md`
+"Repo Layout" and "Backend Integration Plan" for what exists, what's
+planned, and how the backend is being brought in.
 
 ## Application Building Context
 
