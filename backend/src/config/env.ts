@@ -8,4 +8,7 @@ export const appEnv = {
   clientSecret: process.env.clientSecret,
   PAYPACK_API_BASE_URL: process.env.PAYPACK_API_BASE_URL,
   PAYPACK_WEBHOOK_SIGN_KEY: process.env.PAYPACK_WEBHOOK_SIGN_KEY,
+  // Inbox that receives internal notifications (new contact enquiries, etc).
+  // Falls back to the sending mailbox itself when unset.
+  adminEmail: process.env.ADMIN_EMAIL || process.env.EMAIL_USER,
 };

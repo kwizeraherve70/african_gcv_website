@@ -1,10 +1,12 @@
 import { Link, Outlet, useLocation } from 'react-router';
-import { LayoutDashboard, Package, Newspaper } from 'lucide-react';
+import { LayoutDashboard, Package, Newspaper, ShoppingCart, MessageSquare } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 
 const NAV = [
   { to: '/admin', label: 'Dashboard', icon: LayoutDashboard, exact: true },
   { to: '/admin/products', label: 'Products', icon: Package },
+  { to: '/admin/orders', label: 'Orders', icon: ShoppingCart },
+  { to: '/admin/contacts', label: 'Messages', icon: MessageSquare },
   { to: '/admin/news', label: 'News', icon: Newspaper },
 ];
 

@@ -16,6 +16,9 @@ import { AdminLayout } from './pages/admin/AdminLayout';
 import { AdminDashboard } from './pages/admin/AdminDashboard';
 import { AdminProducts } from './pages/admin/AdminProducts';
 import { AdminProductForm } from './pages/admin/AdminProductForm';
+import { AdminOrders } from './pages/admin/AdminOrders';
+import { AdminOrderDetail } from './pages/admin/AdminOrderDetail';
+import { AdminContacts } from './pages/admin/AdminContacts';
 import { AdminNews } from './pages/admin/AdminNews';
 import { AdminNewsForm } from './pages/admin/AdminNewsForm';
 import { About } from './pages/About';
@@ -65,6 +68,9 @@ export const router = createBrowserRouter([
           { path: 'products', element: <AdminProducts /> },
           { path: 'products/new', element: <AdminProductForm /> },
           { path: 'products/:id/edit', element: <AdminProductForm /> },
+          { path: 'orders', element: <AdminOrders /> },
+          { path: 'orders/:id', element: <AdminOrderDetail /> },
+          { path: 'contacts', element: <AdminContacts /> },
           { path: 'news', element: <AdminNews /> },
           { path: 'news/new', element: <AdminNewsForm /> },
           { path: 'news/:id/edit', element: <AdminNewsForm /> },

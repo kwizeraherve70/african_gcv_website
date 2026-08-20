@@ -594,3 +594,146 @@ implementation state changes.
   migration files in place (safe since neither had been applied
   anywhere but this session's own disposable local Postgres). See the
   "In Progress" entry above for full technical detail.
+- 2026-08-20: user asked to actually integrate the `nodemailer` utility
+  (`backend/src/utils/email.ts`) that already existed but was only
+  used for the agent-enquiry and OTP-reset flows. Added `sendEmailSafe`
+  (logs and swallows failures instead of throwing) and switched every
+  call site to it except `requestPasswordReset`, where email delivery
+  *is* the whole point of the call, so a send failure still surfaces as
+  a 502 there - everywhere else, a dead SMTP config must not turn an
+  already-successful DB write (contact saved, order placed, delivery
+  updated) into a 500 for the caller. Wired new notification emails
+  into: `contactService.createContact`'s two branches that previously
+  sent nothing (general/userId enquiries - auto-reply to sender +
+  notify `ADMIN_EMAIL`, new env var, falls back to `EMAIL_USER`);
+  `userService.signUpUser` (welcome email); `DeliveryService
+  .createDelivery` (order confirmation, joins `Order` for
+  orderNumber/totalAmount since `Order` itself has no customer contact
+  field - only `Delivery` does); `DeliveryService.updateDelivery`
+  (status-change email, `DELIVERY_STATUS_MESSAGES` keyed off the real
+  `DeliveryStatus` enum: `PENDING/DISPATCHED/IN_TRANSIT/DELIVERED/
+  RETURNED` - first draft used a nonexistent `SHIPPED` value, caught
+  by reading `schema.prisma` before shipping); `PaymentService
+  .createPayment` and `.syncAllPaymentsWithTransactions` (payment
+  status email via a new `notifyPaymentStatus` helper that joins
+  `Order -> Delivery` for the email address, since `Payment` has none
+  either; the sync-loop call is guarded on `newStatus !== payment
+  .status` so it only fires on an actual transition, not every poll).
+  Frontend: found `Contact.tsx`'s form was never wired to the backend
+  at all - it faked success with a `setTimeout` and never called any
+  API - so this was the real gap, not a missing email trigger. Built
+  `front-end/src/app/api/contact.ts` and wired the form for real
+  (loading state, error banner, "send another message" reset instead
+  of the old auto-revert timeout); backend `CreateContactDto` has no
+  `subject` field, so the form's subject dropdown is folded into the
+  message body (`[Subject] message`) rather than extending the schema
+  for one cosmetic field. Registration and checkout needed no frontend
+  changes - both already call the backend endpoints that now send
+  email as a side effect, and `OrderConfirmation.tsx`'s "you'll get a
+  confirmation email" copy was already there, just not true until now.
+  Scoped down deliberately, confirmed with the user first: payment- and
+  delivery-status emails have no admin UI to trigger them from (only
+  Products/News exist under `/admin`) - building that was explicitly
+  declined in favor of testing those two via Swagger UI (`/docs`)/curl
+  for now, kept as a known fast-follow rather than built unasked.
+  Verified with a clean backend `tsc --noEmit` and frontend `npm run
+  build`; did not run the actual email send end-to-end (`EMAIL_USER`/
+  `EMAIL_PASS` are empty in the local `.env` - needs a real Gmail
+  address + app password, which is the user's to provide, before this
+  is exercised live rather than just compiled).
+- 2026-08-20 (later): user filled in real `EMAIL_USER`/`EMAIL_PASS`/
+  `ADMIN_EMAIL` and asked to verify. Ran the backend standalone (port
+  3001, to avoid a mystery unrelated process already bound to :3000 -
+  root-owned, working dir `/app`, invisible to this shell's filesystem,
+  left alone rather than killed) and POSTed a real contact submission;
+  zero "Failed to send email" log lines, confirming the Gmail App
+  Password actually works end-to-end, not just that the code compiles.
+  User then asked to build the previously-deferred admin Orders page
+  so delivery-status (and eventually payment-status) emails have a
+  real UI trigger instead of only Swagger. Built:
+  - Backend: discovered `OrderController`/`DeliveryController` had
+    *zero* `@Security` guards on every route, including admin-only
+    ones (`getAllOrders`, `updateDelivery`, etc.) - anyone could hit
+    them unauthenticated. Added `@Security("jwt", ["ADMIN"])` to the
+    list/get/update/delete routes on both controllers, matching
+    `ProductController`'s existing pattern; deliberately left
+    `createOrder`/`createDelivery` unguarded since guest checkout
+    depends on calling them with no token. Also wired
+    `OrderController.getAllOrders` to actually read
+    `searchq`/`limit`/`page` from `req.query` (the service already
+    supported pagination; the controller was silently ignoring it -
+    same `@Request() req` pattern `ProductController` already uses).
+    `PaymentController` intentionally left untouched this pass - no
+    admin payment UI was built (see below).
+  - Frontend: extended `api/orders.ts` with admin-facing
+    `AdminOrder`/`AdminDelivery`/`AdminPayment` types (the backend's
+    declared `TOrder` type omits the `orderItems`/`payment`/`delivery`
+    relations that `OrderService.getAllOrders`/`getOrder` actually
+    `include` at runtime - the admin types describe the real wire
+    shape, not the narrower declared one) plus `getAllOrders`/
+    `getOrder`, both token-authenticated now that the backend requires
+    it. New `api/delivery.ts` with `updateDeliveryStatus`. New pages
+    `AdminOrders.tsx` (list: order #, customer, total, order/delivery/
+    payment status badges) and `AdminOrderDetail.tsx` (items, payment
+    info if any, delivery address, and a status dropdown + "Update"
+    button that calls `updateDeliveryStatus` and shows "the customer
+    has been emailed" on success - directly surfacing the
+    `DeliveryService.updateDelivery` email side effect landed earlier
+    today). Wired into `AdminLayout.tsx` nav, `routes.tsx`
+    (`/admin/orders`, `/admin/orders/:id`), and added an Orders count
+    tile to `AdminDashboard.tsx` alongside Products/News.
+  - **Payment admin UI deliberately not built**, not just deferred by
+    omission: `PaymentService.createPayment` calls the live Paypack
+    cash-in API before ever touching the DB, and Paypack integration
+    is an explicitly still-open product question (see "Open
+    Questions" - real payment processor in scope? - and the Day 3
+    note that `clientId`/`clientSecret` are harmless placeholders
+    locally). An admin "create payment" button would just 401 against
+    Paypack, and checkout itself never creates `Payment` rows today
+    (`Checkout.tsx`'s payment step is display-only), so there's
+    nothing real to manage yet - building UI around it would be
+    demoing a payment system that doesn't function, not testing the
+    email code. `PaymentService.notifyPaymentStatus` (landed earlier
+    today) stays reachable via Swagger/`syncAllPaymentsWithTransactions`
+    for whenever real Paypack credentials exist.
+  - Verified for real, not just compiled: clean backend `tsc --noEmit`
+    and frontend `npm run build`, then a full curl-driven E2E run
+    against a throwaway backend instance (port 3001, killed after) -
+    logged in as the seeded `admin@gmail.com` account (see
+    `prisma/seeds/index.ts`), created a real guest order + delivery via
+    the public endpoints, confirmed `GET /api/order` now 401s with no
+    token and 200s with the admin JWT (proving the new `@Security`
+    guard is live, not just present in source), then `PUT
+    /api/delivery/{id}` with `deliveryStatus: DISPATCHED` as that
+    admin and confirmed zero "Failed to send email" log lines - both
+    the order-confirmation and the delivery-status-change emails sent
+    for real. The actual browser click-through (login as admin in the
+    UI, click through `/admin/orders` to the detail page, use the
+    dropdown) has not been done - the curl run proves the backend
+    contract and email delivery, not the rendered React UI.
+- 2026-08-20 (later still): user asked if the same admin treatment
+  applied to Contact - it didn't. `ContactController` had the identical
+  no-`@Security`-at-all gap Order/Delivery had before this session's
+  earlier fix (`getContacts`/`getContact`/`updateContact`/
+  `deleteContact` all unauthenticated), and there was no `/admin/contacts`
+  page. Fixed both: added `@Security("jwt", ["ADMIN"])` to those four
+  routes, left `createContact` open (the public Contact page and the
+  agent-enquiry flow need to call it anonymously). New
+  `api/contact.ts` additions (`AdminContact` type, `getAllContacts`,
+  `deleteContact`) and a new `AdminContacts.tsx` page - flat list
+  (not a detail route like Orders, since a contact message doesn't
+  need a separate page) with click-to-expand full message + phone/
+  location, and delete. Wired into `AdminLayout` nav, `routes.tsx`
+  (`/admin/contacts`), and a fourth dashboard tile.
+  Verified for real again via a throwaway backend on port 3001: `GET
+  /api/contact` 401s with no token, 200s with the admin JWT; while
+  listing, found the admin inbox already had two real submissions -
+  the automated "Claude Test" one from this session's earlier smoke
+  test, and a genuine one the user had already submitted live through
+  the browser (`hervekwizera63@gmail.com`, subject "GCV Questions")
+  confirming the `Contact.tsx` wiring from earlier today has already
+  been exercised for real, not just by this session. Deleted only the
+  "Claude Test" row via the new admin-gated `DELETE` (confirming
+  delete works) and deliberately left the user's real submission
+  alone. Backend `tsc --noEmit` and frontend `npm run build` both
+  clean.

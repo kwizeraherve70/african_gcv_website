@@ -6,9 +6,51 @@ import {
   TContact,
 } from "../utils/interfaces/common";
 import AppError from "../utils/error";
-import { sendEmail } from "../utils/email";
+import { sendEmailSafe } from "../utils/email";
+import { appEnv } from "../config/env";
 
 export class ContactService extends BaseService {
+  /**
+   * Contact submissions with no agentId (general enquiries, whether from a
+   * logged-in member or a guest) have no agent to route to, so instead we
+   * notify support and auto-reply to the sender confirming receipt.
+   */
+  private async notifyGeneralContact(contact: TContact): Promise<void> {
+    if (appEnv.adminEmail) {
+      await sendEmailSafe({
+        to: appEnv.adminEmail,
+        subject: `New Contact Message: ${contact.name}`,
+        body: `
+          A new contact message was submitted.
+
+          Name: ${contact.name}
+          Email: ${contact.email}
+          Phone: ${contact.phoneNumber || "N/A"}
+          Location: ${contact.location || "N/A"}
+
+          Message:
+          ${contact.message}
+        `,
+      });
+    }
+
+    await sendEmailSafe({
+      to: contact.email,
+      subject: "We received your message - Pi Global GCV Alliance",
+      body: `
+        Dear ${contact.name},
+
+        Thank you for reaching out to Pi Global GCV Alliance. We've received your message and a member of our team will get back to you shortly.
+
+        Your message:
+        ${contact.message}
+
+        Best regards,
+        Pi Global GCV Alliance Support Team
+      `,
+    });
+  }
+
   public async createContact(
     contactData: CreateContactDto,
   ): Promise<IResponse<TContact>> {
@@ -46,14 +88,14 @@ export class ContactService extends BaseService {
                 : undefined,
           },
         });
-        await sendEmail({
+        await sendEmailSafe({
           to: user!.user.email,
           subject: "New Enquiry Property Notification",
           body: `
             Dear ${user?.user.firstName} ${user?.user.lastName || "Agent"},
 
             You have a new enquiry property from ${contactData.name}.
-            
+
             Details:
             - Email: ${contactData.email}
             - Phone Number: ${contactData.phoneNumber || "N/A"}
@@ -83,6 +125,7 @@ export class ContactService extends BaseService {
                 : undefined,
           },
         });
+        await this.notifyGeneralContact(newContact);
       } else {
         newContact = await prisma.contact.create({
           data: {
@@ -97,6 +140,7 @@ export class ContactService extends BaseService {
                 : undefined,
           },
         });
+        await this.notifyGeneralContact(newContact);
       }
       return {
         statusCode: 201,

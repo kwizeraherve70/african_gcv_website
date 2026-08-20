@@ -13,6 +13,7 @@ import { PaymentMethod } from "@prisma/client";
 import { appEnv } from "../config/env";
 import axios from "axios";
 import crypto from "crypto";
+import { sendEmailSafe } from "../utils/email";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const PaypackJs = require("paypack-js").default;
 
@@ -27,7 +28,53 @@ const CASHOUT_URL = `${appEnv.PAYPACK_API_BASE_URL}/transactions/cashout?Idempot
 const TRANSACTION_STATUS_URL = `${appEnv.PAYPACK_API_BASE_URL}/events/transactions?ref={reference_key}&kind={kind}&client={client}`;
 const FIND_TRANSACTION_URL = `${appEnv.PAYPACK_API_BASE_URL}/transactions/find/{referenceKey}`;
 
+const PAYMENT_STATUS_MESSAGES: Record<string, string> = {
+  SUCCEEDED: "was successful",
+  FAILED: "failed",
+  PENDING: "is being processed",
+};
+
 export class PaymentService extends BaseService {
+  /**
+   * Payment records don't carry the customer's email directly — it lives on
+   * the linked Delivery — so this looks it up via the order. Silently no-ops
+   * for orders that don't have a delivery yet (shouldn't happen in the
+   * normal checkout flow, but payments can be created/synced independently).
+   */
+  private static async notifyPaymentStatus(
+    orderId: string,
+    status: string,
+    amount: number,
+  ): Promise<void> {
+    const order = await prisma.order.findUnique({
+      where: { id: orderId },
+      include: { delivery: true },
+    });
+    if (!order?.delivery) return;
+
+    const statusMessage = PAYMENT_STATUS_MESSAGES[status] ?? `is now ${status}`;
+    await sendEmailSafe({
+      to: order.delivery.customerEmail,
+      subject: `Payment Update - Order #${order.orderNumber}`,
+      body: `
+    Dear ${order.delivery.customerFirstName},
+
+    Your payment of $${amount.toFixed(2)} for order #${order.orderNumber} ${statusMessage}.
+
+    ${
+      status === "FAILED"
+        ? "Please try again or contact our support team for help."
+        : status === "SUCCEEDED"
+          ? "Thank you for your payment!"
+          : "We'll notify you again once it's confirmed."
+    }
+
+    Best regards,
+    Pi Global GCV Alliance Support Team
+  `,
+    });
+  }
+
   private static async authenticate(): Promise<string> {
     const payload = {
       client_id: appEnv.clientId!,
@@ -132,6 +179,8 @@ export class PaymentService extends BaseService {
         }),
       },
     });
+
+    await this.notifyPaymentStatus(payment.orderId, payment.status, payment.amount);
 
     return {
       statusCode: 201,
@@ -304,6 +353,14 @@ export class PaymentService extends BaseService {
               paidAt: transactionStatus.created_at ?? payment.paidAt,
             },
           });
+
+          if (newStatus !== payment.status) {
+            await this.notifyPaymentStatus(
+              payment.orderId,
+              newStatus,
+              payment.amount,
+            );
+          }
 
           if (newStatus === "SUCCEEDED") {
             await prisma.order.update({

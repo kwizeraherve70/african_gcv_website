@@ -12,7 +12,7 @@ import { compare } from "bcrypt";
 import jwt from "jsonwebtoken";
 import AppError from "../utils/error";
 import { randomBytes } from "crypto";
-import { sendEmail } from "../utils/email";
+import { sendEmailSafe } from "../utils/email";
 import { hash } from "bcrypt";
 import { roles } from "../utils/roles";
 import type { Request } from "express";
@@ -145,6 +145,23 @@ export class UserService extends BaseService {
         where: { email: user.email },
       });
 
+      await sendEmailSafe({
+        to: user.email,
+        subject: "Welcome to Pi Global GCV Alliance",
+        body: `
+    Dear ${user.firstName},
+
+    Welcome to Pi Global GCV Alliance! Your account has been created successfully and you're now part of our community.
+
+    You can now browse and buy in the GCV Market, follow news and updates, and manage your profile from your account.
+
+    If you did not create this account, please contact our support team immediately.
+
+    Best regards,
+    Pi Global GCV Alliance Support Team
+  `,
+      });
+
       return {
         message: "User created successfully",
         data: {
@@ -254,8 +271,7 @@ export class UserService extends BaseService {
       data: { otp, otpExpiresAt },
     });
 
-    // Send OTP via email (implement sendEmail utility)
-    await sendEmail({
+    const emailSent = await sendEmailSafe({
       to: user.email,
       subject: "Password Reset - One-Time Password (OTP)",
       body: `
@@ -271,6 +287,13 @@ export class UserService extends BaseService {
     KIGALI HOT MARKET Support Team
   `,
     });
+
+    if (!emailSent) {
+      throw new AppError(
+        "Could not send the password reset email. Please try again shortly.",
+        502,
+      );
+    }
 
     return { message: "OTP sent to your email " };
   }

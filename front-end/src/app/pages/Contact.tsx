@@ -1,9 +1,20 @@
 import { Mail, MapPin, Phone, Send, CheckCircle2 } from 'lucide-react';
 import { useState } from 'react';
 import { SEO } from '../components/SEO';
+import { createContact } from '../api/contact';
+import { ApiError } from '../api/client';
 
 const inputClass =
   'w-full px-4 py-3 rounded-xl border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/25 focus:border-brand-purple transition-all';
+
+const SUBJECT_LABELS: Record<string, string> = {
+  general: 'General Inquiry',
+  gcv: 'GCV Questions',
+  membership: 'Membership & Registration',
+  products: 'Product Support',
+  partnership: 'Partnership Opportunity',
+  other: 'Other',
+};
 
 const FAQ_ITEMS = [
   {
@@ -32,14 +43,29 @@ export function Contact() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
+    setSubmitError(null);
+    setSubmitting(true);
+    try {
+      const subjectLabel = SUBJECT_LABELS[formData.subject] ?? formData.subject;
+      await createContact({
+        name: formData.name,
+        email: formData.email,
+        message: `[${subjectLabel}] ${formData.message}`,
+      });
+      setSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 3000);
+    } catch (err) {
+      setSubmitError(
+        err instanceof ApiError ? err.message : 'Could not send your message. Please try again.'
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -139,9 +165,16 @@ export function Contact() {
                     <CheckCircle2 className="w-8 h-8 text-green-500" />
                   </div>
                   <h3 className="text-2xl font-bold mb-2 tracking-tight">Message Sent!</h3>
-                  <p className="text-muted-foreground">
-                    Thank you for contacting us. We'll get back to you soon.
+                  <p className="text-muted-foreground mb-6">
+                    Thank you for contacting us. Check your inbox for a confirmation — we'll get back to you soon.
                   </p>
+                  <button
+                    type="button"
+                    onClick={() => setSubmitted(false)}
+                    className="text-sm font-medium text-brand-purple hover:underline"
+                  >
+                    Send another message
+                  </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit}>
@@ -208,12 +241,19 @@ export function Contact() {
                     />
                   </div>
 
+                  {submitError && (
+                    <div className="mb-5 px-4 py-3 rounded-xl bg-red-500/10 text-red-600 text-sm">
+                      {submitError}
+                    </div>
+                  )}
+
                   <button
                     type="submit"
-                    className="w-full py-3.5 px-6 bg-brand-purple text-white rounded-xl hover:bg-brand-purple-light transition-all duration-200 font-semibold flex items-center justify-center gap-2 shadow-lg shadow-brand-purple/20 hover:-translate-y-0.5"
+                    disabled={submitting}
+                    className="w-full py-3.5 px-6 bg-brand-purple text-white rounded-xl hover:bg-brand-purple-light transition-all duration-200 font-semibold flex items-center justify-center gap-2 shadow-lg shadow-brand-purple/20 hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0"
                   >
                     <Send className="w-4 h-4" />
-                    Send Message
+                    {submitting ? 'Sending…' : 'Send Message'}
                   </button>
                 </form>
               )}
