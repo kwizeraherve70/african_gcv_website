@@ -1,38 +1,43 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import Stripe from "stripe";
 import { BaseService } from "./Service";
 import { prisma } from "../utils/client";
 import {
-  CreatePaymentDto,
+  CreateCheckoutSessionDto,
   IResponse,
   TPayment,
   UpdatePaymentDto,
-  withdrawalPaymentDto,
 } from "../utils/interfaces/common";
 import AppError from "../utils/error";
 import { PaymentMethod } from "@prisma/client";
 import { appEnv } from "../config/env";
-import axios from "axios";
-import crypto from "crypto";
 import { sendEmailSafe } from "../utils/email";
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const PaypackJs = require("paypack-js").default;
-
-const paypack = PaypackJs.config({
-  client_id: appEnv.clientId!,
-  client_secret: appEnv.clientSecret!,
-});
-
-const LOGIN_URL = `${appEnv.PAYPACK_API_BASE_URL}/auth/agents/authorize`;
-const CASHIN_URL = `${appEnv.PAYPACK_API_BASE_URL}/transactions/cashin?Idempotency-Key={idempotency_key}`;
-const CASHOUT_URL = `${appEnv.PAYPACK_API_BASE_URL}/transactions/cashout?Idempotency-Key={idempotency_key}`;
-const TRANSACTION_STATUS_URL = `${appEnv.PAYPACK_API_BASE_URL}/events/transactions?ref={reference_key}&kind={kind}&client={client}`;
-const FIND_TRANSACTION_URL = `${appEnv.PAYPACK_API_BASE_URL}/transactions/find/{referenceKey}`;
 
 const PAYMENT_STATUS_MESSAGES: Record<string, string> = {
   SUCCEEDED: "was successful",
   FAILED: "failed",
   PENDING: "is being processed",
 };
+
+// Constructed lazily (not at module load) so importing this service never
+// crashes the server on boot just because STRIPE_SECRET_KEY isn't set yet —
+// the previous Paypack SDK did exactly that, which took the whole app down
+// regardless of whether any payment feature was touched.
+let stripeClient: Stripe | null = null;
+function getStripe(): Stripe {
+  if (!appEnv.stripeSecretKey) {
+    throw new AppError("Stripe is not configured (STRIPE_SECRET_KEY missing)", 500);
+  }
+  if (!stripeClient) {
+    stripeClient = new Stripe(appEnv.stripeSecretKey);
+  }
+  return stripeClient;
+}
+
+const LETTERS = "abcdefghijklmnopqrstuvwxyz";
+function randomLetters(length: number): string {
+  return Array.from({ length }, () => LETTERS[Math.floor(Math.random() * LETTERS.length)]).join("");
+}
 
 export class PaymentService extends BaseService {
   /**
@@ -75,169 +80,166 @@ export class PaymentService extends BaseService {
     });
   }
 
-  private static async authenticate(): Promise<string> {
-    const payload = {
-      client_id: appEnv.clientId!,
-      client_secret: appEnv.clientSecret!,
-    };
-
-    const response = await axios.post(LOGIN_URL, payload, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
+  /**
+   * Creates a Stripe-hosted Checkout Session for an existing order and
+   * upserts a PENDING Payment row pointing at it (refId = session id). The
+   * webhook handler (`handleStripeWebhookEvent`) is what actually marks the
+   * payment SUCCEEDED/FAILED once Stripe confirms the outcome — this method
+   * only starts the flow and returns the URL the frontend should redirect
+   * the customer to.
+   */
+  public static async createCheckoutSession(
+    data: CreateCheckoutSessionDto,
+  ): Promise<IResponse<{ url: string }>> {
+    const order = await prisma.order.findUnique({
+      where: { id: data.orderId },
+      include: { delivery: true, payment: true },
     });
-
-    return response.data.access;
-  }
-
-  private static generateIdempotencyKey(): string {
-    return crypto.randomBytes(16).toString("hex");
-  }
-
-  public static async findTransaction(referenceKey: string): Promise<any> {
-    const token = await this.authenticate();
-    const url = FIND_TRANSACTION_URL.replace("{referenceKey}", referenceKey);
-
-    const response = await axios.get(url, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    // Map the response to match the expected format
-    return {
-      amount: response.data.amount,
-      client: response.data.client,
-      fee: response.data.fee,
-      kind: response.data.kind,
-      merchant: response.data.merchant,
-      ref: response.data.ref,
-      status: response.data.status,
-      timestamp: response.data.timestamp,
-    };
-  }
-
-  public static async checkTransactionStatus(
-    referenceKey: string,
-    kind: string,
-    client: string,
-  ): Promise<any> {
-    const token = await this.authenticate();
-    const url = TRANSACTION_STATUS_URL.replace("{reference_key}", referenceKey)
-      .replace("{kind}", kind.toUpperCase())
-      .replace("{client}", client);
-
-    const response = await axios.get(url, {
-      headers: {
-        Accept: "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    return response.data.transactions[0].data;
-  }
-
-  public static async createPayment(
-    paymentData: CreatePaymentDto,
-  ): Promise<IResponse<TPayment>> {
-    const idempotencyKey = this.generateIdempotencyKey();
-    const payload = {
-      amount: paymentData.amount,
-      number: paymentData.accountNumber,
-    };
-
-    const token = await this.authenticate();
-    const url = CASHIN_URL.replace("{idempotency_key}", idempotencyKey);
-
-    const cashInResponse = await axios.post(url, payload, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
-
-    if (cashInResponse.data.status === "failed") {
-      throw new AppError("Payment failed during cash-in process", 400);
+    if (!order) throw new AppError("Order not found", 404);
+    if (order.payment?.status === "SUCCEEDED") {
+      throw new AppError("This order has already been paid", 400);
     }
 
-    const payment = await prisma.payment.create({
-      data: {
-        ...paymentData,
-        kind: cashInResponse.data.kind,
-        status:
-          cashInResponse.data.status === "successful" ? "SUCCEEDED" : "PENDING",
-        method: paymentData.method as PaymentMethod,
-        paidAt: cashInResponse.data.created_at ?? null,
-        accountProvider: cashInResponse.data.provider ?? null,
-        refId: cashInResponse.data.ref ?? null,
-        orderId: paymentData.orderId!,
-        ...(paymentData.accountNumber && {
-          accountNumber: paymentData.accountNumber,
-        }),
+    const stripe = getStripe();
+    const session = await stripe.checkout.sessions.create({
+      mode: "payment",
+      line_items: [
+        {
+          price_data: {
+            currency: "usd",
+            unit_amount: Math.round(order.totalAmount * 100),
+            product_data: {
+              name: `Order #${order.orderNumber}`,
+            },
+          },
+          quantity: 1,
+        },
+      ],
+      customer_email: order.delivery?.customerEmail,
+      metadata: { orderId: order.id },
+      success_url: `${appEnv.frontendUrl}/order-confirmation?orderId=${order.id}&orderNumber=${encodeURIComponent(order.orderNumber)}`,
+      cancel_url: `${appEnv.frontendUrl}/checkout?canceled=true`,
+      // Dashboard-only tracking label, not a business identifier — lets this
+      // checkout flow be filtered/compared against future ones there.
+      integration_identifier: `gcv_order_checkout_${randomLetters(8)}`,
+    });
+
+    await prisma.payment.upsert({
+      where: { orderId: order.id },
+      create: {
+        orderId: order.id,
+        amount: order.totalAmount,
+        method: PaymentMethod.CARD,
+        status: "PENDING",
+        refId: session.id,
+      },
+      update: {
+        amount: order.totalAmount,
+        status: "PENDING",
+        refId: session.id,
       },
     });
 
-    await this.notifyPaymentStatus(payment.orderId, payment.status, payment.amount);
+    if (!session.url) {
+      throw new AppError("Stripe did not return a checkout URL", 500);
+    }
 
     return {
       statusCode: 201,
-      message: "Payment created successfully",
-      data: payment,
+      message: "Checkout session created successfully",
+      data: { url: session.url },
     };
   }
 
-  public static async createWithdrawal(
-    withdrawalData: withdrawalPaymentDto,
-  ): Promise<IResponse<any>> {
-    const idempotencyKey = this.generateIdempotencyKey();
-    const payload = {
-      amount: withdrawalData.amount,
-      number: withdrawalData.accountNumber,
-    };
-
-    const token = await this.authenticate();
-    const url = CASHOUT_URL.replace("{idempotency_key}", idempotencyKey);
-
-    try {
-      const cashOutResponse = await axios.post(url, payload, {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (cashOutResponse.data.status === "failed") {
-        throw new AppError(
-          cashOutResponse.data.message ||
-            "Withdrawal failed during cash-out process",
-          400,
-        );
-      }
-
-      return {
-        statusCode: 201,
-        message: "Withdrawal created successfully",
-        data: cashOutResponse,
-      };
-    } catch (error: any) {
-      if (
-        error.response &&
-        error.response.data &&
-        error.response.data.message
-      ) {
-        throw new AppError(
-          error.response.data.message,
-          error.response.status || 400,
-        );
-      } else {
-        console.error("Axios Error:", error.message);
-        throw new AppError("Failed to create withdrawal", 400);
-      }
+  /**
+   * Verifies and processes a raw Stripe webhook payload. Must be called with
+   * the untouched request body Buffer (see index.ts, which mounts this route
+   * with express.raw() ahead of the global json() middleware) — signature
+   * verification fails on anything that's been re-serialized.
+   */
+  public static async handleStripeWebhookEvent(
+    rawBody: Buffer,
+    signature: string,
+  ): Promise<IResponse<{ received: true }>> {
+    if (!appEnv.stripeWebhookSecret) {
+      throw new AppError("Stripe webhook secret is not configured", 500);
     }
+    const stripe = getStripe();
+
+    let event: Stripe.Event;
+    try {
+      event = stripe.webhooks.constructEvent(
+        rawBody,
+        signature,
+        appEnv.stripeWebhookSecret,
+      );
+    } catch (err: any) {
+      throw new AppError(`Webhook signature verification failed: ${err.message}`, 400);
+    }
+
+    switch (event.type) {
+      case "checkout.session.completed": {
+        // Delayed-notification payment methods (bank debits, etc.) fire this
+        // event while payment_status is still "unpaid" — the real outcome
+        // arrives later via async_payment_succeeded/failed. Fulfilling here
+        // unconditionally would grant orders that go on to fail and skip
+        // ones that succeed asynchronously.
+        const session = event.data.object as Stripe.Checkout.Session;
+        if (session.payment_status !== "unpaid") {
+          await this.resolveSessionOutcome(session, "SUCCEEDED");
+        }
+        break;
+      }
+      case "checkout.session.async_payment_succeeded": {
+        const session = event.data.object as Stripe.Checkout.Session;
+        await this.resolveSessionOutcome(session, "SUCCEEDED");
+        break;
+      }
+      case "checkout.session.expired":
+      case "checkout.session.async_payment_failed": {
+        const session = event.data.object as Stripe.Checkout.Session;
+        await this.resolveSessionOutcome(session, "FAILED");
+        break;
+      }
+      default:
+        break;
+    }
+
+    return {
+      statusCode: 200,
+      message: "Webhook processed",
+      data: { received: true },
+    };
+  }
+
+  private static async resolveSessionOutcome(
+    session: Stripe.Checkout.Session,
+    outcome: "SUCCEEDED" | "FAILED",
+  ): Promise<void> {
+    const orderId = session.metadata?.orderId;
+    if (!orderId) return;
+
+    const payment = await prisma.payment.findUnique({ where: { orderId } });
+    if (!payment || payment.status === "SUCCEEDED") return; // already settled / idempotency guard
+
+    await prisma.payment.update({
+      where: { orderId },
+      data: {
+        status: outcome,
+        paidAt: outcome === "SUCCEEDED" ? new Date() : null,
+        refId: session.id,
+        accountProvider: typeof session.payment_intent === "string" ? session.payment_intent : null,
+      },
+    });
+
+    if (outcome === "SUCCEEDED") {
+      await prisma.order.update({
+        where: { id: orderId },
+        data: { status: "CONFIRMED" },
+      });
+    }
+
+    await this.notifyPaymentStatus(orderId, outcome, payment.amount);
   }
 
   public static async updatePayment(
@@ -254,7 +256,7 @@ export class PaymentService extends BaseService {
         paidAt: paymentData.paidAt ?? null,
         accountProvider: paymentData.accountProvider ?? null,
         refId: paymentData.refId ?? null,
-        accountNumber: paymentData.accountNumber,
+        accountNumber: paymentData.accountNumber ?? null,
       },
     });
     return {
@@ -297,90 +299,10 @@ export class PaymentService extends BaseService {
 
   public static async getAllPayments(): Promise<IResponse<TPayment[]>> {
     const payments = await prisma.payment.findMany();
-    const formattedPayments = payments.map((payment) => ({
-      ...payment,
-      accountProvider: payment.accountProvider ?? null,
-      refId: payment.refId ?? null,
-      accountNumber: payment.accountNumber,
-      paidAt: payment.paidAt ?? null,
-    }));
     return {
       statusCode: 200,
       message: "Payments fetched successfully",
-      data: formattedPayments as TPayment[],
-    };
-  }
-
-  public static async Transactions(): Promise<IResponse<any>> {
-    const response = await paypack.transactions({ offset: 0, limit: 100 });
-    return {
-      statusCode: 200,
-      message: "Transactions fetched successfully",
-      data: response.data,
-    };
-  }
-
-  public static async syncAllPaymentsWithTransactions(): Promise<
-    IResponse<string>
-  > {
-    const payments = await prisma.payment.findMany({
-      where: {
-        status: { not: "SUCCEEDED" },
-      },
-    });
-
-    for (const payment of payments) {
-      if (!payment.refId) continue;
-
-      try {
-        const transactionStatus = await this.checkTransactionStatus(
-          payment.refId,
-          payment.kind,
-          payment.accountNumber,
-        );
-        if (transactionStatus && transactionStatus.status) {
-          const newStatus =
-            transactionStatus.status === "successful"
-              ? "SUCCEEDED"
-              : transactionStatus.status === "failed"
-                ? "FAILED"
-                : "PENDING";
-
-          await prisma.payment.update({
-            where: { id: payment.id },
-            data: {
-              status: newStatus,
-              paidAt: transactionStatus.created_at ?? payment.paidAt,
-            },
-          });
-
-          if (newStatus !== payment.status) {
-            await this.notifyPaymentStatus(
-              payment.orderId,
-              newStatus,
-              payment.amount,
-            );
-          }
-
-          if (newStatus === "SUCCEEDED") {
-            await prisma.order.update({
-              where: { id: payment.orderId },
-              data: { status: "CONFIRMED" },
-            });
-          }
-        }
-      } catch (error) {
-        console.error(
-          `Failed to sync payment with refId ${payment.refId}:`,
-          error,
-        );
-      }
-    }
-
-    return {
-      statusCode: 200,
-      message: "All payments synchronized with transaction statuses",
-      data: "Synchronization complete",
+      data: payments,
     };
   }
 }

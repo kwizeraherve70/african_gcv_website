@@ -12,7 +12,6 @@ import swaggerUi from "swagger-ui-express";
 import cors from "cors";
 import { TUser } from "./utils/interfaces/common";
 import AppError, { ValidationError } from "./utils/error";
-import cron from "node-cron";
 import { PaymentService } from "./services/PaymentService";
 
 declare module "express" {
@@ -27,6 +26,33 @@ app.use(
   urlencoded({
     extended: true,
   }),
+);
+
+// Mounted before the global json() parser: Stripe signature verification
+// needs the exact raw request bytes, which json() would otherwise consume
+// and reserialize.
+app.post(
+  "/api/payment/webhook",
+  express.raw({ type: "application/json" }),
+  async (req: ExRequest, res: ExResponse) => {
+    const signature = req.headers["stripe-signature"];
+    if (typeof signature !== "string") {
+      return res.status(400).json({ message: "Missing Stripe-Signature header" });
+    }
+    try {
+      const result = await PaymentService.handleStripeWebhookEvent(
+        req.body as Buffer,
+        signature,
+      );
+      return res.status(200).json(result);
+    } catch (error) {
+      if (error instanceof AppError) {
+        return res.status(error.status).json({ message: error.message });
+      }
+      console.error("Stripe webhook error:", error);
+      return res.status(400).json({ message: "Webhook processing failed" });
+    }
+  },
 );
 
 app.use(json());
@@ -50,17 +76,6 @@ app.use("/docs", swaggerUi.serve, async (_req: ExRequest, res: ExResponse) => {
 });
 
 RegisterRoutes(app);
-
-// Schedule the synchronization to run every minute
-cron.schedule("* * * * *", async () => {
-  console.log("Running payment synchronization...");
-  try {
-    const result = await PaymentService.syncAllPaymentsWithTransactions();
-    console.log(result.message);
-  } catch (error) {
-    console.error("Error during payment synchronization:", error);
-  }
-});
 
 app.use(function errorHandler(
   err: unknown,

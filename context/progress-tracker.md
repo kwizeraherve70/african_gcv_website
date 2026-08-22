@@ -393,8 +393,13 @@ implementation state changes.
   without an explicit recorded product decision — get one before
   building anything (checkout totals, admin pricing tools, financial
   copy) that assumes either direction is final.
-- Is there a real payment processor in scope for the first release, or
-  is checkout simulated/manually confirmed initially?
+- ~~Is there a real payment processor in scope for the first release, or
+  is checkout simulated/manually confirmed initially?~~ — **resolved
+  2026-08-22 for card payments:** user explicitly chose Stripe,
+  replacing the inherited (never frontend-wired) Paypack integration.
+  See Session Notes and `architecture-context.md` Target Stack /
+  divergence #6 for what changed. Mobile Money and Pi remain
+  unresolved/unwired — this only answers the question for `CARD`.
 - What is the realistic launch content volume (founders, ambassadors,
   alliance members, products)? Affects whether admin CRUD tooling is
   a launch requirement or content can be seeded directly.
@@ -737,3 +742,75 @@ implementation state changes.
   delete works) and deliberately left the user's real submission
   alone. Backend `tsc --noEmit` and frontend `npm run build` both
   clean.
+- 2026-08-22: user explicitly directed replacing Paypack with Stripe
+  for real (card) payments — resolving the "real payment processor in
+  scope" open question themselves, not a unilateral pick. Scope: the
+  `CARD` checkout option only; "Mobile Money" and "Pay with Pi" in
+  `Checkout.tsx` are untouched, still unwired display-only options
+  (Stripe has no Rwandan mobile-money support, and doesn't touch Pi
+  Network — the Pi crypto-vs-internal-unit question is unrelated and
+  still open).
+  - Approach: Stripe-hosted Checkout Sessions (redirect flow), not
+    Stripe Elements — matches the existing multi-step checkout wizard
+    (which already creates the `Order` + `Delivery` before payment)
+    with the least new frontend surface, and keeps PCI scope off this
+    app entirely.
+  - Backend (`backend/src/services/PaymentService.ts`, fully
+    rewritten): removed `paypack-js`, the hand-rolled Paypack REST
+    calls (`authenticate`, `findTransaction`, `checkTransactionStatus`,
+    cash-in `createPayment`, cash-out `createWithdrawal`,
+    `Transactions`, `syncAllPaymentsWithTransactions`) and the
+    `node-cron` minute-poller in `index.ts` that drove the last one.
+    Added `createCheckoutSession(orderId)` (creates a Stripe Checkout
+    Session priced from the already-computed `Order.totalAmount`,
+    upserts a PENDING `Payment` row keyed by `orderId` with
+    `refId = session.id`) and `handleStripeWebhookEvent(rawBody,
+    signature)` (verifies the Stripe signature, marks the `Payment`
+    SUCCEEDED/FAILED on `checkout.session.completed` /
+    `.expired` / async variants, flips `Order.status` to `CONFIRMED`
+    on success, reuses the existing `notifyPaymentStatus` email).
+    Webhook route is `POST /api/payment/webhook`, registered directly
+    in `index.ts` (not via tsoa) with `express.raw()` mounted ahead of
+    the global `json()` parser — Stripe signature verification needs
+    the untouched raw body. Merchant cash-out/payout (Paypack's
+    `createWithdrawal`) was dropped outright, not ported: it's a
+    Connect-style payout feature unrelated to customer checkout, had
+    no frontend caller, and Stripe's equivalent (Connect) is a
+    separate product decision, not part of this swap.
+  - Fixed the known module-load crash bug (see
+    `architecture-context.md` divergence #8) as part of this rewrite:
+    the Stripe client is now constructed lazily (`getStripe()`), so
+    importing `PaymentService` no longer throws when
+    `STRIPE_SECRET_KEY` is unset.
+  - Schema (`backend/prisma/schema.prisma`, migration
+    `20260822164726_replace_paypack_with_stripe_payment_fields`):
+    `Payment.kind` (Paypack cash-in/cash-out discriminator) dropped
+    entirely; `Payment.accountNumber` (Paypack's required mobile-money
+    phone number) made optional — Stripe has no equivalent field.
+  - Env: `clientId`/`clientSecret`/`PAYPACK_API_BASE_URL`/
+    `PAYPACK_WEBHOOK_SIGN_KEY` replaced with `STRIPE_SECRET_KEY`,
+    `STRIPE_WEBHOOK_SECRET`, `FRONTEND_URL` (used to build the
+    Checkout Session's `success_url`/`cancel_url`) in `env.ts`,
+    `.env.example`, and the local gitignored `.env` (Stripe keys left
+    blank locally — real payment testing needs the user's own test-mode
+    keys and `stripe listen` for the webhook secret, not fabricated).
+  - Frontend: new `front-end/src/app/api/payment.ts`
+    (`createCheckoutSession`). `Checkout.tsx`'s review-step submit now
+    branches on `paymentMethod === 'card'`: creates the Order +
+    Delivery as before, then calls `createCheckoutSession` and
+    redirects the browser to the returned Stripe URL —
+    deliberately *without* clearing the cart first, so a canceled
+    Stripe payment (`cancel_url` back to `/checkout?canceled=true`,
+    now shown as a dismissable error banner) still has the cart to
+    retry with. `OrderConfirmation.tsx` now also reads `orderNumber`
+    from a query param (Stripe's `success_url` is a full page redirect,
+    not a client-side `navigate()`, so React Router `state` doesn't
+    survive it) and clears the cart itself when it detects it was
+    reached that way (`orderId` present in the query string).
+  - Verified: backend `tsc --noEmit` clean, `tsoa spec-and-routes`
+    regenerated (confirmed only `/api/payment/checkout-session`
+    remains — no leftover Paypack routes), full backend `npm run
+    build` clean, frontend `npm run build` clean. Not yet verified:
+    an actual Stripe test-mode checkout run (no `STRIPE_SECRET_KEY`
+    configured yet — see the user's own env setup) or a browser
+    click-through of the redirect/cancel/webhook round-trip.

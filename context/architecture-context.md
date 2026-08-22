@@ -118,12 +118,25 @@ actual code, not assumption.
    product data still in place without re-seeding first.
 6. **`PaymentMethod` has no "Pi" option** (`CARD`, `CASH_ON_DELIVERY`,
    `MOBILE_MONEY`, `AIRTEL_MONEY`, `BANK_TRANSFER`,
-   `MTN_MOBILE_MONEY` — via `paypack-js`, a real Rwandan mobile-money
-   gateway already integrated with a live payment-sync cron job).
-   Relevant to the still-open "does Pi mean real crypto or an
-   internal unit" question in `project-overview.md` — this backend
-   already has real payment rails, which raises the stakes on
-   resolving that question before wiring Pi into checkout.
+   `MTN_MOBILE_MONEY`). **Resolved 2026-08-22 for the `CARD` path:**
+   the backend's real payment rail is now **Stripe**, not Paypack —
+   `paypack-js` and the Paypack cash-in/cash-out REST calls were fully
+   removed from `PaymentService.ts`, replaced with a Stripe-hosted
+   Checkout Session (`POST /api/payment/checkout-session`) and a
+   webhook (`POST /api/payment/webhook`, mounted in `index.ts` ahead
+   of the global `json()` parser since Stripe signature verification
+   needs the raw request body) that marks the `Payment` row
+   SUCCEEDED/FAILED and flips `Order.status` to `CONFIRMED`. This
+   replaces the old poll-based reconciliation (`node-cron` job
+   calling `syncAllPaymentsWithTransactions` every minute) — Stripe
+   pushes events instead, so there's no cron job anymore.
+   `Checkout.tsx`'s "Credit / Debit Card" option now calls this and
+   redirects the browser to Stripe; "Mobile Money" and "Pay with Pi"
+   remain **unwired display-only options**, unchanged — Stripe has no
+   Rwandan mobile-money support and doesn't touch Pi Network at all,
+   so this only resolves the `CARD` half of gap 6. The still-open
+   "does Pi mean real crypto or an internal unit" question in
+   `project-overview.md` is untouched by this change.
 7. **Repo hygiene:** `backend/` arrived with its own nested `.git`
    (separate history/remote). **Resolved 2026-08-16:** flattened into
    this repo (`backend/.git` removed) rather than kept as a git
@@ -142,17 +155,16 @@ actual code, not assumption.
      before this backend is deployed for real use, or every request
      from the deployed frontend will be silently rejected by the
      browser.
-   - `PaymentService.ts` calls `PaypackJs.config(...)` at module load
-     time, which throws if `clientId`/`clientSecret` are unset —
+   - `PaymentService.ts` called `PaypackJs.config(...)` at module load
+     time, which threw if `clientId`/`clientSecret` were unset —
      crashing the whole server on boot regardless of whether any
-     payment feature is touched. Not fixed in code (that would mean
-     building against the still-undecided payment mechanism — see gap
-     6 above); unblocked for local dev by setting harmless placeholder
-     values in the gitignored local `.env`. **Whoever resolves the
-     real payment-processor decision should also fix this eager
-     module-level side effect** — a service that can't even be
-     imported without live credentials is a design smell independent
-     of what those credentials end up being.
+     payment feature was touched. **Fixed 2026-08-22** as part of the
+     Paypack→Stripe swap (see gap 6 above): the Stripe SDK client is
+     now constructed lazily on first use (`getStripe()` in
+     `PaymentService.ts`), not at module scope, so the service can be
+     imported — and the server can boot — with `STRIPE_SECRET_KEY`
+     unset; it only throws when a payment feature is actually
+     exercised without it configured.
 
 ### What's directly reusable, unchanged
 
@@ -268,7 +280,8 @@ non-admin lands on `/` without a redirect flicker or bounce.
 | Database           | PostgreSQL + Prisma ORM         | Products, users, orders, merchants, content                  |
 | Static assets      | Cloudinary                      | Product/merchant images and other uploaded media              |
 | Auth               | JWT (Bearer) + bcrypt, tsoa-integrated | Member/merchant/admin roles — existing system, being adapted, not better-auth |
-| Payment / Pi logic | **[DECISION NEEDED — depends on open product questions in project-overview.md]** | USD-to-Pi conversion and checkout |
+| Payment (card)     | **Stripe** (resolved 2026-08-22) | Real-money checkout via Stripe-hosted Checkout Sessions + webhook |
+| Pi logic           | **[DECISION NEEDED — depends on open product questions in project-overview.md]** | USD-to-Pi conversion and "Pay with Pi" settlement — Stripe doesn't touch this |
 | Hosting            | **[DECISION NEEDED]**           | Frontend + backend deployment target                         |
 
 ### Backend Decision — resolved 2026-08-15

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import { Check, CreditCard, Smartphone } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { createOrder, createDelivery } from '../api/orders';
+import { createCheckoutSession } from '../api/payment';
 import { ApiError } from '../api/client';
 import { SEO } from '../components/SEO';
 import { toPi } from '../lib/pi';
@@ -42,7 +43,11 @@ export function Checkout() {
     paymentMethod: 'card',
   });
   const [placingOrder, setPlacingOrder] = useState(false);
-  const [orderError, setOrderError] = useState<string | null>(null);
+  const [orderError, setOrderError] = useState<string | null>(
+    new URLSearchParams(window.location.search).get('canceled') === 'true'
+      ? 'Payment was canceled. Your order was saved — you can try paying again.'
+      : null
+  );
 
   const subtotal = getSubtotal();
   const shipping = 10;
@@ -65,10 +70,10 @@ export function Checkout() {
       return;
     }
 
-    // Payment is not wired to a real processor yet — the checkout's
-    // "payment method" step is display-only (see progress-tracker.md
-    // Open Questions: "Is there a real payment processor in scope").
-    // What Day 3 wires for real is the Order + Delivery it creates.
+    // "Pay with Pi" and "Mobile Money" remain display-only — Pi settlement
+    // and a mobile-money processor are still open product questions (see
+    // progress-tracker.md). "Credit / Debit Card" is wired to a real Stripe
+    // Checkout session below.
     setOrderError(null);
     setPlacingOrder(true);
     try {
@@ -90,6 +95,16 @@ export function Checkout() {
         customerEmail: formData.email,
         customerPhone: formData.phone,
       });
+
+      if (formData.paymentMethod === 'card') {
+        // Cart is intentionally left intact here — Stripe's cancel_url
+        // brings the shopper back to this page, and they need their cart
+        // to still be there to retry. OrderConfirmation clears it once the
+        // Stripe success_url redirect actually lands.
+        const { url } = await createCheckoutSession(order.id);
+        window.location.href = url;
+        return;
+      }
 
       clearCart();
       navigate('/order-confirmation', { state: { orderNumber: order.orderNumber } });

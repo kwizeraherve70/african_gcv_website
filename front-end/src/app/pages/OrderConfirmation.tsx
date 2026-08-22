@@ -1,10 +1,30 @@
-import { Link, useLocation } from 'react-router';
+import { useEffect } from 'react';
+import { Link, useLocation, useSearchParams } from 'react-router';
 import { Check, ArrowRight, Package, Mail, Truck } from 'lucide-react';
+import { useCart } from '../context/CartContext';
 import { SEO } from '../components/SEO';
 
 export function OrderConfirmation() {
   const location = useLocation();
-  const orderNumber = (location.state as { orderNumber?: string } | null)?.orderNumber ?? null;
+  const [searchParams] = useSearchParams();
+  const { clearCart } = useCart();
+  // Client-side navigation (Pi / mobile-money paths) carries the order
+  // number via router state. A Stripe Checkout redirect is a full page
+  // load — state doesn't survive that, so it comes back as a query param
+  // (see the success_url built in PaymentService.createCheckoutSession).
+  const orderNumber =
+    (location.state as { orderNumber?: string } | null)?.orderNumber ??
+    searchParams.get('orderNumber') ??
+    null;
+
+  // Only the Stripe redirect path reaches this page with an orderId query
+  // param still set — Checkout.tsx deliberately doesn't clear the cart
+  // before sending the shopper to Stripe (so a canceled payment can still
+  // retry with the same cart), so this is where that cart finally clears.
+  useEffect(() => {
+    if (searchParams.get('orderId')) clearCart();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="py-12 min-h-[80vh] flex items-center justify-center bg-accent/40">

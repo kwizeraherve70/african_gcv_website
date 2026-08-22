@@ -68,7 +68,9 @@ export interface AdminPayment {
   status: string;
   method: string;
   amount: number;
-  accountNumber: string;
+  // Optional since the Stripe checkout flow (2026-08-22) never sets this —
+  // it was a Paypack mobile-money phone number field.
+  accountNumber?: string | null;
   paidAt?: string | null;
 }
 

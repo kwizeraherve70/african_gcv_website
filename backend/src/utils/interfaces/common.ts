@@ -312,12 +312,11 @@ export type TOrderItem = {
 export type TPayment = {
   id: string;
   orderId: string;
-  kind: string;
   amount: number;
   method: string;
   status: string;
   paidAt?: Date | null;
-  accountNumber: string;
+  accountNumber?: string | null;
   accountProvider?: string | null;
   refId?: string | null;
   createdAt: Date;
@@ -325,16 +324,8 @@ export type TPayment = {
   order?: TOrder;
 };
 
-export interface CreatePaymentDto {
+export interface CreateCheckoutSessionDto {
   orderId: string;
-  amount: number;
-  method: PaymentMethod;
-  accountNumber: string;
-}
-
-export interface withdrawalPaymentDto {
-  amount: number;
-  accountNumber: string;
 }
 
 export interface UpdatePaymentDto {
@@ -342,7 +333,7 @@ export interface UpdatePaymentDto {
   amount: number;
   method: PaymentMethod;
   paidAt?: Date;
-  accountNumber: string;
+  accountNumber?: string;
   accountProvider?: string;
   refId?: string;
 }

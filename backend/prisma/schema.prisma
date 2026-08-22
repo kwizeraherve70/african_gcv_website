@@ -339,12 +339,13 @@ model Payment {
   id           String        @id @default(uuid())
   orderId      String        @unique
   amount       Float
-  kind         String
   method       PaymentMethod
   status       PaymentStatus @default(PENDING)
   paidAt       DateTime?
-  accountNumber String
+  accountNumber String?
   accountProvider String?
+  // Stripe Checkout Session id (cs_...), used to reconcile the webhook
+  // event back to this row.
   refId        String?
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
