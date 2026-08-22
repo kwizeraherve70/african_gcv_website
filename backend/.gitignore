@@ -5,3 +5,7 @@ dist
 dist-dev
 build
 .vercel
+# tsconfig currently emits alongside the .ts source when `tsc` runs
+# outside `npm run build`'s outDir-aware path — stray compiled output,
+# not source, never meant to be tracked.
+src/**/*.js
