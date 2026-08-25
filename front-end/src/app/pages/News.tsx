@@ -1,6 +1,7 @@
 import { Link, useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import { ArrowLeft, Clock, Eye, Search, Megaphone, Newspaper, BookOpen } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import type { NewsArticle } from '../data/mockData';
 import { announcements, pressReleases, GCV_AFRICA_COUNTRIES } from '../data/mockData';
 import { getAllNews } from '../api/news';
@@ -9,8 +10,16 @@ import { sanitizeHtml } from '../lib/sanitize';
 
 type MainTab = 'articles' | 'announcements' | 'press-releases';
 const NEWS_CATEGORIES = ['All', 'Pi Network', 'GCV Movement', 'Events', 'Community'];
+const NEWS_CATEGORY_KEYS: Record<string, string> = {
+  All: 'all',
+  'Pi Network': 'piNetwork',
+  'GCV Movement': 'gcvMovement',
+  Events: 'events',
+  Community: 'community',
+};
 
 export function News() {
+  const { t } = useTranslation('news');
   const { country: countrySlug } = useParams();
   const activeCountry = countrySlug ? GCV_AFRICA_COUNTRIES.find(c => c.slug === countrySlug) : undefined;
 
@@ -48,13 +57,13 @@ export function News() {
     return (
       <div className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl font-bold mb-4 tracking-tight">Country Not Found</h1>
+          <h1 className="text-3xl font-bold mb-4 tracking-tight">{t('news.countryNotFound.title')}</h1>
           <p className="text-muted-foreground mb-8">
-            GCV Africa doesn't have a news hub for that country yet.
+            {t('news.countryNotFound.description')}
           </p>
           <Link to="/news" className="inline-flex items-center gap-2 text-brand-purple font-medium hover:gap-3 transition-all">
             <ArrowLeft className="w-4 h-4" />
-            Back to Countries
+            {t('news.countryNotFound.backToCountries')}
           </Link>
         </div>
       </div>
@@ -64,11 +73,11 @@ export function News() {
   return (
     <div className="py-12">
       <SEO
-        title={activeCountry ? `${activeCountry.name} News` : 'All News & Media'}
+        title={activeCountry ? t('news.title.country', { country: activeCountry.name }) : t('news.title.global')}
         description={
           activeCountry
-            ? `GCV news, ambassador activity, and merchant adoption stories from ${activeCountry.name}.`
-            : 'Stay informed with the latest Pi Network news, GCV movement updates, official announcements, press releases, and community stories from across Africa.'
+            ? t('news.seo.countryDescription', { country: activeCountry.name })
+            : t('news.seo.globalDescription')
         }
         url={activeCountry ? `/news/country/${activeCountry.slug}` : '/news/all'}
       />
@@ -80,25 +89,25 @@ export function News() {
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-brand-purple mb-6 transition-colors group"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
-          {activeCountry ? 'All Countries' : 'News & Media Home'}
+          {activeCountry ? t('news.back.allCountries') : t('news.back.newsHome')}
         </Link>
 
         {/* Header */}
         <div className="mb-10">
           <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest mb-2 flex items-center gap-2">
             {activeCountry ? (
-              <>GCV Africa — {activeCountry.flag} {activeCountry.name}</>
+              t('news.eyebrow.country', { flag: activeCountry.flag, country: activeCountry.name })
             ) : (
-              'Pi Global GCV Alliance'
+              t('news.eyebrow.global')
             )}
           </p>
           <h1 className="text-4xl md:text-5xl font-bold mb-3 tracking-tight">
-            {activeCountry ? `${activeCountry.name} News` : 'All News & Media'}
+            {activeCountry ? t('news.title.country', { country: activeCountry.name }) : t('news.title.global')}
           </h1>
           <p className="text-muted-foreground text-lg">
             {activeCountry
-              ? `Everything happening with the GCV movement in ${activeCountry.name}.`
-              : 'Latest updates, announcements, and press releases from the GCV movement'}
+              ? t('news.subtitle.country', { country: activeCountry.name })
+              : t('news.subtitle.global')}
           </p>
         </div>
 
@@ -106,9 +115,9 @@ export function News() {
         {!activeCountry && (
           <div className="flex flex-wrap gap-1 mb-8 bg-accent/60 rounded-2xl p-1.5">
             {[
-              { id: 'articles' as MainTab, label: 'Articles', Icon: Newspaper, count: newsArticles.length },
-              { id: 'announcements' as MainTab, label: 'Announcements', Icon: Megaphone, count: announcements.length },
-              { id: 'press-releases' as MainTab, label: 'Press Releases', Icon: BookOpen, count: pressReleases.length },
+              { id: 'articles' as MainTab, label: t('news.tabs.articles'), Icon: Newspaper, count: newsArticles.length },
+              { id: 'announcements' as MainTab, label: t('news.tabs.announcements'), Icon: Megaphone, count: announcements.length },
+              { id: 'press-releases' as MainTab, label: t('news.tabs.pressReleases'), Icon: BookOpen, count: pressReleases.length },
             ].map(({ id, label, Icon, count }) => (
               <button
                 key={id}
@@ -140,7 +149,7 @@ export function News() {
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input
                   type="text"
-                  placeholder="Search articles…"
+                  placeholder={t('news.search.placeholder')}
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
                   className="w-full pl-11 pr-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-brand-purple/25 focus:border-brand-purple transition-all text-sm"
@@ -160,30 +169,30 @@ export function News() {
                       : 'bg-accent text-foreground hover:bg-accent/70'
                   }`}
                 >
-                  {cat}
+                  {t(`news.filters.categories.${NEWS_CATEGORY_KEYS[cat]}`)}
                 </button>
               ))}
             </div>
 
             <p className="text-sm text-muted-foreground mb-6">
-              {loading ? 'Loading articles…' : `${filteredArticles.length} article${filteredArticles.length !== 1 ? 's' : ''} found`}
+              {loading ? t('news.loadingArticles') : t('news.articleCount', { count: filteredArticles.length })}
             </p>
 
             {loading ? (
               <div className="text-center py-20 bg-accent/40 rounded-2xl">
-                <p className="text-muted-foreground font-medium">Loading articles…</p>
+                <p className="text-muted-foreground font-medium">{t('news.loadingArticles')}</p>
               </div>
             ) : filteredArticles.length === 0 ? (
               <div className="text-center py-20 bg-accent/40 rounded-2xl">
                 <p className="text-muted-foreground font-medium mb-1">
-                  {activeCountry ? `No stories from ${activeCountry.name} yet` : 'No articles found'}
+                  {activeCountry ? t('news.emptyState.noStoriesFromCountry', { country: activeCountry.name }) : t('news.emptyState.noArticlesFound')}
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  {activeCountry ? 'Check back soon, or browse all GCV news instead.' : 'Try a different search term or category'}
+                  {activeCountry ? t('news.emptyState.checkBackSoon') : t('news.emptyState.tryDifferentSearch')}
                 </p>
                 {activeCountry && (
                   <Link to="/news/all" className="inline-block mt-4 text-sm font-semibold text-brand-purple hover:underline">
-                    View All News →
+                    {t('news.emptyState.viewAllNews')}
                   </Link>
                 )}
               </div>
@@ -256,7 +265,7 @@ export function News() {
                       <h3 className="font-bold text-base leading-tight">{item.title}</h3>
                       {item.priority === 'high' && (
                         <span className="text-xs bg-brand-purple/10 text-brand-purple px-2 py-0.5 rounded-full font-semibold flex-shrink-0">
-                          Important
+                          {t('news.important')}
                         </span>
                       )}
                     </div>

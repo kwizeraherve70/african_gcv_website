@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { Users, Target, Award, Globe } from 'lucide-react';
 import { SEO } from '../components/SEO';
 import dorisImg from '@/assets/doris .jpg';
@@ -5,46 +6,38 @@ import olivierImg from '@/assets/olivie.jpeg';
 import missionImg from '@/assets/mission.jpg';
 import { GCV_USD } from '../lib/pi';
 
-const CORE_VALUES = [
-  {
-    Icon: Users,
-    gradient: 'from-brand-purple to-brand-purple-light',
-    title: 'Community First',
-    desc: 'We prioritize the needs and voices of our member community in everything we do.',
-  },
-  {
-    Icon: Target,
-    gradient: 'from-brand-gold to-yellow-400',
-    title: 'Fair Value',
-    desc: 'We advocate for a transparent, fixed conversion rate that protects every trading partner.',
-  },
-  {
-    Icon: Award,
-    gradient: 'from-brand-purple-light to-purple-400',
-    title: 'Education',
-    desc: 'We empower members and merchants through comprehensive educational resources and support.',
-  },
-  {
-    Icon: Globe,
-    gradient: 'from-brand-green to-emerald-400',
-    title: 'Global Unity',
-    desc: 'We build bridges across Africa, Europe, Asia, and the USA to create a unified trade network.',
-  },
+const CORE_VALUES_META = [
+  { Icon: Users, gradient: 'from-brand-purple to-brand-purple-light' },
+  { Icon: Target, gradient: 'from-brand-gold to-yellow-400' },
+  { Icon: Award, gradient: 'from-brand-purple-light to-purple-400' },
+  { Icon: Globe, gradient: 'from-brand-green to-emerald-400' },
 ];
 
 const ALLIANCE_REGIONS = [
-  { region: 'Africa', color: '#5b21b6' },
-  { region: 'Europe', color: '#7c3aed' },
-  { region: 'Asia', color: '#fbbf24' },
-  { region: 'USA', color: '#10b981' },
+  { key: 'africa', color: '#5b21b6' },
+  { key: 'europe', color: '#7c3aed' },
+  { key: 'asia', color: '#fbbf24' },
+  { key: 'usa', color: '#10b981' },
 ];
 
 export function About() {
+  const { t } = useTranslation('about');
+
+  const coreValueItems = t('about.values.items', { returnObjects: true }) as {
+    title: string;
+    desc: string;
+  }[];
+  const gcvPrinciples = t('about.gcv.principles', { returnObjects: true }) as string[];
+  const impactStats = t('about.impact.stats', { returnObjects: true }) as {
+    value: string;
+    label: string;
+  }[];
+
   return (
     <div>
       <SEO
-        title="About Us"
-        description="Learn about Pi Global GCV Alliance — our mission, core values, leadership, and our global vision for trade, innovation, and shared prosperity across Africa, Europe, Asia, and the USA."
+        title={t('about.seo.title')}
+        description={t('about.seo.description')}
         url="/about"
       />
 
@@ -60,14 +53,13 @@ export function About() {
         />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <p className="text-sm font-semibold text-white/70 uppercase tracking-widest mb-4">
-            About Us
+            {t('about.hero.eyebrow')}
           </p>
           <h1 className="text-4xl md:text-5xl font-heading font-bold mb-5 tracking-tight max-w-2xl leading-tight">
-            About Pi Global GCV Alliance
+            {t('about.hero.title')}
           </h1>
           <p className="text-xl text-white/80 max-w-2xl leading-relaxed">
-            Building a fair and inclusive global trade economy across Africa, Europe, Asia,
-            and the USA through Global Consensus Value.
+            {t('about.hero.subtitle')}
           </p>
         </div>
       </section>
@@ -79,22 +71,17 @@ export function About() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
               <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest mb-3">
-                Our Purpose
+                {t('about.mission.eyebrow')}
               </p>
-              <h2 className="text-3xl font-heading font-bold mb-5 tracking-tight">Our Mission</h2>
+              <h2 className="text-3xl font-heading font-bold mb-5 tracking-tight">{t('about.mission.title')}</h2>
               <p className="text-muted-foreground mb-4 leading-relaxed">
-                Pi Global GCV Alliance is dedicated to empowering merchants, service
-                providers, and institutions with the tools and community support needed to
-                trade fairly across a growing global marketplace.
+                {t('about.mission.paragraph1')}
               </p>
               <p className="text-muted-foreground mb-4 leading-relaxed">
-                We believe that Global Consensus Value represents a paradigm shift in how
-                trade is priced — a single, transparent, fixed conversion rate that every
-                member can rely on, instead of volatile speculative pricing.
+                {t('about.mission.paragraph2')}
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                Through education, advocacy, and community building, we're helping to create
-                a more equitable trading future connecting four continents.
+                {t('about.mission.paragraph3')}
               </p>
             </div>
             <div className="relative">
@@ -102,7 +89,7 @@ export function About() {
               <div className="relative aspect-video rounded-2xl overflow-hidden ring-1 ring-border">
                 <img
                   src={missionImg}
-                  alt="Alliance community"
+                  alt={t('about.mission.imageAlt')}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -114,23 +101,26 @@ export function About() {
         <section className="py-16 border-t border-border">
           <div className="text-center mb-14">
             <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest mb-3">
-              What We Stand For
+              {t('about.values.eyebrow')}
             </p>
-            <h2 className="text-3xl font-heading font-bold tracking-tight">Our Core Values</h2>
+            <h2 className="text-3xl font-heading font-bold tracking-tight">{t('about.values.title')}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {CORE_VALUES.map(({ Icon, gradient, title, desc }) => (
-              <div
-                key={title}
-                className="bg-card border border-border rounded-2xl p-6 text-center hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
-              >
-                <div className={`w-14 h-14 bg-gradient-to-br ${gradient} rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg`}>
-                  <Icon className="w-7 h-7 text-white" />
+            {CORE_VALUES_META.map(({ Icon, gradient }, index) => {
+              const { title, desc } = coreValueItems[index];
+              return (
+                <div
+                  key={title}
+                  className="bg-card border border-border rounded-2xl p-6 text-center hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                >
+                  <div className={`w-14 h-14 bg-gradient-to-br ${gradient} rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg`}>
+                    <Icon className="w-7 h-7 text-white" />
+                  </div>
+                  <h3 className="font-bold mb-2">{title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
                 </div>
-                <h3 className="font-bold mb-2">{title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{desc}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
 
@@ -138,43 +128,31 @@ export function About() {
         <section className="py-16 border-t border-border">
           <div className="bg-brand-surface rounded-2xl p-8 md:p-10">
             <h2 className="text-3xl font-heading font-bold mb-2 tracking-tight">
-              What is Global Consensus Value?
+              {t('about.gcv.title')}
             </h2>
             <p className="text-3xl font-bold text-brand-purple mb-4">
-              1 π ≈ ${GCV_USD.toLocaleString('en-US')}
+              {t('about.gcv.rateDisplay', { value: GCV_USD.toLocaleString('en-US') })}
             </p>
             <div className="bg-brand-purple/5 border border-brand-purple/20 rounded-xl p-4 mb-6">
               <p className="text-sm text-foreground/80 leading-relaxed">
-                <strong className="text-foreground">GCV is a community-proposed price target, not an official
-                Pi Network rate.</strong> It is not endorsed by the Pi Core Team or verified on any exchange.
-                Pi's actual open-market trading price is far lower — a matter of cents per coin, not
-                hundreds of thousands of dollars.
+                <strong className="text-foreground">{t('about.gcv.disclaimerStrong')}</strong>{' '}
+                {t('about.gcv.disclaimerRest')}
               </p>
             </div>
             <div className="space-y-4 text-muted-foreground">
               <p className="leading-relaxed">
-                Global Consensus Value (GCV) is the Alliance's community-agreed target rate,
-                proposing{' '}
-                <strong className="text-foreground">1 π ≈ ${GCV_USD.toLocaleString('en-US')}</strong>{' '}
-                — a figure derived from the mathematical constant π (3.14159) with the decimal
-                point moved four places to the right. Products and services in the GCV Market
-                are priced in USD and shown converted to Pi at this community target.
+                {t('about.gcv.paragraph1Before')}{' '}
+                <strong className="text-foreground">
+                  {t('about.gcv.rateDisplay', { value: GCV_USD.toLocaleString('en-US') })}
+                </strong>{' '}
+                {t('about.gcv.paragraph1After')}
               </p>
               <p className="leading-relaxed">
-                Unlike exchange-traded pricing, GCV is a symbolic, aspirational reference rate
-                set by Alliance-wide agreement among pioneers — not a market valuation. It
-                reflects what participating merchants and members have agreed to honour among
-                themselves, not what Pi trades for on any exchange.
+                {t('about.gcv.paragraph2')}
               </p>
-              <p className="font-medium text-foreground">Key principles of GCV include:</p>
+              <p className="font-medium text-foreground">{t('about.gcv.principlesLabel')}</p>
               <ul className="space-y-2 ml-4">
-                {[
-                  'A single, community-agreed target applied consistently across the Market',
-                  'Transparency in pricing and transaction processes',
-                  'Protection against market manipulation and unofficial trading',
-                  'Merchant adoption as proof of real-world utility',
-                  'One standard, shared across every alliance region',
-                ].map(item => (
+                {gcvPrinciples.map(item => (
                   <li key={item} className="flex items-start gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-brand-purple mt-2 flex-shrink-0" />
                     {item}
@@ -182,9 +160,7 @@ export function About() {
                 ))}
               </ul>
               <p className="leading-relaxed">
-                For members across Africa, Europe, Asia, and the USA, GCV represents a shared
-                aspiration to trade on fair, predictable terms — with one target rate, applied
-                consistently, everywhere in the Alliance.
+                {t('about.gcv.paragraph3')}
               </p>
             </div>
           </div>
@@ -194,9 +170,9 @@ export function About() {
         <section className="py-16 border-t border-border">
           <div className="mb-12">
             <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest mb-3">
-              Our Team
+              {t('about.leadership.eyebrow')}
             </p>
-            <h2 className="text-3xl font-heading font-bold tracking-tight">Our Leadership</h2>
+            <h2 className="text-3xl font-heading font-bold tracking-tight">{t('about.leadership.title')}</h2>
           </div>
 
           {/* Doris Yin */}
@@ -204,24 +180,19 @@ export function About() {
             <div className="relative">
               <div className="absolute -inset-2 bg-gradient-to-br from-brand-gold/20 to-brand-purple-light/15 rounded-2xl blur-lg pointer-events-none" />
               <div className="relative aspect-square rounded-2xl overflow-hidden ring-1 ring-border">
-                <img src={dorisImg} alt="Doris Yin" className="w-full h-full object-cover" />
+                <img src={dorisImg} alt={t('about.leadership.doris.name')} className="w-full h-full object-cover" />
               </div>
             </div>
             <div className="md:col-span-2">
-              <h3 className="text-2xl font-heading font-bold mb-1 tracking-tight">Doris Yin</h3>
+              <h3 className="text-2xl font-heading font-bold mb-1 tracking-tight">{t('about.leadership.doris.name')}</h3>
               <p className="text-brand-gold font-semibold text-sm mb-5">
-                Grand Global Ambassador · Founder, Global GCV Movement
+                {t('about.leadership.doris.role')}
               </p>
               <p className="text-muted-foreground mb-4 leading-relaxed">
-                Doris Yin is the founder of the Global GCV Movement, providing strategic vision
-                and direction to the worldwide network of GCV Ambassadors. She has led and
-                addressed major global gatherings advancing GCV as the standard for fair,
-                transparent trade.
+                {t('about.leadership.doris.bio1')}
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                Her guiding message — "Building a Strong Foundation, A Pillar for a Bright
-                Future" — is the cornerstone of the Alliance's educational and
-                community-building philosophy across every region.
+                {t('about.leadership.doris.bio2')}
               </p>
             </div>
           </div>
@@ -231,28 +202,22 @@ export function About() {
             <div className="relative">
               <div className="absolute -inset-2 bg-gradient-to-br from-brand-purple/20 to-brand-purple-light/15 rounded-2xl blur-lg pointer-events-none" />
               <div className="relative aspect-square rounded-2xl overflow-hidden ring-1 ring-border">
-                <img src={olivierImg} alt="Olivier Ndatimana" className="w-full h-full object-cover" />
+                <img src={olivierImg} alt={t('about.leadership.olivier.name')} className="w-full h-full object-cover" />
               </div>
             </div>
             <div className="md:col-span-2">
-              <h3 className="text-2xl font-heading font-bold mb-1 tracking-tight">Olivier Ndatimana</h3>
+              <h3 className="text-2xl font-heading font-bold mb-1 tracking-tight">{t('about.leadership.olivier.name')}</h3>
               <p className="text-brand-gold font-semibold text-sm mb-5">
-                Founding Director, Pi Global GCV Alliance
+                {t('about.leadership.olivier.role')}
               </p>
               <p className="text-muted-foreground mb-4 leading-relaxed">
-                Olivier Ndatimana is the Founding Director of the Pi Global GCV Alliance,
-                bringing expertise in shipping, logistics, and market development as CEO of
-                Kigali Hot Market Ltd.
+                {t('about.leadership.olivier.bio1')}
               </p>
               <p className="text-muted-foreground mb-4 leading-relaxed">
-                Under his leadership, the Alliance has grown its merchant network and regional
-                coordination across Africa, Europe, Asia, and the USA — building a shared
-                trade standard from the ground up.
+                {t('about.leadership.olivier.bio2')}
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                Olivier's mission is to give every member fair, direct access to the global
-                economy — with GCV providing a stable foundation for trade across the
-                Alliance.
+                {t('about.leadership.olivier.bio3')}
               </p>
             </div>
           </div>
@@ -262,31 +227,32 @@ export function About() {
         <section className="py-16 border-t border-border">
           <div className="bg-brand-surface rounded-2xl p-8 md:p-10">
             <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest mb-3">
-              Global Structure
+              {t('about.regionsSection.eyebrow')}
             </p>
             <h2 className="text-3xl font-heading font-bold mb-4 tracking-tight">
-              Four Continents, One Alliance
+              {t('about.regionsSection.title')}
             </h2>
             <p className="text-muted-foreground mb-8 leading-relaxed max-w-2xl">
-              The Pi Global GCV Alliance is structured around regional Ambassadors and
-              Founders across Africa, Europe, Asia, and the USA, each leading the movement
-              within their region.
+              {t('about.regionsSection.description')}
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {ALLIANCE_REGIONS.map(({ region, color }) => (
-                <div
-                  key={region}
-                  className="bg-card rounded-2xl border border-border p-4 text-center hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
-                >
+              {ALLIANCE_REGIONS.map(({ key, color }) => {
+                const label = t(`regions.${key}`);
+                return (
                   <div
-                    className="w-12 h-12 rounded-2xl mx-auto mb-3 flex items-center justify-center text-white font-bold text-lg shadow-sm"
-                    style={{ backgroundColor: color }}
+                    key={key}
+                    className="bg-card rounded-2xl border border-border p-4 text-center hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"
                   >
-                    {region[0]}
+                    <div
+                      className="w-12 h-12 rounded-2xl mx-auto mb-3 flex items-center justify-center text-white font-bold text-lg shadow-sm"
+                      style={{ backgroundColor: color }}
+                    >
+                      {label[0]}
+                    </div>
+                    <p className="font-semibold text-xs leading-tight">{label}</p>
                   </div>
-                  <p className="font-semibold text-xs leading-tight">{region}</p>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -295,15 +261,10 @@ export function About() {
         <section className="py-16 border-t border-border">
           <div className="bg-gradient-to-br from-brand-purple to-brand-purple-light text-white rounded-2xl p-8 md:p-10 mb-16">
             <h2 className="text-3xl font-heading font-bold text-center mb-10 tracking-tight">
-              Alliance Impact
+              {t('about.impact.title')}
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-              {[
-                { value: '4', label: 'Continents' },
-                { value: '12,500+', label: 'Members Worldwide' },
-                { value: '3,200+', label: 'Active Merchants' },
-                { value: 'Jan 2025', label: 'First General Conference' },
-              ].map(({ value, label }) => (
+              {impactStats.map(({ value, label }) => (
                 <div key={label}>
                   <div className="text-4xl font-bold mb-2">{value}</div>
                   <div className="text-white/80 text-sm font-medium">{label}</div>

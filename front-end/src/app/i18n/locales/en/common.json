@@ -1,0 +1,79 @@
+{
+  "navbar": {
+    "themeToggle": {
+      "switchToLight": "Switch to light mode",
+      "switchToDark": "Switch to dark mode"
+    },
+    "links": {
+      "home": "Home",
+      "about": "About Us",
+      "team": "Core Team",
+      "founders": "Founders",
+      "allianceGroup": "GCV Alliance",
+      "market": "GCV Market",
+      "news": "News & Media",
+      "contact": "Contact Us"
+    },
+    "search": "Search",
+    "language": {
+      "selectLanguage": "Select language"
+    },
+    "cart": {
+      "aria_one": "Shopping cart — {{count}} item",
+      "aria_other": "Shopping cart — {{count}} items"
+    },
+    "menu": {
+      "open": "Open menu",
+      "close": "Close menu"
+    },
+    "account": {
+      "login": "Login",
+      "register": "Register",
+      "logout": "Log Out",
+      "adminPortal": "Admin Portal",
+      "roleAdmin": "Admin",
+      "roleMerchant": "Merchant",
+      "roleMember": "Member"
+    }
+  },
+  "footer": {
+    "description": "A global trade alliance connecting Africa, Europe, Asia, and the USA through commerce and collaboration.",
+    "social": {
+      "facebook": "Facebook",
+      "twitter": "Twitter / X",
+      "instagram": "Instagram",
+      "youtube": "YouTube"
+    },
+    "quickLinks": {
+      "heading": "Quick Links",
+      "about": "About Us",
+      "market": "GCV Market",
+      "news": "News & Media",
+      "contact": "Contact Us"
+    },
+    "resources": {
+      "heading": "Resources",
+      "merchants": "Merchant Directory",
+      "alliance": "Industry Alliance",
+      "founders": "Founders"
+    },
+    "legal": {
+      "heading": "Legal",
+      "terms": "Terms of Use",
+      "privacy": "Privacy Policy"
+    },
+    "contact": {
+      "heading": "Contact Us",
+      "whatsapp": "WhatsApp Chat"
+    },
+    "copyright": "© {{year}} Pi Global GCV Alliance. All rights reserved.",
+    "bottom": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms & Conditions"
+    }
+  },
+  "whatsapp": {
+    "chatAria": "Chat with us on WhatsApp",
+    "prefillMessage": "Hello! I have a question about Pi Global GCV Alliance."
+  }
+}

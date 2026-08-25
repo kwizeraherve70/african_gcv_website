@@ -1,0 +1,149 @@
+{
+  "shop": {
+    "seo": {
+      "title": "Soko la GCV",
+      "description": "Soko la GCV — vinjari bidhaa. Lipa kwa Pi kwa kiwango kisichobadilika cha Global Consensus Value."
+    },
+    "breadcrumb": {
+      "home": "Nyumbani",
+      "current": "Soko la GCV"
+    },
+    "heading": "Soko la GCV",
+    "sidebar": {
+      "productType": "Aina ya Bidhaa"
+    },
+    "categories": {
+      "all": "Zote",
+      "sedans": "Sedan",
+      "suvs": "SUV",
+      "sportsCars": "Magari ya Mbio",
+      "luxury": "Anasa"
+    },
+    "filters": {
+      "allCategories": "Aina Zote"
+    },
+    "promo": {
+      "eyebrow": "Lipa kwa Pi",
+      "title": "Salama. Rahisi. Kimataifa.",
+      "rate": "Lengo la GCV: 1 π ≈ $314,159",
+      "disclaimer": "Limependekezwa na jamii, si kiwango rasmi.",
+      "learnMore": "Jifunze Zaidi"
+    },
+    "search": {
+      "placeholder": "Tafuta bidhaa…"
+    },
+    "sort": {
+      "featured": "Panga kwa: Zilizoangaziwa",
+      "priceLowHigh": "Bei: Chini kwenda Juu",
+      "priceHighLow": "Bei: Juu kwenda Chini"
+    },
+    "results": {
+      "loading": "Inapakia bidhaa…",
+      "count_one": "Bidhaa {{count}}",
+      "count_other": "Bidhaa {{count}}"
+    },
+    "error": {
+      "title": "Imeshindwa kupakia bidhaa",
+      "fallbackMessage": "Imeshindwa kupakia bidhaa."
+    },
+    "empty": {
+      "title": "Hakuna bidhaa iliyopatikana",
+      "subtitle": "Jaribu neno tofauti la utafutaji au aina nyingine"
+    },
+    "badge": {
+      "sale": "OFA"
+    },
+    "stock": {
+      "outOfStock": "Hazipo Stoo",
+      "onlyLeft": "Zimebaki {{count}} tu",
+      "inStock": "Zipo Stoo"
+    },
+    "whyPayInPi": {
+      "heading": "Kwa Nini Ulipe kwa Pi?",
+      "communityTarget": { "title": "Lengo la GCV la Jamii", "desc": "Bei kulingana na 1 π ≈ $314,159 (si rasmi)" },
+      "globalSecure": { "title": "Kimataifa na Salama", "desc": "Miamala salama na wazi" },
+      "supportEcosystem": { "title": "Kusaidia Mfumo Mzima", "desc": "Kuwezesha wafanyabiashara na jamii" },
+      "easyToUse": { "title": "Rahisi Kutumia", "desc": "Uzoefu rahisi wa malipo" }
+    }
+  },
+  "productDetail": {
+    "loading": "Inapakia…",
+    "notFound": {
+      "title": "Bidhaa Haikupatikana",
+      "text": "Bidhaa unayotafuta haipo.",
+      "backToShop": "Rudi Dukani"
+    },
+    "backToShop": "Rudi Dukani",
+    "byMerchant": " · Na {{name}}",
+    "ratingSummary": "{{rating}} (maoni {{count}})",
+    "save": "Okoa ${{amount}}",
+    "gcvNote": "{{piAmount}} π kwa kiwango cha lengo la GCV la jamii",
+    "stock": {
+      "outOfStock": "Haipo Stoo",
+      "onlyLeftInStock": "Zimebaki {{count}} tu stoo",
+      "inStock": "Ipo Stoo"
+    },
+    "quantity": {
+      "label": "Idadi"
+    },
+    "addToCart": {
+      "add": "Ongeza kwenye Kikapu",
+      "added": "Imeongezwa kwenye Kikapu"
+    },
+    "tabs": {
+      "description": "Maelezo",
+      "reviews": "Maoni ({{count}})",
+      "shipping": "Taarifa za Usafirishaji"
+    },
+    "reviews": {
+      "comingSoon": "Maoni ya wateja yanakuja hivi karibuni. Kuwa wa kwanza kutoa maoni kuhusu bidhaa hii!"
+    },
+    "shipping": {
+      "deliveryHeading": "Taarifa za Usafirishaji",
+      "deliveryIntro": "Kila gari hukaguliwa na kuandaliwa na wakala aliyeidhinishwa wa Mfanyabiashara wa GCV kabla ya kuwasilishwa. Muda wa uwasilishaji hutofautiana kulingana na eneo:",
+      "africa": "Afrika: siku 5–10 za kazi",
+      "europe": "Ulaya: siku 10–20 za kazi",
+      "northAmerica": "Amerika Kaskazini: siku 15–25 za kazi",
+      "other": "Maeneo mengine: siku 20–30 za kazi",
+      "docs": "Msaada wa usajili wa gari na nyaraka za uagizaji umejumuishwa. Majaribio ya kuendesha yanaweza kupangwa kabla ya ununuzi katika baadhi ya maeneo ya wakala.",
+      "returnsHeading": "Marejesho na Dhamana",
+      "returnsText": "Magari yote yanajumuisha dhamana ya siku 90 kutoka kwa muuzaji tangu tarehe ya uwasilishaji. Maombi ya kurejesha lazima yafanywe ndani ya siku 7 baada ya uwasilishaji, kutegemea ukaguzi."
+    },
+    "relatedProducts": {
+      "heading": "Bidhaa Zinazohusiana",
+      "gcvNote": "≈ {{piAmount}} π (GCV)"
+    }
+  },
+  "cart": {
+    "seo": {
+      "title": "Kikapu cha Manunuzi"
+    },
+    "heading": "Kikapu cha Manunuzi",
+    "empty": {
+      "heading": "Kikapu chako ni tupu",
+      "text": "Vinjari Soko la GCV kupata bidhaa, huduma, na kampuni.",
+      "continueShopping": "Endelea Kununua"
+    },
+    "priceUsd": "{{price}} USD",
+    "aria": {
+      "removeItem": "Ondoa bidhaa",
+      "decreaseQuantity": "Punguza idadi",
+      "increaseQuantity": "Ongeza idadi"
+    },
+    "continueShopping": "Endelea Kununua",
+    "summary": {
+      "heading": "Muhtasari wa Kikapu",
+      "subtotal_one": "Jumla ndogo (bidhaa {{count}})",
+      "subtotal_other": "Jumla ndogo (bidhaa {{count}})",
+      "amountUsd": "${{amount}} USD",
+      "shipping": "Usafirishaji",
+      "total": "Jumla",
+      "gcvNote": "{{piAmount}} π",
+      "disclaimer": "Lengo la GCV: 1 π ≈ $314,159 (limependekezwa na jamii, si kiwango rasmi)"
+    },
+    "checkout": {
+      "proceed": "Endelea kulipa",
+      "secure": "Malipo salama"
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "seo": {
+    "title": "Nyumbani",
+    "description": "Pi Global GCV Alliance — muungano wa kimataifa wa biashara unaounganisha Afrika, Ulaya, Asia, na Marekani kupitia biashara, ubunifu, na maendeleo ya pamoja. Lipa kwa Pi kwa kiwango cha lengo la GCV lililopendekezwa na jamii."
+  },
+  "hero": {
+    "titleLine1": "Kuunganisha Dunia,",
+    "titleLine2": "Kuimarisha Biashara",
+    "subtitle": "Muungano wa kimataifa unaounganisha Afrika, Ulaya, Asia, na Marekani kupitia biashara, ubunifu, na maendeleo ya pamoja.",
+    "exploreMarket": "Tembelea Soko",
+    "joinAlliance": "Jiunge na Muungano",
+    "gcvTarget": {
+      "label": "Lengo la Jamii la GCV",
+      "rate": "1 π ≈ ${{value}}",
+      "disclaimer": "Si kiwango rasmi cha Pi Network au kiwango cha ubadilishaji fedha."
+    }
+  },
+  "features": {
+    "global": { "title": "Muungano wa Kimataifa", "desc": "Unafanya kazi katika mabara 4" },
+    "secure": { "title": "Salama na wa Kuaminika", "desc": "Wazi, wa kutegemewa na unaowajibika" },
+    "payInPi": { "title": "Lipa kwa Pi", "desc": "Malipo rahisi kwa kiwango cha lengo la GCV la jamii" },
+    "empowering": { "title": "Kuwezesha Biashara", "desc": "Kusaidia wafanyabiashara na wajasiriamali" }
+  },
+  "stats": {
+    "members": "Wanachama Duniani",
+    "merchants": "Wafanyabiashara Hai",
+    "products": "Bidhaa Zilizoorodheshwa",
+    "events": "Matukio Yaliyoandaliwa"
+  },
+  "featured": {
+    "eyebrow": "Soko la GCV",
+    "heading": "Vilivyoangaziwa kwenye Soko la GCV",
+    "viewAll": "Angalia Bidhaa Zote"
+  },
+  "news": {
+    "eyebrow": "Endelea Kufahamishwa",
+    "heading": "Habari za Hivi Karibuni",
+    "viewAll": "Angalia habari zote"
+  },
+  "founder": {
+    "badge": "Mkurugenzi Mwanzilishi, Pi Global GCV Alliance",
+    "name": "Olivier Ndatimana",
+    "quote": "Akiishi Kigali, Rwanda, Olivier anaongoza dhamira ya Muungano ya kuunganisha wafanyabiashara, wajasiriamali, na taasisi kote Afrika, Ulaya, Asia, na Marekani chini ya kiwango kimoja cha biashara na thamani ya pamoja.",
+    "bio": "Akiwa Afisa Mkuu Mtendaji wa Kigali Hot Market Ltd, dhamira ya Olivier ni kumpa kila mshiriki wa soko — kutoka kwa wakulima wadogo hadi kampuni za huduma — fursa ya haki na ya moja kwa moja katika mtandao wa biashara wa kimataifa unaokua.",
+    "cta": "Wafahamu Waanzilishi",
+    "imageAlt": "Olivier Ndatimana"
+  },
+  "mission": {
+    "eyebrow": "Kwa Nini Tupo",
+    "heading": "Dhamira na Maono",
+    "missionTitle": "Dhamira Yetu",
+    "missionText": "Kuunganisha wafanyabiashara, watoa huduma, na taasisi kote Afrika, Ulaya, Asia, na Marekani chini ya muungano mmoja wa biashara — tukiwezesha kila mwanachama kupata fursa ya haki ya soko, bei za haki zinazoweza kulipwa kwa Pi kwa kiwango cha lengo la GCV la jamii.",
+    "visionTitle": "Maono Yetu",
+    "visionText": "Soko la kimataifa ambapo biashara inapita kwa uhuru kati ya mabara — likiendesha kilimo, uzalishaji viwandani, huduma za kitaalamu, na biashara kwa kila mwanachama wa muungano, kwa bei thabiti kulingana na lengo la GCV la jamii la 1 π ≈ ${{value}}."
+  },
+  "membership": {
+    "eyebrow": "Jiunge na Muungano",
+    "heading": "Kuwa Mwanachama",
+    "text": "Pi Global GCV Alliance iko wazi kwa kila mfanyabiashara, kampuni, na taasisi. Iwe unataka kuwa Balozi, kusajili biashara yako kama Mfanyabiashara wa GCV, au kujiunga tu na jamii — kuna nafasi kwa ajili yako.",
+    "roles": {
+      "member": { "title": "Mwanachama wa GCV", "desc": "Jiunge na jamii na uanze kutembelea Soko la GCV." },
+      "merchant": { "title": "Mfanyabiashara wa GCV", "desc": "Sajili biashara yako ili kupokea Pi kwa kiwango cha lengo la GCV la jamii." },
+      "ambassador": { "title": "Balozi wa GCV", "desc": "Ongoza harakati katika nchi au eneo lako." }
+    },
+    "joinToday": "Jiunge Leo",
+    "learnMore": "Jifunze Zaidi",
+    "stats": {
+      "continents": "Mabara",
+      "merchants": "Wafanyabiashara wa GCV",
+      "products": "Bidhaa Zilizoorodheshwa",
+      "perPi": "kwa π (lengo la GCV)"
+    }
+  },
+  "contact": {
+    "emailUs": "Tutumie Barua Pepe",
+    "callUs": "Tupigie Simu",
+    "whatsapp": "WhatsApp",
+    "chatWithUs": "Zungumza Nasi"
+  },
+  "cta": {
+    "badge": "Kuwa Sehemu ya Harakati",
+    "heading": "Jiunge na Pi Global GCV Alliance Leo!",
+    "subtitle": "Kuwa sehemu ya harakati ya kimataifa inayojenga maendeleo kupitia biashara na umoja.",
+    "becomeMember": "Kuwa Mwanachama",
+    "exploreMarket": "Tembelea Soko"
+  }
+}

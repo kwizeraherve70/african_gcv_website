@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { Check, CreditCard, Smartphone } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { createOrder, createDelivery } from '../api/orders';
@@ -18,16 +19,13 @@ function PiIcon({ className }: { className?: string }) {
 
 type Step = 'shipping' | 'payment' | 'review';
 
-const STEPS: { id: Step; label: string }[] = [
-  { id: 'shipping', label: 'Shipping' },
-  { id: 'payment', label: 'Payment' },
-  { id: 'review', label: 'Review' },
-];
+const STEPS: Step[] = ['shipping', 'payment', 'review'];
 
 const inputClass =
   'w-full px-4 py-3 rounded-xl border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/25 focus:border-brand-purple transition-all';
 
 export function Checkout() {
+  const { t } = useTranslation('checkout');
   const navigate = useNavigate();
   const { items, getSubtotal, clearCart } = useCart();
   const [currentStep, setCurrentStep] = useState<Step>('shipping');
@@ -45,7 +43,7 @@ export function Checkout() {
   const [placingOrder, setPlacingOrder] = useState(false);
   const [orderError, setOrderError] = useState<string | null>(
     new URLSearchParams(window.location.search).get('canceled') === 'true'
-      ? 'Payment was canceled. Your order was saved — you can try paying again.'
+      ? t('checkout.canceledNotice')
       : null
   );
 
@@ -109,7 +107,7 @@ export function Checkout() {
       clearCart();
       navigate('/order-confirmation', { state: { orderNumber: order.orderNumber } });
     } catch (err) {
-      setOrderError(err instanceof ApiError ? err.message : 'Could not place your order. Please try again.');
+      setOrderError(err instanceof ApiError ? err.message : t('checkout.genericOrderError'));
     } finally {
       setPlacingOrder(false);
     }
@@ -137,7 +135,7 @@ export function Checkout() {
     return null;
   }
 
-  const currentStepIndex = STEPS.findIndex(s => s.id === currentStep);
+  const currentStepIndex = STEPS.findIndex(s => s === currentStep);
 
   return (
     <div className="py-12 bg-accent/40 min-h-screen">
@@ -148,7 +146,7 @@ export function Checkout() {
         <div className="mb-10">
           <div className="flex items-center">
             {STEPS.map((step, index) => (
-              <div key={step.id} className="flex items-center flex-1">
+              <div key={step} className="flex items-center flex-1">
                 <div className="flex flex-col items-center">
                   <div
                     className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-300 ${
@@ -172,7 +170,7 @@ export function Checkout() {
                         : 'text-muted-foreground'
                     }`}
                   >
-                    {step.label}
+                    {t(`checkout.steps.${step}`)}
                   </span>
                 </div>
                 {index < STEPS.length - 1 && (
@@ -195,100 +193,100 @@ export function Checkout() {
           {/* Step 1: Shipping */}
           {currentStep === 'shipping' && (
             <div>
-              <h2 className="text-2xl font-bold mb-6 tracking-tight">Shipping Information</h2>
+              <h2 className="text-2xl font-bold mb-6 tracking-tight">{t('checkout.shippingForm.title')}</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium mb-1.5">Full Name *</label>
+                  <label className="block text-sm font-medium mb-1.5">{t('checkout.shippingForm.fullName')}</label>
                   <input
                     type="text"
                     name="fullName"
                     value={formData.fullName}
                     onChange={handleInputChange}
                     required
-                    placeholder="John Doe"
+                    placeholder={t('checkout.shippingForm.fullNamePlaceholder')}
                     className={inputClass}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">Email *</label>
+                  <label className="block text-sm font-medium mb-1.5">{t('checkout.shippingForm.email')}</label>
                   <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    placeholder="john@example.com"
+                    placeholder={t('checkout.shippingForm.emailPlaceholder')}
                     className={inputClass}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">Phone *</label>
+                  <label className="block text-sm font-medium mb-1.5">{t('checkout.shippingForm.phone')}</label>
                   <input
                     type="tel"
                     name="phone"
                     value={formData.phone}
                     onChange={handleInputChange}
                     required
-                    placeholder="+250 700 000 000"
+                    placeholder={t('checkout.shippingForm.phonePlaceholder')}
                     className={inputClass}
                   />
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium mb-1.5">Address *</label>
+                  <label className="block text-sm font-medium mb-1.5">{t('checkout.shippingForm.address')}</label>
                   <input
                     type="text"
                     name="address"
                     value={formData.address}
                     onChange={handleInputChange}
                     required
-                    placeholder="123 Main Street"
+                    placeholder={t('checkout.shippingForm.addressPlaceholder')}
                     className={inputClass}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">City *</label>
+                  <label className="block text-sm font-medium mb-1.5">{t('checkout.shippingForm.city')}</label>
                   <input
                     type="text"
                     name="city"
                     value={formData.city}
                     onChange={handleInputChange}
                     required
-                    placeholder="Kigali"
+                    placeholder={t('checkout.shippingForm.cityPlaceholder')}
                     className={inputClass}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">Province / State *</label>
+                  <label className="block text-sm font-medium mb-1.5">{t('checkout.shippingForm.province')}</label>
                   <input
                     type="text"
                     name="province"
                     value={formData.province}
                     onChange={handleInputChange}
                     required
-                    placeholder="Kigali City"
+                    placeholder={t('checkout.shippingForm.provincePlaceholder')}
                     className={inputClass}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">Country *</label>
+                  <label className="block text-sm font-medium mb-1.5">{t('checkout.shippingForm.country')}</label>
                   <input
                     type="text"
                     name="country"
                     value={formData.country}
                     onChange={handleInputChange}
                     required
-                    placeholder="Rwanda"
+                    placeholder={t('checkout.shippingForm.countryPlaceholder')}
                     className={inputClass}
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium mb-1.5">Postal Code</label>
+                  <label className="block text-sm font-medium mb-1.5">{t('checkout.shippingForm.postalCode')}</label>
                   <input
                     type="text"
                     name="postalCode"
                     value={formData.postalCode}
                     onChange={handleInputChange}
-                    placeholder="00000"
+                    placeholder={t('checkout.shippingForm.postalCodePlaceholder')}
                     className={inputClass}
                   />
                 </div>
@@ -299,26 +297,26 @@ export function Checkout() {
           {/* Step 2: Payment */}
           {currentStep === 'payment' && (
             <div>
-              <h2 className="text-2xl font-bold mb-6 tracking-tight">Payment Method</h2>
+              <h2 className="text-2xl font-bold mb-6 tracking-tight">{t('checkout.paymentMethods.title')}</h2>
               <div className="space-y-3">
                 {[
                   {
                     value: 'card',
                     Icon: CreditCard,
-                    title: 'Credit / Debit Card',
-                    desc: 'Pay securely with your credit or debit card',
+                    title: t('checkout.paymentMethods.card.title'),
+                    desc: t('checkout.paymentMethods.card.description'),
                   },
                   {
                     value: 'mobile_money',
                     Icon: Smartphone,
-                    title: 'Mobile Money',
-                    desc: 'M-Pesa, MTN Mobile Money, Orange Money',
+                    title: t('checkout.paymentMethods.mobileMoney.title'),
+                    desc: t('checkout.paymentMethods.mobileMoney.description'),
                   },
                   {
                     value: 'pi',
                     Icon: PiIcon,
-                    title: 'Pay with Pi',
-                    desc: `Pay directly from your Pi Wallet — ${toPi(total)} π at the community GCV target`,
+                    title: t('checkout.paymentMethods.pi.title'),
+                    desc: t('checkout.paymentMethods.pi.description', { amount: toPi(total) }),
                   },
                 ].map(({ value, Icon, title, desc }) => (
                   <label
@@ -351,8 +349,8 @@ export function Checkout() {
               <div className="mt-5 p-4 bg-accent/60 rounded-xl">
                 <p className="text-sm text-muted-foreground">
                   {formData.paymentMethod === 'pi'
-                    ? `You'll confirm this payment in your Pi Wallet app. GCV is a community-proposed target, not an official Pi Network rate.`
-                    : 'Your payment information is encrypted and secure. We never store your card details.'}
+                    ? t('checkout.paymentMethods.piNotice')
+                    : t('checkout.paymentMethods.secureNotice')}
                 </p>
               </div>
             </div>
@@ -361,12 +359,12 @@ export function Checkout() {
           {/* Step 3: Review */}
           {currentStep === 'review' && (
             <div>
-              <h2 className="text-2xl font-bold mb-6 tracking-tight">Review Order</h2>
+              <h2 className="text-2xl font-bold mb-6 tracking-tight">{t('checkout.review.title')}</h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div className="bg-accent/40 rounded-xl p-4">
                   <h3 className="font-semibold text-sm mb-3 text-muted-foreground uppercase tracking-wide">
-                    Shipping To
+                    {t('checkout.review.shippingTo')}
                   </h3>
                   <div className="text-sm space-y-0.5">
                     <p className="font-medium">{formData.fullName}</p>
@@ -380,18 +378,18 @@ export function Checkout() {
                 </div>
                 <div className="bg-accent/40 rounded-xl p-4">
                   <h3 className="font-semibold text-sm mb-3 text-muted-foreground uppercase tracking-wide">
-                    Payment
+                    {t('checkout.review.payment')}
                   </h3>
                   <p className="text-sm font-medium">
                     {formData.paymentMethod === 'card'
-                      ? 'Credit / Debit Card'
+                      ? t('checkout.paymentMethods.card.title')
                       : formData.paymentMethod === 'pi'
-                      ? 'Pay with Pi'
-                      : 'Mobile Money'}
+                      ? t('checkout.paymentMethods.pi.title')
+                      : t('checkout.paymentMethods.mobileMoney.title')}
                   </p>
                   {formData.paymentMethod === 'pi' && (
                     <p className="text-xs text-brand-purple font-medium mt-1">
-                      {toPi(total)} π (GCV target)
+                      {t('checkout.review.piTarget', { amount: toPi(total) })}
                     </p>
                   )}
                 </div>
@@ -399,7 +397,7 @@ export function Checkout() {
 
               <div className="bg-accent/40 rounded-xl p-4 mb-6">
                 <h3 className="font-semibold text-sm mb-4 text-muted-foreground uppercase tracking-wide">
-                  Order Items
+                  {t('checkout.review.orderItems')}
                 </h3>
                 <div className="space-y-3">
                   {items.map(item => (
@@ -416,20 +414,20 @@ export function Checkout() {
                 </div>
                 <div className="border-t border-border mt-4 pt-4 space-y-2">
                   <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Subtotal</span>
+                    <span className="text-muted-foreground">{t('checkout.review.subtotal')}</span>
                     <span className="font-semibold">${subtotal.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-muted-foreground">Shipping</span>
+                    <span className="text-muted-foreground">{t('checkout.review.shipping')}</span>
                     <span className="font-semibold">${shipping.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between font-bold text-base">
-                    <span>Total</span>
+                    <span>{t('checkout.review.total')}</span>
                     <span>${total.toFixed(2)}</span>
                   </div>
                   {formData.paymentMethod === 'pi' && (
                     <p className="text-xs text-brand-purple font-medium text-right">
-                      {toPi(total)} π (GCV target)
+                      {t('checkout.review.piTarget', { amount: toPi(total) })}
                     </p>
                   )}
                 </div>
@@ -448,13 +446,13 @@ export function Checkout() {
               <button
                 type="button"
                 onClick={() => {
-                  const idx = STEPS.findIndex(s => s.id === currentStep);
-                  if (idx > 0) setCurrentStep(STEPS[idx - 1].id);
+                  const idx = STEPS.findIndex(s => s === currentStep);
+                  if (idx > 0) setCurrentStep(STEPS[idx - 1]);
                 }}
                 disabled={placingOrder}
                 className="flex-1 py-3.5 px-6 border border-border rounded-xl hover:bg-accent text-sm font-medium transition-colors disabled:opacity-50"
               >
-                Back
+                {t('checkout.buttons.back')}
               </button>
             )}
             <button
@@ -462,7 +460,9 @@ export function Checkout() {
               disabled={placingOrder}
               className="flex-1 py-3.5 px-6 bg-brand-purple text-white rounded-xl hover:bg-brand-purple-light text-sm font-semibold transition-all duration-200 shadow-lg shadow-brand-purple/20 hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0"
             >
-              {currentStep === 'review' ? (placingOrder ? 'Placing Order…' : 'Place Order') : 'Continue'}
+              {currentStep === 'review'
+                ? (placingOrder ? t('checkout.buttons.placingOrder') : t('checkout.buttons.placeOrder'))
+                : t('checkout.buttons.continue')}
             </button>
           </div>
         </form>

@@ -1,0 +1,79 @@
+{
+  "navbar": {
+    "themeToggle": {
+      "switchToLight": "Hindukirira ku buryo bw'umucyo",
+      "switchToDark": "Hindukirira ku buryo bw'umwijima"
+    },
+    "links": {
+      "home": "Ahabanza",
+      "about": "Abo Turibo",
+      "team": "Itsinda Nyamukuru",
+      "founders": "Abashinze",
+      "allianceGroup": "Ihuriro rya GCV",
+      "market": "Isoko rya GCV",
+      "news": "Amakuru n'Itangazamakuru",
+      "contact": "Twandikire"
+    },
+    "search": "Shakisha",
+    "language": {
+      "selectLanguage": "Hitamo ururimi"
+    },
+    "cart": {
+      "aria_one": "Igitebo cy'ibyaguzwe — igicuruzwa {{count}}",
+      "aria_other": "Igitebo cy'ibyaguzwe — ibicuruzwa {{count}}"
+    },
+    "menu": {
+      "open": "Fungura menu",
+      "close": "Funga menu"
+    },
+    "account": {
+      "login": "Injira",
+      "register": "Iyandikishe",
+      "logout": "Sohoka",
+      "adminPortal": "Urubuga rw'Ubuyobozi",
+      "roleAdmin": "Umuyobozi",
+      "roleMerchant": "Umucuruzi",
+      "roleMember": "Umunyamuryango"
+    }
+  },
+  "footer": {
+    "description": "Ihuriro mpuzamahanga ry'ubucuruzi rihuza Afurika, Uburayi, Aziya na Leta Zunze Ubumwe za Amerika binyuze mu bucuruzi n'ubufatanye.",
+    "social": {
+      "facebook": "Facebook",
+      "twitter": "Twitter / X",
+      "instagram": "Instagram",
+      "youtube": "YouTube"
+    },
+    "quickLinks": {
+      "heading": "Ihuza Ryihuse",
+      "about": "Abo Turibo",
+      "market": "Isoko rya GCV",
+      "news": "Amakuru n'Itangazamakuru",
+      "contact": "Twandikire"
+    },
+    "resources": {
+      "heading": "Ibikoresho",
+      "merchants": "Urutonde rw'Abacuruzi",
+      "alliance": "Ihuriro ry'Inganda",
+      "founders": "Abashinze"
+    },
+    "legal": {
+      "heading": "Amategeko",
+      "terms": "Amabwiriza y'Ikoreshwa",
+      "privacy": "Politiki y'Ibanga"
+    },
+    "contact": {
+      "heading": "Twandikire",
+      "whatsapp": "Ganira Kuri WhatsApp"
+    },
+    "copyright": "© {{year}} Pi Global GCV Alliance. Uburenganzira bwose burabitswe.",
+    "bottom": {
+      "privacy": "Politiki y'Ibanga",
+      "terms": "Amabwiriza n'Amategeko"
+    }
+  },
+  "whatsapp": {
+    "chatAria": "Ganira Natwe Kuri WhatsApp",
+    "prefillMessage": "Muraho! Mfite ikibazo kijyanye na Pi Global GCV Alliance."
+  }
+}

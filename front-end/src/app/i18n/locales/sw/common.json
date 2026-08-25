@@ -1,0 +1,79 @@
+{
+  "navbar": {
+    "themeToggle": {
+      "switchToLight": "Badilisha kwenda hali nyepesi",
+      "switchToDark": "Badilisha kwenda hali ya giza"
+    },
+    "links": {
+      "home": "Nyumbani",
+      "about": "Kuhusu Sisi",
+      "team": "Timu Kuu",
+      "founders": "Waanzilishi",
+      "allianceGroup": "Muungano wa GCV",
+      "market": "Soko la GCV",
+      "news": "Habari na Vyombo vya Habari",
+      "contact": "Wasiliana Nasi"
+    },
+    "search": "Tafuta",
+    "language": {
+      "selectLanguage": "Chagua lugha"
+    },
+    "cart": {
+      "aria_one": "Kikapu cha ununuzi — bidhaa {{count}}",
+      "aria_other": "Kikapu cha ununuzi — bidhaa {{count}}"
+    },
+    "menu": {
+      "open": "Fungua menyu",
+      "close": "Funga menyu"
+    },
+    "account": {
+      "login": "Ingia",
+      "register": "Jisajili",
+      "logout": "Toka",
+      "adminPortal": "Dashibodi ya Msimamizi",
+      "roleAdmin": "Msimamizi",
+      "roleMerchant": "Mfanyabiashara",
+      "roleMember": "Mwanachama"
+    }
+  },
+  "footer": {
+    "description": "Muungano wa kimataifa wa biashara unaounganisha Afrika, Ulaya, Asia, na Marekani kupitia biashara na ushirikiano.",
+    "social": {
+      "facebook": "Facebook",
+      "twitter": "Twitter / X",
+      "instagram": "Instagram",
+      "youtube": "YouTube"
+    },
+    "quickLinks": {
+      "heading": "Viungo vya Haraka",
+      "about": "Kuhusu Sisi",
+      "market": "Soko la GCV",
+      "news": "Habari na Vyombo vya Habari",
+      "contact": "Wasiliana Nasi"
+    },
+    "resources": {
+      "heading": "Rasilimali",
+      "merchants": "Orodha ya Wafanyabiashara",
+      "alliance": "Muungano wa Viwanda",
+      "founders": "Waanzilishi"
+    },
+    "legal": {
+      "heading": "Kisheria",
+      "terms": "Masharti ya Matumizi",
+      "privacy": "Sera ya Faragha"
+    },
+    "contact": {
+      "heading": "Wasiliana Nasi",
+      "whatsapp": "Ongea Nasi kwa WhatsApp"
+    },
+    "copyright": "© {{year}} Pi Global GCV Alliance. Haki zote zimehifadhiwa.",
+    "bottom": {
+      "privacy": "Sera ya Faragha",
+      "terms": "Sheria na Masharti"
+    }
+  },
+  "whatsapp": {
+    "chatAria": "Ongea Nasi kwa WhatsApp",
+    "prefillMessage": "Habari! Nina swali kuhusu Pi Global GCV Alliance."
+  }
+}

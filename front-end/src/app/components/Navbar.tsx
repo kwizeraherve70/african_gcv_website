@@ -2,10 +2,13 @@ import { Link, useLocation, useNavigate } from 'react-router';
 import { ShoppingCart, Menu, X, ChevronDown, Search, User, Sun, Moon, LogOut, LayoutDashboard } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { useTheme } from 'next-themes';
+import { useTranslation } from 'react-i18next';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import i18n, { SUPPORTED_LANGUAGES } from '../i18n';
 
 function ThemeToggle() {
+  const { t } = useTranslation('common');
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -21,7 +24,7 @@ function ThemeToggle() {
     <button
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       className="p-2.5 hover:bg-accent rounded-xl transition-colors duration-150"
-      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+      aria-label={isDark ? t('navbar.themeToggle.switchToLight') : t('navbar.themeToggle.switchToDark')}
     >
       {isDark ? <Sun className="w-[18px] h-[18px]" /> : <Moon className="w-[18px] h-[18px]" />}
     </button>
@@ -34,22 +37,24 @@ interface NavGroup {
   children?: { to: string; label: string; description?: string }[];
 }
 
-const NAV_GROUPS: NavGroup[] = [
-  { label: 'Home', to: '/' },
-  { label: 'About Us', to: '/about' },
-  { label: 'Core Team', to: '/team' },
-  { label: 'Founders', to: '/team#founders' },
-  { label: 'GCV Alliance', to: '/industry-alliance' },
-  { label: 'GCV Market', to: '/shop' },
-  { label: 'News & Media', to: '/news' },
-  { label: 'Contact Us', to: '/contact' },
-];
-
-const LANGUAGES = ['EN', 'FR', 'RW', 'SW'];
+function useNavGroups(): NavGroup[] {
+  const { t } = useTranslation('common');
+  return [
+    { label: t('navbar.links.home'), to: '/' },
+    { label: t('navbar.links.about'), to: '/about' },
+    { label: t('navbar.links.team'), to: '/team' },
+    { label: t('navbar.links.founders'), to: '/team#founders' },
+    { label: t('navbar.links.allianceGroup'), to: '/industry-alliance' },
+    { label: t('navbar.links.market'), to: '/shop' },
+    { label: t('navbar.links.news'), to: '/news' },
+    { label: t('navbar.links.contact'), to: '/contact' },
+  ];
+}
 
 function LanguageSelector() {
+  const { t } = useTranslation('common');
   const [open, setOpen] = useState(false);
-  const [lang, setLang] = useState('EN');
+  const [, forceUpdate] = useState(0);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -60,27 +65,37 @@ function LanguageSelector() {
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
+  // Keep this control in sync with the shared i18n instance rather than
+  // holding its own copy of the active language (which could drift).
+  useEffect(() => {
+    const onLanguageChanged = () => forceUpdate(n => n + 1);
+    i18n.on('languageChanged', onLanguageChanged);
+    return () => i18n.off('languageChanged', onLanguageChanged);
+  }, []);
+
+  const activeCode = (i18n.language || 'en').split('-')[0];
+
   return (
     <div ref={ref} className="relative hidden md:block">
       <button
         onClick={() => setOpen(o => !o)}
         className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-accent transition-colors duration-150"
-        aria-label="Select language"
+        aria-label={t('navbar.language.selectLanguage')}
       >
-        {lang}
+        {activeCode.toUpperCase()}
         <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
       </button>
       {open && (
         <div className="absolute top-full right-0 mt-1.5 w-24 bg-card rounded-xl border border-border shadow-xl py-1.5 z-50">
-          {LANGUAGES.map(code => (
+          {SUPPORTED_LANGUAGES.map(({ code }) => (
             <button
               key={code}
-              onClick={() => { setLang(code); setOpen(false); }}
+              onClick={() => { i18n.changeLanguage(code); setOpen(false); }}
               className={`w-full text-left px-3.5 py-1.5 text-sm hover:bg-accent transition-colors duration-100 ${
-                lang === code ? 'text-brand-purple font-semibold' : 'text-foreground'
+                activeCode === code ? 'text-brand-purple font-semibold' : 'text-foreground'
               }`}
             >
-              {code}
+              {code.toUpperCase()}
             </button>
           ))}
         </div>
@@ -113,6 +128,7 @@ function Avatar({ user, size = 'sm' }: { user: { firstName: string; lastName: st
 }
 
 function AccountMenu() {
+  const { t } = useTranslation('common');
   const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
@@ -133,24 +149,24 @@ function AccountMenu() {
           to="/login"
           className="px-3.5 py-2 rounded-xl text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-accent transition-colors duration-150"
         >
-          Login
+          {t('navbar.account.login')}
         </Link>
         <Link
           to="/register"
           className="px-4 py-2 rounded-xl text-sm font-semibold bg-brand-purple text-white hover:bg-brand-purple-light transition-colors duration-150 inline-flex items-center gap-1.5"
         >
           <User className="w-3.5 h-3.5" />
-          Register
+          {t('navbar.account.register')}
         </Link>
       </div>
     );
   }
 
   const primaryRole = user.roles.includes('ADMIN')
-    ? 'Admin'
+    ? t('navbar.account.roleAdmin')
     : user.roles.includes('MERCHANT')
-    ? 'Merchant'
-    : 'Member';
+    ? t('navbar.account.roleMerchant')
+    : t('navbar.account.roleMember');
 
   return (
     <div ref={ref} className="relative hidden md:block ml-1">
@@ -180,7 +196,7 @@ function AccountMenu() {
               className="flex items-center gap-2 px-3.5 py-2 text-sm text-foreground hover:bg-accent transition-colors duration-100"
             >
               <LayoutDashboard className="w-3.5 h-3.5" />
-              Admin Portal
+              {t('navbar.account.adminPortal')}
             </Link>
           )}
           <button
@@ -192,7 +208,7 @@ function AccountMenu() {
             className="w-full flex items-center gap-2 text-left px-3.5 py-2 text-sm text-foreground hover:bg-accent transition-colors duration-100"
           >
             <LogOut className="w-3.5 h-3.5" />
-            Log Out
+            {t('navbar.account.logout')}
           </button>
         </div>
       )}
@@ -252,6 +268,8 @@ function DropdownMenu({ group, isActive }: { group: NavGroup; isActive: (path: s
 }
 
 export function Navbar() {
+  const { t } = useTranslation('common');
+  const NAV_GROUPS = useNavGroups();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [expandedGroup, setExpandedGroup] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
@@ -324,7 +342,7 @@ export function Navbar() {
           <div className="flex items-center gap-0.5">
             <button
               className="hidden md:flex p-2.5 hover:bg-accent rounded-xl transition-colors duration-150"
-              aria-label="Search"
+              aria-label={t('navbar.search')}
             >
               <Search className="w-[18px] h-[18px]" />
             </button>
@@ -336,7 +354,7 @@ export function Navbar() {
             <Link
               to="/cart"
               className="relative p-2.5 hover:bg-accent rounded-xl transition-colors duration-150"
-              aria-label={`Shopping cart — ${itemCount} item${itemCount !== 1 ? 's' : ''}`}
+              aria-label={t('navbar.cart.aria', { count: itemCount })}
             >
               <ShoppingCart className="w-5 h-5" />
               {itemCount > 0 && (
@@ -351,7 +369,7 @@ export function Navbar() {
             <button
               onClick={() => setIsMenuOpen(prev => !prev)}
               className="lg:hidden p-2.5 hover:bg-accent rounded-xl transition-colors duration-150"
-              aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+              aria-label={isMenuOpen ? t('navbar.menu.close') : t('navbar.menu.open')}
               aria-expanded={isMenuOpen}
             >
               {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -417,7 +435,7 @@ export function Navbar() {
                     }}
                     className="px-4 py-2.5 rounded-xl text-sm font-semibold border border-border hover:bg-accent transition-colors duration-150 flex-shrink-0"
                   >
-                    Log Out
+                    {t('navbar.account.logout')}
                   </button>
                 </div>
               ) : (
@@ -426,13 +444,13 @@ export function Navbar() {
                     to="/login"
                     className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-medium border border-border hover:bg-accent transition-colors duration-150"
                   >
-                    Login
+                    {t('navbar.account.login')}
                   </Link>
                   <Link
                     to="/register"
                     className="flex-1 text-center px-4 py-2.5 rounded-xl text-sm font-semibold bg-brand-purple text-white hover:bg-brand-purple-light transition-colors duration-150"
                   >
-                    Register
+                    {t('navbar.account.register')}
                   </Link>
                 </div>
               )}

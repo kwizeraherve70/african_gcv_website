@@ -1,0 +1,86 @@
+{
+  "news": {
+    "countryNotFound": {
+      "title": "Igihugu Ntikiboneka",
+      "description": "GCV Africa ntabwo ifite urubuga rw'amakuru rw'iki gihugu kugeza ubu.",
+      "backToCountries": "Subira ku Bihugu"
+    },
+    "back": {
+      "allCountries": "Ibihugu Byose",
+      "newsHome": "Ahabanza h'Amakuru n'Itangazamakuru"
+    },
+    "eyebrow": {
+      "country": "GCV Africa — {{flag}} {{country}}",
+      "global": "Ihuriro rya Pi Global GCV"
+    },
+    "title": {
+      "country": "Amakuru ya {{country}}",
+      "global": "Amakuru n'Itangazamakuru Byose"
+    },
+    "subtitle": {
+      "country": "Ibintu byose bibera mu muryango wa GCV muri {{country}}.",
+      "global": "Amakuru mashya, amatangazo, n'inyandiko z'itangazamakuru bivuye mu muryango wa GCV"
+    },
+    "seo": {
+      "countryDescription": "Amakuru ya GCV, ibikorwa by'intumwa, n'inkuru z'abacuruzi bemeye GCV bavuye muri {{country}}.",
+      "globalDescription": "Menya amakuru mashya ya Pi Network, amavugurura y'umuryango wa GCV, amatangazo emewe, inyandiko z'itangazamakuru, n'inkuru z'abaturage bo muri Afurika yose."
+    },
+    "tabs": {
+      "articles": "Inyandiko",
+      "announcements": "Amatangazo",
+      "pressReleases": "Inyandiko z'Itangazamakuru"
+    },
+    "search": {
+      "placeholder": "Shakisha inyandiko…"
+    },
+    "filters": {
+      "categories": {
+        "all": "Byose",
+        "piNetwork": "Pi Network",
+        "gcvMovement": "Umuryango wa GCV",
+        "events": "Ibirori",
+        "community": "Umuryango"
+      }
+    },
+    "loadingArticles": "Birimo gupakira inyandiko…",
+    "articleCount_one": "Inyandiko {{count}} yabonetse",
+    "articleCount_other": "Inyandiko {{count}} zabonetse",
+    "emptyState": {
+      "noStoriesFromCountry": "Nta nkuru ziboneka ziva muri {{country}} kugeza ubu",
+      "noArticlesFound": "Nta nyandiko zabonetse",
+      "checkBackSoon": "Ongera ugaruke vuba, cyangwa urebe amakuru yose ya GCV.",
+      "tryDifferentSearch": "Gerageza ijambo rindi ryo gushakisha cyangwa indi category",
+      "viewAllNews": "Reba Amakuru Yose →"
+    },
+    "important": "By'ingenzi"
+  },
+  "newsCountries": {
+    "seo": {
+      "title": "Amakuru n'Itangazamakuru",
+      "description": "Reba amakuru ya GCV ukurikije igihugu — amavugurura, ibikorwa by'intumwa, n'inkuru z'abacuruzi bemeye GCV muri Afurika yose."
+    },
+    "eyebrow": "Ihuriro rya Pi Global GCV",
+    "title": "Amakuru n'Itangazamakuru",
+    "subtitle": "Hitamo igihugu cya GCV Africa kugira ngo urebe amakuru y'aho, cyangwa urebe byose icyarimwe.",
+    "allNews": {
+      "title": "Amakuru n'Amatangazo Byose",
+      "description": "Inyandiko, amatangazo emewe, n'inyandiko z'itangazamakuru biva mu Ihuriro ryose"
+    },
+    "browseByCountry": "GCV Africa — Reba ukurikije Igihugu",
+    "storyCount_one": "Inkuru {{count}}",
+    "storyCount_other": "Inkuru {{count}}"
+  },
+  "newsDetail": {
+    "loading": "Birimo gupakira…",
+    "notFound": {
+      "title": "Inyandiko Ntiboneka",
+      "description": "Inyandiko urimo gushaka ntibaho.",
+      "backToNews": "Subira ku Makuru"
+    },
+    "backToNews": "Subira ku Makuru",
+    "views": "abarebye",
+    "byAuthor": "Yanditswe na {{author}}",
+    "shareArticle": "Sangiza Inyandiko",
+    "relatedArticles": "Inyandiko Zijyanye"
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "regions": {
+    "all": "Zote",
+    "africa": "Afrika",
+    "europe": "Ulaya",
+    "asia": "Asia",
+    "usa": "Marekani"
+  },
+  "about": {
+    "seo": {
+      "title": "Kuhusu Sisi",
+      "description": "Jifunze kuhusu Pi Global GCV Alliance — dhamira yetu, maadili yetu ya msingi, uongozi, na maono yetu ya kimataifa kwa biashara, uvumbuzi, na ustawi wa pamoja katika Afrika, Ulaya, Asia, na Marekani."
+    },
+    "hero": {
+      "eyebrow": "Kuhusu Sisi",
+      "title": "Kuhusu Pi Global GCV Alliance",
+      "subtitle": "Kujenga uchumi wa biashara duniani wenye haki na ushirikishwaji katika Afrika, Ulaya, Asia, na Marekani kupitia Thamani ya Makubaliano ya Kimataifa."
+    },
+    "mission": {
+      "eyebrow": "Kusudi Letu",
+      "title": "Dhamira Yetu",
+      "paragraph1": "Pi Global GCV Alliance imejitolea kuwawezesha wafanyabiashara, watoa huduma, na taasisi kwa zana na msaada wa jamii unaohitajika kufanya biashara kwa usawa katika soko la kimataifa linalokua.",
+      "paragraph2": "Tunaamini kuwa Thamani ya Makubaliano ya Kimataifa inawakilisha mabadiliko makubwa katika jinsi biashara inavyowekewa bei — kiwango kimoja, wazi, na thabiti ambacho kila mwanachama anaweza kutegemea, badala ya bei ya kubahatisha inayobadilika-badilika.",
+      "paragraph3": "Kupitia elimu, utetezi, na kujenga jamii, tunasaidia kuunda mustakabali wa biashara wenye usawa zaidi unaounganisha mabara manne.",
+      "imageAlt": "Jamii ya Muungano"
+    },
+    "values": {
+      "eyebrow": "Tunachosimamia",
+      "title": "Maadili Yetu ya Msingi",
+      "items": [
+        {
+          "title": "Jamii Kwanza",
+          "desc": "Tunatanguliza mahitaji na sauti za jamii yetu ya wanachama katika kila jambo tunalofanya."
+        },
+        {
+          "title": "Thamani Sawa",
+          "desc": "Tunatetea kiwango cha ubadilishaji fedha kilicho wazi na thabiti kinacholinda kila mshirika wa biashara."
+        },
+        {
+          "title": "Elimu",
+          "desc": "Tunawawezesha wanachama na wafanyabiashara kupitia rasilimali za kielimu na msaada wa kina."
+        },
+        {
+          "title": "Umoja wa Kimataifa",
+          "desc": "Tunajenga madaraja kati ya Afrika, Ulaya, Asia, na Marekani ili kuunda mtandao mmoja wa biashara."
+        }
+      ]
+    },
+    "gcv": {
+      "title": "Thamani ya Makubaliano ya Kimataifa ni Nini?",
+      "rateDisplay": "1 π ≈ ${{value}}",
+      "disclaimerStrong": "GCV ni lengo la bei lililopendekezwa na jamii, si kiwango rasmi cha Pi Network.",
+      "disclaimerRest": "Haijaidhinishwa na Pi Core Team wala kuthibitishwa katika soko lolote la fedha. Bei halisi ya Pi sokoni ni ndogo zaidi — ni senti chache kwa sarafu, si mamia ya maelfu ya dola.",
+      "paragraph1Before": "Thamani ya Makubaliano ya Kimataifa (GCV) ni kiwango cha lengo kilichokubaliwa na jamii ya Muungano, kikipendekeza",
+      "paragraph1After": "— nambari inayotokana na kigezo cha hisabati π (3.14159) huku nukta ya desimali ikihamishwa nafasi nne kwenda kulia. Bidhaa na huduma katika GCV Market zinawekewa bei kwa Dola za Marekani na kuonyeshwa zikiwa zimebadilishwa kwenda Pi kwa lengo hili la jamii.",
+      "paragraph2": "Tofauti na bei inayouzwa sokoni, GCV ni kiwango cha rejea cha ishara na matarajio kilichowekwa kwa makubaliano ya Muungano mzima miongoni mwa waanzilishi — si tathmini ya soko. Inaonyesha kile wafanyabiashara na wanachama washirika wamekubaliana kuheshimu wao kwa wao, si bei ambayo Pi inauzwa katika soko lolote.",
+      "principlesLabel": "Kanuni kuu za GCV ni pamoja na:",
+      "principles": [
+        "Lengo moja, lililokubaliwa na jamii, linalotumika sawasawa katika Market yote",
+        "Uwazi katika uwekaji bei na taratibu za miamala",
+        "Ulinzi dhidi ya udanganyifu wa soko na biashara isiyo rasmi",
+        "Ukubalifu wa wafanyabiashara kama uthibitisho wa manufaa halisi",
+        "Kiwango kimoja, kinachoshirikiwa katika kila eneo la muungano"
+      ],
+      "paragraph3": "Kwa wanachama katika Afrika, Ulaya, Asia, na Marekani, GCV inawakilisha matarajio ya pamoja ya kufanya biashara kwa masharti ya haki na yanayotabirika — kwa kiwango kimoja cha lengo, kinachotumika sawasawa, kila mahali katika Muungano."
+    },
+    "leadership": {
+      "eyebrow": "Timu Yetu",
+      "title": "Uongozi Wetu",
+      "doris": {
+        "name": "Doris Yin",
+        "role": "Balozi Mkuu wa Kimataifa · Mwanzilishi, Global GCV Movement",
+        "bio1": "Doris Yin ni mwanzilishi wa Global GCV Movement, akitoa maono ya kimkakati na mwelekeo kwa mtandao wa kimataifa wa Mabalozi wa GCV. Ameongoza na kuzungumza katika mikutano mikubwa ya kimataifa ikiendeleza GCV kama kiwango cha biashara ya haki na wazi.",
+        "bio2": "Ujumbe wake elekezi — \"Kujenga Msingi Imara, Nguzo ya Mustakabali Mzuri\" — ndio msingi wa falsafa ya elimu na ujenzi wa jamii ya Muungano katika kila eneo."
+      },
+      "olivier": {
+        "name": "Olivier Ndatimana",
+        "role": "Mkurugenzi Mwanzilishi, Pi Global GCV Alliance",
+        "bio1": "Olivier Ndatimana ni Mkurugenzi Mwanzilishi wa Pi Global GCV Alliance, akileta utaalamu wa usafirishaji, vifaa, na maendeleo ya soko akiwa Afisa Mkuu Mtendaji wa Kigali Hot Market Ltd.",
+        "bio2": "Chini ya uongozi wake, Muungano umekuza mtandao wake wa wafanyabiashara na uratibu wa kikanda katika Afrika, Ulaya, Asia, na Marekani — ukijenga kiwango cha biashara cha pamoja kutoka msingi.",
+        "bio3": "Dhamira ya Olivier ni kumpa kila mwanachama fursa ya haki na ya moja kwa moja kwenye uchumi wa dunia — huku GCV ikitoa msingi thabiti wa biashara katika Muungano."
+      }
+    },
+    "regionsSection": {
+      "eyebrow": "Muundo wa Kimataifa",
+      "title": "Mabara Manne, Muungano Mmoja",
+      "description": "Pi Global GCV Alliance imeundwa kuzunguka Mabalozi na Waanzilishi wa kikanda katika Afrika, Ulaya, Asia, na Marekani, kila mmoja akiongoza harakati katika eneo lake."
+    },
+    "impact": {
+      "title": "Athari za Muungano",
+      "stats": [
+        { "value": "4", "label": "Mabara" },
+        { "value": "12,500+", "label": "Wanachama Duniani" },
+        { "value": "3,200+", "label": "Wafanyabiashara Wanaofanya Kazi" },
+        { "value": "Jan 2025", "label": "Mkutano Mkuu wa Kwanza" }
+      ]
+    }
+  },
+  "team": {
+    "seo": {
+      "title": "Timu Kuu ya GCV",
+      "description": "Kutana na timu ya uongozi wa kimataifa na wakuu wa idara wanaoendesha Pi Global GCV Alliance katika Afrika na duniani kote."
+    },
+    "hero": {
+      "badge": "Watu Wetu",
+      "title": "Timu Kuu ya GCV",
+      "subtitle": "Waanzilishi, viongozi, mabalozi, na wataalamu wanaojenga harakati ya GCV katika Afrika na duniani kote."
+    },
+    "globalLeadership": {
+      "eyebrow": "Uongozi wa Juu",
+      "title": "Uongozi wa Kimataifa"
+    },
+    "founders": {
+      "eyebrow": "Wenye Maono",
+      "title": "Waanzilishi"
+    },
+    "structure": {
+      "eyebrow": "Muundo",
+      "title": "Timu za Idara"
+    },
+    "departments": {
+      "all": "Zote",
+      "leadership": "Uongozi",
+      "ambassadors": "Mabalozi",
+      "education": "Elimu",
+      "ecosystem": "Mfumo wa Ikolojia",
+      "finance": "Fedha",
+      "communications": "Mawasiliano",
+      "events": "Matukio"
+    }
+  },
+  "ambassadors": {
+    "seo": {
+      "title": "Mabalozi wa GCV",
+      "description": "Kutana na Mabalozi wa GCV wanaowakilisha Afrika, Ulaya, Asia, na Marekani — viongozi wa mstari wa mbele wa Pi Global GCV Alliance."
+    },
+    "hero": {
+      "badge": "Uwakilishi wa Kimataifa",
+      "title": "Mabalozi wa GCV",
+      "subtitle": "Mabalozi Wakuu na viongozi wa kikanda wanaowakilisha harakati ya GCV katika Afrika, Ulaya, Asia, na Marekani."
+    },
+    "contactLink": "Wasiliana Nasi",
+    "emptyState": "Hakuna balozi aliyepatikana kwa eneo hili."
+  },
+  "industryAlliance": {
+    "seo": {
+      "title": "Muungano wa Viwanda wa GCV",
+      "description": "Gundua Muungano wa Viwanda wa GCV — kampuni, mashirika, na biashara katika Afrika, Ulaya, Asia, na Marekani zinazoshirikiana na Pi Global GCV Alliance."
+    },
+    "hero": {
+      "badge": "Washirika wa Kimkakati",
+      "title": "Muungano wa Viwanda wa GCV",
+      "subtitle": "Kampuni, taasisi, na mashirika katika mabara manne yaliyolingana na kiwango cha GCV na kujenga uchumi unaoendeshwa na Pi."
+    },
+    "activeMemberTitle": "Mwanachama Anayefanya Kazi",
+    "emptyState": "Hakuna mwanachama wa muungano aliyepatikana kwa eneo hili.",
+    "cta": {
+      "title": "Jiunge na Muungano wa Viwanda",
+      "description": "Je, kampuni au shirika lako limelingana na kiwango cha GCV? Omba kuwa mwanachama rasmi wa Muungano wa Viwanda wa GCV.",
+      "button": "Omba Uanachama"
+    }
+  },
+  "merchants": {
+    "seo": {
+      "title": "Orodha ya Wafanyabiashara",
+      "description": "Vinjari Orodha ya Wafanyabiashara wa GCV — biashara za Kiafrika zinazokubali Pi kwa kiwango cha Thamani ya Makubaliano ya Kimataifa katika chakula, teknolojia, elimu, afya, na zaidi."
+    },
+    "hero": {
+      "badge": "Wafanyabiashara wa Pi",
+      "title": "Orodha ya Wafanyabiashara",
+      "subtitle": "Gundua biashara za Kiafrika zinazokubali Pi kwa kiwango cha GCV. Kuanzia wachuuzi wa chakula hadi kampuni za teknolojia — nunua, kula, na fanya miamala kwa Pi.",
+      "searchPlaceholder": "Tafuta wafanyabiashara kwa jina, aina, au nchi…"
+    },
+    "categories": {
+      "all": "Zote",
+      "foodBeverage": "Chakula na Vinywaji",
+      "technology": "Teknolojia",
+      "fashionClothing": "Mitindo na Mavazi",
+      "education": "Elimu",
+      "transport": "Usafiri",
+      "agriculture": "Kilimo",
+      "professionalServices": "Huduma za Kitaalamu",
+      "healthcare": "Afya"
+    },
+    "resultsCount_one": "Mfanyabiashara {{count}} amepatikana",
+    "resultsCount_other": "Wafanyabiashara {{count}} wamepatikana",
+    "resultsInCategory": " katika {{category}}",
+    "resultsForQuery": " kwa \"{{query}}\"",
+    "email": "Barua Pepe",
+    "website": "Tovuti",
+    "empty": {
+      "title": "Hakuna Mfanyabiashara Aliyepatikana",
+      "description": "Jaribu kurekebisha utafutaji wako au kuchagua aina nyingine.",
+      "clearFilters": "Futa Vichujio"
+    },
+    "cta": {
+      "title": "Orodhesha Biashara Yako",
+      "description": "Kubali Pi kwa kiwango cha GCV na jiunge na mtandao unaokua wa wafanyabiashara wa Kiafrika. Usajili ni bure kwa biashara zote zinazolingana na GCV.",
+      "button": "Jisajili kama Mfanyabiashara"
+    }
+  }
+}

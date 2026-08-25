@@ -1,0 +1,149 @@
+{
+  "shop": {
+    "seo": {
+      "title": "Marché GCV",
+      "description": "Marché GCV — parcourez les produits. Payez en Pi au taux fixe de la Valeur de Consensus Globale."
+    },
+    "breadcrumb": {
+      "home": "Accueil",
+      "current": "Marché GCV"
+    },
+    "heading": "Marché GCV",
+    "sidebar": {
+      "productType": "Type de produit"
+    },
+    "categories": {
+      "all": "Tous",
+      "sedans": "Berlines",
+      "suvs": "SUV",
+      "sportsCars": "Voitures de sport",
+      "luxury": "Luxe"
+    },
+    "filters": {
+      "allCategories": "Toutes les catégories"
+    },
+    "promo": {
+      "eyebrow": "Payer en Pi",
+      "title": "Sûr. Simple. Mondial.",
+      "rate": "Objectif GCV : 1 π ≈ 314 159 $",
+      "disclaimer": "Proposé par la communauté, ce n'est pas un taux officiel.",
+      "learnMore": "En savoir plus"
+    },
+    "search": {
+      "placeholder": "Rechercher des produits…"
+    },
+    "sort": {
+      "featured": "Trier par : En vedette",
+      "priceLowHigh": "Prix : croissant",
+      "priceHighLow": "Prix : décroissant"
+    },
+    "results": {
+      "loading": "Chargement des produits…",
+      "count_one": "{{count}} produit",
+      "count_other": "{{count}} produits"
+    },
+    "error": {
+      "title": "Impossible de charger les produits",
+      "fallbackMessage": "Échec du chargement des produits."
+    },
+    "empty": {
+      "title": "Aucun produit trouvé",
+      "subtitle": "Essayez un autre terme de recherche ou une autre catégorie"
+    },
+    "badge": {
+      "sale": "SOLDE"
+    },
+    "stock": {
+      "outOfStock": "Rupture de stock",
+      "onlyLeft": "Plus que {{count}} en stock",
+      "inStock": "En stock"
+    },
+    "whyPayInPi": {
+      "heading": "Pourquoi payer en Pi ?",
+      "communityTarget": { "title": "Objectif GCV communautaire", "desc": "Prix basé sur 1 π ≈ 314 159 $ (non officiel)" },
+      "globalSecure": { "title": "Mondial et sécurisé", "desc": "Transactions sûres et transparentes" },
+      "supportEcosystem": { "title": "Soutien à l'écosystème", "desc": "Autonomiser les commerçants et les communautés" },
+      "easyToUse": { "title": "Facile à utiliser", "desc": "Expérience de paiement simplifiée" }
+    }
+  },
+  "productDetail": {
+    "loading": "Chargement…",
+    "notFound": {
+      "title": "Produit introuvable",
+      "text": "Le produit que vous recherchez n'existe pas.",
+      "backToShop": "Retour à la boutique"
+    },
+    "backToShop": "Retour à la boutique",
+    "byMerchant": " · Par {{name}}",
+    "ratingSummary": "{{rating}} ({{count}} avis)",
+    "save": "Économisez {{amount}} $",
+    "gcvNote": "{{piAmount}} π au taux cible GCV communautaire",
+    "stock": {
+      "outOfStock": "Rupture de stock",
+      "onlyLeftInStock": "Plus que {{count}} en stock",
+      "inStock": "En stock"
+    },
+    "quantity": {
+      "label": "Quantité"
+    },
+    "addToCart": {
+      "add": "Ajouter au panier",
+      "added": "Ajouté au panier"
+    },
+    "tabs": {
+      "description": "Description",
+      "reviews": "Avis ({{count}})",
+      "shipping": "Informations de livraison"
+    },
+    "reviews": {
+      "comingSoon": "Les avis clients arrivent bientôt. Soyez le premier à évaluer ce produit !"
+    },
+    "shipping": {
+      "deliveryHeading": "Informations de livraison",
+      "deliveryIntro": "Chaque véhicule est inspecté et préparé par un concessionnaire Commerçant GCV certifié avant la livraison. Les délais varient selon la destination :",
+      "africa": "Afrique : 5 à 10 jours ouvrables",
+      "europe": "Europe : 10 à 20 jours ouvrables",
+      "northAmerica": "Amérique du Nord : 15 à 25 jours ouvrables",
+      "other": "Autres régions : 20 à 30 jours ouvrables",
+      "docs": "L'accompagnement pour l'immatriculation du véhicule et les documents d'importation est inclus. Des essais routiers peuvent être organisés avant l'achat dans certains concessionnaires.",
+      "returnsHeading": "Retours et garantie",
+      "returnsText": "Tous les véhicules bénéficient d'une garantie concessionnaire de 90 jours à compter de la date de livraison. Les demandes de retour doivent être effectuées dans les 7 jours suivant la livraison, sous réserve d'inspection."
+    },
+    "relatedProducts": {
+      "heading": "Produits similaires",
+      "gcvNote": "≈ {{piAmount}} π (GCV)"
+    }
+  },
+  "cart": {
+    "seo": {
+      "title": "Panier"
+    },
+    "heading": "Panier",
+    "empty": {
+      "heading": "Votre panier est vide",
+      "text": "Parcourez le marché GCV pour trouver des produits, des services et des entreprises.",
+      "continueShopping": "Continuer les achats"
+    },
+    "priceUsd": "{{price}} USD",
+    "aria": {
+      "removeItem": "Retirer l'article",
+      "decreaseQuantity": "Diminuer la quantité",
+      "increaseQuantity": "Augmenter la quantité"
+    },
+    "continueShopping": "Continuer les achats",
+    "summary": {
+      "heading": "Résumé du panier",
+      "subtotal_one": "Sous-total ({{count}} article)",
+      "subtotal_other": "Sous-total ({{count}} articles)",
+      "amountUsd": "{{amount}} $ USD",
+      "shipping": "Livraison",
+      "total": "Total",
+      "gcvNote": "{{piAmount}} π",
+      "disclaimer": "Objectif GCV : 1 π ≈ 314 159 $ (proposé par la communauté, taux non officiel)"
+    },
+    "checkout": {
+      "proceed": "Procéder au paiement",
+      "secure": "Paiement sécurisé"
+    }
+  }
+}

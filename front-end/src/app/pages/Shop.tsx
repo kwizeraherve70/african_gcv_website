@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Search, Star, ShieldCheck, Globe2, Users, Zap, ChevronRight } from 'lucide-react';
 import type { Product } from '../data/mockData';
 import { getAllProducts } from '../api/products';
@@ -9,14 +10,25 @@ import { toPi } from '../lib/pi';
 
 const PRODUCT_CATEGORIES = ['All', 'Sedans', 'SUVs', 'Sports Cars', 'Luxury'];
 
-const WHY_PAY_IN_PI = [
-  { icon: <ShieldCheck className="w-5 h-5" />, title: 'Community GCV Target', desc: 'Priced at 1 π ≈ $314,159 (unofficial)' },
-  { icon: <Globe2 className="w-5 h-5" />, title: 'Global & Secure', desc: 'Safe and transparent transactions' },
-  { icon: <Users className="w-5 h-5" />, title: 'Support Ecosystem', desc: 'Empowering merchants and communities' },
-  { icon: <Zap className="w-5 h-5" />, title: 'Easy to Use', desc: 'Simple checkout experience' },
-];
+const CATEGORY_KEYS: Record<string, string> = {
+  All: 'all',
+  Sedans: 'sedans',
+  SUVs: 'suvs',
+  'Sports Cars': 'sportsCars',
+  Luxury: 'luxury',
+};
+
+const WHY_PAY_IN_PI_KEYS = ['communityTarget', 'globalSecure', 'supportEcosystem', 'easyToUse'] as const;
+
+const WHY_PAY_IN_PI_ICONS: Record<(typeof WHY_PAY_IN_PI_KEYS)[number], JSX.Element> = {
+  communityTarget: <ShieldCheck className="w-5 h-5" />,
+  globalSecure: <Globe2 className="w-5 h-5" />,
+  supportEcosystem: <Users className="w-5 h-5" />,
+  easyToUse: <Zap className="w-5 h-5" />,
+};
 
 export function Shop() {
+  const { t } = useTranslation('shop');
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -32,7 +44,7 @@ export function Shop() {
         if (!cancelled) setProducts(data);
       })
       .catch(err => {
-        if (!cancelled) setError(err instanceof ApiError ? err.message : 'Failed to load products.');
+        if (!cancelled) setError(err instanceof ApiError ? err.message : t('shop.error.fallbackMessage'));
       })
       .finally(() => {
         if (!cancelled) setLoading(false);
@@ -54,25 +66,25 @@ export function Shop() {
   return (
     <div className="py-10">
       <SEO
-        title="GCV Market"
-        description="GCV Market — browse products. Pay with Pi at the fixed Global Consensus Value rate."
+        title={t('shop.seo.title')}
+        description={t('shop.seo.description')}
         url="/shop"
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="mb-2 text-xs text-muted-foreground">
-          <Link to="/" className="hover:text-brand-purple">Home</Link>
+          <Link to="/" className="hover:text-brand-purple">{t('shop.breadcrumb.home')}</Link>
           <span className="mx-1.5">/</span>
-          <span className="text-foreground font-medium">GCV Market</span>
+          <span className="text-foreground font-medium">{t('shop.breadcrumb.current')}</span>
         </div>
-        <h1 className="text-3xl md:text-4xl font-heading font-bold mb-8 tracking-tight">GCV Market</h1>
+        <h1 className="text-3xl md:text-4xl font-heading font-bold mb-8 tracking-tight">{t('shop.heading')}</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-8">
 
           {/* Sidebar */}
           <aside className="lg:sticky lg:top-20 lg:self-start">
-            <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">Product Type</h2>
+            <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-3">{t('shop.sidebar.productType')}</h2>
             <div className="flex flex-col gap-1 mb-8">
               {PRODUCT_CATEGORIES.map(cat => (
                 <button
@@ -84,7 +96,7 @@ export function Shop() {
                       : 'text-foreground/70 hover:bg-accent'
                   }`}
                 >
-                  {cat}
+                  {t(`shop.categories.${CATEGORY_KEYS[cat]}`)}
                   <ChevronRight className="w-3.5 h-3.5 opacity-50" />
                 </button>
               ))}
@@ -92,15 +104,15 @@ export function Shop() {
 
             {/* Pay in Pi promo */}
             <div className="rounded-2xl bg-gradient-to-br from-brand-purple to-brand-purple-light text-white p-5">
-              <p className="text-xs font-semibold uppercase tracking-widest text-white/70 mb-1">Pay in Pi</p>
-              <h3 className="font-bold text-lg mb-3 leading-tight">Safe. Simple. Global.</h3>
-              <p className="text-sm text-white/80 mb-1">GCV target: 1 π ≈ $314,159</p>
-              <p className="text-xs text-white/60 mb-4">Community-proposed, not an official rate.</p>
+              <p className="text-xs font-semibold uppercase tracking-widest text-white/70 mb-1">{t('shop.promo.eyebrow')}</p>
+              <h3 className="font-bold text-lg mb-3 leading-tight">{t('shop.promo.title')}</h3>
+              <p className="text-sm text-white/80 mb-1">{t('shop.promo.rate')}</p>
+              <p className="text-xs text-white/60 mb-4">{t('shop.promo.disclaimer')}</p>
               <Link
                 to="/about"
                 className="block text-center py-2 bg-brand-gold text-brand-ink text-sm font-bold rounded-xl hover:bg-yellow-300 transition-colors"
               >
-                Learn More
+                {t('shop.promo.learnMore')}
               </Link>
             </div>
           </aside>
@@ -113,7 +125,7 @@ export function Shop() {
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                 <input
                   type="text"
-                  placeholder="Search products…"
+                  placeholder={t('shop.search.placeholder')}
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
                   className="w-full pl-11 pr-4 py-3 rounded-xl border border-border bg-background focus:outline-none focus:ring-2 focus:ring-brand-purple/25 focus:border-brand-purple transition-all text-sm"
@@ -125,32 +137,32 @@ export function Shop() {
                 className="px-4 py-3 rounded-xl border border-border bg-background text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-purple/25"
               >
                 {PRODUCT_CATEGORIES.map(cat => (
-                  <option key={cat} value={cat}>{cat === 'All' ? 'All Categories' : cat}</option>
+                  <option key={cat} value={cat}>{cat === 'All' ? t('shop.filters.allCategories') : t(`shop.categories.${CATEGORY_KEYS[cat]}`)}</option>
                 ))}
               </select>
               <select className="px-4 py-3 rounded-xl border border-border bg-background text-sm font-medium focus:outline-none focus:ring-2 focus:ring-brand-purple/25">
-                <option>Sort by: Featured</option>
-                <option>Price: Low to High</option>
-                <option>Price: High to Low</option>
+                <option>{t('shop.sort.featured')}</option>
+                <option>{t('shop.sort.priceLowHigh')}</option>
+                <option>{t('shop.sort.priceHighLow')}</option>
               </select>
             </div>
 
             <p className="text-sm text-muted-foreground mb-5">
-              {loading ? 'Loading products…' : `${filteredProducts.length} product${filteredProducts.length !== 1 ? 's' : ''}`}
+              {loading ? t('shop.results.loading') : t('shop.results.count', { count: filteredProducts.length })}
             </p>
             {loading ? (
               <div className="text-center py-20 bg-brand-surface rounded-2xl">
-                <p className="text-muted-foreground font-medium">Loading products…</p>
+                <p className="text-muted-foreground font-medium">{t('shop.results.loading')}</p>
               </div>
             ) : error ? (
               <div className="text-center py-20 bg-brand-surface rounded-2xl">
-                <p className="text-red-500 font-medium mb-1">Couldn't load products</p>
+                <p className="text-red-500 font-medium mb-1">{t('shop.error.title')}</p>
                 <p className="text-sm text-muted-foreground">{error}</p>
               </div>
             ) : filteredProducts.length === 0 ? (
               <div className="text-center py-20 bg-brand-surface rounded-2xl">
-                <p className="text-muted-foreground font-medium mb-1">No products found</p>
-                <p className="text-sm text-muted-foreground">Try a different search term or category</p>
+                <p className="text-muted-foreground font-medium mb-1">{t('shop.empty.title')}</p>
+                <p className="text-sm text-muted-foreground">{t('shop.empty.subtitle')}</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -168,7 +180,7 @@ export function Shop() {
                       />
                       {product.compareAtPrice && (
                         <div className="absolute top-2.5 right-2.5 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
-                          SALE
+                          {t('shop.badge.sale')}
                         </div>
                       )}
                     </div>
@@ -208,11 +220,11 @@ export function Shop() {
                       {product.inventory < 999 && (
                         <div className="mt-2 text-xs font-medium">
                           {product.inventory === 0 ? (
-                            <span className="text-red-500">Out of Stock</span>
+                            <span className="text-red-500">{t('shop.stock.outOfStock')}</span>
                           ) : product.inventory < 10 ? (
-                            <span className="text-orange-500">Only {product.inventory} left</span>
+                            <span className="text-orange-500">{t('shop.stock.onlyLeft', { count: product.inventory })}</span>
                           ) : (
-                            <span className="text-brand-green">In Stock</span>
+                            <span className="text-brand-green">{t('shop.stock.inStock')}</span>
                           )}
                         </div>
                       )}
@@ -231,16 +243,16 @@ export function Shop() {
 
             {/* Why Pay in Pi */}
             <div className="mt-16 pt-10 border-t border-border">
-              <h2 className="text-xl font-heading font-bold mb-6 text-center">Why Pay in Pi?</h2>
+              <h2 className="text-xl font-heading font-bold mb-6 text-center">{t('shop.whyPayInPi.heading')}</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                {WHY_PAY_IN_PI.map(({ icon, title, desc }) => (
-                  <div key={title} className="flex items-start gap-3">
+                {WHY_PAY_IN_PI_KEYS.map(key => (
+                  <div key={key} className="flex items-start gap-3">
                     <div className="w-10 h-10 rounded-xl bg-brand-purple/10 text-brand-purple flex items-center justify-center flex-shrink-0">
-                      {icon}
+                      {WHY_PAY_IN_PI_ICONS[key]}
                     </div>
                     <div>
-                      <h3 className="font-semibold text-sm">{title}</h3>
-                      <p className="text-xs text-muted-foreground">{desc}</p>
+                      <h3 className="font-semibold text-sm">{t(`shop.whyPayInPi.${key}.title`)}</h3>
+                      <p className="text-xs text-muted-foreground">{t(`shop.whyPayInPi.${key}.desc`)}</p>
                     </div>
                   </div>
                 ))}

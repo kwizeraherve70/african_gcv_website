@@ -1,10 +1,12 @@
 import { useEffect } from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { Check, ArrowRight, Package, Mail, Truck } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { SEO } from '../components/SEO';
 
 export function OrderConfirmation() {
+  const { t } = useTranslation('checkout');
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const { clearCart } = useCart();
@@ -40,36 +42,36 @@ export function OrderConfirmation() {
             </div>
           </div>
 
-          <h1 className="text-3xl font-bold mb-2 tracking-tight">Order Confirmed!</h1>
+          <h1 className="text-3xl font-bold mb-2 tracking-tight">{t('orderConfirmation.title')}</h1>
           <p className="text-muted-foreground mb-1">
-            Thank you for your purchase from Pi Global GCV Alliance.
+            {t('orderConfirmation.thankYou')}
           </p>
           {orderNumber && (
             <div className="inline-block bg-accent/60 rounded-xl px-4 py-2 mb-8">
-              <p className="text-xs text-muted-foreground">Order number</p>
+              <p className="text-xs text-muted-foreground">{t('orderConfirmation.orderNumberLabel')}</p>
               <p className="font-mono font-bold text-base tracking-wide">{orderNumber}</p>
             </div>
           )}
 
           {/* Next steps */}
           <div className="bg-accent/40 rounded-2xl p-6 mb-8 text-left">
-            <h2 className="font-semibold text-sm mb-4">What happens next?</h2>
+            <h2 className="font-semibold text-sm mb-4">{t('orderConfirmation.nextSteps.title')}</h2>
             <div className="space-y-4">
               {[
                 {
                   Icon: Mail,
                   color: '#5b21b6',
-                  text: "You'll receive an order confirmation email shortly",
+                  text: t('orderConfirmation.nextSteps.confirmationEmail'),
                 },
                 {
                   Icon: Package,
                   color: '#7c3aed',
-                  text: 'Digital products will be sent to your email within 24 hours',
+                  text: t('orderConfirmation.nextSteps.digitalDelivery'),
                 },
                 {
                   Icon: Truck,
                   color: '#10b981',
-                  text: 'Physical products will be shipped within 2–3 business days',
+                  text: t('orderConfirmation.nextSteps.physicalShipping'),
                 },
               ].map(({ Icon, color, text }) => (
                 <div key={text} className="flex items-start gap-3">
@@ -91,21 +93,21 @@ export function OrderConfirmation() {
               to="/shop"
               className="px-6 py-3.5 bg-brand-purple text-white rounded-xl hover:bg-brand-purple-light transition-all duration-200 inline-flex items-center justify-center gap-2 font-semibold shadow-lg shadow-brand-purple/20 hover:-translate-y-0.5"
             >
-              Continue Shopping
+              {t('orderConfirmation.continueShopping')}
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               to="/"
               className="px-6 py-3.5 border border-border rounded-xl hover:bg-accent text-sm font-medium transition-colors"
             >
-              Back to Home
+              {t('orderConfirmation.backToHome')}
             </Link>
           </div>
 
           <div className="mt-8 pt-6 border-t border-border">
-            <p className="text-xs text-muted-foreground mb-1">Need help with your order?</p>
+            <p className="text-xs text-muted-foreground mb-1">{t('orderConfirmation.needHelp')}</p>
             <Link to="/contact" className="text-brand-purple text-sm font-medium hover:underline">
-              Contact Support
+              {t('orderConfirmation.contactSupport')}
             </Link>
           </div>
         </div>

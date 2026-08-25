@@ -1,0 +1,87 @@
+{
+  "seo": {
+    "title": "Home",
+    "description": "Pi Global GCV Alliance — a global trade alliance connecting Africa, Europe, Asia, and the USA through commerce, innovation, and shared prosperity. Pay in Pi at the community-proposed GCV target."
+  },
+  "hero": {
+    "titleLine1": "Uniting the World,",
+    "titleLine2": "Empowering Trade",
+    "subtitle": "A global alliance connecting Africa, Europe, Asia, and the USA through trade, innovation, and shared prosperity.",
+    "exploreMarket": "Explore Market",
+    "joinAlliance": "Join the Alliance",
+    "gcvTarget": {
+      "label": "GCV Community Target",
+      "rate": "1 π ≈ ${{value}}",
+      "disclaimer": "Not an official Pi Network or exchange rate."
+    }
+  },
+  "features": {
+    "global": { "title": "Global Alliance", "desc": "Operating across 4 continents" },
+    "secure": { "title": "Secure & Trusted", "desc": "Transparent, reliable and accountable" },
+    "payInPi": { "title": "Pay in Pi", "desc": "Easy payments at the community GCV target" },
+    "empowering": { "title": "Empowering Businesses", "desc": "Supporting merchants and entrepreneurs" }
+  },
+  "stats": {
+    "members": "Members Worldwide",
+    "merchants": "Active Merchants",
+    "products": "Products Listed",
+    "events": "Events Organized"
+  },
+  "featured": {
+    "eyebrow": "GCV Market",
+    "heading": "Featured in GCV Market",
+    "viewAll": "View All Products"
+  },
+  "news": {
+    "eyebrow": "Stay Informed",
+    "heading": "Latest News",
+    "viewAll": "View all news"
+  },
+  "founder": {
+    "badge": "Founding Director, Pi Global GCV Alliance",
+    "name": "Olivier Ndatimana",
+    "quote": "Based in Kigali, Rwanda, Olivier leads the Alliance's mission to connect merchants, entrepreneurs, and institutions across Africa, Europe, Asia, and the USA under one shared trade and consensus-value standard.",
+    "bio": "As CEO of Kigali Hot Market Ltd, Olivier's mission is to give every market participant — from smallholder producers to service companies — fair, direct access to a growing global trade network.",
+    "cta": "Meet the Founders",
+    "imageAlt": "Olivier Ndatimana"
+  },
+  "mission": {
+    "eyebrow": "Why We Exist",
+    "heading": "Mission & Vision",
+    "missionTitle": "Our Mission",
+    "missionText": "To unite merchants, service providers, and institutions across Africa, Europe, Asia, and the USA under a single trade alliance — empowering every member with fair market access, priced fairly and payable in Pi at the community GCV target.",
+    "visionTitle": "Our Vision",
+    "visionText": "A global marketplace where trade flows freely across continents — powering agriculture, manufacturing, professional services, and commerce for every alliance member, priced consistently at the community GCV target of 1 π ≈ ${{value}}."
+  },
+  "membership": {
+    "eyebrow": "Join the Alliance",
+    "heading": "Become a Member",
+    "text": "The Pi Global GCV Alliance is open to every trader, business, and institution. Whether you want to be an Ambassador, register your business as a GCV Merchant, or simply join the community — there's a role for you.",
+    "roles": {
+      "member": { "title": "GCV Member", "desc": "Join the community and start browsing the GCV Market." },
+      "merchant": { "title": "GCV Merchant", "desc": "Register your business to accept Pi at the community GCV target." },
+      "ambassador": { "title": "GCV Ambassador", "desc": "Lead the movement in your country or region." }
+    },
+    "joinToday": "Join Today",
+    "learnMore": "Learn More",
+    "stats": {
+      "continents": "Continents",
+      "merchants": "GCV Merchants",
+      "products": "Products Listed",
+      "perPi": "per π (GCV target)"
+    }
+  },
+  "contact": {
+    "emailUs": "Email Us",
+    "callUs": "Call Us",
+    "whatsapp": "WhatsApp",
+    "chatWithUs": "Chat With Us"
+  },
+  "cta": {
+    "badge": "Be Part of the Movement",
+    "heading": "Join the Pi Global GCV Alliance Today!",
+    "subtitle": "Be part of a global movement building prosperity through trade and unity.",
+    "becomeMember": "Become a Member",
+    "exploreMarket": "Explore Market"
+  }
+}

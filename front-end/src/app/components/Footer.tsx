@@ -1,7 +1,11 @@
 import { Link } from 'react-router';
 import { Facebook, Twitter, Instagram, Youtube, Mail, Phone } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export function Footer() {
+  const { t } = useTranslation('common');
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="bg-brand-ink text-white mt-auto">
       <div className="h-px bg-gradient-to-r from-transparent via-brand-gold/40 to-transparent" />
@@ -18,15 +22,14 @@ export function Footer() {
               <span className="font-heading font-bold text-base leading-tight">Pi Global GCV<br />Alliance</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
-              A global trade alliance connecting Africa, Europe, Asia, and the USA
-              through commerce and collaboration.
+              {t('footer.description')}
             </p>
             <div className="flex gap-2 mt-5">
               {[
-                { href: 'https://facebook.com', Icon: Facebook, label: 'Facebook' },
-                { href: 'https://twitter.com', Icon: Twitter, label: 'Twitter / X' },
-                { href: 'https://instagram.com', Icon: Instagram, label: 'Instagram' },
-                { href: 'https://youtube.com', Icon: Youtube, label: 'YouTube' },
+                { href: 'https://facebook.com', Icon: Facebook, label: t('footer.social.facebook') },
+                { href: 'https://twitter.com', Icon: Twitter, label: t('footer.social.twitter') },
+                { href: 'https://instagram.com', Icon: Instagram, label: t('footer.social.instagram') },
+                { href: 'https://youtube.com', Icon: Youtube, label: t('footer.social.youtube') },
               ].map(({ href, Icon, label }) => (
                 <a
                   key={label}
@@ -45,14 +48,14 @@ export function Footer() {
           {/* Quick Links */}
           <div>
             <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-5">
-              Quick Links
+              {t('footer.quickLinks.heading')}
             </h4>
             <div className="flex flex-col gap-2.5">
               {[
-                { to: '/about', label: 'About Us' },
-                { to: '/shop', label: 'GCV Market' },
-                { to: '/news', label: 'News & Media' },
-                { to: '/contact', label: 'Contact Us' },
+                { to: '/about', label: t('footer.quickLinks.about') },
+                { to: '/shop', label: t('footer.quickLinks.market') },
+                { to: '/news', label: t('footer.quickLinks.news') },
+                { to: '/contact', label: t('footer.quickLinks.contact') },
               ].map(({ to, label }) => (
                 <Link
                   key={to}
@@ -68,13 +71,13 @@ export function Footer() {
           {/* Resources */}
           <div>
             <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-5">
-              Resources
+              {t('footer.resources.heading')}
             </h4>
             <div className="flex flex-col gap-2.5">
               {[
-                { to: '/merchants', label: 'Merchant Directory' },
-                { to: '/industry-alliance', label: 'Industry Alliance' },
-                { to: '/team', label: 'Founders' },
+                { to: '/merchants', label: t('footer.resources.merchants') },
+                { to: '/industry-alliance', label: t('footer.resources.alliance') },
+                { to: '/team', label: t('footer.resources.founders') },
               ].map(({ to, label }) => (
                 <Link
                   key={to}
@@ -90,14 +93,14 @@ export function Footer() {
           {/* Legal */}
           <div>
             <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-5">
-              Legal
+              {t('footer.legal.heading')}
             </h4>
             <div className="flex flex-col gap-2.5">
               <Link to="/terms" className="text-gray-400 hover:text-brand-gold text-sm transition-colors duration-150">
-                Terms of Use
+                {t('footer.legal.terms')}
               </Link>
               <Link to="/privacy" className="text-gray-400 hover:text-brand-gold text-sm transition-colors duration-150">
-                Privacy Policy
+                {t('footer.legal.privacy')}
               </Link>
             </div>
           </div>
@@ -105,7 +108,7 @@ export function Footer() {
           {/* Contact */}
           <div>
             <h4 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-5">
-              Contact Us
+              {t('footer.contact.heading')}
             </h4>
             <div className="flex flex-col gap-3">
               <a
@@ -128,7 +131,7 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 mt-1 px-3.5 py-2 bg-brand-green/15 text-brand-green rounded-lg text-sm font-medium hover:bg-brand-green/25 transition-colors duration-150 w-fit"
               >
-                WhatsApp Chat
+                {t('footer.contact.whatsapp')}
               </a>
             </div>
           </div>
@@ -137,14 +140,14 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/10 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-sm">
-            © 2026 Pi Global GCV Alliance. All rights reserved.
+            {t('footer.copyright', { year: currentYear })}
           </p>
           <div className="flex gap-6">
             <Link to="/privacy" className="text-gray-500 hover:text-gray-300 text-sm transition-colors duration-150">
-              Privacy Policy
+              {t('footer.bottom.privacy')}
             </Link>
             <Link to="/terms" className="text-gray-500 hover:text-gray-300 text-sm transition-colors duration-150">
-              Terms & Conditions
+              {t('footer.bottom.terms')}
             </Link>
           </div>
         </div>

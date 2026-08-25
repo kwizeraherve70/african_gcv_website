@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { LogIn } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { ApiError } from '../api/client';
@@ -9,6 +10,7 @@ const inputClass =
   'w-full px-4 py-3 rounded-xl border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/25 focus:border-brand-purple transition-all';
 
 export function Login() {
+  const { t } = useTranslation('auth');
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -32,7 +34,7 @@ export function Login() {
       const redirectTo = from ?? (user.roles.includes('ADMIN') ? '/admin' : '/');
       navigate(redirectTo, { replace: true });
     } catch (err) {
-      setError(err instanceof ApiError ? err.message : 'Something went wrong. Please try again.');
+      setError(err instanceof ApiError ? err.message : t('login.genericError'));
     } finally {
       setSubmitting(false);
     }
@@ -46,8 +48,8 @@ export function Login() {
           <div className="w-12 h-12 rounded-xl bg-brand-purple/10 text-brand-purple flex items-center justify-center mb-5">
             <LogIn className="w-5 h-5" />
           </div>
-          <h1 className="text-2xl font-bold mb-1 tracking-tight">Welcome back</h1>
-          <p className="text-sm text-muted-foreground mb-6">Log in to your Pi Global GCV Alliance account.</p>
+          <h1 className="text-2xl font-bold mb-1 tracking-tight">{t('login.title')}</h1>
+          <p className="text-sm text-muted-foreground mb-6">{t('login.subtitle')}</p>
 
           {error && (
             <div className="mb-4 px-4 py-3 rounded-xl bg-red-500/10 text-red-600 text-sm">{error}</div>
@@ -55,24 +57,24 @@ export function Login() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium mb-1.5">Email</label>
+              <label className="block text-sm font-medium mb-1.5">{t('login.emailLabel')}</label>
               <input
                 type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
+                placeholder={t('login.emailPlaceholder')}
                 className={inputClass}
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1.5">Password</label>
+              <label className="block text-sm font-medium mb-1.5">{t('login.passwordLabel')}</label>
               <input
                 type="password"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
+                placeholder={t('login.passwordPlaceholder')}
                 className={inputClass}
               />
             </div>
@@ -81,14 +83,14 @@ export function Login() {
               disabled={submitting}
               className="w-full py-3.5 px-6 bg-brand-purple text-white rounded-xl hover:bg-brand-purple-light text-sm font-semibold transition-all duration-200 shadow-lg shadow-brand-purple/20 hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0"
             >
-              {submitting ? 'Logging in…' : 'Log In'}
+              {submitting ? t('login.submitting') : t('login.submit')}
             </button>
           </form>
 
           <p className="text-sm text-muted-foreground text-center mt-6">
-            Don't have an account?{' '}
+            {t('login.noAccount')}{' '}
             <Link to="/register" className="text-brand-purple font-medium hover:underline">
-              Register
+              {t('login.registerLink')}
             </Link>
           </p>
         </div>

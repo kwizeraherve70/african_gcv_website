@@ -1,0 +1,78 @@
+{
+  "checkout": {
+    "steps": {
+      "shipping": "Usafirishaji",
+      "payment": "Malipo",
+      "review": "Ukaguzi"
+    },
+    "canceledNotice": "Malipo yalighairiwa. Agizo lako limehifadhiwa — unaweza kujaribu tena kulipa.",
+    "genericOrderError": "Imeshindikana kuweka agizo lako. Tafadhali jaribu tena.",
+    "shippingForm": {
+      "title": "Taarifa za usafirishaji",
+      "fullName": "Jina kamili *",
+      "fullNamePlaceholder": "Juma Otieno",
+      "email": "Barua pepe *",
+      "emailPlaceholder": "juma@mfano.com",
+      "phone": "Simu *",
+      "phonePlaceholder": "+250 700 000 000",
+      "address": "Anwani *",
+      "addressPlaceholder": "Mtaa Mkuu 123",
+      "city": "Jiji *",
+      "cityPlaceholder": "Kigali",
+      "province": "Mkoa / Jimbo *",
+      "provincePlaceholder": "Jiji la Kigali",
+      "country": "Nchi *",
+      "countryPlaceholder": "Rwanda",
+      "postalCode": "Msimbo wa posta",
+      "postalCodePlaceholder": "00000"
+    },
+    "paymentMethods": {
+      "title": "Njia ya malipo",
+      "card": {
+        "title": "Kadi ya Credit / Debit",
+        "description": "Lipa kwa usalama kwa kutumia kadi yako ya credit au debit"
+      },
+      "mobileMoney": {
+        "title": "Mobile Money",
+        "description": "M-Pesa, MTN Mobile Money, Orange Money"
+      },
+      "pi": {
+        "title": "Lipa kwa Pi",
+        "description": "Lipa moja kwa moja kutoka kwa Pochi lako la Pi — {{amount}} π kwa kiwango cha jamii cha GCV"
+      },
+      "piNotice": "Utathibitisha malipo haya kwenye programu yako ya Pi Wallet. GCV ni lengo lililopendekezwa na jamii, si kiwango rasmi cha Pi Network.",
+      "secureNotice": "Taarifa zako za malipo zimesimbwa kwa njia salama. Hatuhifadhi kamwe maelezo ya kadi yako."
+    },
+    "review": {
+      "title": "Kagua agizo",
+      "shippingTo": "Kinatumwa kwa",
+      "payment": "Malipo",
+      "piTarget": "{{amount}} π (lengo la GCV)",
+      "orderItems": "Bidhaa za agizo",
+      "subtotal": "Jumla ndogo",
+      "shipping": "Usafirishaji",
+      "total": "Jumla"
+    },
+    "buttons": {
+      "back": "Rudi nyuma",
+      "continue": "Endelea",
+      "placeOrder": "Weka agizo",
+      "placingOrder": "Inaweka agizo…"
+    }
+  },
+  "orderConfirmation": {
+    "title": "Agizo Limethibitishwa!",
+    "thankYou": "Asante kwa ununuzi wako kutoka Pi Global GCV Alliance.",
+    "orderNumberLabel": "Nambari ya agizo",
+    "nextSteps": {
+      "title": "Nini kinafuata?",
+      "confirmationEmail": "Utapokea barua pepe ya uthibitisho wa agizo hivi karibuni",
+      "digitalDelivery": "Bidhaa za kidijitali zitatumwa kwa barua pepe yako ndani ya masaa 24",
+      "physicalShipping": "Bidhaa halisi zitasafirishwa ndani ya siku 2-3 za kazi"
+    },
+    "continueShopping": "Endelea Kununua",
+    "backToHome": "Rudi Nyumbani",
+    "needHelp": "Unahitaji msaada na agizo lako?",
+    "contactSupport": "Wasiliana na Usaidizi"
+  }
+}

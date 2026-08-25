@@ -1,0 +1,78 @@
+{
+  "checkout": {
+    "steps": {
+      "shipping": "Shipping",
+      "payment": "Payment",
+      "review": "Review"
+    },
+    "canceledNotice": "Payment was canceled. Your order was saved — you can try paying again.",
+    "genericOrderError": "Could not place your order. Please try again.",
+    "shippingForm": {
+      "title": "Shipping Information",
+      "fullName": "Full Name *",
+      "fullNamePlaceholder": "John Doe",
+      "email": "Email *",
+      "emailPlaceholder": "john@example.com",
+      "phone": "Phone *",
+      "phonePlaceholder": "+250 700 000 000",
+      "address": "Address *",
+      "addressPlaceholder": "123 Main Street",
+      "city": "City *",
+      "cityPlaceholder": "Kigali",
+      "province": "Province / State *",
+      "provincePlaceholder": "Kigali City",
+      "country": "Country *",
+      "countryPlaceholder": "Rwanda",
+      "postalCode": "Postal Code",
+      "postalCodePlaceholder": "00000"
+    },
+    "paymentMethods": {
+      "title": "Payment Method",
+      "card": {
+        "title": "Credit / Debit Card",
+        "description": "Pay securely with your credit or debit card"
+      },
+      "mobileMoney": {
+        "title": "Mobile Money",
+        "description": "M-Pesa, MTN Mobile Money, Orange Money"
+      },
+      "pi": {
+        "title": "Pay with Pi",
+        "description": "Pay directly from your Pi Wallet — {{amount}} π at the community GCV target"
+      },
+      "piNotice": "You'll confirm this payment in your Pi Wallet app. GCV is a community-proposed target, not an official Pi Network rate.",
+      "secureNotice": "Your payment information is encrypted and secure. We never store your card details."
+    },
+    "review": {
+      "title": "Review Order",
+      "shippingTo": "Shipping To",
+      "payment": "Payment",
+      "piTarget": "{{amount}} π (GCV target)",
+      "orderItems": "Order Items",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "total": "Total"
+    },
+    "buttons": {
+      "back": "Back",
+      "continue": "Continue",
+      "placeOrder": "Place Order",
+      "placingOrder": "Placing Order…"
+    }
+  },
+  "orderConfirmation": {
+    "title": "Order Confirmed!",
+    "thankYou": "Thank you for your purchase from Pi Global GCV Alliance.",
+    "orderNumberLabel": "Order number",
+    "nextSteps": {
+      "title": "What happens next?",
+      "confirmationEmail": "You'll receive an order confirmation email shortly",
+      "digitalDelivery": "Digital products will be sent to your email within 24 hours",
+      "physicalShipping": "Physical products will be shipped within 2–3 business days"
+    },
+    "continueShopping": "Continue Shopping",
+    "backToHome": "Back to Home",
+    "needHelp": "Need help with your order?",
+    "contactSupport": "Contact Support"
+  }
+}

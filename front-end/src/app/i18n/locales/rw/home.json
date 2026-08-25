@@ -1,0 +1,87 @@
+{
+  "seo": {
+    "title": "Ahabanza",
+    "description": "Pi Global GCV Alliance — ihuriro ry'ubucuruzi mpuzamahanga rihuza Afurika, Uburayi, Aziya na Leta Zunze Ubumwe za Amerika binyuze mu bucuruzi, ubuhanga bushya, no guteza imbere ubukungu rusange. Ishyura muri Pi ku giciro cyagenwe n'umuryango (GCV target)."
+  },
+  "hero": {
+    "titleLine1": "Guhuza Isi,",
+    "titleLine2": "Guteza Imbere Ubucuruzi",
+    "subtitle": "Ihuriro mpuzamahanga rihuza Afurika, Uburayi, Aziya na Leta Zunze Ubumwe za Amerika binyuze mu bucuruzi, ubuhanga bushya, no guteza imbere ubukungu rusange.",
+    "exploreMarket": "Reba Isoko",
+    "joinAlliance": "Injira mu Ihuriro",
+    "gcvTarget": {
+      "label": "Igiciro Rusange cya GCV",
+      "rate": "1 π ≈ ${{value}}",
+      "disclaimer": "Ntabwo ari igiciro cya Pi Network cyemewe cyangwa igiciro cyo kuvunja."
+    }
+  },
+  "features": {
+    "global": { "title": "Ihuriro Mpuzamahanga", "desc": "Rikorera ku migabane 4" },
+    "secure": { "title": "Umutekano n'Icyizere", "desc": "Ibikorwa bigaragara, byizewe kandi bibazwa" },
+    "payInPi": { "title": "Ishyura muri Pi", "desc": "Kwishyura byoroshye ku giciro rusange cya GCV" },
+    "empowering": { "title": "Guteza Imbere Ubucuruzi", "desc": "Gushyigikira abacuruzi n'abikorera" }
+  },
+  "stats": {
+    "members": "Abanyamuryango ku Isi",
+    "merchants": "Abacuruzi Bakora",
+    "products": "Ibicuruzwa Byanditswe",
+    "events": "Ibirori Byateguwe"
+  },
+  "featured": {
+    "eyebrow": "Isoko rya GCV",
+    "heading": "Ibyatoranyijwe ku Isoko rya GCV",
+    "viewAll": "Reba Ibicuruzwa Byose"
+  },
+  "news": {
+    "eyebrow": "Menya Amakuru",
+    "heading": "Amakuru Mashya",
+    "viewAll": "Reba amakuru yose"
+  },
+  "founder": {
+    "badge": "Umuyobozi Mushingamurwa, Pi Global GCV Alliance",
+    "name": "Olivier Ndatimana",
+    "quote": "Atuye i Kigali, mu Rwanda, Olivier ayoboye intego y'Ihuriro yo guhuza abacuruzi, abikorera n'ibigo hirya no hino muri Afurika, Uburayi, Aziya na Leta Zunze Ubumwe za Amerika munsi y'urwego rumwe rw'ubucuruzi n'igiciro rusange.",
+    "bio": "Nk'Umuyobozi Mukuru wa Kigali Hot Market Ltd, intego ya Olivier ni ugutuma buri wese ugize uruhare mu isoko — kuva ku barimyi bato kugeza ku bigo bitanga serivisi — abona uburyo bwiza kandi butaziguye bwo kwinjira mu mushinga w'ubucuruzi mpuzamahanga ukura buri munsi.",
+    "cta": "Menya Abashinze",
+    "imageAlt": "Olivier Ndatimana"
+  },
+  "mission": {
+    "eyebrow": "Impamvu Dubaho",
+    "heading": "Intego n'Icyerekezo",
+    "missionTitle": "Intego Yacu",
+    "missionText": "Guhuza abacuruzi, abatanga serivisi, n'ibigo biri muri Afurika, Uburayi, Aziya na Leta Zunze Ubumwe za Amerika munsi y'ihuriro rimwe ry'ubucuruzi — dushyigikira buri munyamuryango kugira uburenganzira bungana bwo kwinjira mu isoko, ibiciro binyuze mu buryo bwuzuye kandi bishobora kwishyurwa muri Pi ku giciro rusange cya GCV.",
+    "visionTitle": "Icyerekezo Cyacu",
+    "visionText": "Isoko mpuzamahanga aho ubucuruzi butemba mu bwisanzure hagati y'imigabane — bushyigikira ubuhinzi, inganda, serivisi z'umwuga, n'ubucuruzi ku banyamuryango bose b'Ihuriro, ku giciro kimwe gihamye cy'igiciro rusange cya GCV cya 1 π ≈ ${{value}}."
+  },
+  "membership": {
+    "eyebrow": "Injira mu Ihuriro",
+    "heading": "Ba Umunyamuryango",
+    "text": "Pi Global GCV Alliance ifunguriwe buri mucuruzi, ikigo n'urwego rwose. Niba ushaka kuba Intumwa (Ambassador), kwandikisha ikigo cyawe nk'Umucuruzi wa GCV, cyangwa gusa kwinjira mu muryango — hari uruhare rwakugendera.",
+    "roles": {
+      "member": { "title": "Umunyamuryango wa GCV", "desc": "Injira mu muryango utangire gushakisha ku Isoko rya GCV." },
+      "merchant": { "title": "Umucuruzi wa GCV", "desc": "Andikisha ikigo cyawe kugira ngo cyakire Pi ku giciro rusange cya GCV." },
+      "ambassador": { "title": "Intumwa ya GCV", "desc": "Yobora umuvuvuzi mu gihugu cyawe cyangwa akarere kawe." }
+    },
+    "joinToday": "Injira Uyu Munsi",
+    "learnMore": "Menya Byinshi",
+    "stats": {
+      "continents": "Imigabane",
+      "merchants": "Abacuruzi ba GCV",
+      "products": "Ibicuruzwa Byanditswe",
+      "perPi": "kuri π (igiciro rusange cya GCV)"
+    }
+  },
+  "contact": {
+    "emailUs": "Twandikire",
+    "callUs": "Duhamagare",
+    "whatsapp": "WhatsApp",
+    "chatWithUs": "Ganira Natwe"
+  },
+  "cta": {
+    "badge": "Ba Umwe mu Muvuvuzi",
+    "heading": "Injira muri Pi Global GCV Alliance Uyu Munsi!",
+    "subtitle": "Ba umwe mu muvuvuzi mpuzamahanga ubaka ubukungu binyuze mu bucuruzi n'ubumwe.",
+    "becomeMember": "Ba Umunyamuryango",
+    "exploreMarket": "Reba Isoko"
+  }
+}

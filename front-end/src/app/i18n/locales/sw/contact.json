@@ -1,0 +1,76 @@
+{
+  "seo": {
+    "title": "Wasiliana Nasi",
+    "description": "Wasiliana na Pi Global GCV Alliance. Tufikie kwa barua pepe, simu, au tembelea ofisi yetu Kigali, Rwanda."
+  },
+  "header": {
+    "eyebrow": "Wasiliana Nasi",
+    "title": "Wasiliana Nasi",
+    "subtitle": "Una maswali kuhusu GCV Market au uanachama? Tuko hapa kukusaidia."
+  },
+  "info": {
+    "email": { "title": "Barua Pepe", "value": "info@gcvalliance.org" },
+    "phone": { "title": "Simu", "value": "+250 788 547 719" },
+    "office": {
+      "title": "Anwani ya Ofisi",
+      "value": "KG 11 Ave, Kiyovu\nKigali, Rwanda\nTunahudumia wanachama katika Afrika, Ulaya, Asia, na Marekani"
+    }
+  },
+  "social": {
+    "title": "Tufuate"
+  },
+  "form": {
+    "success": {
+      "title": "Ujumbe Umetumwa!",
+      "description": "Asante kwa kuwasiliana nasi. Angalia sanduku lako la barua pepe kwa uthibitisho — tutakujibu hivi karibuni.",
+      "sendAnother": "Tuma ujumbe mwingine"
+    },
+    "nameLabel": "Jina Lako *",
+    "namePlaceholder": "Juma Said",
+    "emailLabel": "Barua Pepe Yako *",
+    "emailPlaceholder": "juma@mfano.com",
+    "subjectLabel": "Mada *",
+    "subjectPlaceholder": "Chagua mada",
+    "subjectOptions": {
+      "general": "Swali la Jumla",
+      "gcv": "Maswali kuhusu GCV",
+      "membership": "Uanachama na Usajili",
+      "products": "Msaada wa Bidhaa",
+      "partnership": "Fursa ya Ushirikiano",
+      "other": "Nyingine"
+    },
+    "messageLabel": "Ujumbe *",
+    "messagePlaceholder": "Tuambie jinsi tunavyoweza kukusaidia…",
+    "genericError": "Imeshindwa kutuma ujumbe wako. Tafadhali jaribu tena.",
+    "submitting": "Inatuma…",
+    "submit": "Tuma Ujumbe"
+  },
+  "map": {
+    "eyebrow": "Tupate",
+    "title": "Mahali Tulipo",
+    "address": "KG 11 Ave, Kiyovu, Kigali, Rwanda",
+    "iframeTitle": "Pi Global GCV Alliance — Ofisi ya Kigali"
+  },
+  "faq": {
+    "eyebrow": "Maswali ya Kawaida",
+    "title": "Maswali Yanayoulizwa Mara kwa Mara",
+    "items": [
+      {
+        "q": "GCV ni Nini?",
+        "a": "Thamani ya Makubaliano ya Kimataifa ni lengo la bei lililopendekezwa na jamii — 1 π ≈ $314,159 — linalotumika sawasawa katika GCV Market. Sio kiwango rasmi cha Pi Network na halijaidhinishwa na Pi Core Team wala kuthibitishwa katika soko lolote; bei halisi ya Pi sokoni ni ndogo zaidi."
+      },
+      {
+        "q": "Ninajiungaje na Muungano?",
+        "a": "Jisajili kama mwanachama ili kuvinjari na kununua katika GCV Market, au sajili biashara yako kama Mfanyabiashara wa GCV. Tumia fomu hapa chini au kitufe cha Jisajili kwenye urambazaji."
+      },
+      {
+        "q": "Je, mnatoa marejesho ya pesa?",
+        "a": "Bidhaa halisi zinaweza kurejeshwa ndani ya siku 30. Bidhaa za kidijitali hazirejeshwi zikishafikiwa. Angalia masharti yetu kwa maelezo zaidi."
+      },
+      {
+        "q": "Ninawezaje kuwa Balozi?",
+        "a": "Wasiliana nasi kujifunza kuhusu mpango wetu wa Ubalozi. Daima tunatafuta wanachama wenye shauku kusaidia kukuza Muungano katika eneo lao."
+      }
+    ]
+  }
+}

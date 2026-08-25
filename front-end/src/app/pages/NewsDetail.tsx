@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router';
 import { ArrowLeft, Clock, Eye, Share2, Calendar } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import type { NewsArticle } from '../data/mockData';
 import { getNewsBySlug, getAllNews } from '../api/news';
 import { sanitizeHtml } from '../lib/sanitize';
 import { SEO } from '../components/SEO';
 
 export function NewsDetail() {
+  const { t } = useTranslation('news');
   const { slug } = useParams();
   const [article, setArticle] = useState<NewsArticle | null | undefined>(undefined);
   const [relatedArticles, setRelatedArticles] = useState<NewsArticle[]>([]);
@@ -36,7 +38,7 @@ export function NewsDetail() {
     return (
       <div className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-muted-foreground">Loading…</p>
+          <p className="text-muted-foreground">{t('newsDetail.loading')}</p>
         </div>
       </div>
     );
@@ -46,16 +48,16 @@ export function NewsDetail() {
     return (
       <div className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl font-bold mb-4 tracking-tight">Article Not Found</h1>
+          <h1 className="text-3xl font-bold mb-4 tracking-tight">{t('newsDetail.notFound.title')}</h1>
           <p className="text-muted-foreground mb-8">
-            The article you're looking for doesn't exist.
+            {t('newsDetail.notFound.description')}
           </p>
           <Link
             to="/news"
             className="inline-flex items-center gap-2 text-brand-purple font-medium hover:gap-3 transition-all"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to News
+            {t('newsDetail.notFound.backToNews')}
           </Link>
         </div>
       </div>
@@ -81,7 +83,7 @@ export function NewsDetail() {
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-brand-purple mb-8 transition-colors group"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
-          Back to News
+          {t('newsDetail.backToNews')}
         </Link>
 
         {/* Article header */}
@@ -104,14 +106,14 @@ export function NewsDetail() {
             </span>
             <span className="flex items-center gap-1.5">
               <Eye className="w-4 h-4" />
-              {article.viewCount.toLocaleString()} views
+              {article.viewCount.toLocaleString()} {t('newsDetail.views')}
             </span>
-            <span className="text-muted-foreground">By {article.author}</span>
+            <span className="text-muted-foreground">{t('newsDetail.byAuthor', { author: article.author })}</span>
           </div>
 
           <button className="inline-flex items-center gap-2 px-4 py-2 bg-accent hover:bg-accent/70 rounded-xl text-sm font-medium transition-colors">
             <Share2 className="w-4 h-4" />
-            Share Article
+            {t('newsDetail.shareArticle')}
           </button>
         </div>
 
@@ -133,7 +135,7 @@ export function NewsDetail() {
         {/* Related articles */}
         {relatedArticles.length > 0 && (
           <div className="mt-14 pt-10 border-t border-border">
-            <h2 className="text-2xl font-bold mb-8 tracking-tight">Related Articles</h2>
+            <h2 className="text-2xl font-bold mb-8 tracking-tight">{t('newsDetail.relatedArticles')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {relatedArticles.map(related => (
                 <Link

@@ -1,0 +1,78 @@
+{
+  "checkout": {
+    "steps": {
+      "shipping": "Kohereza",
+      "payment": "Kwishyura",
+      "review": "Gusuzuma"
+    },
+    "canceledNotice": "Kwishyura byahagaritswe. Itumizwa ryawe ryabitswe — ushobora kongera kugerageza kwishyura.",
+    "genericOrderError": "Ntibishoboye gutumiza. Ongera ugerageze.",
+    "shippingForm": {
+      "title": "Amakuru y'ikohereza",
+      "fullName": "Amazina yuzuye *",
+      "fullNamePlaceholder": "Jean Ndayisenga",
+      "email": "Imeyili *",
+      "emailPlaceholder": "jean@urugero.com",
+      "phone": "Telefone *",
+      "phonePlaceholder": "+250 700 000 000",
+      "address": "Aderesi *",
+      "addressPlaceholder": "Umuhanda w'ibanze 123",
+      "city": "Umujyi *",
+      "cityPlaceholder": "Kigali",
+      "province": "Intara / Akarere *",
+      "provincePlaceholder": "Umujyi wa Kigali",
+      "country": "Igihugu *",
+      "countryPlaceholder": "Rwanda",
+      "postalCode": "Kode ya posita",
+      "postalCodePlaceholder": "00000"
+    },
+    "paymentMethods": {
+      "title": "Uburyo bwo kwishyura",
+      "card": {
+        "title": "Ikarita ya Credit / Debit",
+        "description": "Ishyura mu mutekano ukoresheje ikarita yawe ya credit cyangwa debit"
+      },
+      "mobileMoney": {
+        "title": "Mobile Money",
+        "description": "M-Pesa, MTN Mobile Money, Orange Money"
+      },
+      "pi": {
+        "title": "Ishyura ukoresheje Pi",
+        "description": "Ishyura ukoresheje Pi Wallet yawe — {{amount}} π ku giciro cy'umuryango cya GCV"
+      },
+      "piNotice": "Uzemeza uku kwishyura muri porogaramu ya Pi Wallet. GCV ni igiciro cyatanzwe n'umuryango, ntabwo ari igiciro cya Pi Network cyemewe.",
+      "secureNotice": "Amakuru yawe yo kwishyura arinzwe kandi ari mu mutekano. Ntitubika amakuru y'ikarita yawe."
+    },
+    "review": {
+      "title": "Suzuma itumizwa",
+      "shippingTo": "Koherezwa kuri",
+      "payment": "Kwishyura",
+      "piTarget": "{{amount}} π (igiciro cya GCV cyagenwe)",
+      "orderItems": "Ibintu byatumijwe",
+      "subtotal": "Igiteranyo cy'agateganyo",
+      "shipping": "Ikohereza",
+      "total": "Igiteranyo"
+    },
+    "buttons": {
+      "back": "Subira inyuma",
+      "continue": "Komeza",
+      "placeOrder": "Emeza itumizwa",
+      "placingOrder": "Iratumizwa…"
+    }
+  },
+  "orderConfirmation": {
+    "title": "Itumizwa ryemejwe!",
+    "thankYou": "Murakoze kugura kuri Pi Global GCV Alliance.",
+    "orderNumberLabel": "Nomero y'itumizwa",
+    "nextSteps": {
+      "title": "Ni iki gikurikira?",
+      "confirmationEmail": "Muzahabwa imeyili yemeza itumizwa vuba",
+      "digitalDelivery": "Ibicuruzwa bya digitale bizoherezwa kuri imeyili yanyu mu masaha 24",
+      "physicalShipping": "Ibicuruzwa mfatabuguzi bizoherezwa mu minsi 2-3 y'akazi"
+    },
+    "continueShopping": "Komeza kugura",
+    "backToHome": "Subira ku rupapuro rw'ibanze",
+    "needHelp": "Ukeneye ubufasha ku itumizwa ryawe?",
+    "contactSupport": "Vugana n'ubufasha"
+  }
+}

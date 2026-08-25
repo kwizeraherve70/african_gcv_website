@@ -1,0 +1,76 @@
+{
+  "seo": {
+    "title": "Contact Us",
+    "description": "Get in touch with Pi Global GCV Alliance. Reach us by email, phone, or visit our office in Kigali, Rwanda."
+  },
+  "header": {
+    "eyebrow": "Get In Touch",
+    "title": "Contact Us",
+    "subtitle": "Have questions about the GCV Market or membership? We're here to help."
+  },
+  "info": {
+    "email": { "title": "Email", "value": "info@gcvalliance.org" },
+    "phone": { "title": "Phone", "value": "+250 788 547 719" },
+    "office": {
+      "title": "Office Address",
+      "value": "KG 11 Ave, Kiyovu\nKigali, Rwanda\nServing members across Africa, Europe, Asia, and the USA"
+    }
+  },
+  "social": {
+    "title": "Follow Us"
+  },
+  "form": {
+    "success": {
+      "title": "Message Sent!",
+      "description": "Thank you for contacting us. Check your inbox for a confirmation — we'll get back to you soon.",
+      "sendAnother": "Send another message"
+    },
+    "nameLabel": "Your Name *",
+    "namePlaceholder": "John Doe",
+    "emailLabel": "Your Email *",
+    "emailPlaceholder": "john@example.com",
+    "subjectLabel": "Subject *",
+    "subjectPlaceholder": "Select a subject",
+    "subjectOptions": {
+      "general": "General Inquiry",
+      "gcv": "GCV Questions",
+      "membership": "Membership & Registration",
+      "products": "Product Support",
+      "partnership": "Partnership Opportunity",
+      "other": "Other"
+    },
+    "messageLabel": "Message *",
+    "messagePlaceholder": "Tell us how we can help you…",
+    "genericError": "Could not send your message. Please try again.",
+    "submitting": "Sending…",
+    "submit": "Send Message"
+  },
+  "map": {
+    "eyebrow": "Find Us",
+    "title": "Our Location",
+    "address": "KG 11 Ave, Kiyovu, Kigali, Rwanda",
+    "iframeTitle": "Pi Global GCV Alliance — Kigali Office"
+  },
+  "faq": {
+    "eyebrow": "Common Questions",
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "q": "What is GCV?",
+        "a": "Global Consensus Value is a community-proposed price target — 1 π ≈ $314,159 — used consistently across the GCV Market. It is not an official Pi Network rate and is not endorsed by the Pi Core Team or verified on any exchange; Pi's actual open-market price is far lower."
+      },
+      {
+        "q": "How do I join the Alliance?",
+        "a": "Register as a member to browse and buy in the GCV Market, or register your business as a GCV Merchant. Use the form below or the Register button in the navigation."
+      },
+      {
+        "q": "Do you offer refunds?",
+        "a": "Physical products can be returned within 30 days. Digital products are non-refundable once accessed. See our terms for details."
+      },
+      {
+        "q": "How can I become an Ambassador?",
+        "a": "Contact us to learn about our Ambassador programme. We're always looking for passionate members to help grow the Alliance in their region."
+      }
+    ]
+  }
+}

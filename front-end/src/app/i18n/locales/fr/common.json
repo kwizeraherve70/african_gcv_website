@@ -1,0 +1,79 @@
+{
+  "navbar": {
+    "themeToggle": {
+      "switchToLight": "Passer au mode clair",
+      "switchToDark": "Passer au mode sombre"
+    },
+    "links": {
+      "home": "Accueil",
+      "about": "À propos de nous",
+      "team": "Équipe principale",
+      "founders": "Fondateurs",
+      "allianceGroup": "Alliance GCV",
+      "market": "Marché GCV",
+      "news": "Actualités et médias",
+      "contact": "Contactez-nous"
+    },
+    "search": "Rechercher",
+    "language": {
+      "selectLanguage": "Choisir la langue"
+    },
+    "cart": {
+      "aria_one": "Panier — {{count}} article",
+      "aria_other": "Panier — {{count}} articles"
+    },
+    "menu": {
+      "open": "Ouvrir le menu",
+      "close": "Fermer le menu"
+    },
+    "account": {
+      "login": "Connexion",
+      "register": "S'inscrire",
+      "logout": "Déconnexion",
+      "adminPortal": "Portail administrateur",
+      "roleAdmin": "Administrateur",
+      "roleMerchant": "Marchand",
+      "roleMember": "Membre"
+    }
+  },
+  "footer": {
+    "description": "Une alliance commerciale mondiale reliant l'Afrique, l'Europe, l'Asie et les États-Unis à travers le commerce et la collaboration.",
+    "social": {
+      "facebook": "Facebook",
+      "twitter": "Twitter / X",
+      "instagram": "Instagram",
+      "youtube": "YouTube"
+    },
+    "quickLinks": {
+      "heading": "Liens rapides",
+      "about": "À propos de nous",
+      "market": "Marché GCV",
+      "news": "Actualités et médias",
+      "contact": "Contactez-nous"
+    },
+    "resources": {
+      "heading": "Ressources",
+      "merchants": "Répertoire des marchands",
+      "alliance": "Alliance industrielle",
+      "founders": "Fondateurs"
+    },
+    "legal": {
+      "heading": "Mentions légales",
+      "terms": "Conditions d'utilisation",
+      "privacy": "Politique de confidentialité"
+    },
+    "contact": {
+      "heading": "Contactez-nous",
+      "whatsapp": "Discuter sur WhatsApp"
+    },
+    "copyright": "© {{year}} Pi Global GCV Alliance. Tous droits réservés.",
+    "bottom": {
+      "privacy": "Politique de confidentialité",
+      "terms": "Conditions générales"
+    }
+  },
+  "whatsapp": {
+    "chatAria": "Discutez avec nous sur WhatsApp",
+    "prefillMessage": "Bonjour ! J'ai une question à propos de Pi Global GCV Alliance."
+  }
+}

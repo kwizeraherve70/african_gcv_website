@@ -1,12 +1,14 @@
 import { Link } from 'react-router';
 import { useState, useEffect } from 'react';
 import { Globe2, Newspaper, ArrowRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import type { NewsArticle } from '../data/mockData';
 import { GCV_AFRICA_COUNTRIES } from '../data/mockData';
 import { getAllNews } from '../api/news';
 import { SEO } from '../components/SEO';
 
 export function NewsCountries() {
+  const { t } = useTranslation('news');
   const [newsArticles, setNewsArticles] = useState<NewsArticle[]>([]);
 
   useEffect(() => {
@@ -22,8 +24,8 @@ export function NewsCountries() {
   return (
     <div className="py-12">
       <SEO
-        title="News & Media"
-        description="Browse GCV news by country — updates, ambassador activity, and merchant adoption stories from across GCV Africa."
+        title={t('newsCountries.seo.title')}
+        description={t('newsCountries.seo.description')}
         url="/news"
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -31,11 +33,11 @@ export function NewsCountries() {
         {/* Header */}
         <div className="mb-10">
           <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest mb-2">
-            Pi Global GCV Alliance
+            {t('newsCountries.eyebrow')}
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold mb-3 tracking-tight">News & Media</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-3 tracking-tight">{t('newsCountries.title')}</h1>
           <p className="text-muted-foreground text-lg max-w-2xl">
-            Choose a GCV Africa country to see local news, or browse everything at once.
+            {t('newsCountries.subtitle')}
           </p>
         </div>
 
@@ -49,8 +51,8 @@ export function NewsCountries() {
               <Globe2 className="w-6 h-6" />
             </div>
             <div>
-              <h2 className="font-bold text-lg leading-tight">All News & Announcements</h2>
-              <p className="text-sm text-white/80">Articles, official announcements, and press releases from across the Alliance</p>
+              <h2 className="font-bold text-lg leading-tight">{t('newsCountries.allNews.title')}</h2>
+              <p className="text-sm text-white/80">{t('newsCountries.allNews.description')}</p>
             </div>
           </div>
           <ArrowRight className="w-5 h-5 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
@@ -58,7 +60,7 @@ export function NewsCountries() {
 
         {/* Country grid */}
         <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-widest mb-4">
-          GCV Africa — Browse by Country
+          {t('newsCountries.browseByCountry')}
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {GCV_AFRICA_COUNTRIES.map(country => {
@@ -75,7 +77,7 @@ export function NewsCountries() {
                 </h3>
                 <p className="text-xs text-muted-foreground flex items-center gap-1">
                   <Newspaper className="w-3 h-3" />
-                  {count} stor{count !== 1 ? 'ies' : 'y'}
+                  {t('newsCountries.storyCount', { count })}
                 </p>
               </Link>
             );

@@ -1,10 +1,12 @@
 import { Link } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { Minus, Plus, Trash2, ShoppingBag, ArrowRight, Lock } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { SEO } from '../components/SEO';
 import { toPi } from '../lib/pi';
 
 export function Cart() {
+  const { t } = useTranslation('shop');
   const { items, updateQuantity, removeItem, getSubtotal } = useCart();
   const subtotal = getSubtotal();
   const shipping = subtotal > 0 ? 10 : 0;
@@ -18,15 +20,15 @@ export function Cart() {
             <div className="w-20 h-20 bg-white rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-sm">
               <ShoppingBag className="w-10 h-10 text-brand-purple" />
             </div>
-            <h2 className="text-2xl font-heading font-bold mb-2 tracking-tight">Your cart is empty</h2>
+            <h2 className="text-2xl font-heading font-bold mb-2 tracking-tight">{t('cart.empty.heading')}</h2>
             <p className="text-muted-foreground mb-8 max-w-xs mx-auto">
-              Browse the GCV Market to find products, services, and companies.
+              {t('cart.empty.text')}
             </p>
             <Link
               to="/shop"
               className="inline-flex items-center gap-2 px-6 py-3.5 bg-brand-purple text-white rounded-xl hover:bg-brand-purple-light transition-all duration-200 font-semibold shadow-lg hover:-translate-y-0.5"
             >
-              Continue Shopping
+              {t('cart.empty.continueShopping')}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -37,9 +39,9 @@ export function Cart() {
 
   return (
     <div className="py-12">
-      <SEO title="Shopping Cart" url="/cart" noIndex />
+      <SEO title={t('cart.seo.title')} url="/cart" noIndex />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-heading font-bold mb-8 tracking-tight">Shopping Cart</h1>
+        <h1 className="text-3xl font-heading font-bold mb-8 tracking-tight">{t('cart.heading')}</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
@@ -76,7 +78,7 @@ export function Cart() {
                       {item.product.name}
                     </Link>
                     <p className="text-xs text-muted-foreground mt-1 font-medium">
-                      {item.product.price.toFixed(2)} USD
+                      {t('cart.priceUsd', { price: item.product.price.toFixed(2) })}
                     </p>
                     <p className="font-bold mt-2 text-base">${item.product.price}</p>
                     <p className="text-[10px] text-brand-purple/70 font-medium">
@@ -89,7 +91,7 @@ export function Cart() {
                     <button
                       onClick={() => removeItem(item.product.id)}
                       className="p-1.5 text-muted-foreground hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-lg transition-colors"
-                      aria-label="Remove item"
+                      aria-label={t('cart.aria.removeItem')}
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -98,7 +100,7 @@ export function Cart() {
                       <button
                         onClick={() => updateQuantity(item.product.id, item.quantity - 1)}
                         className="w-8 h-8 rounded-lg border border-border hover:bg-accent flex items-center justify-center transition-colors"
-                        aria-label="Decrease quantity"
+                        aria-label={t('cart.aria.decreaseQuantity')}
                       >
                         <Minus className="w-3.5 h-3.5" />
                       </button>
@@ -109,7 +111,7 @@ export function Cart() {
                         onClick={() => updateQuantity(item.product.id, item.quantity + 1)}
                         disabled={item.quantity >= item.product.inventory}
                         className="w-8 h-8 rounded-lg border border-border hover:bg-accent flex items-center justify-center transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
-                        aria-label="Increase quantity"
+                        aria-label={t('cart.aria.increaseQuantity')}
                       >
                         <Plus className="w-3.5 h-3.5" />
                       </button>
@@ -132,52 +134,52 @@ export function Cart() {
               to="/shop"
               className="inline-flex items-center gap-1.5 mt-5 text-sm text-muted-foreground hover:text-brand-purple transition-colors"
             >
-              ← Continue Shopping
+              ← {t('cart.continueShopping')}
             </Link>
           </div>
 
           {/* Cart Summary */}
           <div>
             <div className="bg-card rounded-2xl border border-border p-6 sticky top-20">
-              <h2 className="text-lg font-heading font-bold mb-5">Cart Summary</h2>
+              <h2 className="text-lg font-heading font-bold mb-5">{t('cart.summary.heading')}</h2>
 
               <div className="space-y-3 mb-5">
                 <div className="flex justify-between text-sm">
                   <span className="text-muted-foreground">
-                    Subtotal ({items.reduce((n, i) => n + i.quantity, 0)} items)
+                    {t('cart.summary.subtotal', { count: items.reduce((n, i) => n + i.quantity, 0) })}
                   </span>
-                  <span className="font-semibold">${subtotal.toFixed(2)} USD</span>
+                  <span className="font-semibold">{t('cart.summary.amountUsd', { amount: subtotal.toFixed(2) })}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Shipping</span>
-                  <span className="font-semibold">${shipping.toFixed(2)} USD</span>
+                  <span className="text-muted-foreground">{t('cart.summary.shipping')}</span>
+                  <span className="font-semibold">{t('cart.summary.amountUsd', { amount: shipping.toFixed(2) })}</span>
                 </div>
                 <div className="border-t border-border pt-3">
                   <div className="flex justify-between">
-                    <span className="font-bold">Total</span>
-                    <span className="font-bold text-lg">${total.toFixed(2)} USD</span>
+                    <span className="font-bold">{t('cart.summary.total')}</span>
+                    <span className="font-bold text-lg">{t('cart.summary.amountUsd', { amount: total.toFixed(2) })}</span>
                   </div>
                   <p className="text-xs text-brand-purple font-medium text-right mt-1">
-                    {toPi(total)} π
+                    {t('cart.summary.gcvNote', { piAmount: toPi(total) })}
                   </p>
                 </div>
               </div>
 
               <p className="text-[11px] text-muted-foreground text-center mb-4">
-                GCV target: 1 π ≈ $314,159 (community-proposed, not an official rate)
+                {t('cart.summary.disclaimer')}
               </p>
 
               <Link
                 to="/checkout"
                 className="flex w-full items-center justify-center gap-2 py-3.5 bg-brand-gold text-brand-ink text-sm font-bold rounded-xl hover:bg-yellow-300 transition-all duration-200 hover:-translate-y-0.5 mb-3"
               >
-                Proceed to Checkout
+                {t('cart.checkout.proceed')}
                 <ArrowRight className="w-4 h-4" />
               </Link>
 
               <div className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
                 <Lock className="w-3 h-3" />
-                Secure checkout
+                {t('cart.checkout.secure')}
               </div>
             </div>
           </div>

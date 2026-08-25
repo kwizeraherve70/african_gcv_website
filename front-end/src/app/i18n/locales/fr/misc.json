@@ -1,0 +1,8 @@
+{
+  "notFound": {
+    "title": "Page introuvable",
+    "description": "La page que vous recherchez n'existe pas ou a été déplacée. Revenons sur la bonne voie.",
+    "goHome": "Retour à l'accueil",
+    "browseNews": "Voir les actualités"
+  }
+}

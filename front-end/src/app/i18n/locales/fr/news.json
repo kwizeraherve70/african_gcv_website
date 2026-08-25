@@ -1,0 +1,86 @@
+{
+  "news": {
+    "countryNotFound": {
+      "title": "Pays introuvable",
+      "description": "GCV Africa n'a pas encore de portail d'actualités pour ce pays.",
+      "backToCountries": "Retour aux pays"
+    },
+    "back": {
+      "allCountries": "Tous les pays",
+      "newsHome": "Accueil Actualités & Médias"
+    },
+    "eyebrow": {
+      "country": "GCV Africa — {{flag}} {{country}}",
+      "global": "Alliance Pi Global GCV"
+    },
+    "title": {
+      "country": "Actualités {{country}}",
+      "global": "Toutes les actualités & médias"
+    },
+    "subtitle": {
+      "country": "Tout ce qui se passe avec le mouvement GCV en {{country}}.",
+      "global": "Dernières mises à jour, annonces et communiqués de presse du mouvement GCV"
+    },
+    "seo": {
+      "countryDescription": "Actualités GCV, activités des ambassadeurs et témoignages d'adoption par les marchands en {{country}}.",
+      "globalDescription": "Restez informé des dernières actualités de Pi Network, des mises à jour du mouvement GCV, des annonces officielles, des communiqués de presse et des récits de la communauté à travers l'Afrique."
+    },
+    "tabs": {
+      "articles": "Articles",
+      "announcements": "Annonces",
+      "pressReleases": "Communiqués de presse"
+    },
+    "search": {
+      "placeholder": "Rechercher des articles…"
+    },
+    "filters": {
+      "categories": {
+        "all": "Tout",
+        "piNetwork": "Pi Network",
+        "gcvMovement": "Mouvement GCV",
+        "events": "Événements",
+        "community": "Communauté"
+      }
+    },
+    "loadingArticles": "Chargement des articles…",
+    "articleCount_one": "{{count}} article trouvé",
+    "articleCount_other": "{{count}} articles trouvés",
+    "emptyState": {
+      "noStoriesFromCountry": "Pas encore d'articles pour {{country}}",
+      "noArticlesFound": "Aucun article trouvé",
+      "checkBackSoon": "Revenez bientôt, ou parcourez toutes les actualités GCV.",
+      "tryDifferentSearch": "Essayez un autre terme de recherche ou une autre catégorie",
+      "viewAllNews": "Voir toutes les actualités →"
+    },
+    "important": "Important"
+  },
+  "newsCountries": {
+    "seo": {
+      "title": "Actualités & Médias",
+      "description": "Parcourez les actualités GCV par pays — mises à jour, activités des ambassadeurs et témoignages d'adoption par les marchands à travers GCV Africa."
+    },
+    "eyebrow": "Alliance Pi Global GCV",
+    "title": "Actualités & Médias",
+    "subtitle": "Choisissez un pays de GCV Africa pour voir les actualités locales, ou parcourez tout en même temps.",
+    "allNews": {
+      "title": "Toutes les actualités & annonces",
+      "description": "Articles, annonces officielles et communiqués de presse de toute l'Alliance"
+    },
+    "browseByCountry": "GCV Africa — Parcourir par pays",
+    "storyCount_one": "{{count}} actualité",
+    "storyCount_other": "{{count}} actualités"
+  },
+  "newsDetail": {
+    "loading": "Chargement…",
+    "notFound": {
+      "title": "Article introuvable",
+      "description": "L'article que vous recherchez n'existe pas.",
+      "backToNews": "Retour aux actualités"
+    },
+    "backToNews": "Retour aux actualités",
+    "views": "vues",
+    "byAuthor": "Par {{author}}",
+    "shareArticle": "Partager l'article",
+    "relatedArticles": "Articles similaires"
+  }
+}

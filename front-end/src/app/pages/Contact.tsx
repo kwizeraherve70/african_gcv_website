@@ -1,5 +1,6 @@
 import { Mail, MapPin, Phone, Send, CheckCircle2 } from 'lucide-react';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { SEO } from '../components/SEO';
 import { createContact } from '../api/contact';
 import { ApiError } from '../api/client';
@@ -7,6 +8,8 @@ import { ApiError } from '../api/client';
 const inputClass =
   'w-full px-4 py-3 rounded-xl border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/25 focus:border-brand-purple transition-all';
 
+// Kept in English regardless of UI language: this label is embedded into the
+// contact message body sent to the backend/admin inbox, not shown as JSX.
 const SUBJECT_LABELS: Record<string, string> = {
   general: 'General Inquiry',
   gcv: 'GCV Questions',
@@ -16,26 +19,9 @@ const SUBJECT_LABELS: Record<string, string> = {
   other: 'Other',
 };
 
-const FAQ_ITEMS = [
-  {
-    q: 'What is GCV?',
-    a: 'Global Consensus Value is a community-proposed price target — 1 π ≈ $314,159 — used consistently across the GCV Market. It is not an official Pi Network rate and is not endorsed by the Pi Core Team or verified on any exchange; Pi\'s actual open-market price is far lower.',
-  },
-  {
-    q: 'How do I join the Alliance?',
-    a: 'Register as a member to browse and buy in the GCV Market, or register your business as a GCV Merchant. Use the form below or the Register button in the navigation.',
-  },
-  {
-    q: 'Do you offer refunds?',
-    a: 'Physical products can be returned within 30 days. Digital products are non-refundable once accessed. See our terms for details.',
-  },
-  {
-    q: 'How can I become an Ambassador?',
-    a: "Contact us to learn about our Ambassador programme. We're always looking for passionate members to help grow the Alliance in their region.",
-  },
-];
-
 export function Contact() {
+  const { t } = useTranslation('contact');
+  const faqItems = t('faq.items', { returnObjects: true }) as { q: string; a: string }[];
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -61,7 +47,7 @@ export function Contact() {
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (err) {
       setSubmitError(
-        err instanceof ApiError ? err.message : 'Could not send your message. Please try again.'
+        err instanceof ApiError ? err.message : t('form.genericError')
       );
     } finally {
       setSubmitting(false);
@@ -77,8 +63,8 @@ export function Contact() {
   return (
     <div className="py-12">
       <SEO
-        title="Contact Us"
-        description="Get in touch with Pi Global GCV Alliance. Reach us by email, phone, or visit our office in Kigali, Rwanda."
+        title={t('seo.title')}
+        description={t('seo.description')}
         url="/contact"
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -86,11 +72,11 @@ export function Contact() {
         {/* Header */}
         <div className="text-center mb-12">
           <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest mb-3">
-            Get In Touch
+            {t('header.eyebrow')}
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Contact Us</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">{t('header.title')}</h1>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto leading-relaxed">
-            Have questions about the GCV Market or membership? We're here to help.
+            {t('header.subtitle')}
           </p>
         </div>
 
@@ -102,20 +88,20 @@ export function Contact() {
               {
                 Icon: Mail,
                 gradient: 'from-brand-purple to-purple-400',
-                title: 'Email',
-                value: 'info@gcvalliance.org',
+                title: t('info.email.title'),
+                value: t('info.email.value'),
               },
               {
                 Icon: Phone,
                 gradient: 'from-brand-gold to-yellow-300',
-                title: 'Phone',
-                value: '+250 788 547 719',
+                title: t('info.phone.title'),
+                value: t('info.phone.value'),
               },
               {
                 Icon: MapPin,
                 gradient: 'from-brand-purple-light to-purple-400',
-                title: 'Office Address',
-                value: 'KG 11 Ave, Kiyovu\nKigali, Rwanda\nServing members across Africa, Europe, Asia, and the USA',
+                title: t('info.office.title'),
+                value: t('info.office.value'),
               },
             ].map(({ Icon, gradient, title, value }) => (
               <div
@@ -136,7 +122,7 @@ export function Contact() {
 
             {/* Social */}
             <div className="bg-accent/50 rounded-2xl p-5">
-              <h3 className="font-semibold text-sm mb-4">Follow Us</h3>
+              <h3 className="font-semibold text-sm mb-4">{t('social.title')}</h3>
               <div className="flex gap-2">
                 {[
                   { href: 'https://twitter.com', label: 'X' },
@@ -164,16 +150,16 @@ export function Contact() {
                   <div className="w-16 h-16 bg-green-100 dark:bg-green-900/20 rounded-2xl flex items-center justify-center mx-auto mb-5">
                     <CheckCircle2 className="w-8 h-8 text-green-500" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-2 tracking-tight">Message Sent!</h3>
+                  <h3 className="text-2xl font-bold mb-2 tracking-tight">{t('form.success.title')}</h3>
                   <p className="text-muted-foreground mb-6">
-                    Thank you for contacting us. Check your inbox for a confirmation — we'll get back to you soon.
+                    {t('form.success.description')}
                   </p>
                   <button
                     type="button"
                     onClick={() => setSubmitted(false)}
                     className="text-sm font-medium text-brand-purple hover:underline"
                   >
-                    Send another message
+                    {t('form.success.sendAnother')}
                   </button>
                 </div>
               ) : (
@@ -181,7 +167,7 @@ export function Contact() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
                     <div>
                       <label className="block text-sm font-medium mb-1.5">
-                        Your Name *
+                        {t('form.nameLabel')}
                       </label>
                       <input
                         type="text"
@@ -189,13 +175,13 @@ export function Contact() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        placeholder="John Doe"
+                        placeholder={t('form.namePlaceholder')}
                         className={inputClass}
                       />
                     </div>
                     <div>
                       <label className="block text-sm font-medium mb-1.5">
-                        Your Email *
+                        {t('form.emailLabel')}
                       </label>
                       <input
                         type="email"
@@ -203,14 +189,14 @@ export function Contact() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        placeholder="john@example.com"
+                        placeholder={t('form.emailPlaceholder')}
                         className={inputClass}
                       />
                     </div>
                   </div>
 
                   <div className="mb-5">
-                    <label className="block text-sm font-medium mb-1.5">Subject *</label>
+                    <label className="block text-sm font-medium mb-1.5">{t('form.subjectLabel')}</label>
                     <select
                       name="subject"
                       value={formData.subject}
@@ -218,25 +204,25 @@ export function Contact() {
                       required
                       className={inputClass}
                     >
-                      <option value="">Select a subject</option>
-                      <option value="general">General Inquiry</option>
-                      <option value="gcv">GCV Questions</option>
-                      <option value="membership">Membership & Registration</option>
-                      <option value="products">Product Support</option>
-                      <option value="partnership">Partnership Opportunity</option>
-                      <option value="other">Other</option>
+                      <option value="">{t('form.subjectPlaceholder')}</option>
+                      <option value="general">{t('form.subjectOptions.general')}</option>
+                      <option value="gcv">{t('form.subjectOptions.gcv')}</option>
+                      <option value="membership">{t('form.subjectOptions.membership')}</option>
+                      <option value="products">{t('form.subjectOptions.products')}</option>
+                      <option value="partnership">{t('form.subjectOptions.partnership')}</option>
+                      <option value="other">{t('form.subjectOptions.other')}</option>
                     </select>
                   </div>
 
                   <div className="mb-6">
-                    <label className="block text-sm font-medium mb-1.5">Message *</label>
+                    <label className="block text-sm font-medium mb-1.5">{t('form.messageLabel')}</label>
                     <textarea
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
                       required
                       rows={6}
-                      placeholder="Tell us how we can help you…"
+                      placeholder={t('form.messagePlaceholder')}
                       className={`${inputClass} resize-none`}
                     />
                   </div>
@@ -253,7 +239,7 @@ export function Contact() {
                     className="w-full py-3.5 px-6 bg-brand-purple text-white rounded-xl hover:bg-brand-purple-light transition-all duration-200 font-semibold flex items-center justify-center gap-2 shadow-lg shadow-brand-purple/20 hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0"
                   >
                     <Send className="w-4 h-4" />
-                    {submitting ? 'Sending…' : 'Send Message'}
+                    {submitting ? t('form.submitting') : t('form.submit')}
                   </button>
                 </form>
               )}
@@ -265,14 +251,14 @@ export function Contact() {
         <div className="mt-16">
           <div className="text-center mb-8">
             <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest mb-3">
-              Find Us
+              {t('map.eyebrow')}
             </p>
-            <h2 className="text-3xl font-bold tracking-tight">Our Location</h2>
-            <p className="text-muted-foreground mt-2">KG 11 Ave, Kiyovu, Kigali, Rwanda</p>
+            <h2 className="text-3xl font-bold tracking-tight">{t('map.title')}</h2>
+            <p className="text-muted-foreground mt-2">{t('map.address')}</p>
           </div>
           <div className="rounded-2xl overflow-hidden border border-border shadow-md">
             <iframe
-              title="Pi Global GCV Alliance — Kigali Office"
+              title={t('map.iframeTitle')}
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.5017859628794!2d30.0588!3d-1.9441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca42f4e2a4c9f%3A0x4f4b4f4f4f4f4f4f!2sKigali%2C%20Rwanda!5e0!3m2!1sen!2srw!4v1690000000000!5m2!1sen!2srw"
               width="100%"
               height="400"
@@ -288,12 +274,12 @@ export function Contact() {
         <div className="mt-16">
           <div className="text-center mb-10">
             <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest mb-3">
-              Common Questions
+              {t('faq.eyebrow')}
             </p>
-            <h2 className="text-3xl font-bold tracking-tight">Frequently Asked Questions</h2>
+            <h2 className="text-3xl font-bold tracking-tight">{t('faq.title')}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {FAQ_ITEMS.map(({ q, a }) => (
+            {faqItems.map(({ q, a }) => (
               <div
                 key={q}
                 className="bg-card rounded-2xl border border-border p-6 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200"

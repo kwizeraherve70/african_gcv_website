@@ -1,0 +1,76 @@
+{
+  "seo": {
+    "title": "Twandikire",
+    "description": "Vugana na Pi Global GCV Alliance. Twandikire kuri imeyili, uduhamagare, cyangwa usure ibiro byacu i Kigali, mu Rwanda."
+  },
+  "header": {
+    "eyebrow": "Twandikire",
+    "title": "Twandikire",
+    "subtitle": "Ufite ibibazo ku byerekeye GCV Market cyangwa ubunyamuryango? Turi hano kugira ngo tugufashe."
+  },
+  "info": {
+    "email": { "title": "Imeyili", "value": "info@gcvalliance.org" },
+    "phone": { "title": "Telefoni", "value": "+250 788 547 719" },
+    "office": {
+      "title": "Aderesi y'ibiro",
+      "value": "KG 11 Ave, Kiyovu\nKigali, u Rwanda\nDukorera abanyamuryango bo muri Afurika, Uburayi, Aziya na Amerika"
+    }
+  },
+  "social": {
+    "title": "Dukurikire"
+  },
+  "form": {
+    "success": {
+      "title": "Ubutumwa bwoherejwe!",
+      "description": "Urakoze kudukorana. Reba imeyili yawe uhabone iyemeza — tuzagusubiza vuba.",
+      "sendAnother": "Ohereza ubundi butumwa"
+    },
+    "nameLabel": "Amazina yawe *",
+    "namePlaceholder": "Jean Uwimana",
+    "emailLabel": "Imeyili yawe *",
+    "emailPlaceholder": "jean@urugero.com",
+    "subjectLabel": "Ingingo *",
+    "subjectPlaceholder": "Hitamo ingingo",
+    "subjectOptions": {
+      "general": "Ikibazo rusange",
+      "gcv": "Ibibazo kuri GCV",
+      "membership": "Ubunyamuryango & Kwiyandikisha",
+      "products": "Ubufasha ku bicuruzwa",
+      "partnership": "Amahirwe y'ubufatanye",
+      "other": "Ikindi"
+    },
+    "messageLabel": "Ubutumwa *",
+    "messagePlaceholder": "Tubwire uko twagufasha…",
+    "genericError": "Ntibishoboye kohereza ubutumwa bwawe. Ongera ugerageze.",
+    "submitting": "Kohereza…",
+    "submit": "Ohereza ubutumwa"
+  },
+  "map": {
+    "eyebrow": "Dushakishe",
+    "title": "Aho turi",
+    "address": "KG 11 Ave, Kiyovu, Kigali, u Rwanda",
+    "iframeTitle": "Pi Global GCV Alliance — Ibiro bya Kigali"
+  },
+  "faq": {
+    "eyebrow": "Ibibazo bikunze kubazwa",
+    "title": "Ibibazo bikunze kubazwa",
+    "items": [
+      {
+        "q": "GCV ni iki?",
+        "a": "Agaciro k'Impuzamahanga Ryemejwe ni intego y'igiciro yatanzwe n'umuryango — 1 π ≈ $314,159 — ikoreshwa mu buryo buhoraho kuri GCV Market. Ntabwo ari igipimo cyemewe na Pi Network kandi ntabwo cyemejwe na Pi Core Team cyangwa ngo kigenzurwe kuri isoko iryo ari ryo ryose; igiciro nyacyo cya Pi ku isoko ni nto cyane."
+      },
+      {
+        "q": "Nagira nte ngo ninjire mu Ihuriro?",
+        "a": "Iyandikishe nk'umunyamuryango kugira ngo ushakishe kandi ugure kuri GCV Market, cyangwa wandikishe ubucuruzi bwawe nk'Umucuruzi wa GCV. Koresha ifishi iri hasi cyangwa buto yo Kwiyandikisha ku rutonde rw'ibipapuro."
+      },
+      {
+        "q": "Mutanga kwishyura ibyagurishijwe?",
+        "a": "Ibicuruzwa bifatika birashobora gusubizwa mu minsi 30. Ibicuruzwa bya digitale ntibisubizwa nyuma yo kubikoresha. Reba amabwiriza yacu kugira ngo umenye byinshi."
+      },
+      {
+        "q": "Nagira nte ngo mbe Intumwa?",
+        "a": "Twandikire umenye byinshi ku gahunda yacu y'Intumwa. Buri gihe dushaka abanyamuryango bafite ishyaka bo gufasha gukura Ihuriro muri karere kabo."
+      }
+    ]
+  }
+}

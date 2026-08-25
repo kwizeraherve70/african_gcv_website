@@ -1,0 +1,76 @@
+{
+  "seo": {
+    "title": "Contactez-nous",
+    "description": "Contactez Pi Global GCV Alliance. Écrivez-nous par e-mail, appelez-nous, ou rendez-nous visite à notre bureau de Kigali, au Rwanda."
+  },
+  "header": {
+    "eyebrow": "Contactez-nous",
+    "title": "Contactez-nous",
+    "subtitle": "Des questions sur le GCV Market ou l'adhésion ? Nous sommes là pour vous aider."
+  },
+  "info": {
+    "email": { "title": "E-mail", "value": "info@gcvalliance.org" },
+    "phone": { "title": "Téléphone", "value": "+250 788 547 719" },
+    "office": {
+      "title": "Adresse du bureau",
+      "value": "KG 11 Ave, Kiyovu\nKigali, Rwanda\nAu service des membres à travers l'Afrique, l'Europe, l'Asie et les États-Unis"
+    }
+  },
+  "social": {
+    "title": "Suivez-nous"
+  },
+  "form": {
+    "success": {
+      "title": "Message envoyé !",
+      "description": "Merci de nous avoir contactés. Vérifiez votre boîte de réception pour une confirmation — nous vous répondrons bientôt.",
+      "sendAnother": "Envoyer un autre message"
+    },
+    "nameLabel": "Votre nom *",
+    "namePlaceholder": "Jean Dupont",
+    "emailLabel": "Votre e-mail *",
+    "emailPlaceholder": "jean@exemple.com",
+    "subjectLabel": "Sujet *",
+    "subjectPlaceholder": "Sélectionnez un sujet",
+    "subjectOptions": {
+      "general": "Demande générale",
+      "gcv": "Questions sur la GCV",
+      "membership": "Adhésion & inscription",
+      "products": "Support produit",
+      "partnership": "Opportunité de partenariat",
+      "other": "Autre"
+    },
+    "messageLabel": "Message *",
+    "messagePlaceholder": "Dites-nous comment nous pouvons vous aider…",
+    "genericError": "Impossible d'envoyer votre message. Veuillez réessayer.",
+    "submitting": "Envoi en cours…",
+    "submit": "Envoyer le message"
+  },
+  "map": {
+    "eyebrow": "Trouvez-nous",
+    "title": "Notre emplacement",
+    "address": "KG 11 Ave, Kiyovu, Kigali, Rwanda",
+    "iframeTitle": "Pi Global GCV Alliance — Bureau de Kigali"
+  },
+  "faq": {
+    "eyebrow": "Questions courantes",
+    "title": "Foire aux questions",
+    "items": [
+      {
+        "q": "Qu'est-ce que la GCV ?",
+        "a": "La Valeur de Consensus Mondial est un objectif de prix proposé par la communauté — 1 π ≈ 314 159 $ — utilisé de manière cohérente sur l'ensemble du GCV Market. Ce n'est pas un taux officiel de Pi Network et il n'est ni approuvé par la Pi Core Team ni vérifié sur aucune plateforme d'échange ; le prix réel du Pi sur le marché libre est bien plus bas."
+      },
+      {
+        "q": "Comment puis-je rejoindre l'Alliance ?",
+        "a": "Inscrivez-vous en tant que membre pour parcourir et acheter sur le GCV Market, ou inscrivez votre entreprise en tant que Commerçant GCV. Utilisez le formulaire ci-dessous ou le bouton S'inscrire dans la navigation."
+      },
+      {
+        "q": "Proposez-vous des remboursements ?",
+        "a": "Les produits physiques peuvent être retournés dans les 30 jours. Les produits numériques ne sont pas remboursables une fois consultés. Consultez nos conditions pour plus de détails."
+      },
+      {
+        "q": "Comment puis-je devenir Ambassadeur ?",
+        "a": "Contactez-nous pour en savoir plus sur notre programme d'Ambassadeurs. Nous recherchons toujours des membres passionnés pour aider à développer l'Alliance dans leur région."
+      }
+    ]
+  }
+}

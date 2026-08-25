@@ -1,0 +1,87 @@
+{
+  "seo": {
+    "title": "Accueil",
+    "description": "Pi Global GCV Alliance — une alliance commerciale mondiale reliant l'Afrique, l'Europe, l'Asie et les États-Unis autour du commerce, de l'innovation et de la prospérité partagée. Payez en Pi au taux cible GCV proposé par la communauté."
+  },
+  "hero": {
+    "titleLine1": "Unir le monde,",
+    "titleLine2": "Renforcer le commerce",
+    "subtitle": "Une alliance mondiale reliant l'Afrique, l'Europe, l'Asie et les États-Unis autour du commerce, de l'innovation et de la prospérité partagée.",
+    "exploreMarket": "Explorer le marché",
+    "joinAlliance": "Rejoindre l'Alliance",
+    "gcvTarget": {
+      "label": "Objectif GCV communautaire",
+      "rate": "1 π ≈ {{value}} $",
+      "disclaimer": "Ce n'est pas un taux officiel de Pi Network ni un taux de change."
+    }
+  },
+  "features": {
+    "global": { "title": "Alliance mondiale", "desc": "Présente sur 4 continents" },
+    "secure": { "title": "Sûr et fiable", "desc": "Transparent, fiable et responsable" },
+    "payInPi": { "title": "Payer en Pi", "desc": "Paiements simplifiés au taux cible GCV communautaire" },
+    "empowering": { "title": "Autonomiser les entreprises", "desc": "Soutenir les commerçants et les entrepreneurs" }
+  },
+  "stats": {
+    "members": "Membres dans le monde",
+    "merchants": "Commerçants actifs",
+    "products": "Produits référencés",
+    "events": "Événements organisés"
+  },
+  "featured": {
+    "eyebrow": "Marché GCV",
+    "heading": "En vedette sur le marché GCV",
+    "viewAll": "Voir tous les produits"
+  },
+  "news": {
+    "eyebrow": "Restez informé",
+    "heading": "Dernières actualités",
+    "viewAll": "Voir toutes les actualités"
+  },
+  "founder": {
+    "badge": "Directeur fondateur, Pi Global GCV Alliance",
+    "name": "Olivier Ndatimana",
+    "quote": "Basé à Kigali, au Rwanda, Olivier dirige la mission de l'Alliance visant à relier commerçants, entrepreneurs et institutions d'Afrique, d'Europe, d'Asie et des États-Unis autour d'une même norme commerciale et de valeur consensuelle.",
+    "bio": "En tant que PDG de Kigali Hot Market Ltd, la mission d'Olivier est d'offrir à chaque acteur du marché — des petits producteurs aux entreprises de services — un accès équitable et direct à un réseau commercial mondial en pleine croissance.",
+    "cta": "Découvrir les fondateurs",
+    "imageAlt": "Olivier Ndatimana"
+  },
+  "mission": {
+    "eyebrow": "Notre raison d'être",
+    "heading": "Mission et vision",
+    "missionTitle": "Notre mission",
+    "missionText": "Unir commerçants, prestataires de services et institutions d'Afrique, d'Europe, d'Asie et des États-Unis au sein d'une seule alliance commerciale — en offrant à chaque membre un accès équitable au marché, à des prix justes et payables en Pi au taux cible GCV communautaire.",
+    "visionTitle": "Notre vision",
+    "visionText": "Un marché mondial où le commerce circule librement entre les continents — dynamisant l'agriculture, l'industrie, les services professionnels et le commerce pour chaque membre de l'alliance, à un prix constant au taux cible GCV communautaire de 1 π ≈ {{value}} $."
+  },
+  "membership": {
+    "eyebrow": "Rejoindre l'Alliance",
+    "heading": "Devenir membre",
+    "text": "La Pi Global GCV Alliance est ouverte à tout commerçant, entreprise ou institution. Que vous souhaitiez devenir Ambassadeur, inscrire votre entreprise en tant que Commerçant GCV, ou simplement rejoindre la communauté — il y a un rôle pour vous.",
+    "roles": {
+      "member": { "title": "Membre GCV", "desc": "Rejoignez la communauté et commencez à explorer le marché GCV." },
+      "merchant": { "title": "Commerçant GCV", "desc": "Inscrivez votre entreprise pour accepter le Pi au taux cible GCV communautaire." },
+      "ambassador": { "title": "Ambassadeur GCV", "desc": "Portez le mouvement dans votre pays ou votre région." }
+    },
+    "joinToday": "Rejoindre maintenant",
+    "learnMore": "En savoir plus",
+    "stats": {
+      "continents": "Continents",
+      "merchants": "Commerçants GCV",
+      "products": "Produits référencés",
+      "perPi": "par π (objectif GCV)"
+    }
+  },
+  "contact": {
+    "emailUs": "Écrivez-nous",
+    "callUs": "Appelez-nous",
+    "whatsapp": "WhatsApp",
+    "chatWithUs": "Discuter avec nous"
+  },
+  "cta": {
+    "badge": "Participez au mouvement",
+    "heading": "Rejoignez la Pi Global GCV Alliance dès aujourd'hui !",
+    "subtitle": "Faites partie d'un mouvement mondial qui construit la prospérité par le commerce et l'unité.",
+    "becomeMember": "Devenir membre",
+    "exploreMarket": "Explorer le marché"
+  }
+}

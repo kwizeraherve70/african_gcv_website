@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { ArrowLeft, Minus, Plus, Star, ShoppingCart, Check } from 'lucide-react';
 import type { Product } from '../data/mockData';
 import { getProductBySlug, getAllProducts } from '../api/products';
@@ -9,6 +10,7 @@ import { toPi } from '../lib/pi';
 import { sanitizeHtml } from '../lib/sanitize';
 
 export function ProductDetail() {
+  const { t } = useTranslation('shop');
   const { slug } = useParams();
   const [product, setProduct] = useState<Product | null | undefined>(undefined);
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
@@ -45,7 +47,7 @@ export function ProductDetail() {
     return (
       <div className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-muted-foreground">Loading…</p>
+          <p className="text-muted-foreground">{t('productDetail.loading')}</p>
         </div>
       </div>
     );
@@ -55,16 +57,16 @@ export function ProductDetail() {
     return (
       <div className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-3xl font-bold mb-4 tracking-tight">Product Not Found</h1>
+          <h1 className="text-3xl font-bold mb-4 tracking-tight">{t('productDetail.notFound.title')}</h1>
           <p className="text-muted-foreground mb-8">
-            The product you're looking for doesn't exist.
+            {t('productDetail.notFound.text')}
           </p>
           <Link
             to="/shop"
             className="inline-flex items-center gap-2 text-brand-purple font-medium"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Shop
+            {t('productDetail.notFound.backToShop')}
           </Link>
         </div>
       </div>
@@ -98,7 +100,7 @@ export function ProductDetail() {
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-brand-purple mb-8 transition-colors group"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
-          Back to Shop
+          {t('productDetail.backToShop')}
         </Link>
 
         {/* Product layout */}
@@ -140,7 +142,7 @@ export function ProductDetail() {
           <div>
             <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
               {product.category}
-              {product.merchantName && <> · By {product.merchantName}</>}
+              {product.merchantName && <>{t('productDetail.byMerchant', { name: product.merchantName })}</>}
             </p>
             <h1 className="text-3xl font-bold mb-4 tracking-tight">{product.name}</h1>
 
@@ -159,7 +161,7 @@ export function ProductDetail() {
                 ))}
               </div>
               <span className="text-sm text-muted-foreground">
-                {product.rating} ({product.reviewCount} reviews)
+                {t('productDetail.ratingSummary', { rating: product.rating, count: product.reviewCount })}
               </span>
             </div>
 
@@ -173,14 +175,14 @@ export function ProductDetail() {
                       ${product.compareAtPrice}
                     </span>
                     <span className="bg-red-500 text-white text-xs font-bold px-2.5 py-1 rounded-full">
-                      Save ${savings}
+                      {t('productDetail.save', { amount: savings })}
                     </span>
                   </>
                 )}
               </div>
               <p className="text-sm text-brand-purple/80 font-medium mt-1.5 flex items-center gap-1">
                 <span className="text-lg leading-none">π</span>
-                {toPi(product.price)} π at the community GCV target
+                {t('productDetail.gcvNote', { piAmount: toPi(product.price) })}
               </p>
             </div>
 
@@ -195,19 +197,19 @@ export function ProductDetail() {
                 {product.inventory === 0 ? (
                   <>
                     <span className="w-2 h-2 rounded-full bg-red-500 flex-shrink-0" />
-                    <span className="text-red-500 font-medium text-sm">Out of Stock</span>
+                    <span className="text-red-500 font-medium text-sm">{t('productDetail.stock.outOfStock')}</span>
                   </>
                 ) : product.inventory < 10 ? (
                   <>
                     <span className="w-2 h-2 rounded-full bg-orange-500 flex-shrink-0" />
                     <span className="text-orange-500 font-medium text-sm">
-                      Only {product.inventory} left in stock
+                      {t('productDetail.stock.onlyLeftInStock', { count: product.inventory })}
                     </span>
                   </>
                 ) : (
                   <>
                     <span className="w-2 h-2 rounded-full bg-green-500 flex-shrink-0" />
-                    <span className="text-green-600 font-medium text-sm">In Stock</span>
+                    <span className="text-green-600 font-medium text-sm">{t('productDetail.stock.inStock')}</span>
                   </>
                 )}
               </div>
@@ -215,7 +217,7 @@ export function ProductDetail() {
 
             {/* Quantity */}
             <div className="mb-6">
-              <label className="block text-sm font-medium mb-3">Quantity</label>
+              <label className="block text-sm font-medium mb-3">{t('productDetail.quantity.label')}</label>
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -248,12 +250,12 @@ export function ProductDetail() {
               {addedToCart ? (
                 <>
                   <Check className="w-5 h-5" />
-                  Added to Cart
+                  {t('productDetail.addToCart.added')}
                 </>
               ) : (
                 <>
                   <ShoppingCart className="w-5 h-5" />
-                  Add to Cart
+                  {t('productDetail.addToCart.add')}
                 </>
               )}
             </button>
@@ -266,9 +268,9 @@ export function ProductDetail() {
             <div className="flex gap-6">
               {(
                 [
-                  { id: 'description', label: 'Description' },
-                  { id: 'reviews', label: `Reviews (${product.reviewCount})` },
-                  { id: 'shipping', label: 'Shipping Info' },
+                  { id: 'description', label: t('productDetail.tabs.description') },
+                  { id: 'reviews', label: t('productDetail.tabs.reviews', { count: product.reviewCount }) },
+                  { id: 'shipping', label: t('productDetail.tabs.shipping') },
                 ] as const
               ).map(tab => (
                 <button
@@ -296,26 +298,25 @@ export function ProductDetail() {
           {activeTab === 'reviews' && (
             <div className="py-8 text-center bg-accent/40 rounded-2xl">
               <p className="text-muted-foreground">
-                Customer reviews coming soon. Be the first to review this product!
+                {t('productDetail.reviews.comingSoon')}
               </p>
             </div>
           )}
 
           {activeTab === 'shipping' && (
             <div className="prose max-w-none">
-              <h3>Delivery Information</h3>
-              <p>Every vehicle is inspected and prepared by a certified GCV Merchant dealership before delivery. Delivery times vary by location:</p>
+              <h3>{t('productDetail.shipping.deliveryHeading')}</h3>
+              <p>{t('productDetail.shipping.deliveryIntro')}</p>
               <ul>
-                <li>Africa: 5–10 business days</li>
-                <li>Europe: 10–20 business days</li>
-                <li>North America: 15–25 business days</li>
-                <li>Other regions: 20–30 business days</li>
+                <li>{t('productDetail.shipping.africa')}</li>
+                <li>{t('productDetail.shipping.europe')}</li>
+                <li>{t('productDetail.shipping.northAmerica')}</li>
+                <li>{t('productDetail.shipping.other')}</li>
               </ul>
-              <p>Vehicle registration and import documentation support is included. Test drives can be arranged before purchase at select dealership locations.</p>
-              <h3>Returns & Warranty</h3>
+              <p>{t('productDetail.shipping.docs')}</p>
+              <h3>{t('productDetail.shipping.returnsHeading')}</h3>
               <p>
-                All vehicles include a 90-day dealer warranty from date of delivery.
-                Return requests must be made within 7 days of delivery, subject to inspection.
+                {t('productDetail.shipping.returnsText')}
               </p>
             </div>
           )}
@@ -324,7 +325,7 @@ export function ProductDetail() {
         {/* Related products */}
         {relatedProducts.length > 0 && (
           <div>
-            <h2 className="text-2xl font-bold mb-6 tracking-tight">Related Products</h2>
+            <h2 className="text-2xl font-bold mb-6 tracking-tight">{t('productDetail.relatedProducts.heading')}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {relatedProducts.map(related => (
                 <Link
@@ -356,7 +357,7 @@ export function ProductDetail() {
                         )}
                       </div>
                       <p className="text-[10px] text-brand-purple/70 font-medium mt-0.5">
-                        ≈ {toPi(related.price)} π (GCV)
+                        {t('productDetail.relatedProducts.gcvNote', { piAmount: toPi(related.price) })}
                       </p>
                     </div>
                   </div>

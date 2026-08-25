@@ -1,10 +1,18 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { allianceMembers } from '../data/mockData';
 import { SEO } from '../components/SEO';
 import { Building2, Globe } from 'lucide-react';
 
 type Region = 'All' | 'Africa' | 'Europe' | 'Asia' | 'USA';
 const REGIONS: Region[] = ['All', 'Africa', 'Europe', 'Asia', 'USA'];
+const REGION_I18N_KEYS: Record<Region, string> = {
+  All: 'all',
+  Africa: 'africa',
+  Europe: 'europe',
+  Asia: 'asia',
+  USA: 'usa',
+};
 
 const SECTOR_COLORS: Record<string, string> = {
   Agriculture: '#10b981',
@@ -18,6 +26,7 @@ const SECTOR_COLORS: Record<string, string> = {
 };
 
 export function IndustryAlliance() {
+  const { t } = useTranslation('about');
   const [activeRegion, setActiveRegion] = useState<Region>('All');
 
   const filtered = activeRegion === 'All'
@@ -27,8 +36,8 @@ export function IndustryAlliance() {
   return (
     <div>
       <SEO
-        title="GCV Industry Alliance"
-        description="Explore the GCV Industry Alliance — companies, organisations, and businesses across Africa, Europe, Asia, and the USA partnering with Pi Global GCV Alliance."
+        title={t('industryAlliance.seo.title')}
+        description={t('industryAlliance.seo.description')}
         url="/industry-alliance"
       />
 
@@ -40,11 +49,11 @@ export function IndustryAlliance() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 bg-white/15 rounded-full px-4 py-1.5 mb-6">
             <Building2 className="w-4 h-4 text-brand-gold" />
-            <span className="text-sm font-medium">Strategic Partners</span>
+            <span className="text-sm font-medium">{t('industryAlliance.hero.badge')}</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">GCV Industry Alliance</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">{t('industryAlliance.hero.title')}</h1>
           <p className="text-white/80 text-lg max-w-2xl mx-auto leading-relaxed">
-            Companies, institutions, and organisations across four continents aligned with the GCV standard and building the Pi-powered economy.
+            {t('industryAlliance.hero.subtitle')}
           </p>
         </div>
       </section>
@@ -64,7 +73,7 @@ export function IndustryAlliance() {
               }`}
             >
               {region !== 'All' && <Globe className="w-3.5 h-3.5" />}
-              {region}
+              {t(`regions.${REGION_I18N_KEYS[region]}`)}
               <span className={`text-xs px-1.5 py-0.5 rounded-full ${
                 activeRegion === region ? 'bg-white/20' : 'bg-muted'
               }`}>
@@ -109,7 +118,7 @@ export function IndustryAlliance() {
                   <Globe className="w-3 h-3" />
                   {member.region}
                 </span>
-                <div className="w-2 h-2 bg-brand-green rounded-full" title="Active member" />
+                <div className="w-2 h-2 bg-brand-green rounded-full" title={t('industryAlliance.activeMemberTitle')} />
               </div>
             </div>
           ))}
@@ -117,21 +126,21 @@ export function IndustryAlliance() {
 
         {filtered.length === 0 && (
           <div className="text-center py-16 text-muted-foreground">
-            <p>No alliance members found for this region.</p>
+            <p>{t('industryAlliance.emptyState')}</p>
           </div>
         )}
 
         {/* CTA */}
         <div className="mt-16 bg-gradient-to-br from-brand-purple-light/10 to-brand-purple/10 rounded-2xl border border-brand-purple-light/20 p-8 text-center">
-          <h3 className="text-xl font-bold mb-2">Join the Industry Alliance</h3>
+          <h3 className="text-xl font-bold mb-2">{t('industryAlliance.cta.title')}</h3>
           <p className="text-muted-foreground text-sm mb-6 max-w-lg mx-auto">
-            Is your company or organisation aligned with the GCV standard? Apply to become an official GCV Industry Alliance member.
+            {t('industryAlliance.cta.description')}
           </p>
           <a
             href="/contact"
             className="inline-flex items-center gap-2 px-6 py-3 bg-brand-purple-light text-white rounded-xl font-semibold hover:bg-brand-purple-light transition-colors shadow-lg shadow-brand-purple-light/20"
           >
-            Apply for Membership
+            {t('industryAlliance.cta.button')}
           </a>
         </div>
       </div>

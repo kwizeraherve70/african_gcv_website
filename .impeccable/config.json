@@ -1,0 +1,13 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "border-l-4 border-brand-purple (blockquote pull-quote accent, home.tsx founder section — pre-existing convention, not an ai-slop card border)",
+        "createdAt": "2026-08-23T12:54:21.621Z"
+      }
+    ]
+  }
+}

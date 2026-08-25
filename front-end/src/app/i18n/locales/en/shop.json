@@ -1,0 +1,149 @@
+{
+  "shop": {
+    "seo": {
+      "title": "GCV Market",
+      "description": "GCV Market — browse products. Pay with Pi at the fixed Global Consensus Value rate."
+    },
+    "breadcrumb": {
+      "home": "Home",
+      "current": "GCV Market"
+    },
+    "heading": "GCV Market",
+    "sidebar": {
+      "productType": "Product Type"
+    },
+    "categories": {
+      "all": "All",
+      "sedans": "Sedans",
+      "suvs": "SUVs",
+      "sportsCars": "Sports Cars",
+      "luxury": "Luxury"
+    },
+    "filters": {
+      "allCategories": "All Categories"
+    },
+    "promo": {
+      "eyebrow": "Pay in Pi",
+      "title": "Safe. Simple. Global.",
+      "rate": "GCV target: 1 π ≈ $314,159",
+      "disclaimer": "Community-proposed, not an official rate.",
+      "learnMore": "Learn More"
+    },
+    "search": {
+      "placeholder": "Search products…"
+    },
+    "sort": {
+      "featured": "Sort by: Featured",
+      "priceLowHigh": "Price: Low to High",
+      "priceHighLow": "Price: High to Low"
+    },
+    "results": {
+      "loading": "Loading products…",
+      "count_one": "{{count}} product",
+      "count_other": "{{count}} products"
+    },
+    "error": {
+      "title": "Couldn't load products",
+      "fallbackMessage": "Failed to load products."
+    },
+    "empty": {
+      "title": "No products found",
+      "subtitle": "Try a different search term or category"
+    },
+    "badge": {
+      "sale": "SALE"
+    },
+    "stock": {
+      "outOfStock": "Out of Stock",
+      "onlyLeft": "Only {{count}} left",
+      "inStock": "In Stock"
+    },
+    "whyPayInPi": {
+      "heading": "Why Pay in Pi?",
+      "communityTarget": { "title": "Community GCV Target", "desc": "Priced at 1 π ≈ $314,159 (unofficial)" },
+      "globalSecure": { "title": "Global & Secure", "desc": "Safe and transparent transactions" },
+      "supportEcosystem": { "title": "Support Ecosystem", "desc": "Empowering merchants and communities" },
+      "easyToUse": { "title": "Easy to Use", "desc": "Simple checkout experience" }
+    }
+  },
+  "productDetail": {
+    "loading": "Loading…",
+    "notFound": {
+      "title": "Product Not Found",
+      "text": "The product you're looking for doesn't exist.",
+      "backToShop": "Back to Shop"
+    },
+    "backToShop": "Back to Shop",
+    "byMerchant": " · By {{name}}",
+    "ratingSummary": "{{rating}} ({{count}} reviews)",
+    "save": "Save ${{amount}}",
+    "gcvNote": "{{piAmount}} π at the community GCV target",
+    "stock": {
+      "outOfStock": "Out of Stock",
+      "onlyLeftInStock": "Only {{count}} left in stock",
+      "inStock": "In Stock"
+    },
+    "quantity": {
+      "label": "Quantity"
+    },
+    "addToCart": {
+      "add": "Add to Cart",
+      "added": "Added to Cart"
+    },
+    "tabs": {
+      "description": "Description",
+      "reviews": "Reviews ({{count}})",
+      "shipping": "Shipping Info"
+    },
+    "reviews": {
+      "comingSoon": "Customer reviews coming soon. Be the first to review this product!"
+    },
+    "shipping": {
+      "deliveryHeading": "Delivery Information",
+      "deliveryIntro": "Every vehicle is inspected and prepared by a certified GCV Merchant dealership before delivery. Delivery times vary by location:",
+      "africa": "Africa: 5–10 business days",
+      "europe": "Europe: 10–20 business days",
+      "northAmerica": "North America: 15–25 business days",
+      "other": "Other regions: 20–30 business days",
+      "docs": "Vehicle registration and import documentation support is included. Test drives can be arranged before purchase at select dealership locations.",
+      "returnsHeading": "Returns & Warranty",
+      "returnsText": "All vehicles include a 90-day dealer warranty from date of delivery. Return requests must be made within 7 days of delivery, subject to inspection."
+    },
+    "relatedProducts": {
+      "heading": "Related Products",
+      "gcvNote": "≈ {{piAmount}} π (GCV)"
+    }
+  },
+  "cart": {
+    "seo": {
+      "title": "Shopping Cart"
+    },
+    "heading": "Shopping Cart",
+    "empty": {
+      "heading": "Your cart is empty",
+      "text": "Browse the GCV Market to find products, services, and companies.",
+      "continueShopping": "Continue Shopping"
+    },
+    "priceUsd": "{{price}} USD",
+    "aria": {
+      "removeItem": "Remove item",
+      "decreaseQuantity": "Decrease quantity",
+      "increaseQuantity": "Increase quantity"
+    },
+    "continueShopping": "Continue Shopping",
+    "summary": {
+      "heading": "Cart Summary",
+      "subtotal_one": "Subtotal ({{count}} item)",
+      "subtotal_other": "Subtotal ({{count}} items)",
+      "amountUsd": "${{amount}} USD",
+      "shipping": "Shipping",
+      "total": "Total",
+      "gcvNote": "{{piAmount}} π",
+      "disclaimer": "GCV target: 1 π ≈ $314,159 (community-proposed, not an official rate)"
+    },
+    "checkout": {
+      "proceed": "Proceed to Checkout",
+      "secure": "Secure checkout"
+    }
+  }
+}

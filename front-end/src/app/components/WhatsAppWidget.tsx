@@ -1,15 +1,17 @@
+import { useTranslation } from 'react-i18next';
+
 const WHATSAPP_NUMBER = '250738013858';
-const WHATSAPP_MESSAGE = 'Hello! I have a question about Pi Global GCV Alliance.';
 
 export function WhatsAppWidget() {
-  const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
+  const { t } = useTranslation('common');
+  const href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(t('whatsapp.prefillMessage'))}`;
 
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Chat with us on WhatsApp"
+      aria-label={t('whatsapp.chatAria')}
       className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-lg hover:scale-110 hover:shadow-xl hover:shadow-[#25D366]/30 transition-all duration-200"
     >
       {/* WhatsApp SVG icon */}

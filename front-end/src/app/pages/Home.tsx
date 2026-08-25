@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   ArrowRight, Globe, ShieldCheck, Coins, Building2,
   Users, Store, Package, CalendarDays, Clock,
@@ -13,35 +14,19 @@ import olivierImg from '@/assets/olivie.jpeg';
 import { SEO } from '../components/SEO';
 import { toPi, GCV_USD } from '../lib/pi';
 
-const FEATURES = [
-  {
-    icon: <Globe className="w-6 h-6" />,
-    title: 'Global Alliance',
-    desc: 'Operating across 4 continents',
-  },
-  {
-    icon: <ShieldCheck className="w-6 h-6" />,
-    title: 'Secure & Trusted',
-    desc: 'Transparent, reliable and accountable',
-  },
-  {
-    icon: <Coins className="w-6 h-6" />,
-    title: 'Pay in Pi',
-    desc: 'Easy payments at the community GCV target',
-  },
-  {
-    icon: <Building2 className="w-6 h-6" />,
-    title: 'Empowering Businesses',
-    desc: 'Supporting merchants and entrepreneurs',
-  },
-];
+const FEATURE_ICONS = [
+  { key: 'global', icon: <Globe className="w-6 h-6" /> },
+  { key: 'secure', icon: <ShieldCheck className="w-6 h-6" /> },
+  { key: 'payInPi', icon: <Coins className="w-6 h-6" /> },
+  { key: 'empowering', icon: <Building2 className="w-6 h-6" /> },
+] as const;
 
-const STATS = [
-  { icon: <Users className="w-6 h-6" />, value: '12,500+', label: 'Members Worldwide' },
-  { icon: <Store className="w-6 h-6" />, value: '3,200+', label: 'Active Merchants' },
-  { icon: <Package className="w-6 h-6" />, value: '8,450+', label: 'Products Listed' },
-  { icon: <CalendarDays className="w-6 h-6" />, value: '120+', label: 'Events Organized' },
-];
+const STAT_ICONS = [
+  { key: 'members', icon: <Users className="w-6 h-6" />, value: '12,500+' },
+  { key: 'merchants', icon: <Store className="w-6 h-6" />, value: '3,200+' },
+  { key: 'products', icon: <Package className="w-6 h-6" />, value: '8,450+' },
+  { key: 'events', icon: <CalendarDays className="w-6 h-6" />, value: '120+' },
+] as const;
 
 /** Abstract dotted-network globe graphic for the hero — stands in for a literal continent map. */
 function NetworkGraphic() {
@@ -88,8 +73,21 @@ function NetworkGraphic() {
 }
 
 export function Home() {
+  const { t } = useTranslation('home');
   const [products, setProducts] = useState<Product[]>([]);
   const [newsArticles, setNewsArticles] = useState<NewsArticle[]>([]);
+
+  const FEATURES = FEATURE_ICONS.map(({ key, icon }) => ({
+    icon,
+    title: t(`features.${key}.title`),
+    desc: t(`features.${key}.desc`),
+  }));
+
+  const STATS = STAT_ICONS.map(({ key, icon, value }) => ({
+    icon,
+    value,
+    label: t(`stats.${key}`),
+  }));
 
   useEffect(() => {
     let cancelled = false;
@@ -110,8 +108,8 @@ export function Home() {
   return (
     <div>
       <SEO
-        title="Home"
-        description="Pi Global GCV Alliance — a global trade alliance connecting Africa, Europe, Asia, and the USA through commerce, innovation, and shared prosperity. Pay in Pi at the community-proposed GCV target."
+        title={t('seo.title')}
+        description={t('seo.description')}
         url="/"
       />
 
@@ -130,13 +128,12 @@ export function Home() {
 
             <div>
               <h1 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold mb-3 leading-[1.1] tracking-tight">
-                Uniting the World,<br />
-                <span className="text-brand-gold">Empowering Trade</span>
+                {t('hero.titleLine1')}<br />
+                <span className="text-brand-gold">{t('hero.titleLine2')}</span>
               </h1>
 
               <p className="text-sm mb-4 text-white/80 max-w-md leading-relaxed">
-                A global alliance connecting Africa, Europe, Asia, and the USA through
-                trade, innovation, and shared prosperity.
+                {t('hero.subtitle')}
               </p>
 
               <div className="flex flex-wrap gap-2.5 mb-4">
@@ -144,22 +141,22 @@ export function Home() {
                   to="/shop"
                   className="px-5 py-2.5 bg-brand-gold text-brand-ink rounded-xl hover:bg-yellow-300 transition-all duration-200 inline-flex items-center gap-2 font-bold shadow-lg hover:-translate-y-0.5 text-sm"
                 >
-                  Explore Market
+                  {t('hero.exploreMarket')}
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   to="/contact"
                   className="px-5 py-2.5 bg-white/10 border border-white/25 text-white rounded-xl hover:bg-white/20 transition-all duration-200 font-medium text-sm"
                 >
-                  Join the Alliance
+                  {t('hero.joinAlliance')}
                 </Link>
               </div>
 
               <div className="inline-flex items-center gap-4 rounded-2xl bg-white/10 border border-white/15 px-3.5 py-2.5 backdrop-blur-sm">
                 <div>
-                  <p className="text-xs text-white/60 font-medium uppercase tracking-wide mb-0.5">GCV Community Target</p>
-                  <p className="text-base font-bold">1 π ≈ ${GCV_USD.toLocaleString('en-US')}</p>
-                  <p className="text-xs text-white/50 mt-0.5">Not an official Pi Network or exchange rate.</p>
+                  <p className="text-xs text-white/60 font-medium uppercase tracking-wide mb-0.5">{t('hero.gcvTarget.label')}</p>
+                  <p className="text-base font-bold">{t('hero.gcvTarget.rate', { value: GCV_USD.toLocaleString('en-US') })}</p>
+                  <p className="text-xs text-white/50 mt-0.5">{t('hero.gcvTarget.disclaimer')}</p>
                 </div>
               </div>
             </div>
@@ -198,15 +195,15 @@ export function Home() {
           <div className="flex justify-between items-end mb-10">
             <div>
               <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest mb-2">
-                GCV Market
+                {t('featured.eyebrow')}
               </p>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight">Featured in GCV Market</h2>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight">{t('featured.heading')}</h2>
             </div>
             <Link
               to="/shop"
               className="hidden md:inline-flex items-center gap-1.5 text-sm font-semibold text-brand-purple group"
             >
-              View All Products
+              {t('featured.viewAll')}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </Link>
           </div>
@@ -251,7 +248,7 @@ export function Home() {
               to="/shop"
               className="md:hidden inline-flex items-center gap-1.5 text-sm font-semibold text-brand-purple"
             >
-              View All Products
+              {t('featured.viewAll')}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -283,15 +280,15 @@ export function Home() {
           <div className="flex justify-between items-end mb-10">
             <div>
               <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest mb-2">
-                Stay Informed
+                {t('news.eyebrow')}
               </p>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight">Latest News</h2>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight">{t('news.heading')}</h2>
             </div>
             <Link
               to="/news/all"
               className="hidden md:inline-flex items-center gap-1.5 text-sm font-semibold text-brand-purple group"
             >
-              View all news
+              {t('news.viewAll')}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </Link>
           </div>
@@ -338,7 +335,7 @@ export function Home() {
               to="/news/all"
               className="md:hidden inline-flex items-center gap-1.5 text-sm font-semibold text-brand-purple"
             >
-              View all news
+              {t('news.viewAll')}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -351,28 +348,24 @@ export function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="order-2 md:order-1">
               <span className="inline-block px-3 py-1 bg-brand-gold/15 text-brand-ink text-xs font-semibold rounded-full mb-5">
-                Founding Director, Pi Global GCV Alliance
+                {t('founder.badge')}
               </span>
               <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6 tracking-tight">
-                Olivier Ndatimana
+                {t('founder.name')}
               </h2>
               <blockquote className="border-l-4 border-brand-purple pl-5 mb-6">
                 <p className="text-muted-foreground leading-relaxed">
-                  Based in Kigali, Rwanda, Olivier leads the Alliance's mission to connect
-                  merchants, entrepreneurs, and institutions across Africa, Europe, Asia, and
-                  the USA under one shared trade and consensus-value standard.
+                  {t('founder.quote')}
                 </p>
               </blockquote>
               <p className="text-muted-foreground mb-8 leading-relaxed">
-                As CEO of Kigali Hot Market Ltd, Olivier's mission is to give every market
-                participant — from smallholder producers to service companies — fair, direct
-                access to a growing global trade network.
+                {t('founder.bio')}
               </p>
               <Link
                 to="/team"
                 className="inline-flex items-center gap-2 px-6 py-3.5 bg-brand-purple text-white rounded-xl hover:bg-brand-purple-light transition-all duration-200 font-semibold shadow-lg hover:-translate-y-0.5"
               >
-                Meet the Founders
+                {t('founder.cta')}
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
@@ -380,7 +373,7 @@ export function Home() {
               <div className="relative">
                 <div className="absolute -inset-3 bg-gradient-to-br from-brand-purple/20 to-brand-gold/20 rounded-3xl blur-xl pointer-events-none" />
                 <div className="relative aspect-square rounded-2xl overflow-hidden ring-1 ring-black/5">
-                  <img src={olivierImg} alt="Olivier Ndatimana" className="w-full h-full object-cover" />
+                  <img src={olivierImg} alt={t('founder.imageAlt')} className="w-full h-full object-cover" />
                 </div>
               </div>
             </div>
@@ -392,30 +385,26 @@ export function Home() {
       <section className="py-20 bg-brand-surface">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest mb-3">Why We Exist</p>
-            <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight">Mission & Vision</h2>
+            <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest mb-3">{t('mission.eyebrow')}</p>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold tracking-tight">{t('mission.heading')}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-card rounded-2xl border border-border p-8 hover:shadow-lg transition-shadow duration-200">
               <div className="w-12 h-12 bg-brand-purple rounded-xl flex items-center justify-center mb-5 shadow-md">
                 <Globe className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Our Mission</h3>
+              <h3 className="text-xl font-bold mb-3">{t('mission.missionTitle')}</h3>
               <p className="text-muted-foreground leading-relaxed">
-                To unite merchants, service providers, and institutions across Africa, Europe,
-                Asia, and the USA under a single trade alliance — empowering every member with
-                fair market access, priced fairly and payable in Pi at the community GCV target.
+                {t('mission.missionText')}
               </p>
             </div>
             <div className="bg-card rounded-2xl border border-border p-8 hover:shadow-lg transition-shadow duration-200">
               <div className="w-12 h-12 bg-brand-gold rounded-xl flex items-center justify-center mb-5 shadow-md">
                 <Coins className="w-6 h-6 text-brand-ink" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Our Vision</h3>
+              <h3 className="text-xl font-bold mb-3">{t('mission.visionTitle')}</h3>
               <p className="text-muted-foreground leading-relaxed">
-                A global marketplace where trade flows freely across continents — powering
-                agriculture, manufacturing, professional services, and commerce for every
-                alliance member, priced consistently at the community GCV target of 1 π ≈ ${GCV_USD.toLocaleString('en-US')}.
+                {t('mission.visionText', { value: GCV_USD.toLocaleString('en-US') })}
               </p>
             </div>
           </div>
@@ -427,18 +416,16 @@ export function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <p className="text-xs font-semibold text-brand-green uppercase tracking-widest mb-3">Join the Alliance</p>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-5 tracking-tight">Become a Member</h2>
+              <p className="text-xs font-semibold text-brand-green uppercase tracking-widest mb-3">{t('membership.eyebrow')}</p>
+              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-5 tracking-tight">{t('membership.heading')}</h2>
               <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-                The Pi Global GCV Alliance is open to every trader, business, and institution.
-                Whether you want to be an Ambassador, register your business as a GCV Merchant,
-                or simply join the community — there's a role for you.
+                {t('membership.text')}
               </p>
               <div className="space-y-3 mb-8">
                 {[
-                  { title: 'GCV Member', desc: 'Join the community and start browsing the GCV Market.' },
-                  { title: 'GCV Merchant', desc: 'Register your business to accept Pi at the community GCV target.' },
-                  { title: 'GCV Ambassador', desc: 'Lead the movement in your country or region.' },
+                  { title: t('membership.roles.member.title'), desc: t('membership.roles.member.desc') },
+                  { title: t('membership.roles.merchant.title'), desc: t('membership.roles.merchant.desc') },
+                  { title: t('membership.roles.ambassador.title'), desc: t('membership.roles.ambassador.desc') },
                 ].map(({ title, desc }) => (
                   <div key={title} className="flex items-start gap-3">
                     <div className="w-5 h-5 bg-brand-green rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -456,22 +443,22 @@ export function Home() {
                   to="/contact"
                   className="px-6 py-3 bg-brand-green text-white rounded-xl font-semibold hover:bg-emerald-600 transition-colors shadow-lg shadow-emerald-500/20"
                 >
-                  Join Today
+                  {t('membership.joinToday')}
                 </Link>
                 <Link
                   to="/about"
                   className="px-6 py-3 border border-border text-sm font-medium rounded-xl hover:bg-accent transition-colors"
                 >
-                  Learn More
+                  {t('membership.learnMore')}
                 </Link>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { value: '4', label: 'Continents', color: 'text-brand-purple' },
-                { value: `${merchants.length}+`, label: 'GCV Merchants', color: 'text-brand-green' },
-                { value: `${products.length}+`, label: 'Products Listed', color: 'text-brand-purple-light' },
-                { value: '$314,159', label: 'per π (GCV target)', color: 'text-brand-gold' },
+                { value: '4', label: t('membership.stats.continents'), color: 'text-brand-purple' },
+                { value: `${merchants.length}+`, label: t('membership.stats.merchants'), color: 'text-brand-green' },
+                { value: `${products.length}+`, label: t('membership.stats.products'), color: 'text-brand-purple-light' },
+                { value: '$314,159', label: t('membership.stats.perPi'), color: 'text-brand-gold' },
               ].map(({ value, label, color }) => (
                 <div
                   key={label}
@@ -498,7 +485,7 @@ export function Home() {
                 <Mail className="w-5 h-5 text-brand-purple" />
               </div>
               <div>
-                <p className="text-xs text-muted-foreground font-medium">Email Us</p>
+                <p className="text-xs text-muted-foreground font-medium">{t('contact.emailUs')}</p>
                 <p className="font-semibold text-sm">info@gcvalliance.org</p>
               </div>
             </a>
@@ -510,7 +497,7 @@ export function Home() {
                 <Phone className="w-5 h-5 text-brand-green" />
               </div>
               <div>
-                <p className="text-xs text-muted-foreground font-medium">Call Us</p>
+                <p className="text-xs text-muted-foreground font-medium">{t('contact.callUs')}</p>
                 <p className="font-semibold text-sm">+250 788 547 719</p>
               </div>
             </a>
@@ -524,8 +511,8 @@ export function Home() {
                 <MessageCircle className="w-5 h-5 text-[#25D366]" />
               </div>
               <div>
-                <p className="text-xs text-muted-foreground font-medium">WhatsApp</p>
-                <p className="font-semibold text-sm">Chat With Us</p>
+                <p className="text-xs text-muted-foreground font-medium">{t('contact.whatsapp')}</p>
+                <p className="font-semibold text-sm">{t('contact.chatWithUs')}</p>
               </div>
             </a>
           </div>
@@ -544,27 +531,27 @@ export function Home() {
         />
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
           <span className="inline-block px-3 py-1 bg-white/10 border border-white/15 text-white/80 text-xs font-semibold rounded-full mb-6 uppercase tracking-wider">
-            Be Part of the Movement
+            {t('cta.badge')}
           </span>
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-5 tracking-tight">
-            Join the Pi Global GCV Alliance Today!
+            {t('cta.heading')}
           </h2>
           <p className="text-white/80 text-lg mb-10 max-w-xl mx-auto leading-relaxed">
-            Be part of a global movement building prosperity through trade and unity.
+            {t('cta.subtitle')}
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
               to="/contact"
               className="px-8 py-4 bg-brand-gold text-brand-ink rounded-xl font-bold hover:bg-yellow-300 transition-all duration-200 inline-flex items-center gap-2 shadow-xl hover:-translate-y-0.5"
             >
-              Become a Member
+              {t('cta.becomeMember')}
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               to="/shop"
               className="px-8 py-4 bg-white/10 border border-white/20 text-white rounded-xl font-semibold hover:bg-white/20 transition-all duration-200 inline-flex items-center gap-2"
             >
-              Explore Market
+              {t('cta.exploreMarket')}
             </Link>
           </div>
         </div>

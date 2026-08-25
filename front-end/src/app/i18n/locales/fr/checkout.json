@@ -1,0 +1,78 @@
+{
+  "checkout": {
+    "steps": {
+      "shipping": "Livraison",
+      "payment": "Paiement",
+      "review": "Vérification"
+    },
+    "canceledNotice": "Le paiement a été annulé. Votre commande a été enregistrée — vous pouvez réessayer de payer.",
+    "genericOrderError": "Impossible de passer votre commande. Veuillez réessayer.",
+    "shippingForm": {
+      "title": "Informations de livraison",
+      "fullName": "Nom complet *",
+      "fullNamePlaceholder": "Jean Dupont",
+      "email": "E-mail *",
+      "emailPlaceholder": "jean@exemple.com",
+      "phone": "Téléphone *",
+      "phonePlaceholder": "+250 700 000 000",
+      "address": "Adresse *",
+      "addressPlaceholder": "123 Rue Principale",
+      "city": "Ville *",
+      "cityPlaceholder": "Kigali",
+      "province": "Province / État *",
+      "provincePlaceholder": "Ville de Kigali",
+      "country": "Pays *",
+      "countryPlaceholder": "Rwanda",
+      "postalCode": "Code postal",
+      "postalCodePlaceholder": "00000"
+    },
+    "paymentMethods": {
+      "title": "Mode de paiement",
+      "card": {
+        "title": "Carte de crédit / débit",
+        "description": "Payez en toute sécurité avec votre carte de crédit ou de débit"
+      },
+      "mobileMoney": {
+        "title": "Mobile Money",
+        "description": "M-Pesa, MTN Mobile Money, Orange Money"
+      },
+      "pi": {
+        "title": "Payer avec Pi",
+        "description": "Payez directement depuis votre portefeuille Pi — {{amount}} π au taux GCV communautaire"
+      },
+      "piNotice": "Vous confirmerez ce paiement dans votre application Pi Wallet. Le GCV est un objectif proposé par la communauté, et non un taux officiel de Pi Network.",
+      "secureNotice": "Vos informations de paiement sont chiffrées et sécurisées. Nous ne stockons jamais les détails de votre carte."
+    },
+    "review": {
+      "title": "Vérifier la commande",
+      "shippingTo": "Livraison à",
+      "payment": "Paiement",
+      "piTarget": "{{amount}} π (taux GCV cible)",
+      "orderItems": "Articles commandés",
+      "subtotal": "Sous-total",
+      "shipping": "Livraison",
+      "total": "Total"
+    },
+    "buttons": {
+      "back": "Retour",
+      "continue": "Continuer",
+      "placeOrder": "Passer la commande",
+      "placingOrder": "Commande en cours…"
+    }
+  },
+  "orderConfirmation": {
+    "title": "Commande confirmée !",
+    "thankYou": "Merci pour votre achat auprès de Pi Global GCV Alliance.",
+    "orderNumberLabel": "Numéro de commande",
+    "nextSteps": {
+      "title": "Que se passe-t-il ensuite ?",
+      "confirmationEmail": "Vous recevrez sous peu un e-mail de confirmation de commande",
+      "digitalDelivery": "Les produits numériques seront envoyés à votre adresse e-mail sous 24 heures",
+      "physicalShipping": "Les produits physiques seront expédiés sous 2 à 3 jours ouvrables"
+    },
+    "continueShopping": "Continuer mes achats",
+    "backToHome": "Retour à l'accueil",
+    "needHelp": "Besoin d'aide avec votre commande ?",
+    "contactSupport": "Contacter le support"
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "shop": {
+    "seo": {
+      "title": "Isoko rya GCV",
+      "description": "Isoko rya GCV — reba ibicuruzwa. Ishyura muri Pi ku giciro gihamye cya Global Consensus Value."
+    },
+    "breadcrumb": {
+      "home": "Ahabanza",
+      "current": "Isoko rya GCV"
+    },
+    "heading": "Isoko rya GCV",
+    "sidebar": {
+      "productType": "Ubwoko bw'Igicuruzwa"
+    },
+    "categories": {
+      "all": "Byose",
+      "sedans": "Sedan",
+      "suvs": "SUV",
+      "sportsCars": "Imodoka z'Umuvuduko",
+      "luxury": "Iza Kirere"
+    },
+    "filters": {
+      "allCategories": "Ubwoko Bwose"
+    },
+    "promo": {
+      "eyebrow": "Ishyura muri Pi",
+      "title": "Byizewe. Byoroshye. Ku Isi Yose.",
+      "rate": "Igiciro rusange cya GCV: 1 π ≈ $314,159",
+      "disclaimer": "Byatanzwe n'umuryango, ntabwo ari igiciro cyemewe.",
+      "learnMore": "Menya Byinshi"
+    },
+    "search": {
+      "placeholder": "Shakisha ibicuruzwa…"
+    },
+    "sort": {
+      "featured": "Tondeka: Ibitoranyijwe",
+      "priceLowHigh": "Igiciro: Kiva Hasi Kijya Hejuru",
+      "priceHighLow": "Igiciro: Kiva Hejuru Kijya Hasi"
+    },
+    "results": {
+      "loading": "Gutangiza ibicuruzwa…",
+      "count_one": "Igicuruzwa {{count}}",
+      "count_other": "Ibicuruzwa {{count}}"
+    },
+    "error": {
+      "title": "Ntibyashobotse gutangiza ibicuruzwa",
+      "fallbackMessage": "Byanze gutangiza ibicuruzwa."
+    },
+    "empty": {
+      "title": "Nta gicuruzwa cyabonetse",
+      "subtitle": "Gerageza andi magambo yo gushakisha cyangwa ubundi bwoko"
+    },
+    "badge": {
+      "sale": "IGURISHWA"
+    },
+    "stock": {
+      "outOfStock": "Byashize mu Bubiko",
+      "onlyLeft": "Hasigaye {{count}} gusa",
+      "inStock": "Biraboneka"
+    },
+    "whyPayInPi": {
+      "heading": "Kuki Wishyura muri Pi?",
+      "communityTarget": { "title": "Igiciro Rusange cya GCV", "desc": "Igiciro gishingiye kuri 1 π ≈ $314,159 (kitemewe by'umwihariko)" },
+      "globalSecure": { "title": "Mpuzamahanga kandi Byizewe", "desc": "Ibikorwa byizewe kandi bigaragara" },
+      "supportEcosystem": { "title": "Gushyigikira Urusobe", "desc": "Guteza imbere abacuruzi n'imiryango" },
+      "easyToUse": { "title": "Byoroshye Gukoresha", "desc": "Kwishyura byoroshye kandi byihuse" }
+    }
+  },
+  "productDetail": {
+    "loading": "Birimo gutangira…",
+    "notFound": {
+      "title": "Igicuruzwa Ntikiboneka",
+      "text": "Igicuruzwa ushaka nticyabashije kuboneka.",
+      "backToShop": "Subira ku Isoko"
+    },
+    "backToShop": "Subira ku Isoko",
+    "byMerchant": " · Na {{name}}",
+    "ratingSummary": "{{rating}} ({{count}} ibitekerezo)",
+    "save": "Wizigamiye ${{amount}}",
+    "gcvNote": "{{piAmount}} π ku giciro rusange cya GCV",
+    "stock": {
+      "outOfStock": "Byashize mu Bubiko",
+      "onlyLeftInStock": "Hasigaye {{count}} gusa mu bubiko",
+      "inStock": "Biraboneka"
+    },
+    "quantity": {
+      "label": "Umubare"
+    },
+    "addToCart": {
+      "add": "Ongeraho mu Gitebo",
+      "added": "Byongewe mu Gitebo"
+    },
+    "tabs": {
+      "description": "Ibisobanuro",
+      "reviews": "Ibitekerezo ({{count}})",
+      "shipping": "Amakuru y'Ikohereza"
+    },
+    "reviews": {
+      "comingSoon": "Ibitekerezo by'abaguzi biraza vuba. Ba uwa mbere gutanga igitekerezo kuri iki gicuruzwa!"
+    },
+    "shipping": {
+      "deliveryHeading": "Amakuru y'Ikohereza",
+      "deliveryIntro": "Buri modoka isuzumwa kandi iteguwa n'ababyemewe b'Umucuruzi wa GCV mbere yo kohererezwa. Igihe cy'ikohereza gitandukanye ukurikije aho uherereye:",
+      "africa": "Afurika: iminsi 5–10 y'akazi",
+      "europe": "Uburayi: iminsi 10–20 y'akazi",
+      "northAmerica": "Amerika y'Amajyaruguru: iminsi 15–25 y'akazi",
+      "other": "Uturere dutandukanye: iminsi 20–30 y'akazi",
+      "docs": "Ubufasha bwo kwandikisha imodoka n'inyandiko z'itumizwa mu mahanga birimo. Ibizamini byo gutwara imodoka birashobora guteganywa mbere yo kugura ahantu hamwe na hamwe hemewe.",
+      "returnsHeading": "Gusubiza no Kwishingira",
+      "returnsText": "Imodoka zose zifite ubwishingizi bw'iminsi 90 buva ku itariki y'ikohereza. Gusaba gusubiza bigomba gukorwa mu minsi 7 nyuma y'ikohereza, hakurikijwe isuzuma."
+    },
+    "relatedProducts": {
+      "heading": "Ibicuruzwa Bijyanye",
+      "gcvNote": "≈ {{piAmount}} π (GCV)"
+    }
+  },
+  "cart": {
+    "seo": {
+      "title": "Igitebo cy'Ibiguzwe"
+    },
+    "heading": "Igitebo cy'Ibiguzwe",
+    "empty": {
+      "heading": "Igitebo cyawe nticyuzuye",
+      "text": "Reba Isoko rya GCV kugira ngo ubone ibicuruzwa, serivisi, n'amasosiyete.",
+      "continueShopping": "Komeza Kugura"
+    },
+    "priceUsd": "{{price}} USD",
+    "aria": {
+      "removeItem": "Kuraho igicuruzwa",
+      "decreaseQuantity": "Kugabanya umubare",
+      "increaseQuantity": "Kwongera umubare"
+    },
+    "continueShopping": "Komeza Kugura",
+    "summary": {
+      "heading": "Incamake y'Igitebo",
+      "subtotal_one": "Igiteranyo ({{count}} gicuruzwa)",
+      "subtotal_other": "Igiteranyo ({{count}} bicuruzwa)",
+      "amountUsd": "${{amount}} USD",
+      "shipping": "Ikohereza",
+      "total": "Igiteranyo Rusange",
+      "gcvNote": "{{piAmount}} π",
+      "disclaimer": "Igiciro rusange cya GCV: 1 π ≈ $314,159 (byatanzwe n'umuryango, ntabwo ari igiciro cyemewe)"
+    },
+    "checkout": {
+      "proceed": "Komeza Kwishyura",
+      "secure": "Kwishyura byizewe"
+    }
+  }
+}

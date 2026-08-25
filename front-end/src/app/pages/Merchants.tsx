@@ -1,11 +1,24 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { merchants } from '../data/mockData';
 import { SEO } from '../components/SEO';
 import { Store, Search, ExternalLink, Mail } from 'lucide-react';
 
 const CATEGORIES = ['All', 'Food & Beverage', 'Technology', 'Fashion & Clothing', 'Education', 'Transport', 'Agriculture', 'Professional Services', 'Healthcare'];
+const CATEGORY_I18N_KEYS: Record<string, string> = {
+  'All': 'all',
+  'Food & Beverage': 'foodBeverage',
+  'Technology': 'technology',
+  'Fashion & Clothing': 'fashionClothing',
+  'Education': 'education',
+  'Transport': 'transport',
+  'Agriculture': 'agriculture',
+  'Professional Services': 'professionalServices',
+  'Healthcare': 'healthcare',
+};
 
 export function Merchants() {
+  const { t } = useTranslation('about');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
 
@@ -21,8 +34,8 @@ export function Merchants() {
   return (
     <div>
       <SEO
-        title="Merchant Directory"
-        description="Browse the GCV Merchant Directory — African businesses accepting Pi at the Global Consensus Value standard in food, tech, education, healthcare, and more."
+        title={t('merchants.seo.title')}
+        description={t('merchants.seo.description')}
         url="/merchants"
       />
 
@@ -34,18 +47,18 @@ export function Merchants() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 bg-white/15 rounded-full px-4 py-1.5 mb-6">
             <Store className="w-4 h-4 text-brand-gold" />
-            <span className="text-sm font-medium">Pi Merchants</span>
+            <span className="text-sm font-medium">{t('merchants.hero.badge')}</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Merchant Directory</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">{t('merchants.hero.title')}</h1>
           <p className="text-white/80 text-lg max-w-2xl mx-auto leading-relaxed">
-            Discover African businesses accepting Pi at the GCV standard. From food vendors to tech companies — shop, eat, and transact in Pi.
+            {t('merchants.hero.subtitle')}
           </p>
           <div className="mt-8 max-w-xl mx-auto">
             <div className="relative">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/60" />
               <input
                 type="text"
-                placeholder="Search merchants by name, category, or country…"
+                placeholder={t('merchants.hero.searchPlaceholder')}
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
                 className="w-full pl-11 pr-4 py-3.5 bg-white/15 border border-white/25 rounded-xl text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/30 text-sm"
@@ -69,16 +82,18 @@ export function Merchants() {
                   : 'bg-accent text-muted-foreground hover:bg-accent/80'
               }`}
             >
-              {cat}
+              {t(`merchants.categories.${CATEGORY_I18N_KEYS[cat]}`)}
             </button>
           ))}
         </div>
 
         {/* Results count */}
         <p className="text-sm text-muted-foreground mb-6">
-          {filtered.length} merchant{filtered.length !== 1 ? 's' : ''} found
-          {selectedCategory !== 'All' ? ` in ${selectedCategory}` : ''}
-          {searchQuery ? ` for "${searchQuery}"` : ''}
+          {t('merchants.resultsCount', { count: filtered.length })}
+          {selectedCategory !== 'All'
+            ? t('merchants.resultsInCategory', { category: t(`merchants.categories.${CATEGORY_I18N_KEYS[selectedCategory]}`) })
+            : ''}
+          {searchQuery ? t('merchants.resultsForQuery', { query: searchQuery }) : ''}
         </p>
 
         {/* Merchant grid */}
@@ -115,7 +130,7 @@ export function Merchants() {
                       className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-brand-purple transition-colors"
                     >
                       <Mail className="w-3.5 h-3.5" />
-                      Email
+                      {t('merchants.email')}
                     </a>
                   )}
                   {merchant.website && (
@@ -126,7 +141,7 @@ export function Merchants() {
                       className="flex items-center gap-1.5 text-xs text-muted-foreground hover:text-brand-purple transition-colors ml-auto"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
-                      Website
+                      {t('merchants.website')}
                     </a>
                   )}
                 </div>
@@ -138,15 +153,15 @@ export function Merchants() {
             <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center mx-auto mb-4">
               <Store className="w-8 h-8 text-muted-foreground" />
             </div>
-            <h3 className="text-xl font-bold mb-2">No merchants found</h3>
+            <h3 className="text-xl font-bold mb-2">{t('merchants.empty.title')}</h3>
             <p className="text-muted-foreground text-sm">
-              Try adjusting your search or selecting a different category.
+              {t('merchants.empty.description')}
             </p>
             <button
               onClick={() => { setSearchQuery(''); setSelectedCategory('All'); }}
               className="mt-4 text-brand-purple text-sm font-medium hover:underline"
             >
-              Clear filters
+              {t('merchants.empty.clearFilters')}
             </button>
           </div>
         )}
@@ -156,15 +171,15 @@ export function Merchants() {
           <div className="w-12 h-12 bg-gradient-to-br from-brand-green to-emerald-400 rounded-xl flex items-center justify-center mx-auto mb-4">
             <Store className="w-6 h-6 text-white" />
           </div>
-          <h3 className="text-xl font-bold mb-2">List Your Business</h3>
+          <h3 className="text-xl font-bold mb-2">{t('merchants.cta.title')}</h3>
           <p className="text-muted-foreground text-sm mb-6 max-w-md mx-auto">
-            Accept Pi at GCV and join Africa's growing merchant network. Registration is free for all GCV-aligned businesses.
+            {t('merchants.cta.description')}
           </p>
           <a
             href="/contact"
             className="inline-flex items-center gap-2 px-6 py-3 bg-brand-green text-white rounded-xl font-semibold hover:bg-brand-green transition-colors shadow-lg shadow-brand-green/20"
           >
-            Register as a Merchant
+            {t('merchants.cta.button')}
           </a>
         </div>
       </div>

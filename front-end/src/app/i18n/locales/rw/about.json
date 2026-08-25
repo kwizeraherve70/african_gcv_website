@@ -1,0 +1,202 @@
+{
+  "regions": {
+    "all": "Byose",
+    "africa": "Afurika",
+    "europe": "Uburayi",
+    "asia": "Aziya",
+    "usa": "Leta Zunze Ubumwe za Amerika"
+  },
+  "about": {
+    "seo": {
+      "title": "Abo turi bo",
+      "description": "Menya Pi Global GCV Alliance — intego yacu, indangagaciro zacu z'ibanze, ubuyobozi bwacu, n'icyerekezo cyacu ku isi mu bucuruzi, ubuhanga bushya, n'iterambere risangiwe muri Afurika, Uburayi, Aziya na Amerika."
+    },
+    "hero": {
+      "eyebrow": "Abo turi bo",
+      "title": "Abo turi bo muri Pi Global GCV Alliance",
+      "subtitle": "Kubaka ubukungu bw'ubucuruzi ku isi bwuzuye ubutabera kandi bwitabira bose muri Afurika, Uburayi, Aziya na Amerika binyuze mu Gaciro ry'Impuzamahanga Ryemejwe (GCV)."
+    },
+    "mission": {
+      "eyebrow": "Intego yacu",
+      "title": "Intego yacu",
+      "paragraph1": "Pi Global GCV Alliance yiyemeje guha abacuruzi, abatanga serivisi, n'inzego ibikoresho n'ubufasha bw'umuryango bakenera kugira ngo bacuruze mu buryo bw'ubutabera ku isoko ry'isi rikura buri munsi.",
+      "paragraph2": "Twemera ko Agaciro k'Impuzamahanga Ryemejwe kagaragaza impinduka ikomeye mu buryo ubucuruzi bugenwa igiciro — igipimo kimwe, kigaragara, kandi kihagaze buri munsi umunyamuryango wese yizera, aho kwishingikiriza ku giciro gihinduka buri gihe.",
+      "paragraph3": "Binyuze mu burezi, kuburana ku bw'inyungu z'abandi, no kubaka umuryango, dufasha kubaka ejo hazaza h'ubucuruzi bwuzuye ubutabera buhuza ibihugu bine.",
+      "imageAlt": "Umuryango w'Ihuriro"
+    },
+    "values": {
+      "eyebrow": "Ibyo duharanira",
+      "title": "Indangagaciro zacu z'ibanze",
+      "items": [
+        {
+          "title": "Umuryango mbere na mbere",
+          "desc": "Dushyira imbere ibyifuzo n'ijwi ry'umuryango w'abanyamuryango bacu muri byose dukora."
+        },
+        {
+          "title": "Agaciro k'ubutabera",
+          "desc": "Duharanira igipimo cy'ivunjisha kigaragara kandi kihagaze burundu, kirinda buri wese ufatanya mu bucuruzi."
+        },
+        {
+          "title": "Uburezi",
+          "desc": "Duha abanyamuryango n'abacuruzi ubushobozi binyuze mu bikoresho by'uburezi n'ubufasha bunoze."
+        },
+        {
+          "title": "Ubumwe ku isi",
+          "desc": "Twubaka ibiraro hagati ya Afurika, Uburayi, Aziya na Amerika kugira ngo tuzane urusobe rumwe rw'ubucuruzi."
+        }
+      ]
+    },
+    "gcv": {
+      "title": "Ni iki Agaciro k'Impuzamahanga Ryemejwe (GCV)?",
+      "rateDisplay": "1 π ≈ ${{value}}",
+      "disclaimerStrong": "GCV ni intego y'igiciro yatanzwe n'umuryango, ntabwo ari igipimo cyemewe na Pi Network.",
+      "disclaimerRest": "Ntabwo cyemejwe na Pi Core Team cyangwa ngo kigenzurwe kuri isoko iryo ari ryo ryose. Igiciro nyacyo cya Pi ku isoko riguzwa n'abandi ni nto cyane — ni amasenti make, atari amayobera y'ibihumbi n'ibihumbi by'amadolari.",
+      "paragraph1Before": "Agaciro k'Impuzamahanga Ryemejwe (GCV) ni igipimo Ihuriro ryumvikanyeho hamwe n'umuryango wose, gitanga",
+      "paragraph1After": "— umubare uvuye ku ihame rya matematike π (3.14159) hakurwaho akadomo k'igice mu myanya ine ijya iburyo. Ibicuruzwa na serivisi biri kuri GCV Market bishyirwaho igiciro muri Dolari z'Amerika kandi bikagaragazwa bihinduwe muri Pi hakurikijwe iyi ntego y'umuryango.",
+      "paragraph2": "Bitandukanye n'igiciro gishyirwaho ku isoko ry'imigabane, GCV ni igipimo cy'icyerekezo, cyumvikanyweho n'ihuriro ryose hagati y'ababanjirije abandi — ntabwo ari agaciro k'isoko. Kigaragaza icyo abacuruzi n'abanyamuryango bumvikanyeho hagati yabo, ntabwo ari igiciro Pi ifite ku isoko iryo ari ryo ryose.",
+      "principlesLabel": "Amahame y'ibanze ya GCV arimo:",
+      "principles": [
+        "Intego imwe, yumvikanyweho n'umuryango, ikoreshwa mu buryo buhoraho kuri Market yose",
+        "Kugaragara mu gushyiraho ibiciro no mu buryo bw'igurana",
+        "Kurinda uburiganya bw'isoko no ubucuruzi butemewe",
+        "Kwakirwa n'abacuruzi nk'ikimenyetso cy'akamaro nyakuri",
+        "Ihame rimwe, risangiwe muri buri karere k'ihuriro"
+      ],
+      "paragraph3": "Ku banyamuryango bo muri Afurika, Uburayi, Aziya na Amerika, GCV igaragaza icyifuzo gisangiwe cyo gucuruza mu buryo bw'ubutabera kandi buteganyijwe — hifashishijwe igipimo kimwe, gikoreshwa mu buryo buhoraho, ahantu hose mu Ihuriro."
+    },
+    "leadership": {
+      "eyebrow": "Itsinda ryacu",
+      "title": "Ubuyobozi bwacu",
+      "doris": {
+        "name": "Doris Yin",
+        "role": "Intumwa Nkuru y'Isi · Umushinga wa Global GCV Movement",
+        "bio1": "Doris Yin ni umushinga wa Global GCV Movement, atanga icyerekezo n'ubuyobozi ku rusobe rw'Intumwa za GCV ku isi. Yayoboye kandi avuga mu materaniro akomeye ku isi ateza imbere GCV nk'ihame ry'ubucuruzi bw'ubutabera kandi bugaragara.",
+        "bio2": "Ubutumwa bwe nyamukuru — \"Kubaka Umusingi Ukomeye, Inkingi y'Ejo Hazaza Heza\" — ni ibanze ry'imyumvire y'uburezi no kubaka umuryango mu Ihuriro muri buri karere."
+      },
+      "olivier": {
+        "name": "Olivier Ndatimana",
+        "role": "Umuyobozi Mushinga, Pi Global GCV Alliance",
+        "bio1": "Olivier Ndatimana ni Umuyobozi Mushinga wa Pi Global GCV Alliance, afite ubumenyi mu bwikorezi, ubwikorezi bw'ibintu, n'iterambere ry'isoko nk'Umuyobozi Mukuru wa Kigali Hot Market Ltd.",
+        "bio2": "Munsi y'ubuyobozi bwe, Ihuriro ryagize urusobe rw'abacuruzi ryaguye n'ubufatanye bw'uturere twinshi muri Afurika, Uburayi, Aziya na Amerika — bwubaka ihame ry'ubucuruzi risangiwe uhereye ku musingi.",
+        "bio3": "Intego ya Olivier ni ugutuma buri munyamuryango agira uburenganzira bunoze kandi butaziguye ku bukungu bw'isi — GCV igatanga umusingi uhamye w'ubucuruzi mu Ihuriro."
+      }
+    },
+    "regionsSection": {
+      "eyebrow": "Imiterere y'isi",
+      "title": "Ibihugu bine, Ihuriro rimwe",
+      "description": "Pi Global GCV Alliance yubatswe hakurikijwe Intumwa n'Abashinze b'uturere muri Afurika, Uburayi, Aziya na Amerika, buri wese ayobora umutwe muri karere ke."
+    },
+    "impact": {
+      "title": "Ingaruka z'Ihuriro",
+      "stats": [
+        { "value": "4", "label": "Ibihugu" },
+        { "value": "12,500+", "label": "Abanyamuryango ku isi" },
+        { "value": "3,200+", "label": "Abacuruzi bakora" },
+        { "value": "Mutarama 2025", "label": "Inama Rusange ya Mbere" }
+      ]
+    }
+  },
+  "team": {
+    "seo": {
+      "title": "Itsinda Nkuru rya GCV",
+      "description": "Menya itsinda ry'ubuyobozi ku isi n'abayobozi b'amashami bateza imbere Pi Global GCV Alliance muri Afurika no ku isi."
+    },
+    "hero": {
+      "badge": "Abantu bacu",
+      "title": "Itsinda Nkuru rya GCV",
+      "subtitle": "Abashinze, abayobozi, intumwa, n'inzobere babaka umutwe wa GCV muri Afurika no ku isi."
+    },
+    "globalLeadership": {
+      "eyebrow": "Ubuyobozi Bukuru",
+      "title": "Ubuyobozi ku Isi"
+    },
+    "founders": {
+      "eyebrow": "Abafite icyerekezo",
+      "title": "Abashinze"
+    },
+    "structure": {
+      "eyebrow": "Imiterere",
+      "title": "Amatsinda y'Amashami"
+    },
+    "departments": {
+      "all": "Byose",
+      "leadership": "Ubuyobozi",
+      "ambassadors": "Intumwa",
+      "education": "Uburezi",
+      "ecosystem": "Urusobe",
+      "finance": "Imari",
+      "communications": "Itumanaho",
+      "events": "Ibirori"
+    }
+  },
+  "ambassadors": {
+    "seo": {
+      "title": "Intumwa za GCV",
+      "description": "Menya Intumwa za GCV zihagarariye Afurika, Uburayi, Aziya na Amerika — abayobozi b'imbere mu murongo ba Pi Global GCV Alliance."
+    },
+    "hero": {
+      "badge": "Uhagarariye ku isi",
+      "title": "Intumwa za GCV",
+      "subtitle": "Intumwa Nkuru n'abayobozi b'uturere bahagarariye umutwe wa GCV muri Afurika, Uburayi, Aziya na Amerika."
+    },
+    "contactLink": "Twandikire",
+    "emptyState": "Nta ntumwa yabonetse muri aka karere."
+  },
+  "industryAlliance": {
+    "seo": {
+      "title": "Ihuriro ry'Inganda rya GCV",
+      "description": "Reba Ihuriro ry'Inganda rya GCV — amasosiyete, imiryango, n'ibigo muri Afurika, Uburayi, Aziya na Amerika bifatanya na Pi Global GCV Alliance."
+    },
+    "hero": {
+      "badge": "Abafatanyabikorwa Bakuru",
+      "title": "Ihuriro ry'Inganda rya GCV",
+      "subtitle": "Amasosiyete, inzego, n'imiryango bo mu bihugu bine byemeranyijwe n'ihame rya GCV kandi bubaka ubukungu bushingiye kuri Pi."
+    },
+    "activeMemberTitle": "Umunyamuryango ukora",
+    "emptyState": "Nta munyamuryango w'ihuriro wabonetse muri aka karere.",
+    "cta": {
+      "title": "Jya mu Ihuriro ry'Inganda",
+      "description": "Ese isosiyete cyangwa umuryango wawe byemeranyijwe n'ihame rya GCV? Saba kuba umunyamuryango wemewe w'Ihuriro ry'Inganda rya GCV.",
+      "button": "Saba kwinjira"
+    }
+  },
+  "merchants": {
+    "seo": {
+      "title": "Urutonde rw'Abacuruzi",
+      "description": "Reba urutonde rw'abacuruzi ba GCV — amasosiyete ya Afurika yakira Pi ku gipimo cya GCV mu biribwa, ikoranabuhanga, uburezi, ubuzima, n'ibindi."
+    },
+    "hero": {
+      "badge": "Abacuruzi ba Pi",
+      "title": "Urutonde rw'Abacuruzi",
+      "subtitle": "Menya amasosiyete ya Afurika yakira Pi ku gipimo cya GCV. Uhereye ku bagurisha ibiribwa kugeza ku masosiyete y'ikoranabuhanga — gura, urye, kandi ukore ubucuruzi muri Pi.",
+      "searchPlaceholder": "Shakisha umucuruzi hakurikijwe izina, ubwoko, cyangwa igihugu…"
+    },
+    "categories": {
+      "all": "Byose",
+      "foodBeverage": "Ibiribwa & Ibinyobwa",
+      "technology": "Ikoranabuhanga",
+      "fashionClothing": "Imideli & Imyambaro",
+      "education": "Uburezi",
+      "transport": "Ubwikorezi",
+      "agriculture": "Ubuhinzi",
+      "professionalServices": "Serivisi z'Abanyamwuga",
+      "healthcare": "Ubuzima"
+    },
+    "resultsCount_one": "Umucuruzi {{count}} yabonetse",
+    "resultsCount_other": "Abacuruzi {{count}} babonetse",
+    "resultsInCategory": " muri {{category}}",
+    "resultsForQuery": " ku \"{{query}}\"",
+    "email": "Imeyili",
+    "website": "Urubuga",
+    "empty": {
+      "title": "Nta mucuruzi wabonetse",
+      "description": "Gerageza guhindura ishakisha ryawe cyangwa uhitemo ubundi bwoko.",
+      "clearFilters": "Siba imiyunguruzo"
+    },
+    "cta": {
+      "title": "Andikisha ubucuruzi bwawe",
+      "description": "Akira Pi ku gaciro ka GCV kandi winjire mu rusobe rukura rw'abacuruzi ba Afurika. Kwiyandikisha ni ubuntu ku masosiyete yose yemeranyijwe na GCV.",
+      "button": "Iyandikishe nk'umucuruzi"
+    }
+  }
+}

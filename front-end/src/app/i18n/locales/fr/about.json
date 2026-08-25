@@ -1,0 +1,202 @@
+{
+  "regions": {
+    "all": "Toutes",
+    "africa": "Afrique",
+    "europe": "Europe",
+    "asia": "Asie",
+    "usa": "États-Unis"
+  },
+  "about": {
+    "seo": {
+      "title": "À propos de nous",
+      "description": "Découvrez Pi Global GCV Alliance — notre mission, nos valeurs fondamentales, notre direction et notre vision mondiale pour le commerce, l'innovation et la prospérité partagée à travers l'Afrique, l'Europe, l'Asie et les États-Unis."
+    },
+    "hero": {
+      "eyebrow": "À propos de nous",
+      "title": "À propos de Pi Global GCV Alliance",
+      "subtitle": "Bâtir une économie commerciale mondiale juste et inclusive à travers l'Afrique, l'Europe, l'Asie et les États-Unis grâce à la Valeur de Consensus Mondial."
+    },
+    "mission": {
+      "eyebrow": "Notre raison d'être",
+      "title": "Notre mission",
+      "paragraph1": "Pi Global GCV Alliance se consacre à donner aux commerçants, prestataires de services et institutions les outils et le soutien communautaire nécessaires pour commercer équitablement sur un marché mondial en pleine croissance.",
+      "paragraph2": "Nous croyons que la Valeur de Consensus Mondial représente un changement de paradigme dans la tarification du commerce — un taux de conversion unique, transparent et fixe sur lequel chaque membre peut compter, plutôt qu'une tarification spéculative volatile.",
+      "paragraph3": "Grâce à l'éducation, au plaidoyer et à la construction communautaire, nous contribuons à créer un avenir commercial plus équitable reliant quatre continents.",
+      "imageAlt": "Communauté de l'Alliance"
+    },
+    "values": {
+      "eyebrow": "Ce que nous défendons",
+      "title": "Nos valeurs fondamentales",
+      "items": [
+        {
+          "title": "La communauté d'abord",
+          "desc": "Nous donnons la priorité aux besoins et à la voix de notre communauté de membres dans tout ce que nous faisons."
+        },
+        {
+          "title": "Valeur équitable",
+          "desc": "Nous défendons un taux de conversion transparent et fixe qui protège chaque partenaire commercial."
+        },
+        {
+          "title": "Éducation",
+          "desc": "Nous donnons aux membres et aux commerçants les moyens d'agir grâce à des ressources éducatives et un soutien complets."
+        },
+        {
+          "title": "Unité mondiale",
+          "desc": "Nous construisons des ponts entre l'Afrique, l'Europe, l'Asie et les États-Unis pour créer un réseau commercial unifié."
+        }
+      ]
+    },
+    "gcv": {
+      "title": "Qu'est-ce que la Valeur de Consensus Mondial ?",
+      "rateDisplay": "1 π ≈ {{value}} $",
+      "disclaimerStrong": "La GCV est un objectif de prix proposé par la communauté, et non un taux officiel de Pi Network.",
+      "disclaimerRest": "Elle n'est ni approuvée par la Pi Core Team ni vérifiée sur aucune plateforme d'échange. Le prix réel du Pi sur le marché libre est bien plus bas — de l'ordre de quelques centimes par pièce, et non de centaines de milliers de dollars.",
+      "paragraph1Before": "La Valeur de Consensus Mondial (GCV) est le taux cible convenu par la communauté de l'Alliance, proposant",
+      "paragraph1After": "— un chiffre dérivé de la constante mathématique π (3,14159) dont la virgule décimale a été déplacée de quatre positions vers la droite. Les produits et services du GCV Market sont tarifés en USD et affichés convertis en Pi selon cet objectif communautaire.",
+      "paragraph2": "Contrairement à une tarification établie en bourse, la GCV est un taux de référence symbolique et aspirationnel fixé par accord à l'échelle de l'Alliance entre pionniers — et non une valorisation de marché. Elle reflète ce que les commerçants et membres participants ont convenu de respecter entre eux, et non le cours du Pi sur une quelconque plateforme d'échange.",
+      "principlesLabel": "Les principes clés de la GCV incluent :",
+      "principles": [
+        "Un objectif unique, convenu par la communauté, appliqué de manière cohérente sur l'ensemble du Market",
+        "La transparence dans la tarification et les processus de transaction",
+        "La protection contre la manipulation de marché et le commerce non officiel",
+        "L'adoption par les commerçants comme preuve d'utilité concrète",
+        "Une norme unique, partagée dans chaque région de l'alliance"
+      ],
+      "paragraph3": "Pour les membres d'Afrique, d'Europe, d'Asie et des États-Unis, la GCV représente une aspiration commune à commercer selon des conditions justes et prévisibles — avec un seul taux cible, appliqué de manière cohérente, partout dans l'Alliance."
+    },
+    "leadership": {
+      "eyebrow": "Notre équipe",
+      "title": "Notre direction",
+      "doris": {
+        "name": "Doris Yin",
+        "role": "Grande Ambassadrice mondiale · Fondatrice, Global GCV Movement",
+        "bio1": "Doris Yin est la fondatrice du Global GCV Movement, apportant une vision stratégique et une direction au réseau mondial des Ambassadeurs GCV. Elle a dirigé et pris la parole lors de grands rassemblements mondiaux faisant progresser la GCV comme norme d'un commerce équitable et transparent.",
+        "bio2": "Son message directeur — « Bâtir une fondation solide, un pilier pour un avenir radieux » — est la pierre angulaire de la philosophie éducative et communautaire de l'Alliance dans chaque région."
+      },
+      "olivier": {
+        "name": "Olivier Ndatimana",
+        "role": "Directeur fondateur, Pi Global GCV Alliance",
+        "bio1": "Olivier Ndatimana est le Directeur fondateur de Pi Global GCV Alliance, apportant son expertise en expédition, logistique et développement de marché en tant que PDG de Kigali Hot Market Ltd.",
+        "bio2": "Sous sa direction, l'Alliance a développé son réseau de commerçants et sa coordination régionale à travers l'Afrique, l'Europe, l'Asie et les États-Unis — bâtissant une norme commerciale commune à partir de la base.",
+        "bio3": "La mission d'Olivier est de donner à chaque membre un accès équitable et direct à l'économie mondiale — la GCV offrant une base stable pour le commerce au sein de l'Alliance."
+      }
+    },
+    "regionsSection": {
+      "eyebrow": "Structure mondiale",
+      "title": "Quatre continents, une seule alliance",
+      "description": "Pi Global GCV Alliance est structurée autour d'Ambassadeurs et de Fondateurs régionaux à travers l'Afrique, l'Europe, l'Asie et les États-Unis, chacun dirigeant le mouvement au sein de sa région."
+    },
+    "impact": {
+      "title": "Impact de l'Alliance",
+      "stats": [
+        { "value": "4", "label": "Continents" },
+        { "value": "12 500+", "label": "Membres dans le monde" },
+        { "value": "3 200+", "label": "Commerçants actifs" },
+        { "value": "Janv. 2025", "label": "Première conférence générale" }
+      ]
+    }
+  },
+  "team": {
+    "seo": {
+      "title": "Équipe centrale GCV",
+      "description": "Découvrez l'équipe de direction mondiale et les responsables de départements qui font avancer Pi Global GCV Alliance à travers l'Afrique et le monde."
+    },
+    "hero": {
+      "badge": "Nos équipes",
+      "title": "Équipe centrale GCV",
+      "subtitle": "Les fondateurs, dirigeants, ambassadeurs et spécialistes qui bâtissent le mouvement GCV à travers l'Afrique et le monde."
+    },
+    "globalLeadership": {
+      "eyebrow": "Direction générale",
+      "title": "Direction mondiale"
+    },
+    "founders": {
+      "eyebrow": "Les visionnaires",
+      "title": "Fondateurs"
+    },
+    "structure": {
+      "eyebrow": "Structure",
+      "title": "Équipes de département"
+    },
+    "departments": {
+      "all": "Tous",
+      "leadership": "Direction",
+      "ambassadors": "Ambassadeurs",
+      "education": "Éducation",
+      "ecosystem": "Écosystème",
+      "finance": "Finance",
+      "communications": "Communications",
+      "events": "Événements"
+    }
+  },
+  "ambassadors": {
+    "seo": {
+      "title": "Ambassadeurs GCV",
+      "description": "Découvrez les Ambassadeurs GCV représentant l'Afrique, l'Europe, l'Asie et les États-Unis — les leaders de première ligne de Pi Global GCV Alliance."
+    },
+    "hero": {
+      "badge": "Représentation mondiale",
+      "title": "Ambassadeurs GCV",
+      "subtitle": "Ambassadeurs commissaires et leaders régionaux représentant le mouvement GCV à travers l'Afrique, l'Europe, l'Asie et les États-Unis."
+    },
+    "contactLink": "Contact",
+    "emptyState": "Aucun ambassadeur trouvé pour cette région."
+  },
+  "industryAlliance": {
+    "seo": {
+      "title": "Alliance industrielle GCV",
+      "description": "Découvrez l'Alliance industrielle GCV — entreprises, organisations et sociétés à travers l'Afrique, l'Europe, l'Asie et les États-Unis en partenariat avec Pi Global GCV Alliance."
+    },
+    "hero": {
+      "badge": "Partenaires stratégiques",
+      "title": "Alliance industrielle GCV",
+      "subtitle": "Entreprises, institutions et organisations sur quatre continents alignées sur la norme GCV et bâtissant l'économie propulsée par Pi."
+    },
+    "activeMemberTitle": "Membre actif",
+    "emptyState": "Aucun membre de l'alliance trouvé pour cette région.",
+    "cta": {
+      "title": "Rejoindre l'Alliance industrielle",
+      "description": "Votre entreprise ou organisation est-elle alignée sur la norme GCV ? Postulez pour devenir membre officiel de l'Alliance industrielle GCV.",
+      "button": "Postuler pour adhérer"
+    }
+  },
+  "merchants": {
+    "seo": {
+      "title": "Annuaire des commerçants",
+      "description": "Parcourez l'annuaire des commerçants GCV — des entreprises africaines qui acceptent le Pi à la norme Valeur de Consensus Mondial dans l'alimentation, la technologie, l'éducation, la santé et plus encore."
+    },
+    "hero": {
+      "badge": "Commerçants Pi",
+      "title": "Annuaire des commerçants",
+      "subtitle": "Découvrez des entreprises africaines qui acceptent le Pi à la norme GCV. Des vendeurs de produits alimentaires aux entreprises technologiques — achetez, mangez et transigez en Pi.",
+      "searchPlaceholder": "Rechercher un commerçant par nom, catégorie ou pays…"
+    },
+    "categories": {
+      "all": "Toutes",
+      "foodBeverage": "Alimentation & Boissons",
+      "technology": "Technologie",
+      "fashionClothing": "Mode & Vêtements",
+      "education": "Éducation",
+      "transport": "Transport",
+      "agriculture": "Agriculture",
+      "professionalServices": "Services professionnels",
+      "healthcare": "Santé"
+    },
+    "resultsCount_one": "{{count}} commerçant trouvé",
+    "resultsCount_other": "{{count}} commerçants trouvés",
+    "resultsInCategory": " dans {{category}}",
+    "resultsForQuery": " pour « {{query}} »",
+    "email": "E-mail",
+    "website": "Site web",
+    "empty": {
+      "title": "Aucun commerçant trouvé",
+      "description": "Essayez d'ajuster votre recherche ou de sélectionner une autre catégorie.",
+      "clearFilters": "Réinitialiser les filtres"
+    },
+    "cta": {
+      "title": "Inscrivez votre entreprise",
+      "description": "Acceptez le Pi à la valeur GCV et rejoignez le réseau croissant de commerçants africains. L'inscription est gratuite pour toutes les entreprises alignées sur la GCV.",
+      "button": "S'inscrire comme commerçant"
+    }
+  }
+}

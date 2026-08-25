@@ -1,0 +1,86 @@
+{
+  "news": {
+    "countryNotFound": {
+      "title": "Nchi Haikupatikana",
+      "description": "GCV Africa haina bado kituo cha habari kwa nchi hiyo.",
+      "backToCountries": "Rudi kwenye Nchi"
+    },
+    "back": {
+      "allCountries": "Nchi Zote",
+      "newsHome": "Nyumbani kwa Habari na Vyombo vya Habari"
+    },
+    "eyebrow": {
+      "country": "GCV Africa — {{flag}} {{country}}",
+      "global": "Muungano wa Pi Global GCV"
+    },
+    "title": {
+      "country": "Habari za {{country}}",
+      "global": "Habari na Vyombo vya Habari Vyote"
+    },
+    "subtitle": {
+      "country": "Kila kinachoendelea na harakati ya GCV nchini {{country}}.",
+      "global": "Masasisho ya hivi karibuni, matangazo, na taarifa kwa vyombo vya habari kutoka harakati ya GCV"
+    },
+    "seo": {
+      "countryDescription": "Habari za GCV, shughuli za mabalozi, na hadithi za uwafikiaji wa wafanyabiashara kutoka {{country}}.",
+      "globalDescription": "Pata habari za hivi karibuni kuhusu Pi Network, masasisho ya harakati ya GCV, matangazo rasmi, taarifa kwa vyombo vya habari, na hadithi za jamii kutoka kote Afrika."
+    },
+    "tabs": {
+      "articles": "Makala",
+      "announcements": "Matangazo",
+      "pressReleases": "Taarifa kwa Vyombo vya Habari"
+    },
+    "search": {
+      "placeholder": "Tafuta makala…"
+    },
+    "filters": {
+      "categories": {
+        "all": "Zote",
+        "piNetwork": "Pi Network",
+        "gcvMovement": "Harakati ya GCV",
+        "events": "Matukio",
+        "community": "Jamii"
+      }
+    },
+    "loadingArticles": "Inapakia makala…",
+    "articleCount_one": "Makala {{count}} imepatikana",
+    "articleCount_other": "Makala {{count}} zimepatikana",
+    "emptyState": {
+      "noStoriesFromCountry": "Hakuna hadithi kutoka {{country}} bado",
+      "noArticlesFound": "Hakuna makala yaliyopatikana",
+      "checkBackSoon": "Rudi tena hivi karibuni, au vinjari habari zote za GCV.",
+      "tryDifferentSearch": "Jaribu neno lingine la utafutaji au kategoria nyingine",
+      "viewAllNews": "Tazama Habari Zote →"
+    },
+    "important": "Muhimu"
+  },
+  "newsCountries": {
+    "seo": {
+      "title": "Habari na Vyombo vya Habari",
+      "description": "Vinjari habari za GCV kwa nchi — masasisho, shughuli za mabalozi, na hadithi za uwafikiaji wa wafanyabiashara kutoka GCV Africa yote."
+    },
+    "eyebrow": "Muungano wa Pi Global GCV",
+    "title": "Habari na Vyombo vya Habari",
+    "subtitle": "Chagua nchi ya GCV Africa kuona habari za huko, au vinjari kila kitu kwa pamoja.",
+    "allNews": {
+      "title": "Habari na Matangazo Yote",
+      "description": "Makala, matangazo rasmi, na taarifa kwa vyombo vya habari kutoka Muungano mzima"
+    },
+    "browseByCountry": "GCV Africa — Vinjari kwa Nchi",
+    "storyCount_one": "Hadithi {{count}}",
+    "storyCount_other": "Hadithi {{count}}"
+  },
+  "newsDetail": {
+    "loading": "Inapakia…",
+    "notFound": {
+      "title": "Makala Haikupatikana",
+      "description": "Makala unayoitafuta haipo.",
+      "backToNews": "Rudi kwenye Habari"
+    },
+    "backToNews": "Rudi kwenye Habari",
+    "views": "mionekano",
+    "byAuthor": "Imeandikwa na {{author}}",
+    "shareArticle": "Shiriki Makala",
+    "relatedArticles": "Makala Zinazohusiana"
+  }
+}

@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { teamMembers, founders } from '../data/mockData';
 import { SEO } from '../components/SEO';
 import { Users, Globe, Star } from 'lucide-react';
 
-const DEPARTMENTS = ['All', 'Leadership', 'Ambassadors', 'Education', 'Ecosystem', 'Finance', 'Communications', 'Events'];
+const DEPARTMENT_KEYS = ['ambassadors', 'education', 'ecosystem', 'finance', 'communications', 'events'];
 
 const REGION_COLORS: Record<string, string> = {
   Africa: 'from-brand-purple to-brand-purple-light',
@@ -15,6 +16,7 @@ const REGION_COLORS: Record<string, string> = {
 
 export function Team() {
   const { hash } = useLocation();
+  const { t } = useTranslation('about');
 
   useEffect(() => {
     if (!hash) return;
@@ -25,8 +27,8 @@ export function Team() {
   return (
     <div>
       <SEO
-        title="GCV Core Team"
-        description="Meet the global leadership team and department heads driving the Pi Global GCV Alliance across Africa and the world."
+        title={t('team.seo.title')}
+        description={t('team.seo.description')}
         url="/team"
       />
 
@@ -39,11 +41,11 @@ export function Team() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 bg-white/15 rounded-full px-4 py-1.5 mb-6">
             <Users className="w-4 h-4 text-brand-gold" />
-            <span className="text-sm font-medium">Our People</span>
+            <span className="text-sm font-medium">{t('team.hero.badge')}</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">GCV Core Team</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">{t('team.hero.title')}</h1>
           <p className="text-white/80 text-lg max-w-2xl mx-auto leading-relaxed">
-            The founders, leaders, ambassadors, and specialists building the GCV movement across Africa and the world.
+            {t('team.hero.subtitle')}
           </p>
         </div>
       </section>
@@ -57,8 +59,8 @@ export function Team() {
               <Globe className="w-5 h-5 text-white" />
             </div>
             <div>
-              <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest">Top Leadership</p>
-              <h2 className="text-2xl font-bold tracking-tight">Global Leadership</h2>
+              <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest">{t('team.globalLeadership.eyebrow')}</p>
+              <h2 className="text-2xl font-bold tracking-tight">{t('team.globalLeadership.title')}</h2>
             </div>
           </div>
 
@@ -95,8 +97,8 @@ export function Team() {
               <Star className="w-5 h-5 text-white" />
             </div>
             <div>
-              <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest">The Visionaries</p>
-              <h2 className="text-2xl font-bold tracking-tight">Founders</h2>
+              <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest">{t('team.founders.eyebrow')}</p>
+              <h2 className="text-2xl font-bold tracking-tight">{t('team.founders.title')}</h2>
             </div>
           </div>
 
@@ -139,19 +141,19 @@ export function Team() {
               <Users className="w-5 h-5 text-white" />
             </div>
             <div>
-              <p className="text-xs font-semibold text-brand-gold uppercase tracking-widest">Structure</p>
-              <h2 className="text-2xl font-bold tracking-tight">Department Teams</h2>
+              <p className="text-xs font-semibold text-brand-gold uppercase tracking-widest">{t('team.structure.eyebrow')}</p>
+              <h2 className="text-2xl font-bold tracking-tight">{t('team.structure.title')}</h2>
             </div>
           </div>
 
           {/* Department filter pills */}
           <div className="flex flex-wrap gap-2 mb-8">
-            {DEPARTMENTS.filter(d => d !== 'All' && d !== 'Leadership').map(dept => (
+            {DEPARTMENT_KEYS.map(dept => (
               <span
                 key={dept}
                 className="px-3 py-1.5 bg-accent rounded-lg text-sm font-medium text-muted-foreground"
               >
-                {dept}
+                {t(`team.departments.${dept}`)}
               </span>
             ))}
           </div>
