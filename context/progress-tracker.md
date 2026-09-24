@@ -328,6 +328,14 @@ implementation state changes.
 
 ## Next Up
 
+- **Production connectivity hardening (2026-09-24):** frontend API URL
+  configuration now removes trailing slashes before composing endpoint
+  paths, and the backend CORS policy reads the deployed frontend origin
+  from `FRONTEND_URL` with optional `FRONTEND_URLS` preview/custom
+  origins. Railway and Vercel must still have these variables set to the
+  real deployed URLs; the old Kigali Hot Market origins are no longer
+  implicitly trusted.
+
 - ~~Admin Dashboard~~ — done 2026-08-17, see the "In Progress" Day 4
   entry above.
 - **Merchant Dashboard — still pending, the fast-follow noted since

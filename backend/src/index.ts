@@ -22,6 +22,16 @@ declare module "express" {
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const allowedOrigins = new Set(
+  [
+    process.env.FRONTEND_URL ?? "https://african-gcv-frontend.vercel.app",
+    ...(process.env.FRONTEND_URLS?.split(",") ?? []),
+    "http://localhost:4173",
+    "http://localhost:5173",
+  ]
+    .map((origin) => origin?.trim().replace(/\/$/, ""))
+    .filter((origin): origin is string => Boolean(origin)),
+);
 app.use(
   urlencoded({
     extended: true,
@@ -58,13 +68,14 @@ app.post(
 app.use(json());
 app.use(
   cors({
-    // The kigalihotmarket.* / vercel.app origins are inherited from khm-be
-    // and are unrelated to this project (Pi Global GCV Alliance) — left in
-    // place rather than removed blind, since it's unconfirmed whether that
-    // old frontend is still live against this API. localhost:5173 is this
-    // project's Vite dev server (added 2026-08-16 for Day 3 frontend
-    // wiring); the real production frontend origin isn't known yet.
-    origin: ["https://kigalihotmarket-frontend.vercel.app", "https://kigalihotmarket-fontend-hs54pegw0.vercel.app", "https://kigalihotmarket-fontend-oyyqg4fe9.vercel.app", "http://localhost:4173", "http://localhost:5173", "https://www.kigalihotmarket.store", "https://kigalihotmarket.store"],
+    // Set FRONTEND_URL to the canonical Vercel URL in Railway. Additional
+    // comma-separated preview/custom URLs can be supplied via FRONTEND_URLS.
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.has(origin.replace(/\/$/, ""))) {
+        return callback(null, true);
+      }
+      return callback(new Error(`CORS origin not allowed: ${origin}`));
+    },
     credentials: true,
   }),
 );
