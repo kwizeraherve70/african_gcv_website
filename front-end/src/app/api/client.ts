@@ -1,12 +1,14 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL as string | undefined;
+const configuredApiBaseUrl = import.meta.env.VITE_API_BASE_URL as string | undefined;
 
-if (!API_BASE_URL) {
+if (!configuredApiBaseUrl) {
   // Fails loudly at import time rather than producing confusing relative-URL
   // fetch errors later — every page that reads from the API depends on this.
   throw new Error(
     'VITE_API_BASE_URL is not set. Copy front-end/.env.example to front-end/.env and point it at the backend (e.g. http://localhost:3000/api).',
   );
 }
+
+const API_BASE_URL = configuredApiBaseUrl.replace(/\/+$/, '');
 
 export class ApiError extends Error {
   status: number;
