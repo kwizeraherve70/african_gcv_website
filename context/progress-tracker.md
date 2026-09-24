@@ -335,6 +335,12 @@ implementation state changes.
   origins. Railway and Vercel must still have these variables set to the
   real deployed URLs; the old Kigali Hot Market origins are no longer
   implicitly trusted.
+- **Vercel environment correction (2026-09-24):** the deployed Vercel
+  bundle had the Railway host configured without `https://`, making the
+  browser call a relative `/african-gcv-production...` path on Vercel and
+  receive 405. The API client now normalizes a host-only value to HTTPS
+  defensively, while the Vercel variable remains documented with the full
+  URL.
 
 - ~~Admin Dashboard~~ — done 2026-08-17, see the "In Progress" Day 4
   entry above.

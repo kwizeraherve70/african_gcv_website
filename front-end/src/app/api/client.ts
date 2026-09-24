@@ -8,7 +8,10 @@ if (!configuredApiBaseUrl) {
   );
 }
 
-const API_BASE_URL = configuredApiBaseUrl.replace(/\/+$/, '');
+const API_BASE_URL = `${/^https?:\/\//i.test(configuredApiBaseUrl) ? '' : 'https://'}${configuredApiBaseUrl}`.replace(
+  /\/+$/,
+  '',
+);
 
 export class ApiError extends Error {
   status: number;
