@@ -9,6 +9,7 @@ import {
   Tags,
   Request,
   Middlewares,
+  Security,
 } from "tsoa";
 import { TestimonyService } from "../services/testimonyService";
 import {
@@ -36,6 +37,7 @@ export class TestimonyController {
   }
 
   @Post("/property")
+  @Security("jwt", ["ADMIN"])
   @Middlewares(upload.any(), appendPhoto)
   public async createPropertyTestimony(
     @Body() testimonyData: CreateTestimonyDto,
@@ -45,6 +47,7 @@ export class TestimonyController {
   }
 
   @Post("/agent")
+  @Security("jwt", ["ADMIN"])
   @Middlewares(upload.any(), appendPhoto)
   public async createAgentTestimony(
     @Body() testimonyData: CreateTestimonyDto,
@@ -54,6 +57,7 @@ export class TestimonyController {
   }
 
   @Put("/{id}")
+  @Security("jwt", ["ADMIN"])
   @Middlewares(upload.any(), appendPhoto)
   public async updateContact(
     @Path() id: string,
@@ -63,6 +67,7 @@ export class TestimonyController {
   }
 
   @Delete("/{id}")
+  @Security("jwt", ["ADMIN"])
   public async deleteContact(@Path() id: string): Promise<IResponse<null>> {
     await TestimonyService.deleteTestimony(id);
     return {

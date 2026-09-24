@@ -202,7 +202,7 @@ function AccountMenu() {
           <button
             onClick={() => {
               setOpen(false);
-              logout();
+              void logout();
               navigate('/');
             }}
             className="w-full flex items-center gap-2 text-left px-3.5 py-2 text-sm text-foreground hover:bg-accent transition-colors duration-100"
@@ -430,7 +430,7 @@ export function Navbar() {
                   </span>
                   <button
                     onClick={() => {
-                      logout();
+                      void logout();
                       navigate('/');
                     }}
                     className="px-4 py-2.5 rounded-xl text-sm font-semibold border border-border hover:bg-accent transition-colors duration-150 flex-shrink-0"

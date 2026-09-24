@@ -41,6 +41,7 @@ export class BlogController {
   }
 
   @Post("/")
+  @Security("jwt", ["ADMIN"])
   @Middlewares(upload.any(), appendPhotoAttachments)
   public async createBlog(
     @Body() blogData: CreateBlogDto,
@@ -50,6 +51,7 @@ export class BlogController {
   }
 
   @Put("/{id}")
+  @Security("jwt", ["ADMIN"])
   @Middlewares(upload.any(), appendPhotoAttachments)
   public async updateBlog(
     @Path() id: string,
@@ -68,6 +70,7 @@ export class BlogController {
   }
 
   @Delete("/{id}")
+  @Security("jwt", ["ADMIN"])
   public async deleteBlog(@Path() id: string): Promise<IResponse<null>> {
     await BlogService.deleteBlog(id);
     return {

@@ -1,27 +1,17 @@
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import * as authApi from '../api/auth';
 import type { AuthUser } from '../api/auth';
 
-const STORAGE_KEY = 'gcv_auth_session';
-
-interface StoredSession {
+interface AuthSession {
   token: string;
   user: AuthUser;
-}
-
-function loadSession(): StoredSession | null {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as StoredSession) : null;
-  } catch {
-    return null;
-  }
 }
 
 interface AuthContextType {
   user: AuthUser | null;
   token: string | null;
   isAuthenticated: boolean;
+  isLoading: boolean;
   login: (email: string, password: string) => Promise<AuthUser>;
   signup: (input: {
     email: string;
@@ -30,35 +20,61 @@ interface AuthContextType {
     lastName: string;
     phoneNumber: string;
   }) => Promise<void>;
-  logout: () => void;
+  logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [session, setSession] = useState<StoredSession | null>(() => loadSession());
+  const [session, setSession] = useState<AuthSession | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const persist = (next: StoredSession | null) => {
-    setSession(next);
-    if (next) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-    } else {
-      localStorage.removeItem(STORAGE_KEY);
-    }
-  };
+  useEffect(() => {
+    let active = true;
+    localStorage.removeItem('gcv_auth_session');
+    authApi.refresh()
+      .then((next) => {
+        if (active) setSession(next);
+      })
+      .catch(() => {
+        if (active) setSession(null);
+      })
+      .finally(() => {
+        if (active) setIsLoading(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!session) return;
+    const interval = window.setInterval(() => {
+      authApi.refresh()
+        .then(setSession)
+        .catch(() => setSession(null));
+    }, 10 * 60 * 1000);
+    return () => window.clearInterval(interval);
+  }, [session]);
 
   const login = async (email: string, password: string) => {
     const result = await authApi.login(email, password);
-    persist(result);
+    setSession(result);
     return result.user;
   };
 
   const signup: AuthContextType['signup'] = async (input) => {
     const result = await authApi.signup(input);
-    persist(result);
+    setSession(result);
   };
 
-  const logout = () => persist(null);
+  const logout = async () => {
+    try {
+      await authApi.logout();
+    } finally {
+      setSession(null);
+    }
+  };
 
   return (
     <AuthContext.Provider
@@ -66,6 +82,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         user: session?.user ?? null,
         token: session?.token ?? null,
         isAuthenticated: !!session,
+        isLoading,
         login,
         signup,
         logout,

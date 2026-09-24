@@ -19,6 +19,12 @@ implementation state changes.
 
 ## Current Goal
 
+- Authentication hardening is in progress: short-lived in-memory JWT
+  access tokens, rotating HttpOnly refresh sessions, backend-enforced
+  administrator authorization, and guest checkout capabilities. The
+  frontend and backend builds pass after the foundation changes;
+  integration testing against a configured database remains.
+
 - No active implementation in progress. Progress tracker had gone
   stale/was emptied; this update brings it back in sync with the
   actual commit history (2026-08-02 → 2026-08-14).

@@ -11,6 +11,7 @@ export interface OrderResult {
   orderNumber: string;
   totalAmount: number;
   subTotal: number;
+  checkoutToken: string;
 }
 
 /**

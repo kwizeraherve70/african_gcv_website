@@ -82,7 +82,12 @@ export async function apiFetch<T>(path: string, options: ApiFetchOptions = {}): 
 
   let response: Response;
   try {
-    response = await fetch(`${API_BASE_URL}${path}`, { method, headers, body: requestBody });
+    response = await fetch(`${API_BASE_URL}${path}`, {
+      method,
+      headers,
+      body: requestBody,
+      credentials: 'include',
+    });
   } catch {
     throw new ApiError(0, 'Could not reach the server. Check your connection and try again.');
   }

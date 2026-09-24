@@ -9,6 +9,7 @@ import {
   Tags,
   Request,
   Middlewares,
+  Security,
 } from "tsoa";
 import { AgentService } from "../services/AgentService";
 import { CreateAgentDto, IResponse, TAgent } from "../utils/interfaces/common";
@@ -30,6 +31,7 @@ export class AgentController {
   }
 
   @Post("/")
+  @Security("jwt", ["ADMIN"])
   @Middlewares(upload.any(), appendPhoto)
   public async createAgent(
     @Body() agentData: CreateAgentDto,
@@ -39,6 +41,7 @@ export class AgentController {
   }
 
   @Put("/{id}")
+  @Security("jwt", ["ADMIN"])
   @Middlewares(upload.any(), appendPhoto)
   public async updateAgent(
     @Path() id: string,
@@ -48,6 +51,7 @@ export class AgentController {
   }
 
   @Delete("/{id}")
+  @Security("jwt", ["ADMIN"])
   public async deleteAgent(@Path() id: string): Promise<IResponse<null>> {
     await AgentService.deleteAgent(id);
     return {

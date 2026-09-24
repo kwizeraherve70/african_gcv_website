@@ -24,6 +24,21 @@ model User {
   testimonials       Testimony[]
   agents              Agents[]
   products           Product[]      @relation("MerchantProducts")
+  refreshSessions    RefreshSession[]
+}
+
+model RefreshSession {
+  id             String   @id @default(uuid())
+  tokenHash      String   @unique
+  userId         String
+  expiresAt      DateTime
+  revokedAt      DateTime?
+  replacedByHash String?
+  createdAt      DateTime @default(now())
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
 }
 
 model UserRoles {
@@ -317,6 +332,8 @@ model Order {
   deliveryFee    Float? 
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
+  checkoutTokenHash String?   @unique
+  checkoutTokenExpiresAt DateTime?
 
   orderItems     OrderItem[]
   payment        Payment?
@@ -374,5 +391,4 @@ model Delivery {
 
   order          Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
 }
-
 

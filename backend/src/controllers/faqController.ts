@@ -9,6 +9,7 @@ import {
   Tags,
   Request,
   Middlewares,
+  Security,
 } from "tsoa";
 import { FaqService } from "../services/FaqService";
 import { CreateFaqDto, IResponse, TFaq } from "../utils/interfaces/common";
@@ -30,6 +31,7 @@ export class FaqController {
   }
 
   @Post("/")
+  @Security("jwt", ["ADMIN"])
   @Middlewares(upload.any(), appendPhotoAttachments)
   public async createFaq(
     @Body() faqData: CreateFaqDto,
@@ -39,6 +41,7 @@ export class FaqController {
   }
 
   @Put("/{id}")
+  @Security("jwt", ["ADMIN"])
   public async updateContact(
     @Path() id: string,
     @Body() faqData: Partial<CreateFaqDto>,
@@ -47,6 +50,7 @@ export class FaqController {
   }
 
   @Delete("/{id}")
+  @Security("jwt", ["ADMIN"])
   public async deleteContact(@Path() id: string): Promise<IResponse<null>> {
     await FaqService.deleteFaq(id);
     return {

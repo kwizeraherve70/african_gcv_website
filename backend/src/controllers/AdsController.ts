@@ -9,6 +9,7 @@ import {
   Tags,
   Request,
   Middlewares,
+  Security,
 } from "tsoa";
 import { AdsService } from "../services/AdsService";
 import { CreateAdsDto, IResponse, TAds } from "../utils/interfaces/common";
@@ -30,6 +31,7 @@ export class AdsController {
   }
 
   @Post("/")
+  @Security("jwt", ["ADMIN"])
   @Middlewares(upload.any(), appendPhotoAttachments)
   public async createAds(
     @Body() adsData: CreateAdsDto,
@@ -39,6 +41,7 @@ export class AdsController {
   }
 
   @Put("/{id}")
+  @Security("jwt", ["ADMIN"])
   public async updateAds(
     @Path() id: string,
     @Body() adsData: TAds,
@@ -47,6 +50,7 @@ export class AdsController {
   }
 
   @Delete("/{id}")
+  @Security("jwt", ["ADMIN"])
   public async deleteAds(@Path() id: string): Promise<IResponse<null>> {
     await AdsService.deleteAds(id);
     return {

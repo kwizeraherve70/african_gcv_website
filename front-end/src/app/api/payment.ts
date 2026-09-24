@@ -6,10 +6,10 @@ import { apiFetch, ApiResponse } from './client';
  * responsible for redirecting the browser there (`window.location.href`),
  * since this is a full-page hand-off, not a client-side route.
  */
-export async function createCheckoutSession(orderId: string): Promise<{ url: string }> {
+export async function createCheckoutSession(orderId: string, checkoutToken: string): Promise<{ url: string }> {
   const res = await apiFetch<ApiResponse<{ url: string }>>('/payment/checkout-session', {
     method: 'POST',
-    body: { orderId },
+    body: { orderId, checkoutToken },
   });
   return res.data!;
 }

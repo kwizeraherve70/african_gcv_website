@@ -1,4 +1,4 @@
-import { Body, Delete, Get, Path, Post, Put, Route, Tags, Request } from "tsoa";
+import { Body, Delete, Get, Path, Post, Put, Route, Tags, Request, Security } from "tsoa";
 import { ServiceService } from "../services/serviceService";
 import {
   CreateServiceDto,
@@ -23,6 +23,7 @@ export class ServiceController {
   }
 
   @Post("/")
+  @Security("jwt", ["ADMIN"])
   public async createService(
     @Body() serviceData: CreateServiceDto,
     @Request() request: Req,
@@ -31,6 +32,7 @@ export class ServiceController {
   }
 
   @Put("/{id}")
+  @Security("jwt", ["ADMIN"])
   public async updateService(
     @Path() id: string,
     @Body() serviceData: CreateServiceDto,
@@ -39,6 +41,7 @@ export class ServiceController {
   }
 
   @Delete("/{id}")
+  @Security("jwt", ["ADMIN"])
   public async deleteService(@Path() id: string): Promise<IResponse<null>> {
     await ServiceService.deleteService(id);
     return {

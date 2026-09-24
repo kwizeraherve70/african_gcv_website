@@ -66,3 +66,14 @@ export async function getMe(token: string): Promise<AuthUser> {
   const res = await apiFetch<ApiResponse<AuthUser>>('/auth/me', { token });
   return res.data!;
 }
+
+export async function refresh(): Promise<AuthSession> {
+  const res = await apiFetch<ApiResponse<{ token: string; user: AuthUser }>>('/auth/refresh', {
+    method: 'POST',
+  });
+  return res.data!;
+}
+
+export async function logout(): Promise<void> {
+  await apiFetch('/auth/logout', { method: 'POST' });
+}

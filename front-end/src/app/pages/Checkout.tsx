@@ -99,7 +99,7 @@ export function Checkout() {
         // brings the shopper back to this page, and they need their cart
         // to still be there to retry. OrderConfirmation clears it once the
         // Stripe success_url redirect actually lands.
-        const { url } = await createCheckoutSession(order.id);
+        const { url } = await createCheckoutSession(order.id, order.checkoutToken);
         window.location.href = url;
         return;
       }

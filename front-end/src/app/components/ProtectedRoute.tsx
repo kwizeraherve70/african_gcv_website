@@ -19,14 +19,14 @@ export function ProtectedRoute({
   children: ReactNode;
   requiredRole: string;
 }) {
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, isLoading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const allowed = isAuthenticated && !!user?.roles.includes(requiredRole);
+  const allowed = !isLoading && isAuthenticated && !!user?.roles.includes(requiredRole);
 
   useEffect(() => {
-    if (allowed) return;
+    if (isLoading || allowed) return;
     const timeout = setTimeout(() => {
       navigate(isAuthenticated ? '/' : '/login', {
         replace: true,
@@ -34,8 +34,8 @@ export function ProtectedRoute({
       });
     }, 150);
     return () => clearTimeout(timeout);
-  }, [allowed, isAuthenticated, navigate, location.pathname]);
+  }, [allowed, isAuthenticated, isLoading, navigate, location.pathname]);
 
-  if (!allowed) return null;
+  if (isLoading || !allowed) return null;
   return <>{children}</>;
 }

@@ -8,6 +8,7 @@ import {
 } from "../utils/interfaces/common";
 import AppError from "../utils/error";
 import { QueryOptions, Paginations } from "../utils/DBHelpers";
+import { createHash, randomBytes } from "crypto";
 
 function generateTicket(): string {
   const ticket = Array.from({ length: 12 }, (_, i) =>
@@ -50,6 +51,7 @@ export class OrderService extends BaseService {
   ): Promise<IResponse<TOrder>> {
     const { orderItems, deliveryFee, ...orderPayload } = orderData;
     const orderNumber = generateTicket();
+    const checkoutToken = randomBytes(32).toString("base64url");
     const orderItemsWithPrice = await Promise.all(
       orderItems.map(async (item) => {
         const product = await prisma.product.findUnique({
@@ -82,6 +84,8 @@ export class OrderService extends BaseService {
           totalAmount,
           deliveryFee,
           orderNumber,
+          checkoutTokenHash: createHash("sha256").update(checkoutToken).digest("hex"),
+          checkoutTokenExpiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000),
         },
       });
 
@@ -101,7 +105,7 @@ export class OrderService extends BaseService {
     return {
       statusCode: 201,
       message: "Order created successfully",
-      data: order as TOrder,
+      data: { ...(order as TOrder), checkoutToken },
     };
   }
 

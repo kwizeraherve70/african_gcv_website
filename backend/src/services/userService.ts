@@ -9,7 +9,6 @@ import {
   CreateUserDto,
 } from "../utils/interfaces/common";
 import { compare } from "bcrypt";
-import jwt from "jsonwebtoken";
 import AppError from "../utils/error";
 import { randomBytes } from "crypto";
 import { sendEmailSafe } from "../utils/email";
@@ -18,6 +17,7 @@ import { roles } from "../utils/roles";
 import type { Request } from "express";
 import { QueryOptions, Paginations } from "../utils/DBHelpers";
 import { Role } from "@prisma/client";
+import { issueAccessToken, revokeUserSessions } from "../utils/authSession";
 
 export class UserService extends BaseService {
   public static async getUsers(
@@ -35,9 +35,16 @@ export class UserService extends BaseService {
 
       const users = await prisma.user.findMany({
         where: queryOptions,
-        include: {
+        select: {
+          id: true,
+          firstName: true,
+          lastName: true,
+          email: true,
+          phoneNumber: true,
+          photo: true,
+          createdAt: true,
+          updatedAt: true,
           roles: true,
-          agents: true,
         },
         ...pagination,
         orderBy: {
@@ -52,12 +59,13 @@ export class UserService extends BaseService {
       return {
         message: "Users fetched successfully",
         statusCode: 200,
-        data: users,
+        data: users as IUserResponse[],
         totalItems,
         currentPage: currentPage || 1,
         itemsPerPage: limit || 15,
       };
     } catch (error) {
+      if (error instanceof AppError) throw error;
       throw new AppError(error, 500);
     }
   }
@@ -76,7 +84,7 @@ export class UserService extends BaseService {
 
       const isPasswordSimilar = await compare(user.password, userData.password);
       if (isPasswordSimilar) {
-        const token = jwt.sign(user.email, process.env.JWT_SECRET!);
+        const token = await issueAccessToken(userData.email);
         const userRoles = userData.roles.map((roleRecord) => roleRecord.role);
         return {
           message: "",
@@ -94,6 +102,7 @@ export class UserService extends BaseService {
       }
       throw new AppError("user account with email or password not found", 401);
     } catch (error) {
+      if (error instanceof AppError) throw error;
       throw new AppError(error, 500);
     }
   }
@@ -111,7 +120,7 @@ export class UserService extends BaseService {
 
       // Hash password
       const hashedPassword = await hash(user.password, 10);
-      const token = jwt.sign(user.email, process.env.JWT_SECRET!);
+      const token = await issueAccessToken(user.email);
       await prisma.$transaction(async (tx) => {
         const createdUser = await tx.user.create({
           data: {
@@ -166,6 +175,7 @@ export class UserService extends BaseService {
         message: "User created successfully",
         data: {
           token,
+          id: pt?.id,
           photo: pt?.photo,
           email: user.email,
           firstName: user.firstName,
@@ -209,7 +219,7 @@ export class UserService extends BaseService {
 
       return {
         message: "User created successfully",
-        data: createdUser,
+        data: await this.getUserById(createdUser.id),
         statusCode: 201,
       };
     } catch (error) {
@@ -241,11 +251,12 @@ export class UserService extends BaseService {
           where: { userId: id },
           data: { role: user.role as Role },
         });
+        await revokeUserSessions(id);
       }
 
       return {
         message: "User updated successfully",
-        data: updatedUser,
+        data: await this.getUserById(updatedUser.id),
         statusCode: 200,
       };
     } catch (error) {
@@ -327,6 +338,7 @@ export class UserService extends BaseService {
       where: { email },
       data: { password: hashedPassword, otp: null, otpExpiresAt: null },
     });
+    if (user) await revokeUserSessions(user.id);
 
     return { message: "Password reset successfully" };
   }
@@ -356,6 +368,7 @@ export class UserService extends BaseService {
         await tx.likes.deleteMany({
           where: { userId: id },
         });
+        await revokeUserSessions(id);
 
         // Delete the user's testimonials
         await tx.testimony.deleteMany({
@@ -424,5 +437,21 @@ export class UserService extends BaseService {
     } catch (error) {
       throw new AppError(error, 500);
     }
+  }
+
+  public static async getUserById(id: string) {
+    const user = await prisma.user.findUnique({
+      where: { id },
+      include: { roles: true },
+    });
+    if (!user) throw new AppError("User not found", 404);
+    return {
+      id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      roles: user.roles.map((roleRecord) => roleRecord.role),
+      photo: user.photo,
+    };
   }
 }

@@ -44,12 +44,9 @@ export interface IUserResponse {
   lastName: string;
   email: string;
   roles: IRoles[];
-  password: string;
   createdAt: Date;
   phoneNumber: string;
   updatedAt: Date;
-  otp: string | null;
-  otpExpiresAt: Date | null;
   photo: string;
 }
 
@@ -296,6 +293,7 @@ export type TOrder = {
   subTotal: number;
   createdAt: Date;
   updatedAt: Date;
+  checkoutToken?: string;
 };
 
 export type TOrderItem = {
@@ -326,6 +324,7 @@ export type TPayment = {
 
 export interface CreateCheckoutSessionDto {
   orderId: string;
+  checkoutToken: string;
 }
 
 export interface UpdatePaymentDto {

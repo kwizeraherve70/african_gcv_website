@@ -218,7 +218,7 @@ mentioned there.
 | Styling        | Tailwind CSS v4 (`@tailwindcss/vite`)     | Utility-first styling, no separate config file    |
 | Theme tokens   | `front-end/src/styles/theme.css`                    | CSS custom properties consumed by Tailwind        |
 | Routing        | React Router v7                           | Client-side routing                               |
-| Global state   | `CartContext.tsx`, `AuthContext.tsx` (both `useState`-based) | Cart (in-memory only) and auth session (JWT + user, persisted to `localStorage` — see "Frontend auth token storage" below) |
+| Global state   | `CartContext.tsx`, `AuthContext.tsx` (both `useState`-based) | Cart and access-token auth state are in memory; refresh sessions persist only in an HttpOnly cookie |
 | UI primitives  | Radix-based shadcn-style wrappers in `front-end/src/app/components/ui/` | Available, but pages currently use plain HTML + Tailwind instead |
 | Data           | `front-end/src/app/data/mockData.ts` (products/news partially superseded — see "Current Implementation State") | Static mock objects; products and news now flow through `front-end/src/app/api/` against the real backend instead |
 
@@ -241,16 +241,15 @@ type error as long as it's syntactically valid JS after stripping.
 are the only verification available — there is no `tsc --noEmit` to
 run.
 
-**Frontend auth token storage:** `AuthContext.tsx` persists the real
-JWT returned by `POST /api/auth/signin`/`signup` to
-`localStorage` (key `gcv_auth_session`), sent back as a raw
-`Authorization` header value on authenticated requests — **not**
-prefixed with "Bearer ", because `expressAuthentication`
-(`backend/src/utils/authentication.ts`) passes the header straight to
-`jwt.verify` with no prefix-stripping. This is ordinary SPA JWT
-storage against a real backend, distinct from `four-day-plan.md`'s
-superseded plan, which simulated an entire fake session with no
-backend at all — don't conflate the two when reading history.
+**Frontend auth token storage:** `AuthContext.tsx` keeps the short-lived
+access JWT only in React memory and restores it by calling
+`POST /api/auth/refresh`. The backend rotates a seven-day refresh session
+stored as an HttpOnly cookie (`gcv_refresh_token`); the cookie is
+`Secure` and `SameSite=None` in production and `SameSite=Lax` locally.
+Authenticated API requests still send the raw access JWT in the
+`Authorization` header because `expressAuthentication`
+(`backend/src/utils/authentication.ts`) passes that header directly to
+`jwt.verify`. There is no authentication data in `localStorage`.
 
 **React Router v7 + side effects in render, a gotcha for future
 route-guard work:** `navigate()` calls from `useNavigate()` are
@@ -315,12 +314,7 @@ touch every protected route for no functional benefit, and the
 project has a 4-day budget — so the decision is now to **keep and
 adapt the existing JWT/bcrypt system** instead.
 
-- **Sessions:** Bearer JWT in the `Authorization` header (not
-  cookie-based, not better-auth). Frontend stores the token
-  client-side (e.g. memory + refresh-on-load, or localStorage —
-  finalize during Day 1 auth work; avoid storing it in a way that
-  survives XSS unnecessarily) and sends it on every authenticated
-  request.
+- **Sessions:** short-lived JWT access tokens in the `Authorization` header plus rotating, server-revocable refresh sessions in an HttpOnly cookie. The access token is memory-only on the frontend.
 - A single `User` model with a `role` field, existing today as
   `UserRoles`/`Role` enum, **renamed 2026-08-16**:
   `ADMIN | MERCHANT | MEMBER` (`AGENT` → `MERCHANT`, `CLIENT` →

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Body, Delete, Get, Path, Post, Put, Route, Tags } from "tsoa";
+import { Body, Delete, Get, Path, Post, Put, Route, Security, Tags } from "tsoa";
 import {
   CreateCheckoutSessionDto,
   IResponse,
@@ -12,6 +12,7 @@ import { PaymentService } from "../services/PaymentService";
 @Route("/api/payment")
 export class PaymentController {
   @Get("/")
+  @Security("jwt", ["ADMIN"])
   public async getAllPayments(): Promise<IResponse<TPayment[]>> {
     return PaymentService.getAllPayments();
   }
@@ -31,6 +32,7 @@ export class PaymentController {
   }
 
   @Put("/{id}")
+  @Security("jwt", ["ADMIN"])
   public async updatePayment(
     @Path() id: string,
     @Body() paymentData: Partial<UpdatePaymentDto>,
@@ -39,11 +41,13 @@ export class PaymentController {
   }
 
   @Delete("/{id}")
+  @Security("jwt", ["ADMIN"])
   public async deletePayment(@Path() id: string): Promise<IResponse<null>> {
     return PaymentService.deletePayment(id);
   }
 
   @Get("/{id}")
+  @Security("jwt", ["ADMIN"])
   public async getPayment(@Path() id: string): Promise<IResponse<TPayment>> {
     return PaymentService.getPayment(id);
   }

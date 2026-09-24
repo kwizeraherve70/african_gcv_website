@@ -12,6 +12,7 @@ import AppError from "../utils/error";
 import { PaymentMethod } from "@prisma/client";
 import { appEnv } from "../config/env";
 import { sendEmailSafe } from "../utils/email";
+import { createHash } from "crypto";
 
 const PAYMENT_STATUS_MESSAGES: Record<string, string> = {
   SUCCEEDED: "was successful",
@@ -96,6 +97,16 @@ export class PaymentService extends BaseService {
       include: { delivery: true, payment: true },
     });
     if (!order) throw new AppError("Order not found", 404);
+    if (
+      !data.checkoutToken ||
+      !order.checkoutTokenHash ||
+      order.checkoutTokenExpiresAt === null ||
+      !order.checkoutTokenExpiresAt ||
+      order.checkoutTokenExpiresAt <= new Date() ||
+      createHash("sha256").update(data.checkoutToken).digest("hex") !== order.checkoutTokenHash
+    ) {
+      throw new AppError("Invalid checkout capability", 403);
+    }
     if (order.payment?.status === "SUCCEEDED") {
       throw new AppError("This order has already been paid", 400);
     }
@@ -137,6 +148,7 @@ export class PaymentService extends BaseService {
         amount: order.totalAmount,
         status: "PENDING",
         refId: session.id,
+        method: PaymentMethod.CARD,
       },
     });
 

@@ -21,14 +21,21 @@ import type {
   CreateUserDto,
 } from "../utils/interfaces/common";
 import { loggerMiddleware } from "../utils/loggers/loggingMiddleware";
-import { Request as ExpressRequest } from "express";
+import { Request as ExpressRequest, Response } from "express";
 import { appendPhoto } from "../middlewares/company.middlewares";
 import upload from "../utils/cloudinary";
+import {
+  createRefreshSession,
+  issueAccessToken,
+  revokeRefreshSession,
+  rotateRefreshSession,
+} from "../utils/authSession";
 
 @Tags("Authentication")
 @Route("/api/auth")
 export class UserController {
   @Get("/users")
+  @Security("jwt", ["ADMIN"])
   @Middlewares(loggerMiddleware)
   public getUser(
     @Request() req: ExpressRequest,
@@ -44,7 +51,7 @@ export class UserController {
 
   //delete user
   @Delete("/delete/{id}")
-  @Security("jwt")
+  @Security("jwt", ["ADMIN"])
   @Middlewares(loggerMiddleware)
   public deleteUser(@Path() id: string) {
     return UserService.deleteUser(id);
@@ -65,18 +72,23 @@ export class UserController {
   }
 
   @Post("signin")
-  public loginUser(@Body() user: ILoginUser) {
-    return UserService.loginUser(user);
+  public async loginUser(@Body() user: ILoginUser, @Request() req: ExpressRequest) {
+    const result = await UserService.loginUser(user);
+    await createRefreshSession(result.data!.id, req.res as Response);
+    return result;
   }
 
   //user signup
   @Post("/signup")
   @Middlewares(upload.any(), appendPhoto)
-  public async signup(@Body() user: ISignUpUser) {
-    return UserService.signUpUser(user);
+  public async signup(@Body() user: ISignUpUser, @Request() req: ExpressRequest) {
+    const result = await UserService.signUpUser(user);
+    if (result.data?.id) await createRefreshSession(result.data.id, req.res as Response);
+    return result;
   }
 
   @Post("/create")
+  @Security("jwt", ["ADMIN"])
   @Middlewares(upload.any(), appendPhoto)
   public async createUser(@Body() user: CreateUserDto) {
     return UserService.createUser(user);
@@ -84,7 +96,7 @@ export class UserController {
 
   @Put("/update/{id}")
   @Middlewares(upload.any(), appendPhoto)
-  @Security("jwt")
+  @Security("jwt", ["ADMIN"])
   public async updateUser(
     @Path() id: string,
     @Body() user: Partial<CreateUserDto>,
@@ -97,5 +109,22 @@ export class UserController {
   @Middlewares(loggerMiddleware)
   public getMe(@Request() req: ExpressRequest) {
     return UserService.getMe(req);
+  }
+
+  @Post("/refresh")
+  public async refresh(@Request() req: ExpressRequest) {
+    const userId = await rotateRefreshSession(req, req.res as Response);
+    const user = await UserService.getUserById(userId);
+    return {
+      statusCode: 200,
+      message: "Session refreshed",
+      data: { token: await issueAccessToken(user.email), user },
+    };
+  }
+
+  @Post("/logout")
+  public async logout(@Request() req: ExpressRequest) {
+    await revokeRefreshSession(req, req.res as Response);
+    return { statusCode: 200, message: "Logged out successfully" };
   }
 }
