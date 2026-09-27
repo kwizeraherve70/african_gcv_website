@@ -122,3 +122,10 @@ export async function getOrder(id: string, token: string): Promise<AdminOrder> {
   const res = await apiFetch<ApiResponse<AdminOrder>>(`/order/${id}`, { token });
   return res.data!;
 }
+
+export async function deleteOrder(id: string, token: string): Promise<void> {
+  await apiFetch<ApiResponse<null>>(`/order/${id}`, {
+    method: 'DELETE',
+    token,
+  });
+}

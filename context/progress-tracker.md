@@ -836,3 +836,8 @@ implementation state changes.
   reports invalid/missing credentials separately from database lookup
   failures; a database failure is allowed through to the global handler
   as a server error instead of being mislabeled "Not Authorized".
+- 2026-09-27: Added permanent order deletion to the Admin Orders table,
+  using the existing admin-only delete endpoint. Pending and successful
+  payments (`PENDING`, `SUCCESS`, `SUCCEEDED`) are protected in both the
+  dashboard and backend so order deletion cannot erase records for a
+  pending Stripe checkout or a payment that may require a refund.
