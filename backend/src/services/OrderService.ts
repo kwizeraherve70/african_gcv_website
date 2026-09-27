@@ -190,6 +190,22 @@ export class OrderService extends BaseService {
 
   public static async deleteOrder(id: string): Promise<IResponse<null>> {
     await prisma.$transaction(async (prisma) => {
+      const order = await prisma.order.findUnique({
+        where: { id },
+        select: { id: true, payment: { select: { status: true } } },
+      });
+      if (!order) throw new AppError("Order not found", 404);
+
+      if (
+        order.payment &&
+        ["PENDING", "SUCCESS", "SUCCEEDED"].includes(order.payment.status)
+      ) {
+        throw new AppError(
+          "Orders with pending or successful payments cannot be deleted",
+          409,
+        );
+      }
+
       // Delete related order items
       await prisma.orderItem.deleteMany({ where: { orderId: id } });
 
