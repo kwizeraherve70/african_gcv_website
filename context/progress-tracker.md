@@ -828,3 +828,11 @@ implementation state changes.
     an actual Stripe test-mode checkout run (no `STRIPE_SECRET_KEY`
     configured yet — see the user's own env setup) or a browser
     click-through of the redirect/cancel/webhook round-trip.
+- 2026-09-27: Fixed two backend integration issues found during checkout
+  troubleshooting. Delivery confirmation email sending is now a
+  non-blocking side effect, with SMTP connection/greeting/socket
+  timeouts so a stalled mail server cannot hold the guest checkout
+  request open before Stripe session creation. JWT authentication now
+  reports invalid/missing credentials separately from database lookup
+  failures; a database failure is allowed through to the global handler
+  as a server error instead of being mislabeled "Not Authorized".
