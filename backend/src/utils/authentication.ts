@@ -1,5 +1,3 @@
-/* eslint-disable no-async-promise-executor */
-
 import type * as express from "express";
 import { prisma } from "./client";
 import AppError from "./error";
@@ -13,48 +11,52 @@ import { verifyToken } from "./jwt";
  * "merchant can only touch their own resource" still belong in the service
  * layer, since that depends on which resource is being mutated.
  */
-export const expressAuthentication = (
+export const expressAuthentication = async (
   request: express.Request,
   securityName: string,
   scopes?: string[],
-) => {
-  if (securityName === "jwt") {
-    const token = request.headers["authorization"] as string;
-    return new Promise(async (resolve, reject) => {
-      try {
-        if (!token) {
-          reject(new AppError("No token provided", 401));
-          return;
-        }
-        const email = (await verifyToken(token)) as string;
-        const user = await prisma.user.findFirst({
-          where: { email },
-          include: {
-            roles: true,
-          },
-        });
-
-        if (!user) {
-          reject(new AppError("Not Authorized", 403));
-          return;
-        }
-
-        if (scopes && scopes.length > 0) {
-          const userRoles = user.roles.map((roleRecord) => roleRecord.role);
-          const hasRequiredRole = scopes.some((scope) =>
-            userRoles.includes(scope as (typeof userRoles)[number]),
-          );
-          if (!hasRequiredRole) {
-            reject(new AppError("Insufficient permissions", 403));
-            return;
-          }
-        }
-
-        request.user = user as TUser;
-        resolve(user);
-      } catch (error) {
-        reject(new AppError("Not Authorized", 403));
-      }
-    });
+) : Promise<TUser> => {
+  if (securityName !== "jwt") {
+    throw new AppError("Unsupported authentication scheme", 500);
   }
+
+  const token = request.headers["authorization"];
+  if (typeof token !== "string" || !token) {
+    throw new AppError("No token provided", 401);
+  }
+
+  let email: string;
+  try {
+    const identity = await verifyToken(token);
+    if (typeof identity !== "string") {
+      throw new Error("JWT subject must be an email string");
+    }
+    email = identity;
+  } catch {
+    throw new AppError("Not Authorized", 401);
+  }
+
+  // Keep database failures distinct from authentication failures. The
+  // global error handler can now report them as server errors rather than
+  // misleadingly telling an admin their token is invalid.
+  const user = await prisma.user.findFirst({
+    where: { email },
+    include: {
+      roles: true,
+    },
+  });
+
+  if (!user) {
+    throw new AppError("Not Authorized", 401);
+  }
+
+  if (scopes && scopes.length > 0) {
+    const hasRequiredRole = user.roles.some(({ role }) => scopes.includes(role));
+    if (!hasRequiredRole) {
+      throw new AppError("Insufficient permissions", 403);
+    }
+  }
+
+  request.user = user as TUser;
+  return user as TUser;
 };

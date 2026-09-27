@@ -29,7 +29,7 @@ export class DeliveryService extends BaseService {
       include: { order: true },
     });
 
-    await sendEmailSafe({
+    void sendEmailSafe({
       to: delivery.customerEmail,
       subject: `Order Confirmation - #${delivery.order.orderNumber}`,
       body: `
