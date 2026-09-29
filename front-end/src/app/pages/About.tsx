@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Users, Target, Award, Globe } from 'lucide-react';
 import { SEO } from '../components/SEO';
-import dorisImg from '@/assets/doris .jpg';
+import dorisImg from '@/assets/doris.jpeg';
 import olivierImg from '@/assets/olivie.jpeg';
 import missionImg from '@/assets/mission.jpg';
 import { GCV_USD } from '../lib/pi';

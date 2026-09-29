@@ -841,3 +841,6 @@ implementation state changes.
   payments (`PENDING`, `SUCCESS`, `SUCCEEDED`) are protected in both the
   dashboard and backend so order deletion cannot erase records for a
   pending Stripe checkout or a payment that may require a refund.
+
+- 2026-09-29: Replaced Doris and Olivier leadership photos with the
+  supplied assets; updated the About page import for `doris.jpeg`.
