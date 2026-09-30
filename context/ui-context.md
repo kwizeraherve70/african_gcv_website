@@ -26,6 +26,7 @@ Brand tokens (new, additive — defined in `:root` and mapped in
 | Secondary purple  | `--brand-purple-light`   | `#7c3aed` | `bg-brand-purple-light`          |
 | Gold accent       | `--brand-gold`           | `#fbbf24` | `bg-brand-gold` / `text-brand-gold` |
 | Success green     | `--brand-green`          | `#10b981` | `bg-brand-green`                 |
+| WhatsApp identity | `--brand-whatsapp`       | `#25d366` | `bg-brand-whatsapp` / `text-brand-whatsapp` |
 | Dark ink          | `--brand-ink`            | `#1f2937` | `text-brand-ink`                 |
 | Light surface     | `--brand-surface`        | `#f3f4f6` | `bg-brand-surface`               |
 
@@ -103,10 +104,23 @@ named imports, e.g. `import { ShoppingCart } from 'lucide-react'`.
 
 ## Multi-language / i18n
 
-The target product requires English, French, Kinyarwanda, and Swahili
-(see `project-overview.md`). `[DECISION NEEDED]` — no i18n library or
-routing strategy exists yet. Do not hardcode English strings into new
-components if this can be avoided cheaply; if a library decision
-hasn't been made yet, at minimum keep user-facing copy out of deeply
-nested JSX where a later extraction pass would be painful, and record
-the i18n approach here once chosen.
+Static UI and editorial copy use `i18next` and `react-i18next`, configured
+in `front-end/src/app/i18n/index.ts`. English, French, Kinyarwanda, and
+Swahili resources live under `front-end/src/app/i18n/locales/`; keep new
+keys aligned across all four languages. Database-backed products and
+news remain in their source language. Kinyarwanda and Swahili copy is a
+first-pass translation pending native-speaker review.
+
+## Leadership profiles
+
+The homepage spotlight provides a short introduction and links to the
+full About profile using a named anchor with `scroll-mt-28`, allowing
+for the sticky navigation. Use paragraphs for supplied biography text,
+not blockquotes unless the text is an actual attributed quotation.
+
+Profile sections reuse `bg-card`, `border border-border`, `rounded-2xl`,
+`p-6 md:p-8`, and `text-muted-foreground leading-relaxed`. A background
+panel uses `bg-brand-surface`; values use `bg-brand-purple/10
+text-brand-purple rounded-full`. Static biography panels have no hover
+lift. Keep GCV leadership, Pi community participation, and business
+roles in distinct, labeled sections.

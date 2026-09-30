@@ -49,13 +49,10 @@
 - If a needed token doesn't exist yet, add it to `theme.css` first
   rather than hardcoding around it.
 - Follow the border radius scale once defined in `ui-context.md`.
-- **Known current violation:** `Home.tsx` still has raw hex values —
-  `#FBBF24`/`#7C3AED`/`#5B21B6` in an inline SVG gradient (these do
-  match `--brand-gold`/`--brand-purple-light`/`--brand-purple` and
-  should be swapped for the tokens or CSS variables), and `#25D366`
-  for the WhatsApp brand green, which has no token yet. Fix opportunistically
-  when next touching `Home.tsx`; not urgent enough to warrant a
-  standalone pass on its own.
+- Homepage SVG colors reference the existing brand CSS variables.
+  WhatsApp identity has a dedicated `--brand-whatsapp` token, exposed
+  as `bg-brand-whatsapp` / `text-brand-whatsapp`; use it for WhatsApp
+  links instead of hardcoded colors (updated 2026-09-30).
 
 ## Data Layer
 

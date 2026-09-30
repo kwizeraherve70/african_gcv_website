@@ -1,3 +1,6 @@
+import olivierImg from '@/assets/olivie.jpeg';
+import dorisImg from '@/assets/doris.jpeg';
+
 export interface NewsArticle {
   id: string;
   title: string;
@@ -376,22 +379,22 @@ export interface PressRelease {
 
 export const teamMembers: TeamMember[] = [
   {
-    id: '1',
-    name: 'Olivier Ndatimana',
-    title: 'Founder & Vice-Director of Ecological Development',
-    department: 'Leadership',
-    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
-    bio: 'Olivier Ndatimana is the Founder of the United GCV of Africa and Vice-Director of Ecological Development for GCV International. Based in Rwanda, he has led the African GCV movement since its inception, uniting ambassadors across 54 nations.',
-    country: 'Rwanda',
-  },
-  {
     id: '2',
     name: 'Doris Yin',
-    title: 'Grand GCV Global Ambassador & Co-Founder',
+    title: 'Global GCV Executive Community Director',
     department: 'Leadership',
-    photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80',
-    bio: 'Doris Yin is the Grand GCV Global Ambassador and Founder of the Global GCV Movement. Her keynote at the Botswana Education Workshop — "Building a Strong Foundation, A Pillar for a Bright Future" — has inspired thousands of pioneers across Africa.',
+    photo: dorisImg,
+    bio: 'Doris Yin serves as Global GCV Executive Community Director and Founder of the GCV Movement of Africa.',
     country: 'Global',
+  },
+  {
+    id: '1',
+    name: 'Olivier Ndatimana',
+    title: 'Global GCV Executive Director',
+    department: 'Leadership',
+    photo: olivierImg,
+    bio: 'Olivier Ndatimana is a Rwandan community leader, entrepreneur, and international coordinator. He serves as Global GCV Executive Director and Founder of the Africa GCV Movement.',
+    country: 'Rwanda',
   },
   {
     id: '3',
@@ -453,22 +456,22 @@ export const teamMembers: TeamMember[] = [
 
 export const founders: Founder[] = [
   {
-    id: '1',
-    name: 'Olivier Ndatimana',
-    role: 'Founding Director — United GCV of Africa',
-    region: 'Africa',
-    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
-    bio: 'Visionary behind the United GCV of Africa. Established the five-region continental structure and led Africa\'s unification under a single GCV voice.',
-    country: 'Rwanda',
-  },
-  {
     id: '2',
     name: 'Doris Yin',
-    role: 'Grand GCV Global Ambassador & Global Founding Member',
+    role: 'Founder — GCV Movement of Africa',
     region: 'Asia',
-    photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80',
-    bio: 'Founder of the Global GCV Movement and originator of the $314,159 GCV standard. Doris has inspired millions of pioneers worldwide through education and leadership.',
+    photo: dorisImg,
+    bio: 'Doris Yin serves as Global GCV Executive Community Director and Founder of the GCV Movement of Africa.',
     country: 'China',
+  },
+  {
+    id: '1',
+    name: 'Olivier Ndatimana',
+    role: 'Founder — Africa GCV Movement',
+    region: 'Africa',
+    photo: olivierImg,
+    bio: 'Founder of the Africa GCV Movement, connecting African initiatives with the broader international movement through community coordination, leadership development, and cooperation.',
+    country: 'Rwanda',
   },
   {
     id: '3',

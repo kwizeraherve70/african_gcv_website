@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { Users, Target, Award, Globe } from 'lucide-react';
 import { SEO } from '../components/SEO';
@@ -22,6 +24,14 @@ const ALLIANCE_REGIONS = [
 
 export function About() {
   const { t } = useTranslation('about');
+  const { hash } = useLocation();
+  const leadershipPriorities = t('about.leadership.olivier.gcv.priorities', { returnObjects: true }) as string[];
+  const leadershipValues = t('about.leadership.olivier.values', { returnObjects: true }) as string[];
+
+  useEffect(() => {
+    if (!hash) return;
+    document.getElementById(hash.slice(1))?.scrollIntoView({ block: 'start', behavior: 'instant' });
+  }, [hash]);
 
   const coreValueItems = t('about.values.items', { returnObjects: true }) as {
     title: string;
@@ -185,8 +195,11 @@ export function About() {
             </div>
             <div className="md:col-span-2">
               <h3 className="text-2xl font-heading font-bold mb-1 tracking-tight">{t('about.leadership.doris.name')}</h3>
-              <p className="text-brand-gold font-semibold text-sm mb-5">
+              <p className="text-brand-purple font-semibold text-sm mb-1">
                 {t('about.leadership.doris.role')}
+              </p>
+              <p className="text-brand-purple font-medium text-sm mb-5">
+                {t('about.leadership.doris.founderRole')}
               </p>
               <p className="text-muted-foreground mb-4 leading-relaxed">
                 {t('about.leadership.doris.bio1')}
@@ -198,29 +211,84 @@ export function About() {
           </div>
 
           {/* Olivier Ndatimana */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-            <div className="relative">
-              <div className="absolute -inset-2 bg-gradient-to-br from-brand-purple/20 to-brand-purple-light/15 rounded-2xl blur-lg pointer-events-none" />
-              <div className="relative aspect-square rounded-2xl overflow-hidden ring-1 ring-border">
-                <img src={olivierImg} alt={t('about.leadership.olivier.name')} className="w-full h-full object-cover" />
+          <article id="olivier-ndatimana" aria-labelledby="olivier-profile-heading" className="scroll-mt-28">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+              <div className="relative">
+                <div className="absolute -inset-2 bg-gradient-to-br from-brand-purple/20 to-brand-purple-light/15 rounded-2xl blur-lg pointer-events-none" />
+                <div className="relative aspect-square rounded-2xl overflow-hidden ring-1 ring-border">
+                  <img src={olivierImg} alt={t('about.leadership.olivier.name')} className="w-full h-full object-cover" />
+                </div>
+              </div>
+              <div className="md:col-span-2">
+                <h3 id="olivier-profile-heading" className="text-2xl font-heading font-bold mb-3 tracking-tight">
+                  {t('about.leadership.olivier.name')}
+                </h3>
+                <p className="text-brand-purple font-semibold mb-1">{t('about.leadership.olivier.role')}</p>
+                <p className="text-brand-purple font-medium text-sm mb-4">{t('about.leadership.olivier.founderRole')}</p>
+                <p className="text-sm text-muted-foreground mb-5 leading-relaxed">{t('about.leadership.olivier.tagline')}</p>
+                <p className="text-muted-foreground leading-relaxed">{t('about.leadership.olivier.bio1')}</p>
               </div>
             </div>
-            <div className="md:col-span-2">
-              <h3 className="text-2xl font-heading font-bold mb-1 tracking-tight">{t('about.leadership.olivier.name')}</h3>
-              <p className="text-brand-gold font-semibold text-sm mb-5">
-                {t('about.leadership.olivier.role')}
-              </p>
-              <p className="text-muted-foreground mb-4 leading-relaxed">
-                {t('about.leadership.olivier.bio1')}
-              </p>
-              <p className="text-muted-foreground mb-4 leading-relaxed">
-                {t('about.leadership.olivier.bio2')}
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                {t('about.leadership.olivier.bio3')}
-              </p>
+
+            <section className="bg-brand-surface rounded-2xl p-6 md:p-8 mt-8" aria-labelledby="olivier-gcv-heading">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                  <h4 id="olivier-gcv-heading" className="text-xl font-heading font-bold mb-4">{t('about.leadership.olivier.gcv.title')}</h4>
+                  <p className="text-muted-foreground leading-relaxed mb-4">{t('about.leadership.olivier.gcv.description')}</p>
+                  <p className="text-muted-foreground leading-relaxed">{t('about.leadership.olivier.gcv.experience')}</p>
+                </div>
+                <div>
+                  <h5 className="font-semibold mb-4">{t('about.leadership.olivier.gcv.focusTitle')}</h5>
+                  <ul className="space-y-3">
+                    {leadershipPriorities.map(priority => (
+                      <li key={priority} className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed">
+                        <span aria-hidden="true" className="w-1.5 h-1.5 rounded-full bg-brand-purple mt-2 flex-shrink-0" />
+                        {priority}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </section>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+              <section className="bg-card border border-border rounded-2xl p-6 md:p-8" aria-labelledby="olivier-pi-heading">
+                <h4 id="olivier-pi-heading" className="text-xl font-heading font-bold mb-4">{t('about.leadership.olivier.pi.title')}</h4>
+                <p className="text-muted-foreground leading-relaxed mb-5">{t('about.leadership.olivier.pi.description')}</p>
+                <p className="text-sm text-muted-foreground border-t border-border pt-4 leading-relaxed">
+                  {t('about.leadership.olivier.pi.distinction')}
+                </p>
+              </section>
+              <section className="bg-card border border-border rounded-2xl p-6 md:p-8" aria-labelledby="olivier-business-heading">
+                <h4 id="olivier-business-heading" className="text-xl font-heading font-bold mb-2">{t('about.leadership.olivier.business.title')}</h4>
+                <p className="text-sm text-brand-purple font-medium mb-4">{t('about.leadership.olivier.business.role')}</p>
+                <p className="text-sm font-semibold mb-4 leading-relaxed">{t('about.leadership.olivier.business.sectors')}</p>
+                <p className="text-muted-foreground leading-relaxed">{t('about.leadership.olivier.business.description')}</p>
+              </section>
             </div>
-          </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+              {(['approach', 'vision'] as const).map(key => (
+                <section key={key} aria-labelledby={`olivier-${key}-heading`}>
+                  <h4 id={`olivier-${key}-heading`} className="text-xl font-heading font-bold mb-4">
+                    {t(`about.leadership.olivier.${key}.title`)}
+                  </h4>
+                  <p className="text-muted-foreground leading-relaxed">{t(`about.leadership.olivier.${key}.description`)}</p>
+                </section>
+              ))}
+            </div>
+
+            <div className="border-t border-border mt-8 pt-6">
+              <h4 className="font-heading font-bold mb-4">{t('about.leadership.olivier.valuesTitle')}</h4>
+              <ul className="flex flex-wrap gap-2">
+                {leadershipValues.map(value => (
+                  <li key={value} className="bg-brand-purple/10 text-brand-purple rounded-full px-3 py-1.5 text-sm font-medium">
+                    {value}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
         </section>
 
         {/* ── ALLIANCE REGIONS ─────────────────────────────────────── */}

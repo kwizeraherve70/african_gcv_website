@@ -450,3 +450,13 @@ Hosting target remains open — see row above.
 8. Uploaded/static assets (images) are stored in Cloudinary and
    referenced by URL/public ID from Postgres — never stored as binary
    data in the database or committed into the frontend repo.
+
+
+## Production hosting — verified 2026-09-30
+
+The Vite frontend is the Vercel project `african-gcv-frontend`, served at
+`https://african-gcv-frontend.vercel.app`, with `front-end/` as the root
+for deployments from GitHub. The API runs separately on Railway.
+`front-end/vercel.json` rewrites app paths to `/index.html` so React
+Router handles direct visits and refreshes, including `/team`, `/about`,
+and `/admin/orders`. The backend is not deployed by this frontend rule.

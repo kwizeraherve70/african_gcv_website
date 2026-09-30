@@ -844,3 +844,54 @@ implementation state changes.
 
 - 2026-09-29: Replaced Doris and Olivier leadership photos with the
   supplied assets; updated the About page import for `doris.jpeg`.
+- 2026-09-30: Removed the Actions column and Delete button from the
+  Admin Orders table, including the unused deletion handler and state.
+  Order numbers now link to the existing order detail page so admins
+  can still review orders and update delivery status. The backend
+  deletion endpoint and payment protections are unchanged.
+  Validation: frontend `npm run build` and `git diff --check` passed.
+- 2026-09-30: Integrated the site-owner-supplied Olivier Ndatimana
+  biography into the existing homepage spotlight and expanded About
+  leadership profile (`/about#olivier-ndatimana`). The profile separates
+  GCV responsibilities, Pi community activities, and Kigali Hot Market
+  Ltd; includes leadership approach, international vision, all eight
+  priorities, and seven core values; and explicitly avoids claiming
+  employment or official leadership in the Pi Network Core Team.
+  Updated the Team/Founders roles, reused Olivier’s actual local photo
+  in those cards, and added links to the full profile. Updated English,
+  French, Kinyarwanda, and Swahili resources. Removed the biography’s
+  blockquote treatment and used existing brand tokens in the homepage
+  SVG and WhatsApp link (as requested by the existing code standards).
+  Recorded the confirmed content and current i18n/profile patterns
+  in the context docs. Kinyarwanda and Swahili remain first-pass
+  translations, consistent with the existing localization approach.
+  Validation: production build, translation-key parity, and
+  `git diff --check` passed. Chrome checks passed for homepage content,
+  profile content, both Team links, portraits, direct anchor navigation,
+  and the new sections’ responsive widths at 1440px and 375px in all
+  four languages, with no JavaScript errors. Product/news reads were
+  isolated with empty preview responses; no live content was mutated.
+  Visual review covered the English desktop and mobile layouts.
+  Separate existing issue: the Kinyarwanda desktop navigation’s account
+  buttons extend about 7px beyond a 1440px viewport; the new profile
+  sections do not overflow. Changes are local and have not been deployed.
+- 2026-09-30: Updated Doris Yin’s current roles to Global GCV Executive
+  Community Director and Founder — GCV Movement of Africa, as supplied
+  by the site owner (correcting “Excutive” to “Executive”). Doris now
+  precedes Olivier in the Team page’s Global Leadership and Founders
+  lists, preserving both records’ IDs. Both sections use their official
+  local portraits (`doris.jpeg` and `olivie.jpeg`). Doris’s About profile
+  displays both roles; current profile summaries replace obsolete role
+  claims. A parallel agent completed the four-language title/biography
+  updates while the main agent handled ordering, photos, and rendering.
+  Validation: production build and `git diff --check` passed. Chrome
+  checks passed at 1440px and 375px in English, French, Kinyarwanda, and
+  Swahili: Doris first in both lists, both new titles displayed, both
+  official portraits loaded, About roles correct, no JavaScript errors.
+  Desktop screenshot reviewed. Changes remain local, not deployed.
+- 2026-09-30: Opened release PR #5 for the leadership, translation,
+  portrait, and admin Orders changes. The hosted preview exposed missing
+  SPA routing: direct `/team` requests returned Vercel 404 instead of
+  reaching React Router. Added `front-end/vercel.json` with the standard
+  `/index.html` rewrite and documented the existing Vercel/Railway
+  hosting split. Production deployment and live verification follow.

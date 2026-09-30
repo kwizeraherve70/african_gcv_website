@@ -1,9 +1,15 @@
 import { useEffect } from 'react';
-import { useLocation } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { teamMembers, founders } from '../data/mockData';
 import { SEO } from '../components/SEO';
 import { Users, Globe, Star } from 'lucide-react';
+
+// Stable record IDs are shared by the team and founder directories.
+const LEADERSHIP_PROFILE_KEYS: Record<string, 'doris' | 'olivier'> = {
+  '1': 'olivier',
+  '2': 'doris',
+};
 
 const DEPARTMENT_KEYS = ['ambassadors', 'education', 'ecosystem', 'finance', 'communications', 'events'];
 
@@ -17,6 +23,23 @@ const REGION_COLORS: Record<string, string> = {
 export function Team() {
   const { hash } = useLocation();
   const { t } = useTranslation('about');
+  const leadershipMembers = teamMembers.filter(member => member.department === 'Leadership').map(member => {
+    const profile = LEADERSHIP_PROFILE_KEYS[member.id];
+    return {
+      ...member,
+      title: profile ? t(`about.leadership.${profile}.role`) : member.title,
+      founderRole: profile ? t(`about.leadership.${profile}.founderRole`) : null,
+      bio: profile ? t(`about.leadership.${profile}.bio1`) : member.bio,
+    };
+  });
+  const localizedFounders = founders.map(founder => {
+    const profile = LEADERSHIP_PROFILE_KEYS[founder.id];
+    return profile ? {
+      ...founder,
+      role: t(`about.leadership.${profile}.founderRole`),
+      bio: t(`about.leadership.${profile}.${profile === 'olivier' ? 'founderBio' : 'bio1'}`),
+    } : founder;
+  });
 
   useEffect(() => {
     if (!hash) return;
@@ -65,7 +88,7 @@ export function Team() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {teamMembers.filter(m => m.department === 'Leadership').map(member => (
+            {leadershipMembers.map(member => (
               <div
                 key={member.id}
                 className="bg-card rounded-2xl border border-border p-6 flex gap-5 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
@@ -82,8 +105,18 @@ export function Team() {
                       {member.country}
                     </span>
                   </div>
-                  <p className="text-sm text-brand-purple font-medium mb-3">{member.title}</p>
+                  <div className="mb-3 space-y-1">
+                    <p className="text-sm text-brand-purple font-medium">{member.title}</p>
+                    {member.founderRole && (
+                      <p className="text-xs text-brand-purple font-medium">{member.founderRole}</p>
+                    )}
+                  </div>
                   <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">{member.bio}</p>
+                  {member.id === '1' && (
+                    <Link to="/about#olivier-ndatimana" className="inline-block mt-3 text-sm font-medium text-brand-purple hover:underline">
+                      {t('about.leadership.olivier.profileLink')}
+                    </Link>
+                  )}
                 </div>
               </div>
             ))}
@@ -103,7 +136,7 @@ export function Team() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {founders.map(founder => (
+            {localizedFounders.map(founder => (
               <div
                 key={founder.id}
                 className="bg-card rounded-2xl border border-border overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
@@ -128,6 +161,11 @@ export function Team() {
                   <p className="text-xs text-brand-purple font-semibold mb-1">{founder.role}</p>
                   <p className="text-xs text-muted-foreground mb-3">{founder.country}</p>
                   <p className="text-sm text-muted-foreground leading-relaxed line-clamp-4">{founder.bio}</p>
+                  {founder.id === '1' && (
+                    <Link to="/about#olivier-ndatimana" className="inline-block mt-3 text-sm font-medium text-brand-purple hover:underline">
+                      {t('about.leadership.olivier.profileLink')}
+                    </Link>
+                  )}
                 </div>
               </div>
             ))}

@@ -69,16 +69,64 @@
       "title": "Ubuyobozi bwacu",
       "doris": {
         "name": "Doris Yin",
-        "role": "Intumwa Nkuru y'Isi · Umushinga wa Global GCV Movement",
-        "bio1": "Doris Yin ni umushinga wa Global GCV Movement, atanga icyerekezo n'ubuyobozi ku rusobe rw'Intumwa za GCV ku isi. Yayoboye kandi avuga mu materaniro akomeye ku isi ateza imbere GCV nk'ihame ry'ubucuruzi bw'ubutabera kandi bugaragara.",
+        "role": "Umuyobozi Nshingwabikorwa w’Umuryango wa GCV ku Isi",
+        "founderRole": "Uwashinze — GCV Movement of Africa",
+        "bio1": "Doris Yin ni Umuyobozi Nshingwabikorwa w’Umuryango wa GCV ku Isi kandi ni we washinze GCV Movement of Africa.",
         "bio2": "Ubutumwa bwe nyamukuru — \"Kubaka Umusingi Ukomeye, Inkingi y'Ejo Hazaza Heza\" — ni ibanze ry'imyumvire y'uburezi no kubaka umuryango mu Ihuriro muri buri karere."
       },
       "olivier": {
         "name": "Olivier Ndatimana",
-        "role": "Umuyobozi Mushinga, Pi Global GCV Alliance",
-        "bio1": "Olivier Ndatimana ni Umuyobozi Mushinga wa Pi Global GCV Alliance, afite ubumenyi mu bwikorezi, ubwikorezi bw'ibintu, n'iterambere ry'isoko nk'Umuyobozi Mukuru wa Kigali Hot Market Ltd.",
-        "bio2": "Munsi y'ubuyobozi bwe, Ihuriro ryagize urusobe rw'abacuruzi ryaguye n'ubufatanye bw'uturere twinshi muri Afurika, Uburayi, Aziya na Amerika — bwubaka ihame ry'ubucuruzi risangiwe uhereye ku musingi.",
-        "bio3": "Intego ya Olivier ni ugutuma buri munyamuryango agira uburenganzira bunoze kandi butaziguye ku bukungu bw'isi — GCV igatanga umusingi uhamye w'ubucuruzi mu Ihuriro."
+        "role": "Umuyobozi Nshingwabikorwa wa GCV ku Isi",
+        "founderRole": "Uwashinze Africa GCV Movement",
+        "tagline": "Umuyobozi w’imiryango ku rwego rw’isi • Rwiyemezamirimo • Umuhuzabikorwa mpuzamahanga",
+        "bio1": "Olivier Ndatimana ni Umunyarwanda uyobora imiryango, akaba rwiyemezamirimo n’umuhuzabikorwa mpuzamahanga. Afite uburambe mu iterambere ry’imiryango, ubuyobozi, itumanaho, guteza imbere ubucuruzi n’ubufatanye mpuzamahanga.",
+        "profileLink": "Soma umwirondoro wuzuye wa Olivier",
+        "founderBio": "Uwashinze Africa GCV Movement, ahuza ibikorwa byo muri Afurika n’umuryango mpuzamahanga binyuze mu guhuza imiryango, guteza imbere ubuyobozi n’ubufatanye.",
+        "gcv": {
+          "title": "Umuryango wa GCV",
+          "description": "Nka Muyobozi Nshingwabikorwa wa GCV ku Isi n’uwashinze Africa GCV Movement, Olivier yibanda ku guhuza imiryango ku rwego mpuzamahanga, guteza imbere ubuyobozi, itumanaho, gutanga raporo no gushimangira ubufatanye hagati y’abayobozi, ambasaderi n’imiryango ya GCV muri Afurika no mu tundi turere.",
+          "experience": "Amaze imyaka myinshi muri GCV, aho yakoze inshingano zitandukanye mu buyobozi no mu miryango. Yagize uruhare mu guteza imbere no guhuza ibikorwa muri Afurika no kubihuza n’umuryango mpuzamahanga.",
+          "focusTitle": "Ibyibandwaho mu buyobozi",
+          "priorities": [
+            "Ubumwe n’ubufatanye",
+            "Guhuza imiryango ku rwego mpuzamahanga",
+            "Guteza imbere ubuyobozi",
+            "Itumanaho no gusangira amakuru",
+            "Kubazwa inshingano no gutanga raporo",
+            "Iterambere ry’imiryango",
+            "Ubufatanye bwambukiranya imipaka",
+            "Icyerekezo cy’igihe kirekire n’intego rusange"
+          ]
+        },
+        "pi": {
+          "title": "Umuryango wa Pi Network",
+          "description": "Olivier agira uruhare mu kubaka umuryango, itumanaho no kwigisha, ahuza aba Pioneers bo mu bihugu bitandukanye. Asangira amakuru, ashishikariza abantu ubufatanye no kugira uruhare mu bikorwa, kandi afasha aba Pioneers gusobanukirwa impinduka n’amahirwe biri muri Pi.",
+          "distinction": "Ibi bikorwa by’umuryango ntibivuze ko akorera Pi Network Core Team cyangwa ko afite umwanya wemewe mu buyobozi bwayo. Umwanya nk’uwo wakenera kwemezwa ku mugaragaro na Pi Network."
+        },
+        "business": {
+          "title": "Kigali Hot Market Ltd",
+          "role": "Umuyobozi Mukuru / Nyir’ikigo • Rwanda",
+          "sectors": "Ubwikorezi • Gutumiza no kohereza ibicuruzwa mu mahanga • Ubucuruzi bwo kuri interineti",
+          "description": "Kigali Hot Market Ltd (KHM-LTD) ikora mu bwikorezi, gutumiza no kohereza ibicuruzwa mu mahanga, no mu bucuruzi bwo kuri interineti. Ikigo giteza imbere ubucuruzi, gitanga serivisi z’ubucuruzi, gihuza abakiriya n’abatanga ibicuruzwa na serivisi, kandi gifasha mu kubona amahirwe y’ubucuruzi."
+        },
+        "approach": {
+          "title": "Uburyo ayobora",
+          "description": "Olivier ashyira imbere ubumwe, ubufatanye burangwa n’amahoro, kubahana, gukorera hamwe n’icyerekezo cy’igihe kirekire. Yizera ko itandukaniro mu bitekerezo, inkomoko cyangwa inyungu z’ibihugu ridakwiye kubuza abantu gukorera hamwe ku ntego rusange. Uburyo ayobora buhuza abantu, bufungura inzira z’itumanaho, bushishikariza abantu kuzuza inshingano kandi bwubaka imiryango irambye."
+        },
+        "vision": {
+          "title": "Icyerekezo mpuzamahanga",
+          "description": "Icyerekezo cye ni uguhuza Afurika n’umuryango w’isi, gufungura amahirwe y’ubufatanye mpuzamahanga, gushyigikira kwihangira imirimo n’iterambere ry’imiryango. Yizera ko iterambere rirambye rishingira ku bufatanye, ubuyobozi bwuzuza inshingano, ikoranabuhanga, kwihangira imirimo n’imiryango ikomeye."
+        },
+        "valuesTitle": "Indangagaciro z’ingenzi",
+        "values": [
+          "Ubumwe",
+          "Amahoro",
+          "Ubunyangamugayo",
+          "Ubufatanye",
+          "Ubuyobozi",
+          "Iterambere ry’imiryango",
+          "Icyerekezo cy’isi"
+        ]
       }
     },
     "regionsSection": {

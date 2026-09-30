@@ -69,16 +69,64 @@
       "title": "Notre direction",
       "doris": {
         "name": "Doris Yin",
-        "role": "Grande Ambassadrice mondiale · Fondatrice, Global GCV Movement",
-        "bio1": "Doris Yin est la fondatrice du Global GCV Movement, apportant une vision stratégique et une direction au réseau mondial des Ambassadeurs GCV. Elle a dirigé et pris la parole lors de grands rassemblements mondiaux faisant progresser la GCV comme norme d'un commerce équitable et transparent.",
+        "role": "Directrice exécutive de la communauté mondiale GCV",
+        "founderRole": "Fondatrice — Mouvement GCV d’Afrique",
+        "bio1": "Doris Yin est directrice exécutive de la communauté mondiale GCV et fondatrice du Mouvement GCV d’Afrique.",
         "bio2": "Son message directeur — « Bâtir une fondation solide, un pilier pour un avenir radieux » — est la pierre angulaire de la philosophie éducative et communautaire de l'Alliance dans chaque région."
       },
       "olivier": {
         "name": "Olivier Ndatimana",
-        "role": "Directeur fondateur, Pi Global GCV Alliance",
-        "bio1": "Olivier Ndatimana est le Directeur fondateur de Pi Global GCV Alliance, apportant son expertise en expédition, logistique et développement de marché en tant que PDG de Kigali Hot Market Ltd.",
-        "bio2": "Sous sa direction, l'Alliance a développé son réseau de commerçants et sa coordination régionale à travers l'Afrique, l'Europe, l'Asie et les États-Unis — bâtissant une norme commerciale commune à partir de la base.",
-        "bio3": "La mission d'Olivier est de donner à chaque membre un accès équitable et direct à l'économie mondiale — la GCV offrant une base stable pour le commerce au sein de l'Alliance."
+        "role": "Directeur exécutif mondial du GCV",
+        "founderRole": "Fondateur — Mouvement GCV Afrique",
+        "tagline": "Leader communautaire mondial • Entrepreneur • Coordinateur international",
+        "bio1": "Olivier Ndatimana est un leader communautaire, entrepreneur et coordinateur international rwandais, expérimenté en développement communautaire, leadership, communication, développement des affaires et collaboration internationale.",
+        "profileLink": "Lire le profil complet d’Olivier",
+        "founderBio": "Fondateur du Mouvement GCV Afrique, il relie les initiatives africaines au mouvement international par la coordination communautaire, le développement du leadership et la coopération.",
+        "gcv": {
+          "title": "Mouvement GCV",
+          "description": "En tant que Directeur exécutif mondial du GCV et fondateur du Mouvement GCV Afrique, Olivier œuvre à la coordination communautaire internationale, au développement du leadership, à la communication, à la production de rapports et à la coopération entre dirigeants, ambassadeurs et communautés GCV en Afrique et dans d’autres régions.",
+          "experience": "Engagé depuis plusieurs années dans le Mouvement GCV, il a exercé diverses responsabilités communautaires et de direction, développant et coordonnant les activités en Afrique et reliant les initiatives africaines au mouvement international.",
+          "focusTitle": "Priorités de leadership",
+          "priorities": [
+            "Unité et coopération",
+            "Coordination communautaire internationale",
+            "Développement du leadership",
+            "Communication et partage d’informations",
+            "Responsabilité et production de rapports",
+            "Développement communautaire",
+            "Collaboration transfrontalière",
+            "Vision à long terme et objectifs communs"
+          ]
+        },
+        "pi": {
+          "title": "Communauté Pi Network",
+          "description": "Olivier participe au développement communautaire, à la communication et à l’éducation, en reliant les Pioneers de différents pays. Il partage des informations, encourage la collaboration et la participation, et aide les Pioneers à comprendre les évolutions et les possibilités au sein de l’écosystème Pi.",
+          "distinction": "Ces activités communautaires n’impliquent ni un emploi auprès de la Pi Network Core Team ni une fonction officielle de direction en son sein. Une telle fonction nécessiterait une confirmation officielle de Pi Network."
+        },
+        "business": {
+          "title": "Kigali Hot Market Ltd",
+          "role": "PDG / Propriétaire • Rwanda",
+          "sectors": "Logistique • Import-export • Commerce électronique",
+          "description": "Kigali Hot Market Ltd (KHM-LTD) exerce dans la logistique, l’import-export et le commerce électronique. L’entreprise développe des activités commerciales et des services, met les clients en relation avec des fournisseurs et prestataires, et facilite les occasions d’affaires."
+        },
+        "approach": {
+          "title": "Approche du leadership",
+          "description": "Olivier met l’accent sur l’unité, la coopération pacifique, le respect, le travail d’équipe et une vision à long terme. Selon lui, les différences d’opinions, de parcours ou d’intérêts nationaux ne doivent pas empêcher de poursuivre des objectifs communs. Son approche rassemble les personnes, ouvre des canaux de communication, encourage la responsabilité et construit des communautés durables."
+        },
+        "vision": {
+          "title": "Vision internationale",
+          "description": "Sa vision consiste à relier l’Afrique à la communauté mondiale, à créer des possibilités de coopération internationale et à soutenir l’entrepreneuriat et le développement communautaire. Il estime que le progrès durable repose sur la collaboration, un leadership responsable, la technologie, l’entrepreneuriat et des communautés solides."
+        },
+        "valuesTitle": "Valeurs fondamentales",
+        "values": [
+          "Unité",
+          "Paix",
+          "Intégrité",
+          "Collaboration",
+          "Leadership",
+          "Développement communautaire",
+          "Vision mondiale"
+        ]
       }
     },
     "regionsSection": {
