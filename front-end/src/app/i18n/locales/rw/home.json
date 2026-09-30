@@ -38,11 +38,14 @@
     "viewAll": "Reba amakuru yose"
   },
   "founder": {
-    "badge": "Umuyobozi Mushingamurwa, Pi Global GCV Alliance",
+    "badge": "Umuyobozi Nshingwabikorwa wa GCV ku Isi",
     "name": "Olivier Ndatimana",
-    "quote": "Atuye i Kigali, mu Rwanda, Olivier ayoboye intego y'Ihuriro yo guhuza abacuruzi, abikorera n'ibigo hirya no hino muri Afurika, Uburayi, Aziya na Leta Zunze Ubumwe za Amerika munsi y'urwego rumwe rw'ubucuruzi n'igiciro rusange.",
-    "bio": "Nk'Umuyobozi Mukuru wa Kigali Hot Market Ltd, intego ya Olivier ni ugutuma buri wese ugize uruhare mu isoko — kuva ku barimyi bato kugeza ku bigo bitanga serivisi — abona uburyo bwiza kandi butaziguye bwo kwinjira mu mushinga w'ubucuruzi mpuzamahanga ukura buri munsi.",
-    "cta": "Menya Abashinze",
+    "tagline": "Umuyobozi w’imiryango ku rwego rw’isi • Rwiyemezamirimo • Umuhuzabikorwa mpuzamahanga",
+    "founderRole": "Uwashinze Africa GCV Movement",
+    "intro": "Umuyobozi w’imiryango w’Umunyarwanda uhuza Afurika na GCV ku isi binyuze mu guteza imbere ubuyobozi, itumanaho n’ubufatanye mpuzamahanga.",
+    "bio": "Olivier ni n’Umuyobozi Mukuru akaba na nyir’ikigo Kigali Hot Market Ltd mu Rwanda, gikora mu bwikorezi, gutumiza no kohereza ibicuruzwa mu mahanga no mu bucuruzi bwo kuri interineti. Ubuyobozi bwe bushingiye ku bumwe, ubufatanye burangwa n’amahoro, ubunyangamugayo n’iterambere ry’imiryango.",
+    "piNote": "Uruhare rwe muri Pi Network ni ukubaka umuryango, kwigisha no guhuza aba Pioneers; ibi bikorwa ntibivuze ko afite umwanya muri Pi Network Core Team.",
+    "cta": "Soma umwirondoro wuzuye wa Olivier",
     "imageAlt": "Olivier Ndatimana"
   },
   "mission": {

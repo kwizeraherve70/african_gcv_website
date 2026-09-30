@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
-import { ArrowRight, Trash2 } from 'lucide-react';
-import { deleteOrder, getAllOrders } from '../../api/orders';
+import { getAllOrders } from '../../api/orders';
 import type { AdminOrder, DeliveryStatus, OrderStatus } from '../../api/orders';
 import { useAuth } from '../../context/AuthContext';
 import { ApiError } from '../../api/client';
@@ -35,7 +34,6 @@ export function AdminOrders() {
   const [orders, setOrders] = useState<AdminOrder[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   useEffect(() => {
     if (!token) return;
@@ -45,28 +43,6 @@ export function AdminOrders() {
       .catch(err => setError(err instanceof ApiError ? err.message : 'Failed to load orders.'))
       .finally(() => setLoading(false));
   }, [token]);
-
-  const handleDelete = async (order: AdminOrder) => {
-    if (!token) return;
-    if (
-      !window.confirm(
-        `Delete order #${order.orderNumber} and its related records? This cannot be undone.`,
-      )
-    ) {
-      return;
-    }
-
-    setError(null);
-    setDeletingId(order.id);
-    try {
-      await deleteOrder(order.id, token);
-      setOrders(currentOrders => currentOrders.filter(currentOrder => currentOrder.id !== order.id));
-    } catch (err) {
-      setError(err instanceof ApiError ? err.message : 'Failed to delete order.');
-    } finally {
-      setDeletingId(null);
-    }
-  };
 
   return (
     <div>
@@ -95,97 +71,61 @@ export function AdminOrders() {
                   <th className="px-5 py-3 font-semibold">Order Status</th>
                   <th className="px-5 py-3 font-semibold">Delivery</th>
                   <th className="px-5 py-3 font-semibold">Payment</th>
-                  <th className="px-5 py-3 font-semibold text-right">Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {orders.map(order => {
-                  const protectedPaymentStatus = ['PENDING', 'SUCCESS', 'SUCCEEDED'].includes(
-                    order.payment?.status ?? '',
-                  );
-                  const isDeleting = deletingId === order.id;
-
-                  return (
-                    <tr key={order.id} className="border-b border-border last:border-0">
-                      <td className="px-5 py-3">
-                        <div className="font-mono font-medium">{order.orderNumber}</div>
-                        <div className="text-xs text-muted-foreground">
-                          {new Date(order.createdAt).toLocaleDateString()}
-                        </div>
-                      </td>
-                      <td className="px-5 py-3">
-                        {order.delivery ? (
-                          <>
-                            <div className="font-medium">
-                              {order.delivery.customerFirstName} {order.delivery.customerLastName}
-                            </div>
-                            <div className="text-xs text-muted-foreground">
-                              {order.delivery.customerEmail}
-                            </div>
-                          </>
-                        ) : (
-                          <span className="text-muted-foreground">—</span>
-                        )}
-                      </td>
-                      <td className="px-5 py-3 font-semibold">
-                        ${order.totalAmount.toFixed(2)}
-                      </td>
-                      <td className="px-5 py-3">
-                        <Badge label={order.status} className={ORDER_STATUS_STYLE[order.status]} />
-                      </td>
-                      <td className="px-5 py-3">
-                        {order.delivery ? (
-                          <Badge
-                            label={order.delivery.deliveryStatus}
-                            className={DELIVERY_STATUS_STYLE[order.delivery.deliveryStatus]}
-                          />
-                        ) : (
-                          <span className="text-muted-foreground text-xs">No delivery</span>
-                        )}
-                      </td>
-                      <td className="px-5 py-3">
-                        {order.payment ? (
-                          <span className="text-xs font-medium">{order.payment.status}</span>
-                        ) : (
-                          <span className="text-muted-foreground text-xs">Unpaid</span>
-                        )}
-                      </td>
-                      <td className="px-5 py-3">
-                        <div className="flex items-center justify-end gap-4">
-                          <Link
-                            to={`/admin/orders/${order.id}`}
-                            className="inline-flex items-center gap-1 text-sm font-medium text-brand-purple hover:underline"
-                          >
-                            View
-                            <ArrowRight className="w-3.5 h-3.5" />
-                          </Link>
-                          <div className="text-right">
-                            <button
-                              type="button"
-                              onClick={() => handleDelete(order)}
-                              disabled={protectedPaymentStatus || isDeleting}
-                              title={
-                                protectedPaymentStatus
-                                  ? 'Orders with pending or successful payments cannot be deleted.'
-                                  : 'Delete order'
-                              }
-                              aria-label={`Delete order ${order.orderNumber}`}
-                              className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold text-destructive transition-colors hover:bg-destructive/10 disabled:cursor-not-allowed disabled:opacity-50"
-                            >
-                              <Trash2 className="w-3.5 h-3.5" />
-                              {isDeleting ? 'Deleting…' : 'Delete'}
-                            </button>
-                            {protectedPaymentStatus && (
-                              <p className="mt-1 max-w-40 text-xs text-muted-foreground">
-                                Payment pending or complete
-                              </p>
-                            )}
+                {orders.map(order => (
+                  <tr key={order.id} className="border-b border-border last:border-0">
+                    <td className="px-5 py-3">
+                      <Link
+                        to={`/admin/orders/${order.id}`}
+                        className="font-mono font-medium text-brand-purple hover:underline"
+                      >
+                        {order.orderNumber}
+                      </Link>
+                      <div className="text-xs text-muted-foreground">
+                        {new Date(order.createdAt).toLocaleDateString()}
+                      </div>
+                    </td>
+                    <td className="px-5 py-3">
+                      {order.delivery ? (
+                        <>
+                          <div className="font-medium">
+                            {order.delivery.customerFirstName} {order.delivery.customerLastName}
                           </div>
-                        </div>
-                      </td>
-                    </tr>
-                  );
-                })}
+                          <div className="text-xs text-muted-foreground">
+                            {order.delivery.customerEmail}
+                          </div>
+                        </>
+                      ) : (
+                        <span className="text-muted-foreground">—</span>
+                      )}
+                    </td>
+                    <td className="px-5 py-3 font-semibold">
+                      ${order.totalAmount.toFixed(2)}
+                    </td>
+                    <td className="px-5 py-3">
+                      <Badge label={order.status} className={ORDER_STATUS_STYLE[order.status]} />
+                    </td>
+                    <td className="px-5 py-3">
+                      {order.delivery ? (
+                        <Badge
+                          label={order.delivery.deliveryStatus}
+                          className={DELIVERY_STATUS_STYLE[order.delivery.deliveryStatus]}
+                        />
+                      ) : (
+                        <span className="text-muted-foreground text-xs">No delivery</span>
+                      )}
+                    </td>
+                    <td className="px-5 py-3">
+                      {order.payment ? (
+                        <span className="text-xs font-medium">{order.payment.status}</span>
+                      ) : (
+                        <span className="text-muted-foreground text-xs">Unpaid</span>
+                      )}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

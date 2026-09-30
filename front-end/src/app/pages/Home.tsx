@@ -50,13 +50,13 @@ function NetworkGraphic() {
           key={i}
           x1={nodes[a].x} y1={nodes[a].y}
           x2={nodes[b].x} y2={nodes[b].y}
-          stroke="#FBBF24"
+          stroke="var(--brand-gold)"
           strokeWidth="1"
           opacity="0.5"
         />
       ))}
       {nodes.map((n, i) => (
-        <circle key={i} cx={n.x} cy={n.y} r={i === 4 ? 6 : 4} fill="#FBBF24">
+        <circle key={i} cx={n.x} cy={n.y} r={i === 4 ? 6 : 4} fill="var(--brand-gold)">
           {i === 4 && (
             <animate attributeName="r" values="5;8;5" dur="2.4s" repeatCount="indefinite" />
           )}
@@ -64,8 +64,8 @@ function NetworkGraphic() {
       ))}
       <defs>
         <radialGradient id="globeFill" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#7C3AED" stopOpacity="0.6" />
-          <stop offset="100%" stopColor="#5B21B6" stopOpacity="0" />
+          <stop offset="0%" stopColor="var(--brand-purple-light)" stopOpacity="0.6" />
+          <stop offset="100%" stopColor="var(--brand-purple)" stopOpacity="0" />
         </radialGradient>
       </defs>
     </svg>
@@ -343,26 +343,29 @@ export function Home() {
       </section>
 
       {/* ── FOUNDER SPOTLIGHT ────────────────────────────────────── */}
-      <section className="py-20">
+      <section aria-labelledby="olivier-spotlight-heading" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="order-2 md:order-1">
               <span className="inline-block px-3 py-1 bg-brand-gold/15 text-brand-ink text-xs font-semibold rounded-full mb-5">
                 {t('founder.badge')}
               </span>
-              <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6 tracking-tight">
+              <h2 id="olivier-spotlight-heading" className="text-3xl md:text-4xl font-heading font-bold mb-3 tracking-tight">
                 {t('founder.name')}
               </h2>
-              <blockquote className="border-l-4 border-brand-purple pl-5 mb-6">
-                <p className="text-muted-foreground leading-relaxed">
-                  {t('founder.quote')}
-                </p>
-              </blockquote>
-              <p className="text-muted-foreground mb-8 leading-relaxed">
+              <p className="text-brand-purple font-semibold mb-2">{t('founder.founderRole')}</p>
+              <p className="text-sm text-muted-foreground mb-6 leading-relaxed">{t('founder.tagline')}</p>
+              <p className="text-muted-foreground mb-4 leading-relaxed">
+                {t('founder.intro')}
+              </p>
+              <p className="text-muted-foreground mb-6 leading-relaxed">
                 {t('founder.bio')}
               </p>
+              <p className="text-sm text-muted-foreground border-t border-border pt-4 mb-6 leading-relaxed">
+                {t('founder.piNote')}
+              </p>
               <Link
-                to="/team"
+                to="/about#olivier-ndatimana"
                 className="inline-flex items-center gap-2 px-6 py-3.5 bg-brand-purple text-white rounded-xl hover:bg-brand-purple-light transition-all duration-200 font-semibold shadow-lg hover:-translate-y-0.5"
               >
                 {t('founder.cta')}
@@ -372,7 +375,7 @@ export function Home() {
             <div className="order-1 md:order-2">
               <div className="relative">
                 <div className="absolute -inset-3 bg-gradient-to-br from-brand-purple/20 to-brand-gold/20 rounded-3xl blur-xl pointer-events-none" />
-                <div className="relative aspect-square rounded-2xl overflow-hidden ring-1 ring-black/5">
+                <div className="relative aspect-square rounded-2xl overflow-hidden ring-1 ring-border">
                   <img src={olivierImg} alt={t('founder.imageAlt')} className="w-full h-full object-cover" />
                 </div>
               </div>
@@ -505,10 +508,10 @@ export function Home() {
               href="https://wa.me/250738013858"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-4 group hover:text-[#25D366] transition-colors"
+              className="flex items-center gap-4 group hover:text-brand-whatsapp transition-colors"
             >
-              <div className="w-10 h-10 bg-[#25D366]/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-[#25D366]/20 transition-colors">
-                <MessageCircle className="w-5 h-5 text-[#25D366]" />
+              <div className="w-10 h-10 bg-brand-whatsapp/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-brand-whatsapp/20 transition-colors">
+                <MessageCircle className="w-5 h-5 text-brand-whatsapp" />
               </div>
               <div>
                 <p className="text-xs text-muted-foreground font-medium">{t('contact.whatsapp')}</p>

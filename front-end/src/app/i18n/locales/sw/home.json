@@ -38,11 +38,14 @@
     "viewAll": "Angalia habari zote"
   },
   "founder": {
-    "badge": "Mkurugenzi Mwanzilishi, Pi Global GCV Alliance",
+    "badge": "Mkurugenzi Mtendaji wa GCV Duniani",
     "name": "Olivier Ndatimana",
-    "quote": "Akiishi Kigali, Rwanda, Olivier anaongoza dhamira ya Muungano ya kuunganisha wafanyabiashara, wajasiriamali, na taasisi kote Afrika, Ulaya, Asia, na Marekani chini ya kiwango kimoja cha biashara na thamani ya pamoja.",
-    "bio": "Akiwa Afisa Mkuu Mtendaji wa Kigali Hot Market Ltd, dhamira ya Olivier ni kumpa kila mshiriki wa soko — kutoka kwa wakulima wadogo hadi kampuni za huduma — fursa ya haki na ya moja kwa moja katika mtandao wa biashara wa kimataifa unaokua.",
-    "cta": "Wafahamu Waanzilishi",
+    "tagline": "Kiongozi wa Jamii Duniani • Mjasiriamali • Mratibu wa Kimataifa",
+    "founderRole": "Mwanzilishi — Africa GCV Movement",
+    "intro": "Kiongozi wa jamii kutoka Rwanda anayeunganisha Afrika na harakati za GCV duniani kupitia maendeleo ya uongozi, mawasiliano, na ushirikiano wa kimataifa.",
+    "bio": "Olivier pia ni Afisa Mkuu Mtendaji na mmiliki wa Kigali Hot Market Ltd nchini Rwanda, inayofanya kazi katika usafirishaji, uagizaji na uuzaji nje, na biashara mtandaoni. Uongozi wake unajikita katika umoja, ushirikiano wa amani, uadilifu, na maendeleo ya jamii.",
+    "piNote": "Ushiriki wake katika Pi Network ni kupitia ujenzi wa jamii, elimu, na kuunganisha Pioneers; shughuli hizi hazimaanishi nafasi ndani ya Pi Network Core Team.",
+    "cta": "Soma wasifu kamili wa Olivier",
     "imageAlt": "Olivier Ndatimana"
   },
   "mission": {

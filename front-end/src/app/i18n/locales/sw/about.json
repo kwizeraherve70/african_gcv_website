@@ -69,16 +69,64 @@
       "title": "Uongozi Wetu",
       "doris": {
         "name": "Doris Yin",
-        "role": "Balozi Mkuu wa Kimataifa · Mwanzilishi, Global GCV Movement",
-        "bio1": "Doris Yin ni mwanzilishi wa Global GCV Movement, akitoa maono ya kimkakati na mwelekeo kwa mtandao wa kimataifa wa Mabalozi wa GCV. Ameongoza na kuzungumza katika mikutano mikubwa ya kimataifa ikiendeleza GCV kama kiwango cha biashara ya haki na wazi.",
+        "role": "Mkurugenzi Mtendaji wa Jumuiya ya GCV Duniani",
+        "founderRole": "Mwanzilishi — GCV Movement of Africa",
+        "bio1": "Doris Yin ni Mkurugenzi Mtendaji wa Jumuiya ya GCV Duniani na mwanzilishi wa GCV Movement of Africa.",
         "bio2": "Ujumbe wake elekezi — \"Kujenga Msingi Imara, Nguzo ya Mustakabali Mzuri\" — ndio msingi wa falsafa ya elimu na ujenzi wa jamii ya Muungano katika kila eneo."
       },
       "olivier": {
         "name": "Olivier Ndatimana",
-        "role": "Mkurugenzi Mwanzilishi, Pi Global GCV Alliance",
-        "bio1": "Olivier Ndatimana ni Mkurugenzi Mwanzilishi wa Pi Global GCV Alliance, akileta utaalamu wa usafirishaji, vifaa, na maendeleo ya soko akiwa Afisa Mkuu Mtendaji wa Kigali Hot Market Ltd.",
-        "bio2": "Chini ya uongozi wake, Muungano umekuza mtandao wake wa wafanyabiashara na uratibu wa kikanda katika Afrika, Ulaya, Asia, na Marekani — ukijenga kiwango cha biashara cha pamoja kutoka msingi.",
-        "bio3": "Dhamira ya Olivier ni kumpa kila mwanachama fursa ya haki na ya moja kwa moja kwenye uchumi wa dunia — huku GCV ikitoa msingi thabiti wa biashara katika Muungano."
+        "role": "Mkurugenzi Mtendaji wa GCV Duniani",
+        "founderRole": "Mwanzilishi — Africa GCV Movement",
+        "tagline": "Kiongozi wa Jamii Duniani • Mjasiriamali • Mratibu wa Kimataifa",
+        "bio1": "Olivier Ndatimana ni kiongozi wa jamii, mjasiriamali, na mratibu wa kimataifa kutoka Rwanda mwenye uzoefu katika maendeleo ya jamii, uongozi, mawasiliano, maendeleo ya biashara, na ushirikiano wa kimataifa.",
+        "profileLink": "Soma wasifu kamili wa Olivier",
+        "founderBio": "Mwanzilishi wa Africa GCV Movement, anayeunganisha mipango ya Afrika na harakati za kimataifa kupitia uratibu wa jamii, maendeleo ya uongozi, na ushirikiano.",
+        "gcv": {
+          "title": "Harakati za GCV",
+          "description": "Akiwa Mkurugenzi Mtendaji wa GCV Duniani na Mwanzilishi wa Africa GCV Movement, Olivier anazingatia uratibu wa jamii kimataifa, maendeleo ya uongozi, mawasiliano, utoaji wa taarifa, na ushirikiano kati ya viongozi, mabalozi, na jamii za GCV barani Afrika na katika maeneo mengine.",
+          "experience": "Ameshiriki katika harakati za GCV kwa miaka kadhaa, akiwa na majukumu tofauti ya uongozi na kijamii. Amechangia kuendeleza na kuratibu shughuli barani Afrika na kuunganisha mipango ya Afrika na harakati za kimataifa.",
+          "focusTitle": "Vipaumbele vya uongozi",
+          "priorities": [
+            "Umoja na ushirikiano",
+            "Uratibu wa jamii kimataifa",
+            "Maendeleo ya uongozi",
+            "Mawasiliano na ushirikishanaji wa taarifa",
+            "Uwajibikaji na utoaji wa taarifa",
+            "Maendeleo ya jamii",
+            "Ushirikiano wa kuvuka mipaka",
+            "Maono ya muda mrefu na malengo ya pamoja"
+          ]
+        },
+        "pi": {
+          "title": "Jamii ya Pi Network",
+          "description": "Olivier anashiriki katika ujenzi wa jamii, mawasiliano, na elimu, akiwaunganisha Pioneers katika nchi tofauti. Anashiriki taarifa, anahimiza ushirikiano na ushiriki wa jamii, na kuwasaidia Pioneers kuelewa maendeleo na fursa ndani ya mfumo wa Pi.",
+          "distinction": "Shughuli hizi za kijamii hazimaanishi ajira katika Pi Network Core Team wala nafasi rasmi ya uongozi ndani yake. Nafasi kama hiyo ingehitaji uthibitisho rasmi kutoka Pi Network."
+        },
+        "business": {
+          "title": "Kigali Hot Market Ltd",
+          "role": "Afisa Mkuu Mtendaji / Mmiliki • Rwanda",
+          "sectors": "Usafirishaji • Uagizaji na Uuzaji Nje • Biashara Mtandaoni",
+          "description": "Kigali Hot Market Ltd (KHM-LTD) inafanya kazi katika usafirishaji, uagizaji na uuzaji nje, na biashara mtandaoni. Kampuni inaendeleza biashara na huduma za kibiashara, inaunganisha wateja na wasambazaji pamoja na watoa huduma, na kuwezesha fursa za biashara."
+        },
+        "approach": {
+          "title": "Mtazamo wa uongozi",
+          "description": "Olivier anasisitiza umoja, ushirikiano wa amani, heshima, kazi ya pamoja, na maono ya muda mrefu. Anaamini tofauti za maoni, asili, au maslahi ya kitaifa hazipaswi kuzuia watu kufuatilia malengo ya pamoja. Mtazamo wake unaleta watu pamoja, unafungua njia za mawasiliano, unahimiza uwajibikaji, na kujenga jamii endelevu."
+        },
+        "vision": {
+          "title": "Maono ya kimataifa",
+          "description": "Maono yake ni kuunganisha Afrika na jamii ya kimataifa, kuunda fursa za ushirikiano wa kimataifa, na kusaidia ujasiriamali na maendeleo ya jamii. Anaamini maendeleo endelevu yanatokana na ushirikiano, uongozi wenye uwajibikaji, teknolojia, ujasiriamali, na jamii imara."
+        },
+        "valuesTitle": "Maadili ya msingi",
+        "values": [
+          "Umoja",
+          "Amani",
+          "Uadilifu",
+          "Ushirikiano",
+          "Uongozi",
+          "Maendeleo ya Jamii",
+          "Maono ya Kimataifa"
+        ]
       }
     },
     "regionsSection": {

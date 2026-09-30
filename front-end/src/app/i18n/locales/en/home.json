@@ -38,11 +38,14 @@
     "viewAll": "View all news"
   },
   "founder": {
-    "badge": "Founding Director, Pi Global GCV Alliance",
+    "badge": "Global GCV Executive Director",
     "name": "Olivier Ndatimana",
-    "quote": "Based in Kigali, Rwanda, Olivier leads the Alliance's mission to connect merchants, entrepreneurs, and institutions across Africa, Europe, Asia, and the USA under one shared trade and consensus-value standard.",
-    "bio": "As CEO of Kigali Hot Market Ltd, Olivier's mission is to give every market participant — from smallholder producers to service companies — fair, direct access to a growing global trade network.",
-    "cta": "Meet the Founders",
+    "tagline": "Global Community Leader • Entrepreneur • International Coordinator",
+    "founderRole": "Founder — Africa GCV Movement",
+    "intro": "A Rwandan community leader connecting Africa with the global GCV Movement through leadership development, communication, and international cooperation.",
+    "bio": "Olivier is also CEO and owner of Kigali Hot Market Ltd in Rwanda, working in logistics, import and export, and e-commerce. His leadership is rooted in unity, peaceful cooperation, integrity, and community development.",
+    "piNote": "His Pi Network involvement is through community building, education, and connecting Pioneers; these activities do not imply a Pi Network Core Team role.",
+    "cta": "Read Olivier’s full profile",
     "imageAlt": "Olivier Ndatimana"
   },
   "mission": {

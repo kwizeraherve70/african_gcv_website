@@ -95,8 +95,9 @@ this from a generic storefront.
 ## Evidence on Hand
 
 - Real founder content already in the codebase (name, role, bio,
-  photo) — e.g. Olivier Ndatimana, Founding Director, on the Home
-  page. Not placeholder copy.
+  photo) — e.g. Olivier Ndatimana, Global GCV Executive Director and
+  Founder of the Africa GCV Movement, on the Home page (biography
+  updated from site-owner information on 2026-09-30). Not placeholder copy.
 - Real image assets in use (mission/olivie/doris), not stock
   placeholders.
 - No admin-portal visual precedent exists yet — Day 4 is a new surface

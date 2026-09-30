@@ -6,6 +6,7 @@
   --brand-purple-light: #7c3aed;
   --brand-gold: #fbbf24;
   --brand-green: #10b981;
+  --brand-whatsapp: #25d366;
   --brand-ink: #1f2937;
   --brand-surface: #f3f4f6;
 
@@ -91,6 +92,7 @@
   --color-brand-purple-light: var(--brand-purple-light);
   --color-brand-gold: var(--brand-gold);
   --color-brand-green: var(--brand-green);
+  --color-brand-whatsapp: var(--brand-whatsapp);
   --color-brand-ink: var(--brand-ink);
   --color-brand-surface: var(--brand-surface);
   --font-heading: 'Poppins', 'Inter', system-ui, sans-serif;

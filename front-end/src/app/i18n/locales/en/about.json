@@ -69,16 +69,64 @@
       "title": "Our Leadership",
       "doris": {
         "name": "Doris Yin",
-        "role": "Grand Global Ambassador · Founder, Global GCV Movement",
-        "bio1": "Doris Yin is the founder of the Global GCV Movement, providing strategic vision and direction to the worldwide network of GCV Ambassadors. She has led and addressed major global gatherings advancing GCV as the standard for fair, transparent trade.",
+        "role": "Global GCV Executive Community Director",
+        "founderRole": "Founder — GCV Movement of Africa",
+        "bio1": "Doris Yin serves as Global GCV Executive Community Director and is the founder of the GCV Movement of Africa.",
         "bio2": "Her guiding message — \"Building a Strong Foundation, A Pillar for a Bright Future\" — is the cornerstone of the Alliance's educational and community-building philosophy across every region."
       },
       "olivier": {
         "name": "Olivier Ndatimana",
-        "role": "Founding Director, Pi Global GCV Alliance",
-        "bio1": "Olivier Ndatimana is the Founding Director of the Pi Global GCV Alliance, bringing expertise in shipping, logistics, and market development as CEO of Kigali Hot Market Ltd.",
-        "bio2": "Under his leadership, the Alliance has grown its merchant network and regional coordination across Africa, Europe, Asia, and the USA — building a shared trade standard from the ground up.",
-        "bio3": "Olivier's mission is to give every member fair, direct access to the global economy — with GCV providing a stable foundation for trade across the Alliance."
+        "role": "Global GCV Executive Director",
+        "founderRole": "Founder — Africa GCV Movement",
+        "tagline": "Global Community Leader • Entrepreneur • International Coordinator",
+        "bio1": "Olivier Ndatimana is a Rwandan community leader, entrepreneur, and international coordinator with experience in community development, leadership, communication, business development, and international collaboration.",
+        "profileLink": "Read Olivier’s full profile",
+        "founderBio": "Founder of the Africa GCV Movement, connecting African initiatives with the broader international movement through community coordination, leadership development, and cooperation.",
+        "gcv": {
+          "title": "GCV Movement",
+          "description": "As Global GCV Executive Director and Founder of the Africa GCV Movement, Olivier focuses on international community coordination, leadership development, communication, reporting, and cooperation among GCV leaders, ambassadors, and communities across Africa and other regions.",
+          "experience": "Involved in the GCV Movement for several years, he has held different leadership and community responsibilities, developing and coordinating activities in Africa and connecting African initiatives with the broader international movement.",
+          "focusTitle": "Leadership priorities",
+          "priorities": [
+            "Unity and cooperation",
+            "International community coordination",
+            "Leadership development",
+            "Communication and information sharing",
+            "Accountability and reporting",
+            "Community development",
+            "Cross-border collaboration",
+            "Long-term vision and collective goals"
+          ]
+        },
+        "pi": {
+          "title": "Pi Network community",
+          "description": "Olivier participates in community building, communication, and education, connecting Pioneers across different countries. He shares information, encourages collaboration and engagement, and helps Pioneers understand developments and opportunities within the Pi ecosystem.",
+          "distinction": "These community activities do not imply employment by, or an official leadership position within, the Pi Network Core Team. Such a position would require official confirmation from Pi Network."
+        },
+        "business": {
+          "title": "Kigali Hot Market Ltd",
+          "role": "CEO / Owner • Rwanda",
+          "sectors": "Logistics • Import & Export • E-commerce",
+          "description": "Kigali Hot Market Ltd (KHM-LTD) operates in logistics, import and export, and e-commerce. Its work includes business development and commercial services, connecting customers with suppliers and service providers, and facilitating business opportunities."
+        },
+        "approach": {
+          "title": "Leadership approach",
+          "description": "Olivier emphasizes unity, peaceful cooperation, respect, teamwork, and long-term vision. He believes differences in opinions, backgrounds, or national interests should not prevent people from pursuing common objectives. His approach brings people together, opens communication channels, encourages responsibility, and builds sustainable communities."
+        },
+        "vision": {
+          "title": "International vision",
+          "description": "His vision is to connect Africa with the global community, create opportunities for international cooperation, and support entrepreneurship and community development. He believes sustainable progress comes from collaboration, responsible leadership, technology, entrepreneurship, and strong communities."
+        },
+        "valuesTitle": "Core values",
+        "values": [
+          "Unity",
+          "Peace",
+          "Integrity",
+          "Collaboration",
+          "Leadership",
+          "Community Development",
+          "Global Vision"
+        ]
       }
     },
     "regionsSection": {

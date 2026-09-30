@@ -195,3 +195,35 @@ payment flow until these are resolved — track resolution in
    languages.
 7. The site is responsive and passes basic SEO checks (meta tags,
    semantic structure).
+
+
+## Olivier Ndatimana — content confirmed 2026-09-30
+
+The site owner supplied the current biography for Olivier Ndatimana:
+Rwandan community leader, entrepreneur, and international coordinator;
+Global GCV Executive Director; Founder of the Africa GCV Movement; and
+CEO/Owner of Kigali Hot Market Ltd (KHM-LTD), Rwanda, operating in
+logistics, import/export, and e-commerce.
+
+His Pi Network activities concern community building, communication,
+education, and connecting Pioneers. They must not imply employment by
+or official leadership within the Pi Network Core Team without official
+confirmation from Pi Network.
+
+The homepage carries a concise introduction linking to the fuller
+profile at `/about#olivier-ndatimana`. The About profile covers his GCV
+responsibilities and experience, eight leadership priorities, Pi
+community activities, business, leadership approach, international
+vision, and seven core values. Team and Founders cards use the current
+roles and existing Olivier portrait. Historical news articles are not
+rewritten as current biographies.
+
+
+## Doris Yin — title and team order confirmed 2026-09-30
+
+The site owner supplied Doris Yin’s current titles: Global GCV Executive
+Community Director and Founder — GCV Movement of Africa. Use these in
+current profiles, replacing the former ambassador/global-founder titles.
+Doris appears first and Olivier second in both Global Leadership and
+Founders on the Team page. Their existing record IDs are preserved;
+portraits come from `assets/doris.jpeg` and `assets/olivie.jpeg`.
