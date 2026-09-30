@@ -889,3 +889,9 @@ implementation state changes.
   Swahili: Doris first in both lists, both new titles displayed, both
   official portraits loaded, About roles correct, no JavaScript errors.
   Desktop screenshot reviewed. Changes remain local, not deployed.
+- 2026-09-30: Opened release PR #5 for the leadership, translation,
+  portrait, and admin Orders changes. The hosted preview exposed missing
+  SPA routing: direct `/team` requests returned Vercel 404 instead of
+  reaching React Router. Added `front-end/vercel.json` with the standard
+  `/index.html` rewrite and documented the existing Vercel/Railway
+  hosting split. Production deployment and live verification follow.
