@@ -137,10 +137,22 @@
     "impact": {
       "title": "Athari za Muungano",
       "stats": [
-        { "value": "4", "label": "Mabara" },
-        { "value": "12,500+", "label": "Wanachama Duniani" },
-        { "value": "3,200+", "label": "Wafanyabiashara Wanaofanya Kazi" },
-        { "value": "Jan 2025", "label": "Mkutano Mkuu wa Kwanza" }
+        {
+          "value": "4",
+          "label": "Mabara"
+        },
+        {
+          "value": "12,500+",
+          "label": "Wanachama Duniani"
+        },
+        {
+          "value": "3,200+",
+          "label": "Wafanyabiashara Wanaofanya Kazi"
+        },
+        {
+          "value": "Jan 2025",
+          "label": "Mkutano Mkuu wa Kwanza"
+        }
       ]
     }
   },
@@ -175,6 +187,14 @@
       "finance": "Fedha",
       "communications": "Mawasiliano",
       "events": "Matukio"
+    },
+    "ui": {
+      "loading": "Inapakia wasifu wa timu…",
+      "error": "Wasifu wa timu haupatikani kwa sasa. Tafadhali jaribu tena.",
+      "retry": "Jaribu tena",
+      "empty": "Hakuna wasifu uliochapishwa katika sehemu hii bado.",
+      "photoUnavailable": "Picha ya {{name}} haipatikani",
+      "profileLink": "Soma wasifu kamili"
     }
   },
   "ambassadors": {

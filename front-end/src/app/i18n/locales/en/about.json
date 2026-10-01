@@ -137,10 +137,22 @@
     "impact": {
       "title": "Alliance Impact",
       "stats": [
-        { "value": "4", "label": "Continents" },
-        { "value": "12,500+", "label": "Members Worldwide" },
-        { "value": "3,200+", "label": "Active Merchants" },
-        { "value": "Jan 2025", "label": "First General Conference" }
+        {
+          "value": "4",
+          "label": "Continents"
+        },
+        {
+          "value": "12,500+",
+          "label": "Members Worldwide"
+        },
+        {
+          "value": "3,200+",
+          "label": "Active Merchants"
+        },
+        {
+          "value": "Jan 2025",
+          "label": "First General Conference"
+        }
       ]
     }
   },
@@ -175,6 +187,14 @@
       "finance": "Finance",
       "communications": "Communications",
       "events": "Events"
+    },
+    "ui": {
+      "loading": "Loading team profiles…",
+      "error": "Team profiles are temporarily unavailable. Please try again.",
+      "retry": "Try again",
+      "empty": "No published profiles in this section yet.",
+      "photoUnavailable": "Photo unavailable for {{name}}",
+      "profileLink": "Read full profile"
     }
   },
   "ambassadors": {

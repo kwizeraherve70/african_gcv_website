@@ -1,57 +1,50 @@
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { teamMembers, founders } from '../data/mockData';
+import { useTeamPage } from '../hooks/useTeam';
+import { TeamPortrait } from '../components/team/TeamPortrait';
+import { TeamContentState } from '../components/team/TeamContentState';
 import { SEO } from '../components/SEO';
 import { Users, Globe, Star } from 'lucide-react';
 
-// Stable record IDs are shared by the team and founder directories.
-const LEADERSHIP_PROFILE_KEYS: Record<string, 'doris' | 'olivier'> = {
-  '1': 'olivier',
-  '2': 'doris',
-};
-
-const DEPARTMENT_KEYS = ['ambassadors', 'education', 'ecosystem', 'finance', 'communications', 'events'];
-
 const REGION_COLORS: Record<string, string> = {
   Africa: 'from-brand-purple to-brand-purple-light',
-  Europe: 'from-brand-purple-light to-purple-400',
-  Asia: 'from-brand-gold to-yellow-300',
-  USA: 'from-brand-green to-emerald-400',
+  Europe: 'from-brand-purple-light to-brand-purple',
+  Asia: 'from-brand-gold to-brand-gold/60',
+  USA: 'from-brand-green to-brand-green/60',
 };
 
 export function Team() {
   const { hash } = useLocation();
   const { t } = useTranslation('about');
-  const leadershipMembers = teamMembers.filter(member => member.department === 'Leadership').map(member => {
-    const profile = LEADERSHIP_PROFILE_KEYS[member.id];
-    return {
-      ...member,
-      title: profile ? t(`about.leadership.${profile}.role`) : member.title,
-      founderRole: profile ? t(`about.leadership.${profile}.founderRole`) : null,
-      bio: profile ? t(`about.leadership.${profile}.bio1`) : member.bio,
-    };
-  });
-  const localizedFounders = founders.map(founder => {
-    const profile = LEADERSHIP_PROFILE_KEYS[founder.id];
-    return profile ? {
-      ...founder,
-      role: t(`about.leadership.${profile}.founderRole`),
-      bio: t(`about.leadership.${profile}.${profile === 'olivier' ? 'founderBio' : 'bio1'}`),
-    } : founder;
-  });
+  const resource = useTeamPage();
+  const snapshot = resource.data;
 
   useEffect(() => {
-    if (!hash) return;
-    const el = document.getElementById(hash.slice(1));
-    el?.scrollIntoView({ behavior: 'smooth' });
-  }, [hash]);
+    if (!hash || !snapshot) return;
+    document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: 'smooth' });
+  }, [hash, snapshot]);
+
+  if (!snapshot) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <SEO title={t('team.seo.title')} url="/team" />
+        <h1 className="text-3xl font-bold tracking-tight mb-6">{t('team.hero.title')}</h1>
+        <TeamContentState status={resource.status === 'error' ? 'error' : 'loading'} onRetry={resource.retry} />
+      </div>
+    );
+  }
+
+  const leadershipMembers = snapshot.sections.LEADERSHIP;
+  const localizedFounders = snapshot.sections.FOUNDERS;
+  const departmentMembers = snapshot.sections.DEPARTMENTS;
+  const copy = snapshot.page;
 
   return (
     <div>
       <SEO
-        title={t('team.seo.title')}
-        description={t('team.seo.description')}
+        title={copy.seoTitle}
+        description={copy.seoDescription}
         url="/team"
       />
 
@@ -64,11 +57,11 @@ export function Team() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="inline-flex items-center gap-2 bg-white/15 rounded-full px-4 py-1.5 mb-6">
             <Users className="w-4 h-4 text-brand-gold" />
-            <span className="text-sm font-medium">{t('team.hero.badge')}</span>
+            <span className="text-sm font-medium">{copy.heroBadge}</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">{t('team.hero.title')}</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">{copy.heroTitle}</h1>
           <p className="text-white/80 text-lg max-w-2xl mx-auto leading-relaxed">
-            {t('team.hero.subtitle')}
+            {copy.heroSubtitle}
           </p>
         </div>
       </section>
@@ -82,39 +75,40 @@ export function Team() {
               <Globe className="w-5 h-5 text-white" />
             </div>
             <div>
-              <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest">{t('team.globalLeadership.eyebrow')}</p>
-              <h2 className="text-2xl font-bold tracking-tight">{t('team.globalLeadership.title')}</h2>
+              <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest">{copy.leadershipEyebrow}</p>
+              <h2 className="text-2xl font-bold tracking-tight">{copy.leadershipTitle}</h2>
             </div>
           </div>
 
+          {leadershipMembers.length === 0 && <p className="text-muted-foreground text-sm">{t('team.ui.empty')}</p>}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {leadershipMembers.map(member => (
               <div
                 key={member.id}
                 className="bg-card rounded-2xl border border-border p-6 flex gap-5 hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200"
               >
-                <img
-                  src={member.photo}
-                  alt={member.name}
+                <TeamPortrait
+                  src={member.photoUrl}
+                  name={member.fullName}
                   className="w-20 h-20 rounded-2xl object-cover flex-shrink-0 shadow-md"
                 />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-2 mb-1">
-                    <h3 className="font-bold text-lg leading-tight">{member.name}</h3>
+                    <h3 className="font-bold text-lg leading-tight">{member.fullName}</h3>
                     <span className="text-xs bg-brand-purple/10 text-brand-purple px-2 py-0.5 rounded-full font-medium flex-shrink-0">
                       {member.country}
                     </span>
                   </div>
                   <div className="mb-3 space-y-1">
                     <p className="text-sm text-brand-purple font-medium">{member.title}</p>
-                    {member.founderRole && (
-                      <p className="text-xs text-brand-purple font-medium">{member.founderRole}</p>
+                    {member.secondaryTitle && (
+                      <p className="text-xs text-brand-purple font-medium">{member.secondaryTitle}</p>
                     )}
                   </div>
                   <p className="text-sm text-muted-foreground leading-relaxed line-clamp-3">{member.bio}</p>
-                  {member.id === '1' && (
-                    <Link to="/about#olivier-ndatimana" className="inline-block mt-3 text-sm font-medium text-brand-purple hover:underline">
-                      {t('about.leadership.olivier.profileLink')}
+                  {member.profilePath && (
+                    <Link to={member.profilePath} className="inline-block mt-3 text-sm font-medium text-brand-purple hover:underline">
+                      {t('team.ui.profileLink')}
                     </Link>
                   )}
                 </div>
@@ -130,22 +124,23 @@ export function Team() {
               <Star className="w-5 h-5 text-white" />
             </div>
             <div>
-              <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest">{t('team.founders.eyebrow')}</p>
-              <h2 className="text-2xl font-bold tracking-tight">{t('team.founders.title')}</h2>
+              <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest">{copy.foundersEyebrow}</p>
+              <h2 className="text-2xl font-bold tracking-tight">{copy.foundersTitle}</h2>
             </div>
           </div>
 
+          {localizedFounders.length === 0 && <p className="text-muted-foreground text-sm">{t('team.ui.empty')}</p>}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {localizedFounders.map(founder => (
               <div
                 key={founder.id}
                 className="bg-card rounded-2xl border border-border overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group"
               >
-                <div className={`h-20 bg-gradient-to-br ${REGION_COLORS[founder.region] || 'from-brand-purple to-brand-purple-light'} relative`}>
+                <div className={`h-20 bg-gradient-to-br ${REGION_COLORS[founder.region ?? ''] || 'from-brand-purple to-brand-purple-light'} relative`}>
                   <div className="absolute -bottom-8 left-5">
-                    <img
-                      src={founder.photo}
-                      alt={founder.name}
+                    <TeamPortrait
+                      src={founder.photoUrl}
+                      name={founder.fullName}
                       className="w-16 h-16 rounded-2xl object-cover border-2 border-card shadow-lg"
                     />
                   </div>
@@ -157,13 +152,14 @@ export function Team() {
                 </div>
 
                 <div className="pt-10 p-5">
-                  <h3 className="font-bold text-base mb-0.5">{founder.name}</h3>
-                  <p className="text-xs text-brand-purple font-semibold mb-1">{founder.role}</p>
+                  <h3 className="font-bold text-base mb-0.5">{founder.fullName}</h3>
+                  <p className="text-xs text-brand-purple font-semibold mb-1">{founder.title}</p>
+                  {founder.secondaryTitle && <p className="text-xs text-brand-purple mb-1">{founder.secondaryTitle}</p>}
                   <p className="text-xs text-muted-foreground mb-3">{founder.country}</p>
                   <p className="text-sm text-muted-foreground leading-relaxed line-clamp-4">{founder.bio}</p>
-                  {founder.id === '1' && (
-                    <Link to="/about#olivier-ndatimana" className="inline-block mt-3 text-sm font-medium text-brand-purple hover:underline">
-                      {t('about.leadership.olivier.profileLink')}
+                  {founder.profilePath && (
+                    <Link to={founder.profilePath} className="inline-block mt-3 text-sm font-medium text-brand-purple hover:underline">
+                      {t('team.ui.profileLink')}
                     </Link>
                   )}
                 </div>
@@ -179,45 +175,47 @@ export function Team() {
               <Users className="w-5 h-5 text-white" />
             </div>
             <div>
-              <p className="text-xs font-semibold text-brand-gold uppercase tracking-widest">{t('team.structure.eyebrow')}</p>
-              <h2 className="text-2xl font-bold tracking-tight">{t('team.structure.title')}</h2>
+              <p className="text-xs font-semibold text-brand-gold uppercase tracking-widest">{copy.departmentsEyebrow}</p>
+              <h2 className="text-2xl font-bold tracking-tight">{copy.departmentsTitle}</h2>
             </div>
           </div>
 
-          {/* Department filter pills */}
+          {/* Department labels */}
           <div className="flex flex-wrap gap-2 mb-8">
-            {DEPARTMENT_KEYS.map(dept => (
+            {snapshot.departments.map(dept => (
               <span
-                key={dept}
+                key={dept.id}
                 className="px-3 py-1.5 bg-accent rounded-lg text-sm font-medium text-muted-foreground"
               >
-                {t(`team.departments.${dept}`)}
+                {dept.name}
               </span>
             ))}
           </div>
 
+          {departmentMembers.length === 0 && <p className="text-muted-foreground text-sm">{t('team.ui.empty')}</p>}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {teamMembers.filter(m => m.department !== 'Leadership').map(member => (
+            {departmentMembers.map(member => (
               <div
                 key={member.id}
                 className="bg-card rounded-2xl border border-border p-5 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 group"
               >
                 <div className="flex items-center gap-4 mb-4">
-                  <img
-                    src={member.photo}
-                    alt={member.name}
+                  <TeamPortrait
+                    src={member.photoUrl}
+                    name={member.fullName}
                     className="w-14 h-14 rounded-xl object-cover shadow-sm"
                   />
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-sm leading-tight">{member.name}</h3>
-                    <p className="text-xs text-brand-purple font-medium mt-0.5">{member.department}</p>
+                    <h3 className="font-semibold text-sm leading-tight">{member.fullName}</h3>
+                    <p className="text-xs text-brand-purple font-medium mt-0.5">{member.departmentName}</p>
                   </div>
                 </div>
                 <p className="text-xs font-medium text-foreground mb-2 leading-snug">{member.title}</p>
+                {member.secondaryTitle && <p className="text-xs text-brand-purple mb-2">{member.secondaryTitle}</p>}
                 <p className="text-xs text-muted-foreground leading-relaxed line-clamp-3">{member.bio}</p>
                 <div className="mt-4 pt-4 border-t border-border flex items-center justify-between">
                   <span className="text-xs text-muted-foreground">{member.country}</span>
-                  <span className="text-xs bg-accent px-2 py-0.5 rounded-full">{member.department}</span>
+                  <span className="text-xs bg-accent px-2 py-0.5 rounded-full">{member.departmentName}</span>
                 </div>
               </div>
             ))}

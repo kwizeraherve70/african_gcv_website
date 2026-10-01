@@ -137,10 +137,22 @@
     "impact": {
       "title": "Ingaruka z'Ihuriro",
       "stats": [
-        { "value": "4", "label": "Ibihugu" },
-        { "value": "12,500+", "label": "Abanyamuryango ku isi" },
-        { "value": "3,200+", "label": "Abacuruzi bakora" },
-        { "value": "Mutarama 2025", "label": "Inama Rusange ya Mbere" }
+        {
+          "value": "4",
+          "label": "Ibihugu"
+        },
+        {
+          "value": "12,500+",
+          "label": "Abanyamuryango ku isi"
+        },
+        {
+          "value": "3,200+",
+          "label": "Abacuruzi bakora"
+        },
+        {
+          "value": "Mutarama 2025",
+          "label": "Inama Rusange ya Mbere"
+        }
       ]
     }
   },
@@ -175,6 +187,14 @@
       "finance": "Imari",
       "communications": "Itumanaho",
       "events": "Ibirori"
+    },
+    "ui": {
+      "loading": "Imyirondoro y’abagize itsinda irimo gufunguka…",
+      "error": "Imyirondoro y’abagize itsinda ntiboneka ubu. Ongera ugerageze.",
+      "retry": "Ongera ugerageze",
+      "empty": "Nta myirondoro iratangazwa muri iki gice.",
+      "photoUnavailable": "Ifoto ya {{name}} ntiboneka",
+      "profileLink": "Soma umwirondoro wose"
     }
   },
   "ambassadors": {

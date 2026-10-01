@@ -1,0 +1,695 @@
+{
+  "schemaVersion": 1,
+  "departments": [
+    {
+      "key": "ambassadors",
+      "name": {
+        "en": "Ambassadors",
+        "fr": "Ambassadeurs",
+        "rw": "Intumwa",
+        "sw": "Mabalozi"
+      },
+      "sortOrder": 0,
+      "visible": true
+    },
+    {
+      "key": "education",
+      "name": {
+        "en": "Education",
+        "fr": "Éducation",
+        "rw": "Uburezi",
+        "sw": "Elimu"
+      },
+      "sortOrder": 1,
+      "visible": true
+    },
+    {
+      "key": "ecosystem",
+      "name": {
+        "en": "Ecosystem",
+        "fr": "Écosystème",
+        "rw": "Urusobe",
+        "sw": "Mfumo wa Ikolojia"
+      },
+      "sortOrder": 2,
+      "visible": true
+    },
+    {
+      "key": "finance",
+      "name": {
+        "en": "Finance",
+        "fr": "Finance",
+        "rw": "Imari",
+        "sw": "Fedha"
+      },
+      "sortOrder": 3,
+      "visible": true
+    },
+    {
+      "key": "communications",
+      "name": {
+        "en": "Communications",
+        "fr": "Communications",
+        "rw": "Itumanaho",
+        "sw": "Mawasiliano"
+      },
+      "sortOrder": 4,
+      "visible": true
+    },
+    {
+      "key": "events",
+      "name": {
+        "en": "Events",
+        "fr": "Événements",
+        "rw": "Ibirori",
+        "sw": "Matukio"
+      },
+      "sortOrder": 5,
+      "visible": true
+    }
+  ],
+  "page": {
+    "copy": {
+      "heroBadge": {
+        "en": "Our People",
+        "fr": "Nos équipes",
+        "rw": "Abantu bacu",
+        "sw": "Watu Wetu"
+      },
+      "heroTitle": {
+        "en": "GCV Core Team",
+        "fr": "Équipe centrale GCV",
+        "rw": "Itsinda Nkuru rya GCV",
+        "sw": "Timu Kuu ya GCV"
+      },
+      "heroSubtitle": {
+        "en": "The founders, leaders, ambassadors, and specialists building the GCV movement across Africa and the world.",
+        "fr": "Les fondateurs, dirigeants, ambassadeurs et spécialistes qui bâtissent le mouvement GCV à travers l'Afrique et le monde.",
+        "rw": "Abashinze, abayobozi, intumwa, n'inzobere babaka umutwe wa GCV muri Afurika no ku isi.",
+        "sw": "Waanzilishi, viongozi, mabalozi, na wataalamu wanaojenga harakati ya GCV katika Afrika na duniani kote."
+      },
+      "leadershipEyebrow": {
+        "en": "Top Leadership",
+        "fr": "Direction générale",
+        "rw": "Ubuyobozi Bukuru",
+        "sw": "Uongozi wa Juu"
+      },
+      "leadershipTitle": {
+        "en": "Global Leadership",
+        "fr": "Direction mondiale",
+        "rw": "Ubuyobozi ku Isi",
+        "sw": "Uongozi wa Kimataifa"
+      },
+      "foundersEyebrow": {
+        "en": "The Visionaries",
+        "fr": "Les visionnaires",
+        "rw": "Abafite icyerekezo",
+        "sw": "Wenye Maono"
+      },
+      "foundersTitle": {
+        "en": "Founders",
+        "fr": "Fondateurs",
+        "rw": "Abashinze",
+        "sw": "Waanzilishi"
+      },
+      "departmentsEyebrow": {
+        "en": "Structure",
+        "fr": "Structure",
+        "rw": "Imiterere",
+        "sw": "Muundo"
+      },
+      "departmentsTitle": {
+        "en": "Department Teams",
+        "fr": "Équipes de département",
+        "rw": "Amatsinda y'Amashami",
+        "sw": "Timu za Idara"
+      },
+      "seoTitle": {
+        "en": "GCV Core Team",
+        "fr": "Équipe centrale GCV",
+        "rw": "Itsinda Nkuru rya GCV",
+        "sw": "Timu Kuu ya GCV"
+      },
+      "seoDescription": {
+        "en": "Meet the global leadership team and department heads driving the Pi Global GCV Alliance across Africa and the world.",
+        "fr": "Découvrez l'équipe de direction mondiale et les responsables de départements qui font avancer Pi Global GCV Alliance à travers l'Afrique et le monde.",
+        "rw": "Menya itsinda ry'ubuyobozi ku isi n'abayobozi b'amashami bateza imbere Pi Global GCV Alliance muri Afurika no ku isi.",
+        "sw": "Kutana na timu ya uongozi wa kimataifa na wakuu wa idara wanaoendesha Pi Global GCV Alliance katika Afrika na duniani kote."
+      }
+    }
+  },
+  "people": [
+    {
+      "slug": "doris-yin",
+      "fullName": "Doris Yin",
+      "country": "China",
+      "primaryTitle": {
+        "en": "Global GCV Executive Community Director",
+        "fr": "Directrice exécutive de la communauté mondiale GCV",
+        "rw": "Umuyobozi Nshingwabikorwa w’Umuryango wa GCV ku Isi",
+        "sw": "Mkurugenzi Mtendaji wa Jumuiya ya GCV Duniani"
+      },
+      "secondaryTitle": {
+        "en": "Founder — GCV Movement of Africa",
+        "fr": "Fondatrice — Mouvement GCV d’Afrique",
+        "rw": "Uwashinze — GCV Movement of Africa",
+        "sw": "Mwanzilishi — GCV Movement of Africa"
+      },
+      "profilePath": null,
+      "published": true,
+      "placements": [
+        {
+          "section": "LEADERSHIP",
+          "departmentKey": null,
+          "countryOverride": "Global",
+          "region": null,
+          "sortOrder": 0,
+          "visible": true,
+          "titleSource": "PRIMARY",
+          "secondaryTitleSource": "SECONDARY",
+          "customTitle": {
+            "en": ""
+          },
+          "customSecondaryTitle": {
+            "en": ""
+          },
+          "bio": {
+            "en": "Doris Yin serves as Global GCV Executive Community Director and is the founder of the GCV Movement of Africa.",
+            "fr": "Doris Yin est directrice exécutive de la communauté mondiale GCV et fondatrice du Mouvement GCV d’Afrique.",
+            "rw": "Doris Yin ni Umuyobozi Nshingwabikorwa w’Umuryango wa GCV ku Isi kandi ni we washinze GCV Movement of Africa.",
+            "sw": "Doris Yin ni Mkurugenzi Mtendaji wa Jumuiya ya GCV Duniani na mwanzilishi wa GCV Movement of Africa."
+          }
+        },
+        {
+          "section": "FOUNDERS",
+          "departmentKey": null,
+          "countryOverride": null,
+          "region": "Asia",
+          "sortOrder": 0,
+          "visible": true,
+          "titleSource": "SECONDARY",
+          "secondaryTitleSource": "NONE",
+          "customTitle": {
+            "en": ""
+          },
+          "customSecondaryTitle": {
+            "en": ""
+          },
+          "bio": {
+            "en": "Doris Yin serves as Global GCV Executive Community Director and is the founder of the GCV Movement of Africa.",
+            "fr": "Doris Yin est directrice exécutive de la communauté mondiale GCV et fondatrice du Mouvement GCV d’Afrique.",
+            "rw": "Doris Yin ni Umuyobozi Nshingwabikorwa w’Umuryango wa GCV ku Isi kandi ni we washinze GCV Movement of Africa.",
+            "sw": "Doris Yin ni Mkurugenzi Mtendaji wa Jumuiya ya GCV Duniani na mwanzilishi wa GCV Movement of Africa."
+          }
+        }
+      ],
+      "localPhoto": "doris.jpeg"
+    },
+    {
+      "slug": "olivier-ndatimana",
+      "fullName": "Olivier Ndatimana",
+      "country": "Rwanda",
+      "primaryTitle": {
+        "en": "Global GCV Executive Director",
+        "fr": "Directeur exécutif mondial du GCV",
+        "rw": "Umuyobozi Nshingwabikorwa wa GCV ku Isi",
+        "sw": "Mkurugenzi Mtendaji wa GCV Duniani"
+      },
+      "secondaryTitle": {
+        "en": "Founder — Africa GCV Movement",
+        "fr": "Fondateur — Mouvement GCV Afrique",
+        "rw": "Uwashinze Africa GCV Movement",
+        "sw": "Mwanzilishi — Africa GCV Movement"
+      },
+      "profilePath": "/about#olivier-ndatimana",
+      "published": true,
+      "placements": [
+        {
+          "section": "LEADERSHIP",
+          "departmentKey": null,
+          "countryOverride": null,
+          "region": null,
+          "sortOrder": 1,
+          "visible": true,
+          "titleSource": "PRIMARY",
+          "secondaryTitleSource": "SECONDARY",
+          "customTitle": {
+            "en": ""
+          },
+          "customSecondaryTitle": {
+            "en": ""
+          },
+          "bio": {
+            "en": "Olivier Ndatimana is a Rwandan community leader, entrepreneur, and international coordinator with experience in community development, leadership, communication, business development, and international collaboration.",
+            "fr": "Olivier Ndatimana est un leader communautaire, entrepreneur et coordinateur international rwandais, expérimenté en développement communautaire, leadership, communication, développement des affaires et collaboration internationale.",
+            "rw": "Olivier Ndatimana ni Umunyarwanda uyobora imiryango, akaba rwiyemezamirimo n’umuhuzabikorwa mpuzamahanga. Afite uburambe mu iterambere ry’imiryango, ubuyobozi, itumanaho, guteza imbere ubucuruzi n’ubufatanye mpuzamahanga.",
+            "sw": "Olivier Ndatimana ni kiongozi wa jamii, mjasiriamali, na mratibu wa kimataifa kutoka Rwanda mwenye uzoefu katika maendeleo ya jamii, uongozi, mawasiliano, maendeleo ya biashara, na ushirikiano wa kimataifa."
+          }
+        },
+        {
+          "section": "FOUNDERS",
+          "departmentKey": null,
+          "countryOverride": null,
+          "region": "Africa",
+          "sortOrder": 1,
+          "visible": true,
+          "titleSource": "SECONDARY",
+          "secondaryTitleSource": "NONE",
+          "customTitle": {
+            "en": ""
+          },
+          "customSecondaryTitle": {
+            "en": ""
+          },
+          "bio": {
+            "en": "Founder of the Africa GCV Movement, connecting African initiatives with the broader international movement through community coordination, leadership development, and cooperation.",
+            "fr": "Fondateur du Mouvement GCV Afrique, il relie les initiatives africaines au mouvement international par la coordination communautaire, le développement du leadership et la coopération.",
+            "rw": "Uwashinze Africa GCV Movement, ahuza ibikorwa byo muri Afurika n’umuryango mpuzamahanga binyuze mu guhuza imiryango, guteza imbere ubuyobozi n’ubufatanye.",
+            "sw": "Mwanzilishi wa Africa GCV Movement, anayeunganisha mipango ya Afrika na harakati za kimataifa kupitia uratibu wa jamii, maendeleo ya uongozi, na ushirikiano."
+          }
+        }
+      ],
+      "localPhoto": "olivie.jpeg"
+    },
+    {
+      "slug": "daniel-nkala",
+      "fullName": "Daniel Nkala",
+      "country": "Botswana",
+      "primaryTitle": {
+        "en": "Head of GCV Ambassadors — Botswana"
+      },
+      "secondaryTitle": {
+        "en": ""
+      },
+      "profilePath": null,
+      "published": true,
+      "placements": [
+        {
+          "section": "DEPARTMENTS",
+          "departmentKey": "ambassadors",
+          "countryOverride": null,
+          "region": null,
+          "sortOrder": 0,
+          "visible": true,
+          "titleSource": "PRIMARY",
+          "secondaryTitleSource": "NONE",
+          "customTitle": {
+            "en": ""
+          },
+          "customSecondaryTitle": {
+            "en": ""
+          },
+          "bio": {
+            "en": "Daniel Nkala leads the GCV Ambassador corps in Botswana, coordinating education workshops, merchant onboarding, and community events across Southern Africa."
+          }
+        }
+      ],
+      "photoUrl": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80"
+    },
+    {
+      "slug": "baikoketsi-modongo",
+      "fullName": "Baikoketsi Modongo",
+      "country": "Botswana",
+      "primaryTitle": {
+        "en": "Education GCV Ambassador"
+      },
+      "secondaryTitle": {
+        "en": ""
+      },
+      "profilePath": null,
+      "published": true,
+      "placements": [
+        {
+          "section": "DEPARTMENTS",
+          "departmentKey": "education",
+          "countryOverride": null,
+          "region": null,
+          "sortOrder": 1,
+          "visible": true,
+          "titleSource": "PRIMARY",
+          "secondaryTitleSource": "NONE",
+          "customTitle": {
+            "en": ""
+          },
+          "customSecondaryTitle": {
+            "en": ""
+          },
+          "bio": {
+            "en": "Baikoketsi Modongo leads GCV education programmes in Botswana, empowering pioneers with knowledge of the GCV framework and Pi Network fundamentals."
+          }
+        }
+      ],
+      "photoUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80"
+    },
+    {
+      "slug": "rakgadi-gontse",
+      "fullName": "Rakgadi Gontse",
+      "country": "Botswana",
+      "primaryTitle": {
+        "en": "Ecosystem Development GCV Ambassador"
+      },
+      "secondaryTitle": {
+        "en": ""
+      },
+      "profilePath": null,
+      "published": true,
+      "placements": [
+        {
+          "section": "DEPARTMENTS",
+          "departmentKey": "ecosystem",
+          "countryOverride": null,
+          "region": null,
+          "sortOrder": 2,
+          "visible": true,
+          "titleSource": "PRIMARY",
+          "secondaryTitleSource": "NONE",
+          "customTitle": {
+            "en": ""
+          },
+          "customSecondaryTitle": {
+            "en": ""
+          },
+          "bio": {
+            "en": "Rakgadi Gontse drives ecosystem growth and merchant adoption across Botswana, building bridges between local businesses and the global Pi Network economy."
+          }
+        }
+      ],
+      "photoUrl": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80"
+    },
+    {
+      "slug": "amara-diallo",
+      "fullName": "Amara Diallo",
+      "country": "Senegal",
+      "primaryTitle": {
+        "en": "Head of Finance & Operations"
+      },
+      "secondaryTitle": {
+        "en": ""
+      },
+      "profilePath": null,
+      "published": true,
+      "placements": [
+        {
+          "section": "DEPARTMENTS",
+          "departmentKey": "finance",
+          "countryOverride": null,
+          "region": null,
+          "sortOrder": 3,
+          "visible": true,
+          "titleSource": "PRIMARY",
+          "secondaryTitleSource": "NONE",
+          "customTitle": {
+            "en": ""
+          },
+          "customSecondaryTitle": {
+            "en": ""
+          },
+          "bio": {
+            "en": "Amara Diallo oversees financial operations and resource allocation for the United GCV of Africa, ensuring the movement operates sustainably and transparently."
+          }
+        }
+      ],
+      "photoUrl": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80"
+    },
+    {
+      "slug": "chioma-okafor",
+      "fullName": "Chioma Okafor",
+      "country": "Nigeria",
+      "primaryTitle": {
+        "en": "Head of Communications"
+      },
+      "secondaryTitle": {
+        "en": ""
+      },
+      "profilePath": null,
+      "published": true,
+      "placements": [
+        {
+          "section": "DEPARTMENTS",
+          "departmentKey": "communications",
+          "countryOverride": null,
+          "region": null,
+          "sortOrder": 4,
+          "visible": true,
+          "titleSource": "PRIMARY",
+          "secondaryTitleSource": "NONE",
+          "customTitle": {
+            "en": ""
+          },
+          "customSecondaryTitle": {
+            "en": ""
+          },
+          "bio": {
+            "en": "Chioma Okafor leads communications and media strategy for the United GCV of Africa, managing outreach across social media, press, and community channels."
+          }
+        }
+      ],
+      "photoUrl": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=80"
+    },
+    {
+      "slug": "kwame-asante",
+      "fullName": "Kwame Asante",
+      "country": "Ghana",
+      "primaryTitle": {
+        "en": "Head of Events & Conferences"
+      },
+      "secondaryTitle": {
+        "en": ""
+      },
+      "profilePath": null,
+      "published": true,
+      "placements": [
+        {
+          "section": "DEPARTMENTS",
+          "departmentKey": "events",
+          "countryOverride": null,
+          "region": null,
+          "sortOrder": 5,
+          "visible": true,
+          "titleSource": "PRIMARY",
+          "secondaryTitleSource": "NONE",
+          "customTitle": {
+            "en": ""
+          },
+          "customSecondaryTitle": {
+            "en": ""
+          },
+          "bio": {
+            "en": "Kwame Asante organises GCV conferences, workshops, and community events across the continent, building the infrastructure for the movement's growing calendar."
+          }
+        }
+      ],
+      "photoUrl": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80"
+    },
+    {
+      "slug": "emmanuel-traore",
+      "fullName": "Emmanuel Traoré",
+      "country": "Côte d'Ivoire",
+      "primaryTitle": {
+        "en": "Co-Founder — Western Africa GCV Chapter"
+      },
+      "secondaryTitle": {
+        "en": ""
+      },
+      "profilePath": null,
+      "published": true,
+      "placements": [
+        {
+          "section": "FOUNDERS",
+          "departmentKey": null,
+          "countryOverride": null,
+          "region": "Africa",
+          "sortOrder": 2,
+          "visible": true,
+          "titleSource": "PRIMARY",
+          "secondaryTitleSource": "NONE",
+          "customTitle": {
+            "en": ""
+          },
+          "customSecondaryTitle": {
+            "en": ""
+          },
+          "bio": {
+            "en": "Helped establish the Western Africa GCV Chapter, connecting pioneers across Senegal, Mali, Côte d'Ivoire, and Nigeria under a unified GCV framework."
+          }
+        }
+      ],
+      "photoUrl": "https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=400&q=80"
+    },
+    {
+      "slug": "grace-mwangi",
+      "fullName": "Grace Mwangi",
+      "country": "Kenya",
+      "primaryTitle": {
+        "en": "Co-Founder — Eastern Africa GCV Chapter"
+      },
+      "secondaryTitle": {
+        "en": ""
+      },
+      "profilePath": null,
+      "published": true,
+      "placements": [
+        {
+          "section": "FOUNDERS",
+          "departmentKey": null,
+          "countryOverride": null,
+          "region": "Africa",
+          "sortOrder": 3,
+          "visible": true,
+          "titleSource": "PRIMARY",
+          "secondaryTitleSource": "NONE",
+          "customTitle": {
+            "en": ""
+          },
+          "customSecondaryTitle": {
+            "en": ""
+          },
+          "bio": {
+            "en": "Led the founding of the Eastern Africa GCV Chapter, with Kenya as the hub. Established GCV education programmes across Tanzania, Uganda, and Ethiopia."
+          }
+        }
+      ],
+      "photoUrl": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=400&q=80"
+    },
+    {
+      "slug": "pierre-mbeki",
+      "fullName": "Pierre Mbeki",
+      "country": "South Africa",
+      "primaryTitle": {
+        "en": "Co-Founder — Southern Africa GCV Chapter"
+      },
+      "secondaryTitle": {
+        "en": ""
+      },
+      "profilePath": null,
+      "published": true,
+      "placements": [
+        {
+          "section": "FOUNDERS",
+          "departmentKey": null,
+          "countryOverride": null,
+          "region": "Africa",
+          "sortOrder": 4,
+          "visible": true,
+          "titleSource": "PRIMARY",
+          "secondaryTitleSource": "NONE",
+          "customTitle": {
+            "en": ""
+          },
+          "customSecondaryTitle": {
+            "en": ""
+          },
+          "bio": {
+            "en": "Established the Southern Africa GCV network, spanning Botswana, Zimbabwe, Zambia, and South Africa. Champion of GCV merchant adoption in the region."
+          }
+        }
+      ],
+      "photoUrl": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80"
+    },
+    {
+      "slug": "marie-lefebvre",
+      "fullName": "Marie Lefebvre",
+      "country": "France",
+      "primaryTitle": {
+        "en": "Co-Founder — Europe GCV Alliance"
+      },
+      "secondaryTitle": {
+        "en": ""
+      },
+      "profilePath": null,
+      "published": true,
+      "placements": [
+        {
+          "section": "FOUNDERS",
+          "departmentKey": null,
+          "countryOverride": null,
+          "region": "Europe",
+          "sortOrder": 5,
+          "visible": true,
+          "titleSource": "PRIMARY",
+          "secondaryTitleSource": "NONE",
+          "customTitle": {
+            "en": ""
+          },
+          "customSecondaryTitle": {
+            "en": ""
+          },
+          "bio": {
+            "en": "Founded the Europe GCV Alliance to connect the African diaspora in Europe with the continental GCV movement, creating a bridge for cross-border Pi transactions."
+          }
+        }
+      ],
+      "photoUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80"
+    },
+    {
+      "slug": "james-osei",
+      "fullName": "James Osei",
+      "country": "United States",
+      "primaryTitle": {
+        "en": "Co-Founder — USA GCV Network"
+      },
+      "secondaryTitle": {
+        "en": ""
+      },
+      "profilePath": null,
+      "published": true,
+      "placements": [
+        {
+          "section": "FOUNDERS",
+          "departmentKey": null,
+          "countryOverride": null,
+          "region": "USA",
+          "sortOrder": 6,
+          "visible": true,
+          "titleSource": "PRIMARY",
+          "secondaryTitleSource": "NONE",
+          "customTitle": {
+            "en": ""
+          },
+          "customSecondaryTitle": {
+            "en": ""
+          },
+          "bio": {
+            "en": "Established the USA GCV Network for the African diaspora across America, advocating for GCV in international Pi Network policy discussions."
+          }
+        }
+      ],
+      "photoUrl": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80"
+    },
+    {
+      "slug": "fatima-al-hassan",
+      "fullName": "Fatima Al-Hassan",
+      "country": "Egypt",
+      "primaryTitle": {
+        "en": "Co-Founder — Northern Africa GCV Chapter"
+      },
+      "secondaryTitle": {
+        "en": ""
+      },
+      "profilePath": null,
+      "published": true,
+      "placements": [
+        {
+          "section": "FOUNDERS",
+          "departmentKey": null,
+          "countryOverride": null,
+          "region": "Africa",
+          "sortOrder": 7,
+          "visible": true,
+          "titleSource": "PRIMARY",
+          "secondaryTitleSource": "NONE",
+          "customTitle": {
+            "en": ""
+          },
+          "customSecondaryTitle": {
+            "en": ""
+          },
+          "bio": {
+            "en": "Founded the Northern Africa chapter spanning Egypt, Morocco, Tunisia, Algeria, and Libya, bringing Arab-African pioneers into the continental GCV network."
+          }
+        }
+      ],
+      "photoUrl": "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400&q=80"
+    }
+  ]
+}

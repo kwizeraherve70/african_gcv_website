@@ -376,3 +376,87 @@ model Delivery {
 }
 
 
+
+// Admin-managed institutional directory. Translations are validated locale objects.
+enum TeamSection {
+  LEADERSHIP
+  FOUNDERS
+  DEPARTMENTS
+}
+
+enum TeamTitleSource {
+  PRIMARY
+  SECONDARY
+  CUSTOM
+  NONE
+}
+
+enum TeamPhotoSource {
+  CLOUDINARY_UPLOAD
+  EXTERNAL_URL
+}
+
+model TeamPerson {
+  id                 String          @id @default(uuid())
+  slug               String          @unique
+  fullName           String
+  country            String
+  primaryTitle       Json
+  secondaryTitle     Json
+  profilePath        String?
+  photoUrl           String?
+  photoSource        TeamPhotoSource?
+  cloudinaryPublicId String?
+  cloudinaryAssetId  String?
+  published          Boolean         @default(false)
+  version            Int             @default(1)
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+  placements         TeamPlacement[]
+
+  @@index([published, slug])
+}
+
+model TeamPlacement {
+  id                   String          @id @default(uuid())
+  personId             String
+  person               TeamPerson      @relation(fields: [personId], references: [id], onDelete: Cascade)
+  section              TeamSection
+  departmentId         String?
+  department           TeamDepartment? @relation(fields: [departmentId], references: [id], onDelete: Restrict)
+  countryOverride      String?
+  region               String?
+  sortOrder            Int             @default(0)
+  visible              Boolean         @default(true)
+  titleSource          TeamTitleSource @default(PRIMARY)
+  secondaryTitleSource TeamTitleSource @default(NONE)
+  customTitle          Json
+  customSecondaryTitle Json
+  bio                  Json
+
+  @@unique([personId, section])
+  @@index([section, sortOrder, id])
+  @@index([departmentId])
+}
+
+model TeamDepartment {
+  id         String          @id @default(uuid())
+  key        String          @unique
+  name       Json
+  sortOrder  Int             @default(0)
+  visible    Boolean         @default(true)
+  version    Int             @default(1)
+  createdAt  DateTime        @default(now())
+  updatedAt  DateTime        @updatedAt
+  placements TeamPlacement[]
+
+  @@index([sortOrder, id])
+}
+
+model TeamPageContent {
+  id               String   @id @default("team")
+  copy             Json
+  version          Int      @default(1)
+  directoryVersion Int      @default(0)
+  updatedAt        DateTime @updatedAt
+}

@@ -56,9 +56,9 @@
 
 ## Data Layer
 
-- **Current state:** all data comes from `front-end/src/app/data/mockData.ts`.
-  Match the existing shape of an entity there before adding fields —
-  check for the type before assuming one doesn't exist.
+- **Current state:** products, news, orders and the Team directory use real
+  APIs. Team wire types live in `front-end/src/app/types/team.ts`; validate
+  unknown responses at the boundary. Untouched content types still use mock data.
 - **Target state:** once a backend exists, new features should be
   built against real API calls, not new additions to `mockData.ts`.
   See `architecture-context.md` for the backend decision status.
@@ -88,3 +88,7 @@
   conversion logic is needed, rather than inlining the number.
 - Always display currency values with an explicit unit label (USD or
   Pi) — never an unlabeled number.
+
+## Team data edits
+
+Team multipart explicitly JSON-encodes one payload and adds at most one photo. Do not use the legacy flat-field `toFormData` helper for nested locale/placement objects. Canonical names/photos/titles belong to the person; cards select primary/secondary shared titles unless a custom placement title is deliberate. Keep locale keys aligned and preserve untouched translations.

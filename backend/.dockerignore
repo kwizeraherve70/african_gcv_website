@@ -1,0 +1,12 @@
+node_modules
+.git
+.env
+.env.*
+!.env.example
+.team-import-media.json*
+npm-debug.log*
+tests
+src/**/*.js
+build
+dist
+dist-dev
