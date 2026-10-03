@@ -10,9 +10,8 @@ This is a **monorepo root**, not the frontend app itself.
   `default_shadcn_theme.css`, `pnpm-workspace.yaml`, `node_modules/`,
   `dist/`). Run `npm install` / `npm run dev` / `npm run build` from
   inside `front-end/`, not from repo root.
-- `backend/` — **not yet created.** Once the Express/Prisma backend
-  (see "Backend Decision" below) is added, it goes here as a sibling
-  to `front-end/`, not nested inside it.
+- `backend/` — the implemented Express/tsoa API with Prisma/PostgreSQL,
+  JWT authorization, and Cloudinary media storage, deployed on Railway.
 - `context/`, `AGENTS.md`, `CLAUDE.md`, `README.md`, `.gitignore`,
   `.claude/` — stay at the repo root, since they describe the whole
   project (frontend + planned backend), not just the frontend app.
@@ -282,7 +281,7 @@ non-admin lands on `/` without a redirect flicker or bounce.
 | Auth               | JWT (Bearer) + bcrypt, tsoa-integrated | Member/merchant/admin roles — existing system, being adapted, not better-auth |
 | Payment (card)     | **Stripe** (resolved 2026-08-22) | Real-money checkout via Stripe-hosted Checkout Sessions + webhook |
 | Pi logic           | **[DECISION NEEDED — depends on open product questions in project-overview.md]** | USD-to-Pi conversion and "Pay with Pi" settlement — Stripe doesn't touch this |
-| Hosting            | **[DECISION NEEDED]**           | Frontend + backend deployment target                         |
+| Hosting            | Vercel frontend + Railway API/PostgreSQL | Confirmed production setup; see hosting section |
 
 ### Backend Decision — resolved 2026-08-15
 
@@ -341,7 +340,7 @@ adapt the existing JWT/bcrypt system** instead.
   features shows up later, that's a fast-follow, not part of this
   4-day pass — do not reopen this mid-build.
 
-Hosting target remains open — see row above.
+Hosting is Vercel for the frontend and Railway for the API/PostgreSQL.
 
 ## System Boundaries (target)
 
@@ -431,8 +430,8 @@ Hosting target remains open — see row above.
 1. No feature is built against an assumed backend stack before that
    stack is confirmed and recorded in this file. (Backend API,
    database, static-asset storage, and auth are now confirmed —
-   Express.js, PostgreSQL + Prisma, Cloudinary, better-auth. Hosting
-   remains open.)
+   Express/tsoa, PostgreSQL + Prisma, Cloudinary, and existing JWT auth.
+   Hosting is Vercel plus Railway.)
 2. `mockData.ts` is not extended with new fields for features that are
    intended to become backend-driven — extending it deepens the
    eventual migration cost.
@@ -460,3 +459,15 @@ for deployments from GitHub. The API runs separately on Railway.
 `front-end/vercel.json` rewrites app paths to `/index.html` so React
 Router handles direct visits and refreshes, including `/team`, `/about`,
 and `/admin/orders`. The backend is not deployed by this frontend rule.
+
+## Team content management — approved 2026-09-30, implementation in progress
+
+TeamPerson, TeamPlacement, TeamDepartment, and TeamPageContent will store the public directory and localized editorial fields in PostgreSQL. Admin writes require existing JWT ADMIN authorization. Uploads use existing Cloudinary account; external image URLs remain references. Person names/photos/current titles are shared with Home/About. The approved plan and exact API contract are in `team-management-plan.md` and `team-api-contract.md`. This resolves Team CMS scope; production still uses static content until verified import and cutover.
+
+## Team directory — implemented 2026-10-01
+
+The Team domain uses four Prisma models with validated JSON locale objects, shared person identity/current titles, and independent section placements. `GET /api/team` supplies public cards/page wording; person-by-slug reads supply Home/About. ADMIN-only endpoints under `/api/admin/team` manage content and ordering. Team multipart uses a maintained isolated parser, bounded memory, Sharp image decoding, and server-side Cloudinary credentials. Transactions serialize on the page singleton and use record versions; failed/uncertain saves never blindly delete an image that may have committed.
+
+English fields are required before publication; FR/RW/SW fall back to English. Public failures show loading/retry states rather than static records. Hidden people disappear from every placement and matching Home/About blocks. Longer Home/About narratives remain separate static editorial content by explicit owner choice. `teamMembers`/`founders` mock arrays have been removed.
+
+Run the dedicated `npm run seed:team -- --dry-run` / `--apply` from a full repository checkout, with an explicit target DATABASE_URL and Cloudinary configuration. The backend-only Docker image does not contain the original frontend portraits. The importer uses stable slugs, conditional page initialization and a private media receipt cache; it never invokes the general account/product seed. Previous uploaded images are retained for rollback; the ownership/reference review must precede any later manual cleanup.

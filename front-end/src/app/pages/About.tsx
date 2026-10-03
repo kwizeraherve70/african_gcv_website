@@ -3,8 +3,9 @@ import { useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { Users, Target, Award, Globe } from 'lucide-react';
 import { SEO } from '../components/SEO';
-import dorisImg from '@/assets/doris.jpeg';
-import olivierImg from '@/assets/olivie.jpeg';
+import { useTeamPerson } from '../hooks/useTeam';
+import { TeamPortrait } from '../components/team/TeamPortrait';
+import { TeamContentState } from '../components/team/TeamContentState';
 import missionImg from '@/assets/mission.jpg';
 import { GCV_USD } from '../lib/pi';
 
@@ -25,13 +26,17 @@ const ALLIANCE_REGIONS = [
 export function About() {
   const { t } = useTranslation('about');
   const { hash } = useLocation();
+  const dorisResource = useTeamPerson('doris-yin');
+  const olivierResource = useTeamPerson('olivier-ndatimana');
+  const doris = dorisResource.data;
+  const olivier = olivierResource.data;
   const leadershipPriorities = t('about.leadership.olivier.gcv.priorities', { returnObjects: true }) as string[];
   const leadershipValues = t('about.leadership.olivier.values', { returnObjects: true }) as string[];
 
   useEffect(() => {
     if (!hash) return;
     document.getElementById(hash.slice(1))?.scrollIntoView({ block: 'start', behavior: 'instant' });
-  }, [hash]);
+  }, [hash, doris, olivier]);
 
   const coreValueItems = t('about.values.items', { returnObjects: true }) as {
     title: string;
@@ -177,6 +182,7 @@ export function About() {
         </section>
 
         {/* ── LEADERSHIP ───────────────────────────────────────────── */}
+        {(dorisResource.status !== 'hidden' || olivierResource.status !== 'hidden') && (
         <section className="py-16 border-t border-border">
           <div className="mb-12">
             <p className="text-xs font-semibold text-brand-purple uppercase tracking-widest mb-3">
@@ -185,21 +191,25 @@ export function About() {
             <h2 className="text-3xl font-heading font-bold tracking-tight">{t('about.leadership.title')}</h2>
           </div>
 
+          {!doris && dorisResource.status !== 'hidden' && (
+            <TeamContentState status={dorisResource.status === 'error' ? 'error' : 'loading'} onRetry={dorisResource.retry} />
+          )}
           {/* Doris Yin */}
+          {doris && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mb-14">
             <div className="relative">
               <div className="absolute -inset-2 bg-gradient-to-br from-brand-gold/20 to-brand-purple-light/15 rounded-2xl blur-lg pointer-events-none" />
               <div className="relative aspect-square rounded-2xl overflow-hidden ring-1 ring-border">
-                <img src={dorisImg} alt={t('about.leadership.doris.name')} className="w-full h-full object-cover" />
+                <TeamPortrait src={doris.photoUrl} name={doris.fullName} className="w-full h-full object-cover" />
               </div>
             </div>
             <div className="md:col-span-2">
-              <h3 className="text-2xl font-heading font-bold mb-1 tracking-tight">{t('about.leadership.doris.name')}</h3>
+              <h3 className="text-2xl font-heading font-bold mb-1 tracking-tight">{doris.fullName}</h3>
               <p className="text-brand-purple font-semibold text-sm mb-1">
-                {t('about.leadership.doris.role')}
+                {doris.primaryTitle}
               </p>
               <p className="text-brand-purple font-medium text-sm mb-5">
-                {t('about.leadership.doris.founderRole')}
+                {doris.secondaryTitle}
               </p>
               <p className="text-muted-foreground mb-4 leading-relaxed">
                 {t('about.leadership.doris.bio1')}
@@ -210,21 +220,26 @@ export function About() {
             </div>
           </div>
 
+          )}
+          {!olivier && olivierResource.status !== 'hidden' && (
+            <TeamContentState status={olivierResource.status === 'error' ? 'error' : 'loading'} onRetry={olivierResource.retry} />
+          )}
           {/* Olivier Ndatimana */}
+          {olivier && (
           <article id="olivier-ndatimana" aria-labelledby="olivier-profile-heading" className="scroll-mt-28">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
               <div className="relative">
                 <div className="absolute -inset-2 bg-gradient-to-br from-brand-purple/20 to-brand-purple-light/15 rounded-2xl blur-lg pointer-events-none" />
                 <div className="relative aspect-square rounded-2xl overflow-hidden ring-1 ring-border">
-                  <img src={olivierImg} alt={t('about.leadership.olivier.name')} className="w-full h-full object-cover" />
+                  <TeamPortrait src={olivier.photoUrl} name={olivier.fullName} className="w-full h-full object-cover" />
                 </div>
               </div>
               <div className="md:col-span-2">
                 <h3 id="olivier-profile-heading" className="text-2xl font-heading font-bold mb-3 tracking-tight">
-                  {t('about.leadership.olivier.name')}
+                  {olivier.fullName}
                 </h3>
-                <p className="text-brand-purple font-semibold mb-1">{t('about.leadership.olivier.role')}</p>
-                <p className="text-brand-purple font-medium text-sm mb-4">{t('about.leadership.olivier.founderRole')}</p>
+                <p className="text-brand-purple font-semibold mb-1">{olivier.primaryTitle}</p>
+                <p className="text-brand-purple font-medium text-sm mb-4">{olivier.secondaryTitle}</p>
                 <p className="text-sm text-muted-foreground mb-5 leading-relaxed">{t('about.leadership.olivier.tagline')}</p>
                 <p className="text-muted-foreground leading-relaxed">{t('about.leadership.olivier.bio1')}</p>
               </div>
@@ -289,7 +304,9 @@ export function About() {
               </ul>
             </div>
           </article>
+          )}
         </section>
+        )}
 
         {/* ── ALLIANCE REGIONS ─────────────────────────────────────── */}
         <section className="py-16 border-t border-border">

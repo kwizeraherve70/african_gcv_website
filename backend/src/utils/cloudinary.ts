@@ -19,3 +19,6 @@ const storage = new CloudinaryStorage({
 
 const upload = multer({ storage: storage });
 export default upload;
+
+// Team media reuses this configured account with its own constrained upload path.
+export { cloudinary };

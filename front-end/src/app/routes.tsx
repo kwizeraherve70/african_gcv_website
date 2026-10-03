@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router';
+import { TEAM_ADMIN_ROUTES } from './lib/teamRoutes';
 import { Layout } from './components/Layout';
 import { Home } from './pages/Home';
 import { News } from './pages/News';
@@ -12,6 +13,8 @@ import { OrderConfirmation } from './pages/OrderConfirmation';
 import { Login } from './pages/Login';
 import { Register } from './pages/Register';
 import { ProtectedRoute } from './components/ProtectedRoute';
+import { AdminTeam } from './pages/admin/AdminTeam';
+import { AdminTeamPersonForm } from './pages/admin/AdminTeamPersonForm';
 import { AdminLayout } from './pages/admin/AdminLayout';
 import { AdminDashboard } from './pages/admin/AdminDashboard';
 import { AdminProducts } from './pages/admin/AdminProducts';
@@ -65,6 +68,9 @@ export const router = createBrowserRouter([
         ),
         children: [
           { index: true, element: <AdminDashboard /> },
+          { path: TEAM_ADMIN_ROUTES.list, element: <AdminTeam /> },
+          { path: TEAM_ADMIN_ROUTES.newPerson, element: <AdminTeamPersonForm /> },
+          { path: TEAM_ADMIN_ROUTES.editPerson, element: <AdminTeamPersonForm /> },
           { path: 'products', element: <AdminProducts /> },
           { path: 'products/new', element: <AdminProductForm /> },
           { path: 'products/:id/edit', element: <AdminProductForm /> },

@@ -895,3 +895,9 @@ implementation state changes.
   reaching React Router. Added `front-end/vercel.json` with the standard
   `/index.html` rewrite and documented the existing Vercel/Railway
   hosting split. Production deployment and live verification follow.
+
+- 2026-09-30: Owner approved the Team management plan, including shared names/photos/current titles on Home and About. Implementation started in parallel across backend, admin, and public/data workstreams. Contract recorded in `context/team-api-contract.md`; no production migration or cutover yet.
+
+- 2026-10-01: Team API, four Prisma models, authenticated upload/URL saves, admin editors, and public Team/Home/About integration implemented. Disposable PostgreSQL migration/import passed with 14 people, 16 placements and 6 departments. Dedicated dry-run reports zero writes/uploads; insert-only rerun preserves admin edits. Five HTTP integration suites passed: content/locales, ADMIN boundaries including MEMBER/MERCHANT rejection, shared edits/version conflicts/invalid media, transactional ordering and visibility. Two official local portraits uploaded once to Cloudinary with private retry receipts. Production database backup completed using PostgreSQL18 client. Production schema/content/frontend cutover has not occurred yet.
+
+- 2026-10-01: Final isolated validation passed: 13 backend unit tests, five real HTTP integration suites, Railway Docker build/start smoke, public Team/Home/About in all four locales with real Cloudinary portraits, 10 real-API admin browser checks, and 13 admin fixture checks for drafts/conflicts/uploads/failures/mobile layout. Production backup archive verified readable. Operations and rollback instructions recorded in `context/team-operations.md`. Hosted preview and production release verification are next.

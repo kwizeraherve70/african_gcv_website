@@ -9,3 +9,7 @@ build
 # outside `npm run build`'s outDir-aware path — stray compiled output,
 # not source, never meant to be tracked.
 src/**/*.js
+
+# Local migration upload receipts; never commit environment-specific asset metadata.
+.team-import-media.json
+.team-import-media.json.*.tmp

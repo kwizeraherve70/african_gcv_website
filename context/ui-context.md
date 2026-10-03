@@ -124,3 +124,7 @@ panel uses `bg-brand-surface`; values use `bg-brand-purple/10
 text-brand-purple rounded-full`. Static biography panels have no hover
 lift. Keep GCV leadership, Pi community participation, and business
 roles in distinct, labeled sections.
+
+## Team management UI
+
+The Team admin area uses existing card/input/button tokens, four content-language tabs, explicit Keep/Upload/Photo URL choices with current/replacement previews, and accessible Move up/down controls. Page and department drafts remain mounted during refresh; clean forms adopt new versions while dirty forms preserve user text. Patterns are recorded in `../ui-registry.md`. Public API states share TeamContentState and accessible TeamPortrait fallbacks.

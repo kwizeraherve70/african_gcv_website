@@ -12,6 +12,7 @@ import swaggerUi from "swagger-ui-express";
 import cors from "cors";
 import { TUser } from "./utils/interfaces/common";
 import AppError, { ValidationError } from "./utils/error";
+import { ValidateError } from "tsoa";
 import { PaymentService } from "./services/PaymentService";
 
 declare module "express" {
@@ -99,6 +100,14 @@ app.use(function errorHandler(
     return res.status(err.status).json({
       status: err.status,
       message: err.message,
+    });
+  }
+
+  if (err instanceof ValidateError) {
+    return res.status(400).json({
+      status: 400,
+      message: "Invalid request fields",
+      fields: err.fields,
     });
   }
 

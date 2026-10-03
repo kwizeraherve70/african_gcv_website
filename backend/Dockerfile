@@ -9,7 +9,7 @@ WORKDIR /app
 
 # Install dependencies
 COPY package.json package-lock.json ./
-RUN npm install
+RUN HUSKY=0 npm ci --no-audit --no-fund
 
 # Copy the rest of the app
 COPY . .

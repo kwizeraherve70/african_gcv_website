@@ -137,10 +137,22 @@
     "impact": {
       "title": "Impact de l'Alliance",
       "stats": [
-        { "value": "4", "label": "Continents" },
-        { "value": "12 500+", "label": "Membres dans le monde" },
-        { "value": "3 200+", "label": "Commerçants actifs" },
-        { "value": "Janv. 2025", "label": "Première conférence générale" }
+        {
+          "value": "4",
+          "label": "Continents"
+        },
+        {
+          "value": "12 500+",
+          "label": "Membres dans le monde"
+        },
+        {
+          "value": "3 200+",
+          "label": "Commerçants actifs"
+        },
+        {
+          "value": "Janv. 2025",
+          "label": "Première conférence générale"
+        }
       ]
     }
   },
@@ -175,6 +187,14 @@
       "finance": "Finance",
       "communications": "Communications",
       "events": "Événements"
+    },
+    "ui": {
+      "loading": "Chargement des profils de l’équipe…",
+      "error": "Les profils de l’équipe sont temporairement indisponibles. Veuillez réessayer.",
+      "retry": "Réessayer",
+      "empty": "Aucun profil publié dans cette section pour le moment.",
+      "photoUnavailable": "Photo indisponible pour {{name}}",
+      "profileLink": "Lire le profil complet"
     }
   },
   "ambassadors": {

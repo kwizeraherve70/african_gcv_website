@@ -10,7 +10,9 @@ import type { Product, NewsArticle } from '../data/mockData';
 import { merchants } from '../data/mockData';
 import { getAllProducts } from '../api/products';
 import { getAllNews } from '../api/news';
-import olivierImg from '@/assets/olivie.jpeg';
+import { useTeamPerson } from '../hooks/useTeam';
+import { TeamPortrait } from '../components/team/TeamPortrait';
+import { TeamContentState } from '../components/team/TeamContentState';
 import { SEO } from '../components/SEO';
 import { toPi, GCV_USD } from '../lib/pi';
 
@@ -74,6 +76,8 @@ function NetworkGraphic() {
 
 export function Home() {
   const { t } = useTranslation('home');
+  const olivierResource = useTeamPerson('olivier-ndatimana');
+  const olivier = olivierResource.data;
   const [products, setProducts] = useState<Product[]>([]);
   const [newsArticles, setNewsArticles] = useState<NewsArticle[]>([]);
 
@@ -343,17 +347,19 @@ export function Home() {
       </section>
 
       {/* ── FOUNDER SPOTLIGHT ────────────────────────────────────── */}
+      {olivier && (
       <section aria-labelledby="olivier-spotlight-heading" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="order-2 md:order-1">
               <span className="inline-block px-3 py-1 bg-brand-gold/15 text-brand-ink text-xs font-semibold rounded-full mb-5">
-                {t('founder.badge')}
+                {olivier.primaryTitle}
               </span>
               <h2 id="olivier-spotlight-heading" className="text-3xl md:text-4xl font-heading font-bold mb-3 tracking-tight">
-                {t('founder.name')}
+                {olivier.fullName}
               </h2>
-              <p className="text-brand-purple font-semibold mb-2">{t('founder.founderRole')}</p>
+              <p className="text-brand-purple font-semibold mb-2">{olivier.primaryTitle}</p>
+              {olivier.secondaryTitle && <p className="text-brand-purple font-medium mb-2">{olivier.secondaryTitle}</p>}
               <p className="text-sm text-muted-foreground mb-6 leading-relaxed">{t('founder.tagline')}</p>
               <p className="text-muted-foreground mb-4 leading-relaxed">
                 {t('founder.intro')}
@@ -364,25 +370,31 @@ export function Home() {
               <p className="text-sm text-muted-foreground border-t border-border pt-4 mb-6 leading-relaxed">
                 {t('founder.piNote')}
               </p>
-              <Link
-                to="/about#olivier-ndatimana"
+              {olivier.profilePath && <Link
+                to={olivier.profilePath}
                 className="inline-flex items-center gap-2 px-6 py-3.5 bg-brand-purple text-white rounded-xl hover:bg-brand-purple-light transition-all duration-200 font-semibold shadow-lg hover:-translate-y-0.5"
               >
                 {t('founder.cta')}
                 <ArrowRight className="w-4 h-4" />
-              </Link>
+              </Link>}
             </div>
             <div className="order-1 md:order-2">
               <div className="relative">
                 <div className="absolute -inset-3 bg-gradient-to-br from-brand-purple/20 to-brand-gold/20 rounded-3xl blur-xl pointer-events-none" />
                 <div className="relative aspect-square rounded-2xl overflow-hidden ring-1 ring-border">
-                  <img src={olivierImg} alt={t('founder.imageAlt')} className="w-full h-full object-cover" />
+                  <TeamPortrait src={olivier.photoUrl} name={olivier.fullName} className="w-full h-full object-cover" />
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+      )}
+      {!olivier && olivierResource.status !== 'hidden' && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <TeamContentState status={olivierResource.status === 'error' ? 'error' : 'loading'} onRetry={olivierResource.retry} />
+        </div>
+      )}
 
       {/* ── MISSION & VISION ─────────────────────────────────────── */}
       <section className="py-20 bg-brand-surface">
