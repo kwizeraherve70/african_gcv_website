@@ -21,8 +21,8 @@
   },
   "form": {
     "success": {
-      "title": "Ujumbe Umetumwa!",
-      "description": "Asante kwa kuwasiliana nasi. Angalia sanduku lako la barua pepe kwa uthibitisho — tutakujibu hivi karibuni.",
+      "title": "Ujumbe umepokelewa!",
+      "description": "Ujumbe wako umehifadhiwa. Timu yetu itakujibu hivi karibuni.",
       "sendAnother": "Tuma ujumbe mwingine"
     },
     "nameLabel": "Jina Lako *",

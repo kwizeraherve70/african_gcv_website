@@ -81,6 +81,43 @@ model Contact {
   createdAt               DateTime      @default(now())
   updatedAt               DateTime      @updatedAt
   enquiryProperty         EnquiryProperty?   @relation(fields: [enquiryPropertyId], references: [id])
+  emailJobs               ContactEmailJob[]
+}
+
+enum ContactEmailKind {
+  ADMIN
+  SENDER
+  AGENT
+}
+
+enum ContactEmailStatus {
+  PENDING
+  PROCESSING
+  SENT
+  FAILED
+}
+
+model ContactEmailJob {
+  id            String             @id @default(uuid())
+  contactId     String
+  contact       Contact            @relation(fields: [contactId], references: [id], onDelete: Cascade)
+  kind          ContactEmailKind
+  recipient     String
+  subject       String
+  body          String
+  status        ContactEmailStatus @default(PENDING)
+  attempts      Int                @default(0)
+  nextAttemptAt DateTime           @default(now())
+  lockedUntil   DateTime?
+  lockToken     String?
+  lastError     String?
+  sentAt        DateTime?
+  createdAt     DateTime           @default(now())
+  updatedAt     DateTime           @updatedAt
+
+  @@unique([contactId, kind])
+  @@index([status, nextAttemptAt])
+  @@index([status, lockedUntil])
 }
 
 enum Role {

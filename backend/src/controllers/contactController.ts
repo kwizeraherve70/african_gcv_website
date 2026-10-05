@@ -10,6 +10,7 @@ import {
   Request,
   Middlewares,
   Security,
+  SuccessResponse,
 } from "tsoa";
 import { ContactService } from "../services/contactService";
 import {
@@ -43,6 +44,7 @@ export class ContactController {
    * agent-enquiry flow) must be callable by anonymous visitors.
    */
   @Post("/")
+  @SuccessResponse("201", "Message received")
   @Middlewares(upload.any(), appendPhoto)
   public async createContact(
     @Body() contactData: CreateContactDto,

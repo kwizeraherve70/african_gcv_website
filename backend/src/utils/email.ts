@@ -1,5 +1,21 @@
 import nodemailer from "nodemailer";
 
+export interface EmailMessage {
+  to: string;
+  subject: string;
+  body: string;
+}
+
+function emailTransport() {
+  return nodemailer.createTransport({
+    service: "gmail",
+    connectionTimeout: 10_000,
+    greetingTimeout: 10_000,
+    socketTimeout: 10_000,
+    auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASS },
+  });
+}
+
 export const sendEmail = async ({
   to,
   subject,
@@ -9,16 +25,7 @@ export const sendEmail = async ({
   subject: string;
   body: string;
 }) => {
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    connectionTimeout: 10_000,
-    greetingTimeout: 10_000,
-    socketTimeout: 10_000,
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
+  const transporter = emailTransport();
 
   await transporter.sendMail({
     from: process.env.EMAIL_USER,
@@ -27,6 +34,26 @@ export const sendEmail = async ({
     text: body,
   });
 };
+
+/** The whole attempt must finish before a background job's lease expires. */
+export async function sendEmailBounded(message: EmailMessage, timeoutMs = 25_000): Promise<void> {
+  const transporter = emailTransport();
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  try {
+    await Promise.race([
+      transporter.sendMail({ from: process.env.EMAIL_USER, to: message.to, subject: message.subject, text: message.body }),
+      new Promise<never>((_resolve, reject) => {
+        timer = setTimeout(() => {
+          transporter.close();
+          reject(Object.assign(new Error("Email delivery deadline exceeded"), { code: "ETIMEDOUT" }));
+        }, timeoutMs);
+      }),
+    ]);
+  } finally {
+    if (timer) clearTimeout(timer);
+    transporter.close();
+  }
+}
 
 /**
  * Notification emails are a side effect of the core operation (contact

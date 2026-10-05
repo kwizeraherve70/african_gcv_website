@@ -21,8 +21,8 @@
   },
   "form": {
     "success": {
-      "title": "Message envoyé !",
-      "description": "Merci de nous avoir contactés. Vérifiez votre boîte de réception pour une confirmation — nous vous répondrons bientôt.",
+      "title": "Message reçu !",
+      "description": "Votre message a été enregistré. Notre équipe vous répondra bientôt.",
       "sendAnother": "Envoyer un autre message"
     },
     "nameLabel": "Votre nom *",
