@@ -21,8 +21,8 @@
   },
   "form": {
     "success": {
-      "title": "Message Sent!",
-      "description": "Thank you for contacting us. Check your inbox for a confirmation — we'll get back to you soon.",
+      "title": "Message received!",
+      "description": "Your message has been saved. Our team will get back to you soon.",
       "sendAnother": "Send another message"
     },
     "nameLabel": "Your Name *",

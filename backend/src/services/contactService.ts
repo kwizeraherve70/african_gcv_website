@@ -1,155 +1,47 @@
 import { BaseService } from "./Service";
 import { prisma } from "../utils/client";
-import {
-  CreateContactDto,
-  IResponse,
-  TContact,
-} from "../utils/interfaces/common";
+import { CreateContactDto, IResponse, TContact } from "../utils/interfaces/common";
 import AppError from "../utils/error";
-import { sendEmailSafe } from "../utils/email";
-import { appEnv } from "../config/env";
+import { queueContactNotifications } from "./contactNotifications";
 
 export class ContactService extends BaseService {
-  /**
-   * Contact submissions with no agentId (general enquiries, whether from a
-   * logged-in member or a guest) have no agent to route to, so instead we
-   * notify support and auto-reply to the sender confirming receipt.
-   */
-  private async notifyGeneralContact(contact: TContact): Promise<void> {
-    if (appEnv.adminEmail) {
-      await sendEmailSafe({
-        to: appEnv.adminEmail,
-        subject: `New Contact Message: ${contact.name}`,
-        body: `
-          A new contact message was submitted.
-
-          Name: ${contact.name}
-          Email: ${contact.email}
-          Phone: ${contact.phoneNumber || "N/A"}
-          Location: ${contact.location || "N/A"}
-
-          Message:
-          ${contact.message}
-        `,
-      });
-    }
-
-    await sendEmailSafe({
-      to: contact.email,
-      subject: "We received your message - Pi Global GCV Alliance",
-      body: `
-        Dear ${contact.name},
-
-        Thank you for reaching out to Pi Global GCV Alliance. We've received your message and a member of our team will get back to you shortly.
-
-        Your message:
-        ${contact.message}
-
-        Best regards,
-        Pi Global GCV Alliance Support Team
-      `,
-    });
-  }
-
-  public async createContact(
-    contactData: CreateContactDto,
-  ): Promise<IResponse<TContact>> {
-    try {
-      let newContact;
+  public async createContact(contactData: CreateContactDto): Promise<IResponse<TContact>> {
+    // A successful response guarantees both the enquiry and its notification
+    // jobs are durable. No network/email work happens inside this transaction.
+    const newContact = await prisma.$transaction(async tx => {
+      let agentEmail: string | undefined;
+      let enquiryPropertyId: string | undefined;
+      let name = contactData.name;
+      let email = contactData.email;
       if (contactData.agentId) {
-        const user = await prisma.agents.findUnique({
+        const agent = await tx.agents.findUnique({
           where: { id: contactData.agentId },
-          select: {
-            user: {
-              select: {
-                firstName: true,
-                lastName: true,
-                email: true,
-              },
-            },
-          },
+          select: { user: { select: { email: true } } },
         });
-        const enquiryProperty = await prisma.enquiryProperty.create({
-          data: {
-            agentId: contactData.agentId!,
-          },
+        if (!agent) throw new AppError("Agent not found", 404);
+        agentEmail = agent.user.email;
+        const enquiry = await tx.enquiryProperty.upsert({
+          where: { agentId: contactData.agentId },
+          update: {},
+          create: { agentId: contactData.agentId },
         });
-        newContact = await prisma.contact.create({
-          data: {
-            enquiryPropertyId: enquiryProperty.id ?? undefined,
-            email: contactData.email,
-            message: contactData.message,
-            name: contactData.name,
-            location: contactData.location || undefined,
-            phoneNumber: contactData.phoneNumber || undefined,
-            photo:
-              typeof contactData.photo === "string"
-                ? contactData.photo
-                : undefined,
-          },
-        });
-        await sendEmailSafe({
-          to: user!.user.email,
-          subject: "New Enquiry Property Notification",
-          body: `
-            Dear ${user?.user.firstName} ${user?.user.lastName || "Agent"},
-
-            You have a new enquiry property from ${contactData.name}.
-
-            Details:
-            - Email: ${contactData.email}
-            - Phone Number: ${contactData.phoneNumber || "N/A"}
-            - Location: ${contactData.location || "N/A"}
-            - Message: ${contactData.message}
-
-            Please follow up with the client as soon as possible.
-
-            Best regards,
-            KIGALI HOT MARKET Support Team
-          `,
-        });
+        enquiryPropertyId = enquiry.id;
       } else if (contactData.userId) {
-        const user = await prisma.user.findUnique({
-          where: { id: contactData.userId },
-        });
-        newContact = await prisma.contact.create({
-          data: {
-            email: user!.email,
-            message: contactData.message,
-            name: user!.firstName + "" + user!.lastName,
-            location: contactData.location || undefined,
-            phoneNumber: contactData.phoneNumber || undefined,
-            photo:
-              typeof contactData.photo === "string"
-                ? contactData.photo
-                : undefined,
-          },
-        });
-        await this.notifyGeneralContact(newContact);
-      } else {
-        newContact = await prisma.contact.create({
-          data: {
-            email: contactData.email,
-            message: contactData.message,
-            name: contactData.name,
-            location: contactData.location || undefined,
-            phoneNumber: contactData.phoneNumber || undefined,
-            photo:
-              typeof contactData.photo === "string"
-                ? contactData.photo
-                : undefined,
-          },
-        });
-        await this.notifyGeneralContact(newContact);
+        const user = await tx.user.findUnique({ where: { id: contactData.userId } });
+        if (!user) throw new AppError("User not found", 404);
+        name = user.firstName + "" + user.lastName;
+        email = user.email;
       }
-      return {
-        statusCode: 201,
-        message: "newContact created successfully",
-        data: newContact,
-      };
-    } catch (error) {
-      throw new AppError(error, 500);
-    }
+      const contact = await tx.contact.create({ data: {
+        name, email, message: contactData.message, enquiryPropertyId,
+        location: contactData.location || undefined,
+        phoneNumber: contactData.phoneNumber || undefined,
+        photo: typeof contactData.photo === "string" ? contactData.photo : undefined,
+      } });
+      await queueContactNotifications(tx, contact, agentEmail);
+      return contact;
+    });
+    return { statusCode: 201, message: "Your message has been received", data: newContact };
   }
 
   public static async getContact(

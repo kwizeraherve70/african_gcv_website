@@ -21,8 +21,8 @@
   },
   "form": {
     "success": {
-      "title": "Ubutumwa bwoherejwe!",
-      "description": "Urakoze kudukorana. Reba imeyili yawe uhabone iyemeza — tuzagusubiza vuba.",
+      "title": "Ubutumwa bwakiriwe!",
+      "description": "Ubutumwa bwawe bwabitswe. Itsinda ryacu rizagusubiza vuba.",
       "sendAnother": "Ohereza ubundi butumwa"
     },
     "nameLabel": "Amazina yawe *",

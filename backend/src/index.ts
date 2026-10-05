@@ -14,6 +14,7 @@ import { TUser } from "./utils/interfaces/common";
 import AppError, { ValidationError } from "./utils/error";
 import { ValidateError } from "tsoa";
 import { PaymentService } from "./services/PaymentService";
+import { startContactEmailWorker } from "./services/contactEmailWorker";
 
 declare module "express" {
   interface Request {
@@ -125,6 +126,8 @@ app.use(function errorHandler(
   next();
 });
 
-app.listen(PORT, () =>
-  console.log(`API running on PORT http://localhost:${PORT} wow!s`),
-);
+const server = app.listen(PORT, () => {
+  console.log(`API running on PORT http://localhost:${PORT} wow!s`);
+  const stopContactEmails = startContactEmailWorker();
+  server.once("close", stopContactEmails);
+});
