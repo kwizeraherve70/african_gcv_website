@@ -52,7 +52,11 @@
       "tryDifferentSearch": "Jaribu neno lingine la utafutaji au kategoria nyingine",
       "viewAllNews": "Tazama Habari Zote →"
     },
-    "important": "Muhimu"
+    "important": "Muhimu",
+    "loadingAnnouncements": "Inapakia matangazo…",
+    "noAnnouncements": "Hakuna matangazo bado.",
+    "loadError": "Hatukuweza kupakia maudhui haya. Tafadhali jaribu tena.",
+    "retry": "Jaribu tena"
   },
   "newsCountries": {
     "seo": {

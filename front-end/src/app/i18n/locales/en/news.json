@@ -52,7 +52,11 @@
       "tryDifferentSearch": "Try a different search term or category",
       "viewAllNews": "View All News →"
     },
-    "important": "Important"
+    "important": "Important",
+    "loadingAnnouncements": "Loading announcements…",
+    "noAnnouncements": "No announcements yet.",
+    "loadError": "We could not load this content. Please try again.",
+    "retry": "Try again"
   },
   "newsCountries": {
     "seo": {

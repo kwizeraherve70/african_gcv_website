@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router';
 import { ArrowLeft, Clock, Eye, Share2, Calendar } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import type { NewsArticle } from '../data/mockData';
+import type { NewsArticle } from '../types/news';
 import { getNewsBySlug, getAllNews } from '../api/news';
 import { sanitizeHtml } from '../lib/sanitize';
 import { SEO } from '../components/SEO';
