@@ -2,9 +2,10 @@ import { Link, useParams } from 'react-router';
 import { useState, useEffect } from 'react';
 import { ArrowLeft, Clock, Eye, Search, Megaphone, Newspaper, BookOpen } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import type { NewsArticle } from '../data/mockData';
-import { announcements, pressReleases, GCV_AFRICA_COUNTRIES } from '../data/mockData';
+import type { Announcement, NewsArticle } from '../types/news';
+import { pressReleases, GCV_AFRICA_COUNTRIES } from '../data/mockData';
 import { getAllNews } from '../api/news';
+import { getAnnouncements } from '../api/announcements';
 import { SEO } from '../components/SEO';
 import { sanitizeHtml } from '../lib/sanitize';
 
@@ -28,21 +29,39 @@ export function News() {
   const [searchQuery, setSearchQuery] = useState('');
   const [newsArticles, setNewsArticles] = useState<NewsArticle[]>([]);
   const [loading, setLoading] = useState(true);
+  const [articlesError, setArticlesError] = useState(false);
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
+  const [announcementsLoading, setAnnouncementsLoading] = useState(true);
+  const [announcementsError, setAnnouncementsError] = useState(false);
+  const [retry, setRetry] = useState(0);
 
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
+    setArticlesError(false);
     getAllNews({ limit: 100 })
       .then(data => {
         if (!cancelled) setNewsArticles(data);
       })
+      .catch(() => { if (!cancelled) setArticlesError(true); })
       .finally(() => {
         if (!cancelled) setLoading(false);
       });
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [retry]);
+
+  useEffect(() => {
+    let cancelled = false;
+    setAnnouncementsLoading(true);
+    setAnnouncementsError(false);
+    getAnnouncements()
+      .then(data => { if (!cancelled) setAnnouncements(data); })
+      .catch(() => { if (!cancelled) setAnnouncementsError(true); })
+      .finally(() => { if (!cancelled) setAnnouncementsLoading(false); });
+    return () => { cancelled = true; };
+  }, [retry]);
 
   const filteredArticles = newsArticles.filter(article => {
     const matchesCountry = !activeCountry || article.country === activeCountry.name;
@@ -143,6 +162,12 @@ export function News() {
         {/* ARTICLES TAB */}
         {(activeCountry || activeTab === 'articles') && (
           <>
+            {articlesError && (
+              <div role="alert" className="mb-6 rounded-2xl border border-border bg-card p-6 text-muted-foreground">
+                <p>{t('news.loadError')}</p>
+                <button onClick={() => setRetry(value => value + 1)} className="mt-3 font-medium text-brand-purple">{t('news.retry')}</button>
+              </div>
+            )}
             {/* Search */}
             <div className="mb-6">
               <div className="relative max-w-lg">
@@ -175,14 +200,14 @@ export function News() {
             </div>
 
             <p className="text-sm text-muted-foreground mb-6">
-              {loading ? t('news.loadingArticles') : t('news.articleCount', { count: filteredArticles.length })}
+              {loading ? t('news.loadingArticles') : !articlesError && t('news.articleCount', { count: filteredArticles.length })}
             </p>
 
             {loading ? (
               <div className="text-center py-20 bg-accent/40 rounded-2xl">
                 <p className="text-muted-foreground font-medium">{t('news.loadingArticles')}</p>
               </div>
-            ) : filteredArticles.length === 0 ? (
+            ) : articlesError ? null : filteredArticles.length === 0 ? (
               <div className="text-center py-20 bg-accent/40 rounded-2xl">
                 <p className="text-muted-foreground font-medium mb-1">
                   {activeCountry ? t('news.emptyState.noStoriesFromCountry', { country: activeCountry.name }) : t('news.emptyState.noArticlesFound')}
@@ -245,7 +270,14 @@ export function News() {
         {/* ANNOUNCEMENTS TAB */}
         {activeTab === 'announcements' && (
           <div className="space-y-4">
-            {announcements.map(item => (
+            {announcementsLoading ? <p role="status" className="py-10 text-center text-muted-foreground">{t('news.loadingAnnouncements')}</p>
+              : announcementsError ? (
+                <div role="alert" className="rounded-2xl border border-border bg-card p-6 text-muted-foreground">
+                  <p>{t('news.loadError')}</p>
+                  <button onClick={() => setRetry(value => value + 1)} className="mt-3 font-medium text-brand-purple">{t('news.retry')}</button>
+                </div>
+              ) : announcements.length === 0 ? <p className="py-10 text-center text-muted-foreground">{t('news.noAnnouncements')}</p>
+              : announcements.map(item => (
               <div
                 key={item.id}
                 className={`bg-card rounded-2xl border p-6 ${

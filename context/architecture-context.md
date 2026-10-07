@@ -180,11 +180,11 @@ See `progress-tracker.md` for the day-by-day integration plan.
 **As of Day 4 (2026-08-17), this is no longer accurate for
 everything** — see `progress-tracker.md` "In Progress" for exactly
 which pages are live. Summary: `Shop.tsx`, `ProductDetail.tsx`,
-`News.tsx` (articles only), `NewsDetail.tsx`, `NewsCountries.tsx`,
+`News.tsx` (articles and announcements), `NewsDetail.tsx`, `NewsCountries.tsx`,
 `Home.tsx`'s featured sections, login/register, guest checkout, and
 the `/admin/*` product+news CRUD dashboard all call the real backend
 now, through `front-end/src/app/api/`. Still mock-only:
-`announcements`/`pressReleases` on `News.tsx` (no backend model exists
+`pressReleases` on `News.tsx` (no backend model exists
 for them), and every other content type not yet touched by the 4-day
 plan (Team, Founders, Ambassadors, Events, Downloads, etc.) — those
 remain static until their own wiring pass. Don't assume "still
@@ -477,3 +477,13 @@ Run the dedicated `npm run seed:team -- --dry-run` / `--apply` from a full repos
 Contact submission commits the enquiry and a separate durable email job per recipient in one Prisma transaction. HTTP success confirms that the enquiry was saved; it does not wait for Gmail or claim that a confirmation email was delivered. A worker in the existing Railway API process polls PostgreSQL, claims one due job atomically with a lease, and retries failures with backoff. No Redis service or frontend state layer is added. A token prevents stale workers from acknowledging reclaimed jobs; a bounded SMTP attempt finishes before the lease expires. Delivery is at least once: an SMTP acceptance followed by a process/DB failure can cause a duplicate on retry.
 
 The existing Gmail transport remains configured by EMAIL_USER/EMAIL_PASS; upstream SMTP reachability is a separate operational requirement. Failed jobs remain available for explicit retry after the mail service is repaired. Unsent jobs are removed when their enquiry is deleted. Existing enquiries are not backfilled or emailed again. Tests disable automatic delivery and use an injected fake sender; they never send real email.
+
+## News and announcements content — 2026-10-06
+
+Owner confirmed assignments means Announcements. Eight legacy articles map to
+the existing News model; three announcements use a separate Announcement model
+so priority is preserved without inventing article categories, images or authors.
+The new endpoint is public and read-only. Frontend types live in types/news.ts.
+The dedicated transactional import skips existing IDs and article slugs, keeps
+admin edits, and supports a zero-write dry run. No frontend static fallback is
+used. Press releases remain outside this migration. See news-content-operations.md.

@@ -52,7 +52,11 @@
       "tryDifferentSearch": "Essayez un autre terme de recherche ou une autre catégorie",
       "viewAllNews": "Voir toutes les actualités →"
     },
-    "important": "Important"
+    "important": "Important",
+    "loadingAnnouncements": "Chargement des annonces…",
+    "noAnnouncements": "Aucune annonce pour le moment.",
+    "loadError": "Impossible de charger ce contenu. Veuillez réessayer.",
+    "retry": "Réessayer"
   },
   "newsCountries": {
     "seo": {

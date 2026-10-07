@@ -52,7 +52,11 @@
       "tryDifferentSearch": "Gerageza ijambo rindi ryo gushakisha cyangwa indi category",
       "viewAllNews": "Reba Amakuru Yose →"
     },
-    "important": "By'ingenzi"
+    "important": "By'ingenzi",
+    "loadingAnnouncements": "Amatangazo arimo gutunganywa…",
+    "noAnnouncements": "Nta matangazo arahari.",
+    "loadError": "Ntitwashoboye kuzana aya makuru. Ongera ugerageze.",
+    "retry": "Ongera ugerageze"
   },
   "newsCountries": {
     "seo": {

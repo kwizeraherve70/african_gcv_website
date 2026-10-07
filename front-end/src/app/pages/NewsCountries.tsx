@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import { useState, useEffect } from 'react';
 import { Globe2, Newspaper, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import type { NewsArticle } from '../data/mockData';
+import type { NewsArticle } from '../types/news';
 import { GCV_AFRICA_COUNTRIES } from '../data/mockData';
 import { getAllNews } from '../api/news';
 import { SEO } from '../components/SEO';

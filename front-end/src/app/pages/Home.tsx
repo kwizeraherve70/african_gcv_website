@@ -6,7 +6,8 @@ import {
   Users, Store, Package, CalendarDays, Clock,
   Mail, Phone, MessageCircle,
 } from 'lucide-react';
-import type { Product, NewsArticle } from '../data/mockData';
+import type { Product } from '../data/mockData';
+import type { NewsArticle } from '../types/news';
 import { merchants } from '../data/mockData';
 import { getAllProducts } from '../api/products';
 import { getAllNews } from '../api/news';

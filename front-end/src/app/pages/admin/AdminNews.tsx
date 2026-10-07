@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router';
 import { Plus, Pencil, Trash2 } from 'lucide-react';
 import { getAllNews, deleteNews } from '../../api/news';
-import type { NewsArticle } from '../../data/mockData';
+import type { NewsArticle } from '../../types/news';
 import { useAuth } from '../../context/AuthContext';
 import { ApiError } from '../../api/client';
 import { SEO } from '../../components/SEO';

@@ -22,7 +22,9 @@
     "test:team": "TS_NODE_TRANSPILE_ONLY=true TS_NODE_PREFER_TS_EXTS=true node --test -r ts-node/register tests/team.unit.ts",
     "test:team:integration": "TS_NODE_TRANSPILE_ONLY=true TS_NODE_PREFER_TS_EXTS=true node --test -r ts-node/register tests/team.integration.ts",
     "test:contact": "ADMIN_EMAIL=contact-admin@example.invalid CONTACT_EMAIL_WORKER_ENABLED=false TS_NODE_TRANSPILE_ONLY=true TS_NODE_PREFER_TS_EXTS=true node --test -r ts-node/register tests/contact.integration.ts",
-    "contact:email-jobs": "ts-node src/scripts/contactEmailJobs.ts"
+    "contact:email-jobs": "ts-node src/scripts/contactEmailJobs.ts",
+    "seed:news": "ts-node prisma/seeds/news.ts",
+    "test:news": "CONTACT_EMAIL_WORKER_ENABLED=false TS_NODE_TRANSPILE_ONLY=true TS_NODE_PREFER_TS_EXTS=true node --test -r ts-node/register tests/news.integration.ts"
   },
   "engines": {
     "node": "22.12.0",

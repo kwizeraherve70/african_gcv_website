@@ -254,6 +254,24 @@ enum NewsCategory {
   COMMUNITY
 }
 
+model Announcement {
+  id          String               @id @default(uuid())
+  title       String
+  excerpt     String
+  content     String
+  publishedAt DateTime             @default(now())
+  priority    AnnouncementPriority @default(NORMAL)
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
+
+  @@index([publishedAt])
+}
+
+enum AnnouncementPriority {
+  HIGH
+  NORMAL
+}
+
 model Ads {
   id                      String           @id @default(uuid())
   thumbnail               String

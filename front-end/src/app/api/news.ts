@@ -1,5 +1,5 @@
 import { apiFetch, ApiPaged, ApiResponse, toFormData } from './client';
-import { NewsArticle } from '../data/mockData';
+import type { NewsArticle } from '../types/news';
 
 /** Backend TNews (backend/src/utils/interfaces/common.ts) — the raw API shape. */
 interface ApiNews {
