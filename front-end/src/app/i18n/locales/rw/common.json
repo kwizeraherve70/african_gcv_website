@@ -75,5 +75,11 @@
   "whatsapp": {
     "chatAria": "Ganira Natwe Kuri WhatsApp",
     "prefillMessage": "Muraho! Mfite ikibazo kijyanye na Pi Global GCV Alliance."
+  },
+  "announcement": {
+    "target": "Intego ya GCV: 1 π ≈ ${{value}} (yatanzwe n’umuryango)",
+    "tagline": "Ishyura muri Pi. Dutere imbere hamwe.",
+    "exploreMarket": "Sura isoko →",
+    "dismiss": "Funga itangazo"
   }
 }

@@ -76,26 +76,36 @@ function LanguageSelector() {
   const activeCode = (i18n.language || 'en').split('-')[0];
 
   return (
-    <div ref={ref} className="relative hidden md:block">
+    <div ref={ref} className="relative" onKeyDown={event => {
+      if (event.key === 'Escape') {
+        setOpen(false);
+        ref.current?.querySelector('button')?.focus();
+      }
+    }}>
       <button
+        type="button"
         onClick={() => setOpen(o => !o)}
         className="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-sm font-medium text-foreground/70 hover:text-foreground hover:bg-accent transition-colors duration-150"
         aria-label={t('navbar.language.selectLanguage')}
+        aria-expanded={open}
       >
         {activeCode.toUpperCase()}
         <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
       </button>
       {open && (
-        <div className="absolute top-full right-0 mt-1.5 w-24 bg-card rounded-xl border border-border shadow-xl py-1.5 z-50">
-          {SUPPORTED_LANGUAGES.map(({ code }) => (
+        <div className="absolute top-full right-0 mt-1.5 w-44 bg-card rounded-xl border border-border shadow-xl py-1.5 z-50">
+          {SUPPORTED_LANGUAGES.map(({ code, label }) => (
             <button
               key={code}
+              type="button"
+              lang={code}
+              aria-pressed={activeCode === code}
               onClick={() => { i18n.changeLanguage(code); setOpen(false); }}
               className={`w-full text-left px-3.5 py-1.5 text-sm hover:bg-accent transition-colors duration-100 ${
                 activeCode === code ? 'text-brand-purple font-semibold' : 'text-foreground'
               }`}
             >
-              {code.toUpperCase()}
+              {label}
             </button>
           ))}
         </div>

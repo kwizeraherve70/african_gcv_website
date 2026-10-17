@@ -1,0 +1,28 @@
+{
+  "checkout": {
+    "steps": { "shipping": "配送", "payment": "付款", "review": "确认订单" },
+    "canceledNotice": "付款已取消。您的订单已保存，可以再次尝试付款。",
+    "genericOrderError": "无法提交订单，请重试。",
+    "shippingForm": {
+      "title": "配送信息", "fullName": "姓名 *", "fullNamePlaceholder": "王小明", "email": "电子邮箱 *", "emailPlaceholder": "john@example.com",
+      "phone": "电话号码 *", "phonePlaceholder": "+250 700 000 000", "address": "地址 *", "addressPlaceholder": "主街 123 号",
+      "city": "城市 *", "cityPlaceholder": "基加利", "province": "省 / 州 *", "provincePlaceholder": "基加利市",
+      "country": "国家 *", "countryPlaceholder": "卢旺达", "postalCode": "邮政编码", "postalCodePlaceholder": "00000"
+    },
+    "paymentMethods": {
+      "title": "付款方式",
+      "card": { "title": "信用卡 / 借记卡", "description": "使用信用卡或借记卡安全付款" },
+      "mobileMoney": { "title": "移动支付", "description": "M-Pesa、MTN Mobile Money、Orange Money" },
+      "pi": { "title": "使用 Pi 支付", "description": "直接通过 Pi 钱包支付 — 按社区 GCV 目标价值为 {{amount}} π" },
+      "piNotice": "您将在 Pi 钱包应用中确认此笔付款。GCV 是社区提出的目标价值，并非 Pi Network 官方汇率。",
+      "secureNotice": "您的付款信息经过加密保护。我们绝不存储您的银行卡信息。"
+    },
+    "review": { "title": "确认订单", "shippingTo": "配送至", "payment": "付款", "piTarget": "{{amount}} π（GCV 目标价值）", "orderItems": "订单商品", "subtotal": "小计", "shipping": "运费", "total": "总计" },
+    "buttons": { "back": "返回", "continue": "继续", "placeOrder": "提交订单", "placingOrder": "正在提交订单…" }
+  },
+  "orderConfirmation": {
+    "title": "订单已确认！", "thankYou": "感谢您在 Pi Global GCV Alliance 购物。", "orderNumberLabel": "订单号",
+    "nextSteps": { "title": "接下来会怎样？", "confirmationEmail": "您将很快收到订单确认邮件", "digitalDelivery": "数字商品将在 24 小时内发送至您的邮箱", "physicalShipping": "实物商品将在 2–3 个工作日内发货" },
+    "continueShopping": "继续购物", "backToHome": "返回首页", "needHelp": "订单需要帮助？", "contactSupport": "联系客服"
+  }
+}

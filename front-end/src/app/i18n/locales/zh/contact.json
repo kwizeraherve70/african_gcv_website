@@ -1,0 +1,82 @@
+{
+  "seo": {
+    "title": "联系我们",
+    "description": "联系 Pi Global GCV Alliance。您可以发送邮件、拨打电话，或前往我们位于卢旺达基加利的办公室。"
+  },
+  "header": {
+    "eyebrow": "取得联系",
+    "title": "联系我们",
+    "subtitle": "对 GCV 市场或会员资格有疑问？我们随时为您提供帮助。"
+  },
+  "info": {
+    "email": {
+      "title": "电子邮箱",
+      "value": "info@gcvalliance.org"
+    },
+    "phone": {
+      "title": "电话号码",
+      "value": "+250 788 547 719"
+    },
+    "office": {
+      "title": "办公地址",
+      "value": "KG 11 Ave, Kiyovu\n卢旺达，基加利\n为非洲、欧洲、亚洲和美国的会员提供服务"
+    }
+  },
+  "social": {
+    "title": "关注我们"
+  },
+  "form": {
+    "success": {
+      "title": "消息已收到！",
+      "description": "您的消息已保存。我们的团队会尽快回复您。",
+      "sendAnother": "再发送一条消息"
+    },
+    "nameLabel": "您的姓名 *",
+    "namePlaceholder": "王小明",
+    "emailLabel": "您的电子邮箱 *",
+    "emailPlaceholder": "john@example.com",
+    "subjectLabel": "主题 *",
+    "subjectPlaceholder": "请选择主题",
+    "subjectOptions": {
+      "general": "一般咨询",
+      "gcv": "GCV 相关问题",
+      "membership": "会员与注册",
+      "products": "商品支持",
+      "partnership": "合作机会",
+      "other": "其他"
+    },
+    "messageLabel": "消息 *",
+    "messagePlaceholder": "请告诉我们您需要什么帮助…",
+    "genericError": "无法发送消息，请重试。",
+    "submitting": "正在发送…",
+    "submit": "发送消息"
+  },
+  "map": {
+    "eyebrow": "找到我们",
+    "title": "我们的位置",
+    "address": "KG 11 Ave, Kiyovu，基加利，卢旺达",
+    "iframeTitle": "Pi Global GCV Alliance — 基加利办公室"
+  },
+  "faq": {
+    "eyebrow": "常见疑问",
+    "title": "常见问题",
+    "items": [
+      {
+        "q": "什么是 GCV？",
+        "a": "全球共识价值是社区提出的价格目标，即 1 π ≈ $314,159，在 GCV 市场中统一使用。这并非 Pi Network 官方汇率，未获 Pi 核心团队认可，也未经任何交易所验证；Pi 在公开市场的实际价格远低于此目标。"
+      },
+      {
+        "q": "如何加入联盟？",
+        "a": "注册成为会员，在 GCV 市场浏览和购物，或将您的企业注册为 GCV 商家。请使用下方表单或导航栏中的注册按钮。"
+      },
+      {
+        "q": "是否提供退款？",
+        "a": "实物商品可在 30 天内退货。数字商品一经访问便不可退款。详情请参阅我们的条款。"
+      },
+      {
+        "q": "如何成为大使？",
+        "a": "请联系我们了解大使计划。我们欢迎热心会员帮助联盟在各自地区发展。"
+      }
+    ]
+  }
+}

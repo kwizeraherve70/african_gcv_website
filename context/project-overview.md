@@ -130,7 +130,7 @@ specifically, not a generic placeholder.
 - Responsive design (mobile, tablet, desktop).
 - SEO-friendly.
 - Fast loading.
-- Multi-language: English, French, Kinyarwanda, Swahili.
+- Multi-language: English, French, Kinyarwanda, Swahili, Simplified Chinese.
 - WhatsApp chat entry point.
 - Email notifications for key events (order placed, account created).
 - Google Maps embed on Contact page.
@@ -148,7 +148,7 @@ specifically, not a generic placeholder.
   products, post news) and market management.
 - USD-to-Pi conversion at the fixed GCV rate, applied consistently
   across product display, cart, and checkout.
-- Multi-language support for at least the four listed languages.
+- Multi-language support for at least the five listed languages.
 
 ### Out of Scope (not part of this build)
 - Real cryptocurrency settlement or custody of actual Pi Network
@@ -191,7 +191,7 @@ payment flow until these are resolved — track resolution in
 5. An admin can manage inventory (upload/delete products), post news,
    and manage users, market listings, and events from the admin
    portal.
-6. All public-facing content is available in the four supported
+6. All public-facing content is available in the five supported
    languages.
 7. The site is responsive and passes basic SEO checks (meta tags,
    semantic structure).

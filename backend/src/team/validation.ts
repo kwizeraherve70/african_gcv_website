@@ -4,7 +4,7 @@ import AppError from "../utils/error";
 import { TEAM_LOCALES, TEAM_PAGE_FIELDS, TEAM_SECTIONS, LocalizedText, TeamLocale, TeamPersonInput } from "./types";
 
 const text = (length: number) => z.string().trim().max(length);
-export const localizedTextSchema = z.object({ en: text(8000), fr: text(8000).optional(), rw: text(8000).optional(), sw: text(8000).optional() }).strict();
+export const localizedTextSchema = z.object({ en: text(8000), fr: text(8000).optional(), rw: text(8000).optional(), sw: text(8000).optional(), zh: text(8000).optional() }).strict();
 const shortLocalized = localizedTextSchema.superRefine((value, context) => {
   for (const locale of TEAM_LOCALES) if ((value[locale]?.length ?? 0) > 300) context.addIssue({ code: z.ZodIssueCode.custom, path: [locale], message: "Must be at most 300 characters" });
 });

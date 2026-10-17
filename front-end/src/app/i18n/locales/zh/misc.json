@@ -1,0 +1,8 @@
+{
+  "notFound": {
+    "title": "未找到页面",
+    "description": "您查找的页面不存在或已被移动。让我们帮您找到所需内容。",
+    "goHome": "返回首页",
+    "browseNews": "浏览新闻"
+  }
+}

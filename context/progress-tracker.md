@@ -908,3 +908,34 @@ implementation state changes.
 
 - 2026-10-06: Restored the news/announcements migration in a persistent worktree after the temporary checkout was cleared. Scope is 8 articles and 3 announcements, confirmed by the owner. Backend snapshot/import, additive Announcement model/public API, and frontend loading/error/empty states are implemented. Source types moved out of mockData.ts. Revalidating before production import; press releases remain unchanged.
 - 2026-10-06: Revalidation passed: three PostgreSQL/HTTP integration suites (exact fields/dates, dry run, rerun preservation, filters/slugs and authorization), backend/frontend builds, source snapshot and locale-key parity, and whitespace checks. Chrome verified all 8 articles and 3 announcements in four locales at 1440px/375px, plus detail, Home, Rwanda filtering, retry and empty states. No application JavaScript errors. Announcement cards fit both widths; the previously known Kinyarwanda desktop navigation overflow remains (2px measured). Production publication/import follows.
+
+- 2026-10-17: Implemented owner-confirmed Simplified Chinese (`zh`, 简体中文)
+  across all nine existing i18n namespaces (557 strings), including the
+  previously hardcoded shared announcement banner and its dismiss label.
+  Language selection now shows native names on desktop and mobile; existing
+  browser detection, `gcv_language` persistence, and document language sync
+  apply to Chinese. Dropdown exposes selected/expanded state and supports
+  Escape dismissal. Banner wraps with space reserved for its close control.
+  Team frontend/backend locale contracts, strict JSON validation and admin
+  content-language tabs now accept Chinese, with existing per-field English
+  fallback and preservation of other translations. No schema migration or
+  live content update is needed. Existing product/news source content and
+  English admin interface are not automatically translated. Chinese copy is
+  a first pass pending native-speaker review. Updated language scope, Team
+  contract, UI context and selector/banner patterns in ui-registry.md.
+  Validation: all five locales have matching keys, arrays and interpolation
+  placeholders; backend type check, generated routes and 14 unit tests passed,
+  including Chinese resolution/fallback/validation. Final frontend production
+  build and git diff --check passed (existing large-chunk advisory remains).
+  All 22 Chrome checks passed: desktop/mobile language switching, refresh
+  persistence, zh-CN browser detection, document language, 12 public routes,
+  product/cart/checkout, plural counts, zh Team requests, Escape dismissal,
+  and a Chinese Team-page save preserving English/French fields. Screenshots
+  reviewed at 1440px and 375px; no mobile horizontal overflow or JavaScript
+  exceptions. API calls were intercepted with fixtures; external fonts/images
+  were blocked during browser QA, so live content/media were not verified.
+  The checkout lacked VITE_API_BASE_URL; browser QA supplied a temporary
+  process-only local value, without changing local or production settings.
+  Changes remain local; no deployment or live database writes were performed.
+
+- 2026-10-17: Chinese production release authorized. Prepared on current production commit `65ee7f32`, preserving contact-email and news/announcement updates. Added Chinese translations for the newer announcement loading/error/retry states and updated contact acknowledgement wording. No new migrations or production content writes are part of this release. Deployment verification pending.

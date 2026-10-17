@@ -2,6 +2,11 @@
 
 The canonical frontend wire interfaces are `front-end/src/app/types/team.ts`; backend mirrors them in its own Team DTO module (do not import frontend code from backend). All responses use existing `{statusCode,message,data}` envelopes. Public content can be read anonymously; all admin endpoints require ADMIN. Error responses have a message and appropriate HTTP status.
 
+Supported content locales are `en`, `fr`, `rw`, `sw`, and `zh` (Simplified
+Chinese, added 2026-10-14). `LocalizedText` requires `en` and accepts optional
+strings for the other locales. Missing or blank translations fall back to
+English per field. Existing JSON records need no migration.
+
 - GET /api/team?locale=en -> PublicTeamSnapshot (unsupported locale falls back to en).
 - GET /api/team/people/slug/{slug}?locale=en -> PublicTeamPerson; hidden/unknown =404.
 - GET /api/admin/team -> AdminTeamSnapshot (includes hidden records, all locales).

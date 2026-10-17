@@ -1,0 +1,85 @@
+{
+  "navbar": {
+    "themeToggle": {
+      "switchToLight": "切换到浅色模式",
+      "switchToDark": "切换到深色模式"
+    },
+    "links": {
+      "home": "首页",
+      "about": "关于我们",
+      "team": "核心团队",
+      "founders": "创始人",
+      "allianceGroup": "GCV 联盟",
+      "market": "GCV 市场",
+      "news": "新闻与媒体",
+      "contact": "联系我们"
+    },
+    "search": "搜索",
+    "language": {
+      "selectLanguage": "选择语言"
+    },
+    "cart": {
+      "aria_one": "购物车 — {{count}} 件商品",
+      "aria_other": "购物车 — {{count}} 件商品"
+    },
+    "menu": {
+      "open": "打开菜单",
+      "close": "关闭菜单"
+    },
+    "account": {
+      "login": "登录",
+      "register": "注册",
+      "logout": "退出登录",
+      "adminPortal": "管理后台",
+      "roleAdmin": "管理员",
+      "roleMerchant": "商家",
+      "roleMember": "会员"
+    }
+  },
+  "footer": {
+    "description": "通过商业与合作连接非洲、欧洲、亚洲和美国的全球贸易联盟。",
+    "social": {
+      "facebook": "Facebook",
+      "twitter": "Twitter / X",
+      "instagram": "Instagram",
+      "youtube": "YouTube"
+    },
+    "quickLinks": {
+      "heading": "快捷链接",
+      "about": "关于我们",
+      "market": "GCV 市场",
+      "news": "新闻与媒体",
+      "contact": "联系我们"
+    },
+    "resources": {
+      "heading": "资源",
+      "merchants": "商家名录",
+      "alliance": "产业联盟",
+      "founders": "创始人"
+    },
+    "legal": {
+      "heading": "法律信息",
+      "terms": "使用条款",
+      "privacy": "隐私政策"
+    },
+    "contact": {
+      "heading": "联系我们",
+      "whatsapp": "WhatsApp 在线聊天"
+    },
+    "copyright": "© {{year}} Pi Global GCV Alliance。保留所有权利。",
+    "bottom": {
+      "privacy": "隐私政策",
+      "terms": "条款与条件"
+    }
+  },
+  "whatsapp": {
+    "chatAria": "通过 WhatsApp 与我们聊天",
+    "prefillMessage": "您好！我想咨询有关 Pi Global GCV Alliance 的问题。"
+  },
+  "announcement": {
+    "target": "GCV 目标价值：1 π ≈ ${{value}}（由社区提出）",
+    "tagline": "使用 Pi 支付，共同成长。",
+    "exploreMarket": "探索市场 →",
+    "dismiss": "关闭公告"
+  }
+}
