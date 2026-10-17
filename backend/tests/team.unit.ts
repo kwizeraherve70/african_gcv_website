@@ -60,13 +60,40 @@ test("publication validation enforces selected English titles, biography, one se
 });
 
 test("locale resolution preserves translations and applies field-level English fallback", () => {
-  const text = { en: "Founder", fr: "Fondatrice", rw: "", sw: "  " };
+  const text = { en: "Founder", fr: "Fondatrice", rw: "", sw: "  ", zh: "创始人" };
   assert.equal(localize(text, "fr"), "Fondatrice");
   assert.equal(localize(text, "rw"), "Founder");
   assert.equal(localize(text, "sw"), "Founder");
+  assert.equal(localize(text, "zh"), "创始人");
+  assert.equal(localize({ en: "Founder" }, "zh"), "Founder");
+  assert.equal(localize({ en: "Founder", zh: "  " }, "zh"), "Founder");
+  assert.equal(normalizeLocale("zh"), "zh");
   assert.equal(normalizeLocale("unsupported"), "en");
   const input = validate(personInputSchema, personInput({ primaryTitle: text }));
-  assert.deepEqual(input.primaryTitle, { en: "Founder", fr: "Fondatrice", rw: "", sw: "" });
+  assert.deepEqual(input.primaryTitle, { en: "Founder", fr: "Fondatrice", rw: "", sw: "", zh: "创始人" });
+});
+
+test("Chinese public content resolves page, department, person and placement translations", () => {
+  const departmentId = "91062c61-569f-47b5-877b-4a61a7efce38";
+  const snapshot: AdminTeamSnapshot = {
+    directoryVersion: 1,
+    page: { version: 1, copy: { ...DEFAULT_TEAM_PAGE_COPY, heroTitle: { en: "GCV Core Team", zh: "GCV 核心团队" } } },
+    departments: [{ id: departmentId, key: "education", name: { en: "Education", zh: "教育" }, sortOrder: 0, visible: true, version: 1 }],
+    people: [person({ primaryTitle: { en: "Director", zh: "董事" }, placements: [
+      { ...placement({ secondaryTitleSource: "SECONDARY", bio: { en: "Biography", zh: "团队简介" } }), id: "leadership" },
+      { ...placement({ section: "DEPARTMENTS", departmentId, titleSource: "CUSTOM", customTitle: { en: "Teacher", zh: "教师" } }), id: "department" },
+    ] })],
+  };
+  const result = publicSnapshot(snapshot, normalizeLocale("zh"));
+  assert.equal(result.locale, "zh");
+  assert.equal(result.page.heroTitle, "GCV 核心团队");
+  assert.equal(result.page.heroSubtitle, DEFAULT_TEAM_PAGE_COPY.heroSubtitle.en);
+  assert.equal(result.departments[0].name, "教育");
+  assert.equal(result.sections.LEADERSHIP[0].title, "董事");
+  assert.equal(result.sections.LEADERSHIP[0].secondaryTitle, "Founder");
+  assert.equal(result.sections.LEADERSHIP[0].bio, "团队简介");
+  assert.equal(result.sections.DEPARTMENTS[0].title, "教师");
+  assert.throws(() => validate(personInputSchema, personInput({ primaryTitle: { en: "Director", zh: "长".repeat(301) } })), /300 characters/);
 });
 
 test("public snapshot resolves shared titles, independent placement content and hides all unpublished records", () => {

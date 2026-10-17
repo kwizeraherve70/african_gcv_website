@@ -33,3 +33,30 @@ Files: `front-end/src/app/components/team/TeamContentState.tsx`, `TeamPortrait.t
 | Directory cards | bg-card border-border rounded-2xl, p-5/p-6, brand-purple roles and muted biography text |
 
 No new theme tokens or foundation component changes were needed.
+
+## Language preference selector
+
+File: `front-end/src/app/components/Navbar.tsx`. Updated 2026-10-14.
+
+| Property | Pattern |
+| --- | --- |
+| Dropdown | bg-card, border border-border, rounded-xl, shadow-xl, py-1.5 |
+| Trigger | rounded-lg, px-2.5 py-1.5, text-sm font-medium, text-foreground/70 |
+| Options | px-3.5 py-1.5, text-sm text-foreground |
+| Hover | hover:bg-accent; trigger hover:text-foreground |
+| Selected option | text-brand-purple font-semibold |
+
+Use the same selector on mobile and desktop. Keep its trigger compact with
+the active code, and show native language names in the dropdown. Expose
+expanded and selected states to assistive technology; Escape closes the
+dropdown and returns focus to the trigger. Team content language tabs retain
+the existing wrapping layout and include 简体中文 alongside EN/FR/RW/SW.
+
+## Shared announcement banner
+
+File: `front-end/src/app/components/Layout.tsx`. Updated 2026-10-17.
+
+Use the brand-purple/brand-purple-light gradient, white text, `text-sm`,
+`py-2.5 px-12`, and gold links with `font-semibold underline`. The dismiss
+button uses `rounded-lg hover:bg-white/20`. Copy and accessible labels
+follow the shared locale; text wraps with room reserved for dismissal.

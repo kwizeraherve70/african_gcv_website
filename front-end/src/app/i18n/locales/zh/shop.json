@@ -1,0 +1,56 @@
+{
+  "shop": {
+    "seo": { "title": "GCV 市场", "description": "GCV 市场 — 浏览商品，按固定的全球共识价值汇率使用 Pi 支付。" },
+    "breadcrumb": { "home": "首页", "current": "GCV 市场" },
+    "heading": "GCV 市场",
+    "sidebar": { "productType": "商品类型" },
+    "categories": { "all": "全部", "sedans": "轿车", "suvs": "SUV", "sportsCars": "跑车", "luxury": "豪华车" },
+    "filters": { "allCategories": "所有类别" },
+    "promo": { "eyebrow": "使用 Pi 支付", "title": "安全。简单。全球通用。", "rate": "GCV 目标价值：1 π ≈ $314,159", "disclaimer": "由社区提出，并非官方汇率。", "learnMore": "了解更多" },
+    "search": { "placeholder": "搜索商品…" },
+    "sort": { "featured": "排序：精选", "priceLowHigh": "价格：从低到高", "priceHighLow": "价格：从高到低" },
+    "results": { "loading": "正在加载商品…", "count_one": "{{count}} 件商品", "count_other": "{{count}} 件商品" },
+    "error": { "title": "无法加载商品", "fallbackMessage": "商品加载失败。" },
+    "empty": { "title": "未找到商品", "subtitle": "请尝试其他搜索词或类别" },
+    "badge": { "sale": "促销" },
+    "stock": { "outOfStock": "缺货", "onlyLeft": "仅剩 {{count}} 件", "inStock": "有货" },
+    "whyPayInPi": {
+      "heading": "为什么使用 Pi 支付？",
+      "communityTarget": { "title": "社区 GCV 目标价值", "desc": "按 1 π ≈ $314,159 定价（非官方）" },
+      "globalSecure": { "title": "全球通用且安全", "desc": "安全透明的交易" },
+      "supportEcosystem": { "title": "支持生态系统", "desc": "助力商家与社区" },
+      "easyToUse": { "title": "易于使用", "desc": "简单便捷的结账体验" }
+    }
+  },
+  "productDetail": {
+    "loading": "正在加载…",
+    "notFound": { "title": "未找到商品", "text": "您查找的商品不存在。", "backToShop": "返回商店" },
+    "backToShop": "返回商店", "byMerchant": " · 商家：{{name}}", "ratingSummary": "{{rating}}（{{count}} 条评价）",
+    "save": "节省 ${{amount}}", "gcvNote": "按社区 GCV 目标价值为 {{piAmount}} π",
+    "stock": { "outOfStock": "缺货", "onlyLeftInStock": "库存仅剩 {{count}} 件", "inStock": "有货" },
+    "quantity": { "label": "数量" },
+    "addToCart": { "add": "加入购物车", "added": "已加入购物车" },
+    "tabs": { "description": "商品介绍", "reviews": "评价（{{count}}）", "shipping": "配送信息" },
+    "reviews": { "comingSoon": "顾客评价即将开放，欢迎成为首位评价此商品的顾客！" },
+    "shipping": {
+      "deliveryHeading": "交付信息", "deliveryIntro": "每辆车在交付前均由认证的 GCV 商家经销商检查并整备。交付时间因地区而异：",
+      "africa": "非洲：5–10 个工作日", "europe": "欧洲：10–20 个工作日", "northAmerica": "北美洲：15–25 个工作日", "other": "其他地区：20–30 个工作日",
+      "docs": "包含车辆登记和进口文件支持。部分经销商门店可在购买前安排试驾。",
+      "returnsHeading": "退货与保修", "returnsText": "所有车辆自交付之日起享有经销商提供的 90 天保修。退货申请须在交付后 7 天内提出，并须通过检查。"
+    },
+    "relatedProducts": { "heading": "相关商品", "gcvNote": "≈ {{piAmount}} π（GCV）" }
+  },
+  "cart": {
+    "seo": { "title": "购物车" }, "heading": "购物车",
+    "empty": { "heading": "您的购物车是空的", "text": "浏览 GCV 市场，寻找商品、服务和企业。", "continueShopping": "继续购物" },
+    "priceUsd": "{{price}} USD",
+    "aria": { "removeItem": "移除商品", "decreaseQuantity": "减少数量", "increaseQuantity": "增加数量" },
+    "continueShopping": "继续购物",
+    "summary": {
+      "heading": "购物车汇总", "subtotal_one": "小计（{{count}} 件商品）", "subtotal_other": "小计（{{count}} 件商品）",
+      "amountUsd": "${{amount}} USD", "shipping": "运费", "total": "总计", "gcvNote": "{{piAmount}} π",
+      "disclaimer": "GCV 目标价值：1 π ≈ $314,159（由社区提出，并非官方汇率）"
+    },
+    "checkout": { "proceed": "前往结账", "secure": "安全结账" }
+  }
+}

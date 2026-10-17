@@ -2,7 +2,7 @@
 
 ## Editing content
 
-Sign in as an ADMIN and open `/admin/team`. People controls names, shared current titles, portraits, visibility and section-specific biographies. Ordering controls cards in each section. Departments and Page wording manage their own four-language content. Empty French, Kinyarwanda or Swahili fields use English fallback. Home/About share the saved names, photos and current titles; their longer narratives remain separate.
+Sign in as an ADMIN and open `/admin/team`. People controls names, shared current titles, portraits, visibility and section-specific biographies. Ordering controls cards in each section. Departments and Page wording manage their own five-language content. Empty French, Kinyarwanda, Swahili or Simplified Chinese fields use English fallback. Home/About share the saved names, photos and current titles; their longer narratives remain separate.
 
 Use **Upload photo** for JPEG, PNG or WebP files up to 5 MB, or **Photo URL** for a public HTTPS image. Files are decoded and validated before uploading to Cloudinary. A saved replacement appears on fresh page reads. Existing images remain available for rollback; hiding a person also hides their matching Home/About profile. Version conflicts retain the editor draft and require review against fresh content.
 

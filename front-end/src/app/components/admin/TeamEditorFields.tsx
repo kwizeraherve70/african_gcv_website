@@ -4,7 +4,7 @@ import { TEAM_LOCALES, type LocalizedText, type TeamLocale, type TeamPersonInput
 export const teamInputClass = 'w-full px-3 py-2.5 rounded-xl border border-border bg-background text-sm focus:outline-none focus:ring-2 focus:ring-brand-purple/25 focus:border-brand-purple transition-colors disabled:opacity-60';
 export const teamButtonClass = 'inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-brand-purple text-white text-sm font-semibold hover:bg-brand-purple-light disabled:opacity-60 disabled:cursor-not-allowed';
 export const teamSecondaryButtonClass = 'inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-border text-sm font-medium hover:bg-accent disabled:opacity-50 disabled:cursor-not-allowed';
-export const teamLanguageNames: Record<TeamLocale, string> = { en: 'English', fr: 'French', rw: 'Kinyarwanda', sw: 'Swahili' };
+export const teamLanguageNames: Record<TeamLocale, string> = { en: 'English', fr: 'French', rw: 'Kinyarwanda', sw: 'Swahili', zh: '简体中文' };
 
 export function TeamLocaleTabs({ locale, onChange }: { locale: TeamLocale; onChange: (locale: TeamLocale) => void }) {
   return (

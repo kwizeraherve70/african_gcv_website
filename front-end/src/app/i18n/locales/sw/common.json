@@ -75,5 +75,11 @@
   "whatsapp": {
     "chatAria": "Ongea Nasi kwa WhatsApp",
     "prefillMessage": "Habari! Nina swali kuhusu Pi Global GCV Alliance."
+  },
+  "announcement": {
+    "target": "Lengo la GCV: 1 π ≈ ${{value}} (limependekezwa na jamii)",
+    "tagline": "Lipa kwa Pi. Tukue pamoja.",
+    "exploreMarket": "Tembelea soko →",
+    "dismiss": "Funga tangazo"
   }
 }

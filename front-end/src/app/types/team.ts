@@ -1,6 +1,6 @@
-export const TEAM_LOCALES = ['en', 'fr', 'rw', 'sw'] as const;
+export const TEAM_LOCALES = ['en', 'fr', 'rw', 'sw', 'zh'] as const;
 export type TeamLocale = typeof TEAM_LOCALES[number];
-export type LocalizedText = { en: string; fr?: string; rw?: string; sw?: string };
+export type LocalizedText = { en: string; fr?: string; rw?: string; sw?: string; zh?: string };
 export const TEAM_SECTIONS = ['LEADERSHIP', 'FOUNDERS', 'DEPARTMENTS'] as const;
 export type TeamSection = typeof TEAM_SECTIONS[number];
 export type TeamTitleSource = 'PRIMARY' | 'SECONDARY' | 'CUSTOM' | 'NONE';

@@ -105,11 +105,14 @@ named imports, e.g. `import { ShoppingCart } from 'lucide-react'`.
 ## Multi-language / i18n
 
 Static UI and editorial copy use `i18next` and `react-i18next`, configured
-in `front-end/src/app/i18n/index.ts`. English, French, Kinyarwanda, and
-Swahili resources live under `front-end/src/app/i18n/locales/`; keep new
-keys aligned across all four languages. Database-backed products and
+in `front-end/src/app/i18n/index.ts`. English, French, Kinyarwanda,
+Swahili, and Simplified Chinese (`zh`) resources live under
+`front-end/src/app/i18n/locales/`; keep new keys aligned across all five
+languages. The shared language selector is available on desktop and mobile,
+shows native language names, and persists the preference as `gcv_language`.
+Database-backed products and
 news remain in their source language. Kinyarwanda and Swahili copy is a
-first-pass translation pending native-speaker review.
+first-pass translation pending native-speaker review, as is Chinese copy.
 
 ## Leadership profiles
 
@@ -127,4 +130,4 @@ roles in distinct, labeled sections.
 
 ## Team management UI
 
-The Team admin area uses existing card/input/button tokens, four content-language tabs, explicit Keep/Upload/Photo URL choices with current/replacement previews, and accessible Move up/down controls. Page and department drafts remain mounted during refresh; clean forms adopt new versions while dirty forms preserve user text. Patterns are recorded in `../ui-registry.md`. Public API states share TeamContentState and accessible TeamPortrait fallbacks.
+The Team admin area uses existing card/input/button tokens, five content-language tabs (EN/FR/RW/SW/ZH), explicit Keep/Upload/Photo URL choices with current/replacement previews, and accessible Move up/down controls. Page and department drafts remain mounted during refresh; clean forms adopt new versions while dirty forms preserve user text. Patterns are recorded in `../ui-registry.md`. Public API states share TeamContentState and accessible TeamPortrait fallbacks.

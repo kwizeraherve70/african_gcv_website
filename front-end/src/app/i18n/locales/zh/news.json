@@ -1,0 +1,90 @@
+{
+  "news": {
+    "countryNotFound": {
+      "title": "未找到国家",
+      "description": "GCV Africa 尚未为该国家设立新闻中心。",
+      "backToCountries": "返回国家列表"
+    },
+    "back": {
+      "allCountries": "所有国家",
+      "newsHome": "新闻与媒体首页"
+    },
+    "eyebrow": {
+      "country": "GCV Africa — {{flag}} {{country}}",
+      "global": "Pi Global GCV Alliance"
+    },
+    "title": {
+      "country": "{{country}}新闻",
+      "global": "全部新闻与媒体"
+    },
+    "subtitle": {
+      "country": "了解 GCV 运动在{{country}}的所有动态。",
+      "global": "GCV 运动的最新动态、公告和新闻稿"
+    },
+    "seo": {
+      "countryDescription": "来自{{country}}的 GCV 新闻、大使活动及商家采用案例。",
+      "globalDescription": "了解来自非洲各地的最新 Pi Network 新闻、GCV 运动动态、官方公告、新闻稿及社区故事。"
+    },
+    "tabs": {
+      "articles": "文章",
+      "announcements": "公告",
+      "pressReleases": "新闻稿"
+    },
+    "search": {
+      "placeholder": "搜索文章…"
+    },
+    "filters": {
+      "categories": {
+        "all": "全部",
+        "piNetwork": "Pi Network",
+        "gcvMovement": "GCV 运动",
+        "events": "活动",
+        "community": "社区"
+      }
+    },
+    "loadingArticles": "正在加载文章…",
+    "articleCount_one": "找到 {{count}} 篇文章",
+    "articleCount_other": "找到 {{count}} 篇文章",
+    "emptyState": {
+      "noStoriesFromCountry": "暂无来自{{country}}的报道",
+      "noArticlesFound": "未找到文章",
+      "checkBackSoon": "请稍后再来，或浏览全部 GCV 新闻。",
+      "tryDifferentSearch": "请尝试其他搜索词或类别",
+      "viewAllNews": "查看所有新闻 →"
+    },
+    "important": "重要",
+    "loadingAnnouncements": "正在加载公告…",
+    "noAnnouncements": "暂无公告。",
+    "loadError": "无法加载此内容，请重试。",
+    "retry": "重试"
+  },
+  "newsCountries": {
+    "seo": {
+      "title": "新闻与媒体",
+      "description": "按国家浏览 GCV 新闻，了解 GCV Africa 各地的动态、大使活动及商家采用案例。"
+    },
+    "eyebrow": "Pi Global GCV Alliance",
+    "title": "新闻与媒体",
+    "subtitle": "选择一个 GCV Africa 国家查看当地新闻，或一次浏览全部内容。",
+    "allNews": {
+      "title": "全部新闻与公告",
+      "description": "来自联盟各地的文章、官方公告和新闻稿"
+    },
+    "browseByCountry": "GCV Africa — 按国家浏览",
+    "storyCount_one": "{{count}} 篇报道",
+    "storyCount_other": "{{count}} 篇报道"
+  },
+  "newsDetail": {
+    "loading": "正在加载…",
+    "notFound": {
+      "title": "未找到文章",
+      "description": "您查找的文章不存在。",
+      "backToNews": "返回新闻"
+    },
+    "backToNews": "返回新闻",
+    "views": "次浏览",
+    "byAuthor": "作者：{{author}}",
+    "shareArticle": "分享文章",
+    "relatedArticles": "相关文章"
+  }
+}

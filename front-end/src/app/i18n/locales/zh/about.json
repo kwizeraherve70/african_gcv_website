@@ -1,0 +1,114 @@
+{
+  "regions": { "all": "全部", "africa": "非洲", "europe": "欧洲", "asia": "亚洲", "usa": "美国" },
+  "about": {
+    "seo": { "title": "关于我们", "description": "了解 Pi Global GCV Alliance 的使命、核心价值观、领导团队，以及我们在非洲、欧洲、亚洲和美国推动贸易、创新与共同繁荣的全球愿景。" },
+    "hero": { "eyebrow": "关于我们", "title": "关于 Pi Global GCV Alliance", "subtitle": "通过全球共识价值，在非洲、欧洲、亚洲和美国建设公平、包容的全球贸易经济。" },
+    "mission": {
+      "eyebrow": "我们的宗旨", "title": "我们的使命",
+      "paragraph1": "Pi Global GCV Alliance 致力于为商家、服务提供者和机构提供必要的工具与社区支持，使其在不断发展的全球市场中开展公平贸易。",
+      "paragraph2": "我们相信，全球共识价值代表着贸易定价方式的转变：用每位成员都可以依赖的统一、透明、固定兑换比率，取代波动的投机性定价。",
+      "paragraph3": "通过教育、倡导和社区建设，我们正助力打造连接四大洲、更加公平的贸易未来。",
+      "imageAlt": "联盟社区"
+    },
+    "values": {
+      "eyebrow": "我们的信念", "title": "我们的核心价值观",
+      "items": [
+        { "title": "社区优先", "desc": "在所有工作中，我们都优先考虑会员社区的需求和声音。" },
+        { "title": "公平价值", "desc": "我们倡导透明、固定的兑换比率，保护每位贸易伙伴。" },
+        { "title": "教育", "desc": "我们通过全面的教育资源和支持，帮助会员与商家发展。" },
+        { "title": "全球团结", "desc": "我们连接非洲、欧洲、亚洲和美国，建立统一的贸易网络。" }
+      ]
+    },
+    "gcv": {
+      "title": "什么是全球共识价值？", "rateDisplay": "1 π ≈ ${{value}}",
+      "disclaimerStrong": "GCV 是社区提出的价格目标，并非 Pi Network 官方汇率。",
+      "disclaimerRest": "它未获 Pi 核心团队认可，也未经任何交易所验证。Pi 在公开市场的实际交易价格远低于此目标，是每枚几美分的量级，而非数十万美元。",
+      "paragraph1Before": "全球共识价值（GCV）是联盟社区共同约定的目标比率，提出",
+      "paragraph1After": "——这一数字源于数学常数 π（3.14159），将小数点向右移动四位。GCV 市场中的商品和服务以美元定价，并按这一社区目标换算显示 Pi 金额。",
+      "paragraph2": "与交易所交易价格不同，GCV 是由联盟先锋共同约定、具有象征意义和愿景性质的参考比率，并非市场估值。它反映的是参与商家和会员之间约定接受的价值，而非 Pi 在任何交易所的交易价格。",
+      "principlesLabel": "GCV 的主要原则包括：",
+      "principles": [
+        "在整个市场中统一采用社区共同约定的目标价值",
+        "定价和交易流程透明",
+        "防范市场操纵和非官方交易",
+        "以商家的实际采用证明现实应用价值",
+        "所有联盟地区共享同一标准"
+      ],
+      "paragraph3": "对于非洲、欧洲、亚洲和美国的会员，GCV 代表着以公平、可预期的条件开展贸易的共同愿望：在联盟各地一致采用同一目标比率。"
+    },
+    "leadership": {
+      "eyebrow": "我们的团队", "title": "我们的领导团队",
+      "doris": {
+        "name": "Doris Yin", "role": "全球 GCV 社区执行董事", "founderRole": "创始人 — 非洲 GCV 运动",
+        "bio1": "Doris Yin 担任全球 GCV 社区执行董事，也是非洲 GCV 运动的创始人。",
+        "bio2": "她倡导的理念——“筑牢根基，成为光明未来的支柱”——是联盟在各地区开展教育和社区建设的基石。"
+      },
+      "olivier": {
+        "name": "Olivier Ndatimana", "role": "全球 GCV 执行董事", "founderRole": "创始人 — 非洲 GCV 运动",
+        "tagline": "全球社区领袖 • 企业家 • 国际协调员",
+        "bio1": "Olivier Ndatimana 是来自卢旺达的社区领袖、企业家和国际协调员，在社区发展、领导、沟通、业务拓展和国际合作方面拥有经验。",
+        "profileLink": "阅读 Olivier 的完整简介",
+        "founderBio": "作为非洲 GCV 运动的创始人，他通过社区协调、领导力培养与合作，将非洲各项行动与更广泛的国际运动连接起来。",
+        "gcv": {
+          "title": "GCV 运动",
+          "description": "作为全球 GCV 执行董事和非洲 GCV 运动的创始人，Olivier 致力于国际社区协调、领导力培养、沟通、汇报，以及非洲和其他地区 GCV 领导者、大使与社区之间的合作。",
+          "experience": "参与 GCV 运动数年来，他承担了不同的领导和社区职责，在非洲组织与协调活动，并将非洲各项行动与更广泛的国际运动连接起来。",
+          "focusTitle": "领导工作重点",
+          "priorities": ["团结与合作", "国际社区协调", "领导力培养", "沟通与信息共享", "问责与汇报", "社区发展", "跨境协作", "长期愿景与共同目标"]
+        },
+        "pi": {
+          "title": "Pi Network 社区",
+          "description": "Olivier 参与社区建设、沟通和教育，连接不同国家的先锋。他分享信息，鼓励合作与参与，帮助先锋了解 Pi 生态系统的发展和机遇。",
+          "distinction": "这些社区活动并不代表他受雇于 Pi Network 核心团队，或在其中担任官方领导职务。此类职务需要 Pi Network 的官方确认。"
+        },
+        "business": {
+          "title": "Kigali Hot Market Ltd", "role": "首席执行官 / 所有者 • 卢旺达", "sectors": "物流 • 进出口 • 电子商务",
+          "description": "Kigali Hot Market Ltd（KHM-LTD）从事物流、进出口和电子商务。其业务包括业务拓展与商业服务，连接客户、供应商和服务提供者，并促进商业机会。"
+        },
+        "approach": {
+          "title": "领导理念",
+          "description": "Olivier 强调团结、和平合作、尊重、团队协作和长期愿景。他认为，观点、背景或国家利益的差异不应阻碍人们追求共同目标。他的做法是凝聚人心、畅通沟通渠道、鼓励担当，并建设可持续发展的社区。"
+        },
+        "vision": {
+          "title": "国际愿景",
+          "description": "他的愿景是连接非洲与全球社区，创造国际合作机会，支持创业与社区发展。他相信，可持续进步来自合作、负责任的领导、技术、创业精神和强大的社区。"
+        },
+        "valuesTitle": "核心价值观", "values": ["团结", "和平", "诚信", "合作", "领导力", "社区发展", "全球视野"]
+      }
+    },
+    "regionsSection": { "eyebrow": "全球架构", "title": "四大洲，一个联盟", "description": "Pi Global GCV Alliance 以非洲、欧洲、亚洲和美国的地区大使与创始人为组织基础，由他们在各自地区引领这场运动。" },
+    "impact": {
+      "title": "联盟影响力",
+      "stats": [{ "value": "4", "label": "大洲" }, { "value": "12,500+", "label": "全球会员" }, { "value": "3,200+", "label": "活跃商家" }, { "value": "2025 年 1 月", "label": "首次全体大会" }]
+    }
+  },
+  "team": {
+    "seo": { "title": "GCV 核心团队", "description": "认识在非洲及全球推动 Pi Global GCV Alliance 发展的全球领导团队和部门负责人。" },
+    "hero": { "badge": "我们的成员", "title": "GCV 核心团队", "subtitle": "认识在非洲及全球推动 GCV 运动发展的创始人、领导者、大使和专业人士。" },
+    "globalLeadership": { "eyebrow": "核心领导", "title": "全球领导团队" },
+    "founders": { "eyebrow": "愿景引领者", "title": "创始人" },
+    "structure": { "eyebrow": "组织架构", "title": "部门团队" },
+    "departments": { "all": "全部", "leadership": "领导团队", "ambassadors": "大使", "education": "教育", "ecosystem": "生态系统", "finance": "财务", "communications": "传播", "events": "活动" },
+    "ui": { "loading": "正在加载团队简介…", "error": "暂时无法获取团队简介，请重试。", "retry": "重试", "empty": "此栏目暂无已发布的简介。", "photoUnavailable": "暂无 {{name}} 的照片", "profileLink": "阅读完整简介" }
+  },
+  "ambassadors": {
+    "seo": { "title": "GCV 大使", "description": "认识代表非洲、欧洲、亚洲和美国的 GCV 大使，他们是 Pi Global GCV Alliance 的一线领导者。" },
+    "hero": { "badge": "全球代表", "title": "GCV 大使", "subtitle": "在非洲、欧洲、亚洲和美国代表 GCV 运动的专员大使及地区领导者。" },
+    "contactLink": "联系", "emptyState": "未找到该地区的大使。"
+  },
+  "industryAlliance": {
+    "seo": { "title": "GCV 产业联盟", "description": "探索 GCV 产业联盟，认识在非洲、欧洲、亚洲和美国与 Pi Global GCV Alliance 合作的公司、组织和企业。" },
+    "hero": { "badge": "战略合作伙伴", "title": "GCV 产业联盟", "subtitle": "来自四大洲、认同 GCV 标准的公司、机构和组织，共同建设由 Pi 驱动的经济。" },
+    "activeMemberTitle": "活跃成员", "emptyState": "未找到该地区的联盟成员。",
+    "cta": { "title": "加入产业联盟", "description": "您的公司或组织是否认同 GCV 标准？申请成为 GCV 产业联盟正式成员。", "button": "申请加入" }
+  },
+  "merchants": {
+    "seo": { "title": "商家名录", "description": "浏览 GCV 商家名录，发现食品、科技、教育、医疗等领域按全球共识价值标准接受 Pi 支付的非洲企业。" },
+    "hero": { "badge": "Pi 商家", "title": "商家名录", "subtitle": "发现按 GCV 标准接受 Pi 支付的非洲企业。从食品商家到科技公司，使用 Pi 购物、用餐和交易。", "searchPlaceholder": "按名称、类别或国家搜索商家…" },
+    "categories": { "all": "全部", "foodBeverage": "食品与饮料", "technology": "科技", "fashionClothing": "时尚与服装", "education": "教育", "transport": "交通运输", "agriculture": "农业", "professionalServices": "专业服务", "healthcare": "医疗保健" },
+    "resultsCount_one": "找到 {{count}} 家商家", "resultsCount_other": "找到 {{count}} 家商家", "resultsInCategory": "，类别：{{category}}", "resultsForQuery": "，搜索词：“{{query}}”",
+    "email": "电子邮箱", "website": "网站",
+    "empty": { "title": "未找到商家", "description": "请调整搜索条件或选择其他类别。", "clearFilters": "清除筛选条件" },
+    "cta": { "title": "登记您的企业", "description": "按 GCV 接受 Pi 支付，加入非洲不断壮大的商家网络。所有认同 GCV 的企业均可免费注册。", "button": "注册成为商家" }
+  }
+}

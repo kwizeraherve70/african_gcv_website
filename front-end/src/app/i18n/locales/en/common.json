@@ -75,5 +75,11 @@
   "whatsapp": {
     "chatAria": "Chat with us on WhatsApp",
     "prefillMessage": "Hello! I have a question about Pi Global GCV Alliance."
+  },
+  "announcement": {
+    "target": "GCV Target: 1 π ≈ ${{value}} (community-proposed)",
+    "tagline": "Pay in Pi. Grow together.",
+    "exploreMarket": "Explore Market →",
+    "dismiss": "Dismiss announcement"
   }
 }

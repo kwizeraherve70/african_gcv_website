@@ -1,0 +1,53 @@
+{
+  "seo": {
+    "title": "首页",
+    "description": "Pi Global GCV Alliance — 通过贸易、创新与共同繁荣连接非洲、欧洲、亚洲和美国的全球贸易联盟。按社区提出的 GCV 目标价值使用 Pi 支付。"
+  },
+  "hero": {
+    "titleLine1": "连接世界，",
+    "titleLine2": "助力贸易",
+    "subtitle": "通过贸易、创新与共同繁荣连接非洲、欧洲、亚洲和美国的全球联盟。",
+    "exploreMarket": "探索市场",
+    "joinAlliance": "加入联盟",
+    "gcvTarget": { "label": "GCV 社区目标价值", "rate": "1 π ≈ ${{value}}", "disclaimer": "并非 Pi Network 官方汇率或交易所汇率。" }
+  },
+  "features": {
+    "global": { "title": "全球联盟", "desc": "业务遍及四大洲" },
+    "secure": { "title": "安全可信", "desc": "透明、可靠、负责" },
+    "payInPi": { "title": "使用 Pi 支付", "desc": "按社区 GCV 目标价值轻松支付" },
+    "empowering": { "title": "助力企业", "desc": "支持商家与创业者" }
+  },
+  "stats": { "members": "全球会员", "merchants": "活跃商家", "products": "上架商品", "events": "已举办活动" },
+  "featured": { "eyebrow": "GCV 市场", "heading": "GCV 市场精选", "viewAll": "查看所有商品" },
+  "news": { "eyebrow": "了解最新动态", "heading": "最新新闻", "viewAll": "查看所有新闻" },
+  "founder": {
+    "badge": "全球 GCV 执行董事",
+    "name": "Olivier Ndatimana",
+    "tagline": "全球社区领袖 • 企业家 • 国际协调员",
+    "founderRole": "创始人 — 非洲 GCV 运动",
+    "intro": "一位来自卢旺达的社区领袖，通过领导力培养、沟通与国际合作，将非洲与全球 GCV 运动连接起来。",
+    "bio": "Olivier 同时是卢旺达 Kigali Hot Market Ltd 的首席执行官及所有者，从事物流、进出口和电子商务。他的领导理念植根于团结、和平合作、诚信与社区发展。",
+    "piNote": "他通过社区建设、教育和连接先锋参与 Pi Network；这些活动并不代表他在 Pi Network 核心团队担任职务。",
+    "cta": "阅读 Olivier 的完整简介",
+    "imageAlt": "Olivier Ndatimana"
+  },
+  "mission": {
+    "eyebrow": "我们的宗旨", "heading": "使命与愿景", "missionTitle": "我们的使命",
+    "missionText": "将非洲、欧洲、亚洲和美国的商家、服务提供者及机构凝聚在一个贸易联盟中，为每位成员提供公平的市场机会、公正的定价，并按社区 GCV 目标价值使用 Pi 支付。",
+    "visionTitle": "我们的愿景",
+    "visionText": "建设一个贸易在各大洲之间自由流通的全球市场，为每位联盟成员的农业、制造业、专业服务和商业发展提供动力，并统一按照 1 π ≈ ${{value}} 的社区 GCV 目标价值定价。"
+  },
+  "membership": {
+    "eyebrow": "加入联盟", "heading": "成为会员",
+    "text": "Pi Global GCV Alliance 面向所有贸易从业者、企业和机构开放。无论您希望成为大使、将企业注册为 GCV 商家，还是加入社区，都能找到适合自己的角色。",
+    "roles": {
+      "member": { "title": "GCV 会员", "desc": "加入社区，开始浏览 GCV 市场。" },
+      "merchant": { "title": "GCV 商家", "desc": "注册您的企业，按社区 GCV 目标价值接受 Pi 支付。" },
+      "ambassador": { "title": "GCV 大使", "desc": "在您的国家或地区推动 GCV 运动。" }
+    },
+    "joinToday": "立即加入", "learnMore": "了解更多",
+    "stats": { "continents": "大洲", "merchants": "GCV 商家", "products": "上架商品", "perPi": "每 π（GCV 目标价值）" }
+  },
+  "contact": { "emailUs": "发送邮件", "callUs": "致电我们", "whatsapp": "WhatsApp", "chatWithUs": "与我们聊天" },
+  "cta": { "badge": "参与这场运动", "heading": "立即加入 Pi Global GCV Alliance！", "subtitle": "参与通过贸易与团结创造繁荣的全球运动。", "becomeMember": "成为会员", "exploreMarket": "探索市场" }
+}

@@ -6,57 +6,67 @@ import enCommon from "./locales/en/common.json";
 import frCommon from "./locales/fr/common.json";
 import rwCommon from "./locales/rw/common.json";
 import swCommon from "./locales/sw/common.json";
+import zhCommon from "./locales/zh/common.json";
 
 import enHome from "./locales/en/home.json";
 import frHome from "./locales/fr/home.json";
 import rwHome from "./locales/rw/home.json";
 import swHome from "./locales/sw/home.json";
+import zhHome from "./locales/zh/home.json";
 
 import enShop from "./locales/en/shop.json";
 import frShop from "./locales/fr/shop.json";
 import rwShop from "./locales/rw/shop.json";
 import swShop from "./locales/sw/shop.json";
+import zhShop from "./locales/zh/shop.json";
 
 import enCheckout from "./locales/en/checkout.json";
 import frCheckout from "./locales/fr/checkout.json";
 import rwCheckout from "./locales/rw/checkout.json";
 import swCheckout from "./locales/sw/checkout.json";
+import zhCheckout from "./locales/zh/checkout.json";
 
 import enAuth from "./locales/en/auth.json";
 import frAuth from "./locales/fr/auth.json";
 import rwAuth from "./locales/rw/auth.json";
 import swAuth from "./locales/sw/auth.json";
+import zhAuth from "./locales/zh/auth.json";
 
 import enContact from "./locales/en/contact.json";
 import frContact from "./locales/fr/contact.json";
 import rwContact from "./locales/rw/contact.json";
 import swContact from "./locales/sw/contact.json";
+import zhContact from "./locales/zh/contact.json";
 
 import enNews from "./locales/en/news.json";
 import frNews from "./locales/fr/news.json";
 import rwNews from "./locales/rw/news.json";
 import swNews from "./locales/sw/news.json";
+import zhNews from "./locales/zh/news.json";
 
 import enAbout from "./locales/en/about.json";
 import frAbout from "./locales/fr/about.json";
 import rwAbout from "./locales/rw/about.json";
 import swAbout from "./locales/sw/about.json";
+import zhAbout from "./locales/zh/about.json";
 
 import enMisc from "./locales/en/misc.json";
 import frMisc from "./locales/fr/misc.json";
 import rwMisc from "./locales/rw/misc.json";
 import swMisc from "./locales/sw/misc.json";
+import zhMisc from "./locales/zh/misc.json";
 
 // Supported UI languages (see context/project-overview.md's target feature
 // list). Content stored in the database (products, news articles) is not
-// translated by this system — only static UI copy is. Kinyarwanda and
-// Swahili strings are an AI-generated first pass and have not been
+// translated by this system — only static UI copy is. Kinyarwanda,
+// Swahili and Chinese strings are an AI-generated first pass and have not been
 // reviewed by a native speaker; see context/progress-tracker.md.
 export const SUPPORTED_LANGUAGES = [
   { code: "en", label: "English" },
   { code: "fr", label: "Français" },
   { code: "rw", label: "Kinyarwanda" },
   { code: "sw", label: "Kiswahili" },
+  { code: "zh", label: "简体中文" },
 ] as const;
 
 export type LanguageCode = (typeof SUPPORTED_LANGUAGES)[number]["code"];
@@ -66,6 +76,7 @@ const resources = {
   fr: { common: frCommon, home: frHome, shop: frShop, checkout: frCheckout, auth: frAuth, contact: frContact, news: frNews, about: frAbout, misc: frMisc },
   rw: { common: rwCommon, home: rwHome, shop: rwShop, checkout: rwCheckout, auth: rwAuth, contact: rwContact, news: rwNews, about: rwAbout, misc: rwMisc },
   sw: { common: swCommon, home: swHome, shop: swShop, checkout: swCheckout, auth: swAuth, contact: swContact, news: swNews, about: swAbout, misc: swMisc },
+  zh: { common: zhCommon, home: zhHome, shop: zhShop, checkout: zhCheckout, auth: zhAuth, contact: zhContact, news: zhNews, about: zhAbout, misc: zhMisc },
 };
 
 i18n
